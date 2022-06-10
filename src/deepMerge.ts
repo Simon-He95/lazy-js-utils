@@ -1,27 +1,26 @@
-import { isPlainObject } from "./common"
+import { isPlainObject } from './common'
 
 export function deepMerge(target: Record<any, any>, ...sources: Record<any, any>[]) {
-  if (!isPlainObject(target)) {
+  if (!isPlainObject(target))
     return target
-  }
 
   sources.forEach((source) => {
-    if (!isPlainObject(source)) {
+    if (!isPlainObject(source))
       throw new Error(`${source} is not objectType`)
-    }
+
     if (!Object.keys(target).length) {
       Object.assign(target, source)
-    } else {
-      for (let key in source) {
+    }
+    else {
+      for (const key in source) {
         if (
-          key in target &&
-          isPlainObject(target[key]) &&
-          isPlainObject(source[key])
-        ) {
+          key in target
+          && isPlainObject(target[key])
+          && isPlainObject(source[key])
+        )
           deepMerge(target[key], source[key])
-        } else {
+        else
           target[key] = source[key]
-        }
       }
     }
   })

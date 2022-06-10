@@ -1,11 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { deepMerge, deepCompare, asyncPool } from '../src'
-
-
+import { asyncPool, deepCompare, deepMerge } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
-    let b = {
+    const b = {
       people: {
         name: 'xx',
         age: '11',
@@ -16,7 +14,7 @@ describe('Test 1', () => {
         name2: '',
       },
     }
-    let c = {
+    const c = {
       people: {
         name: 'xx',
         age: '11',
@@ -53,7 +51,7 @@ describe('Test 1', () => {
 
 describe('Test 2', () => {
   it('deepCompare test', () => {
-    let b = {
+    const b = {
       people: {
         name: 'xx',
         age: '11',
@@ -64,7 +62,7 @@ describe('Test 2', () => {
         name2: '',
       },
     }
-    let c = {
+    const c = {
       people: {
         name: 'xx',
         age: '11',
@@ -94,8 +92,8 @@ describe('Test 2', () => {
       }
     `)
 
-    let d = [1, 2, 3]
-    let e = [1, 2, 4]
+    const d = [1, 2, 3]
+    const e = [1, 2, 4]
     expect(deepCompare(d, e)).toMatchInlineSnapshot(`
       {
         "error": [
@@ -114,12 +112,10 @@ describe('Test 3', () => {
     function delay(interval: number) {
       return () => new Promise((resolve, reject) => {
         setTimeout(() => {
-          console.log(interval)
-          if (interval > 1000) {
+          if (interval > 1000)
             reject(interval)
-          } else {
+          else
             resolve(interval)
-          }
         }, interval)
       })
     }
@@ -132,7 +128,7 @@ describe('Test 3', () => {
       delay(1000),
       delay(1000),
       delay(1000),
-      delay(1000)
+      delay(1000),
     ]
     expect(await asyncPool(4, tasks)).toMatchInlineSnapshot(`
       [
