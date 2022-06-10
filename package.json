@@ -1,6 +1,6 @@
 {
   "name": "vitesse",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "packageManager": "pnpm@6.32.3",
   "description": "vitesse",
   "author": "Simon He",
