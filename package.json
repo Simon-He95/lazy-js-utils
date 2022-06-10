@@ -7,10 +7,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git + git@github.com:Simon-He95/js-tool.git"
+    "url": "git + git@github.com:Simon-He95/simon-js-tool.git"
   },
   "bugs": {
-    "url": "https://github.com/Simon-He95/js-tool/issues"
+    "url": "https://github.com/Simon-He95/simon-js-tool/issues"
   },
   "keywords": [
     "simon-js-tool",
