@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, deepCompare, deepMerge, quickFilter, quickFind } from '../src'
+import { asyncPool, curry, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -286,3 +286,49 @@ describe('Test 5', () => {
     `)
   })
 })
+
+describe('Test 6', () => {
+  it('deepClone test', async () => {
+    const arr: any = {
+      name: 'simon5',
+      age: 49,
+      id: 3,
+      fn() { },
+      reg: /\test/,
+      date: Date,
+      null: null,
+      [Symbol(1)]: 1,
+      loop: null,
+    }
+    arr.loop = arr
+    const cloneObj = deepClone(arr)
+    expect(cloneObj).toMatchInlineSnapshot('false')
+    expect(cloneObj.loop === arr.loop).toMatchInlineSnapshot('10')
+  })
+})
+
+describe('Test 7', () => {
+  it('curry test', async () => {
+    function __add(a: number, b: number, c: number, d: number) {
+      return a + b + c + d
+    }
+    const add = curry(__add)
+    expect(add(1, 2)(3)(4)).toBe(10)
+  })
+})
+
+describe('Test 8', () => {
+  it('memorizeFn test', async () => {
+    let count = 0
+    function hello(name: string) {
+      count++
+      return `hello ${name}`
+    }
+    const fn = memorizeFn(hello)
+    fn()
+    fn()
+    fn()
+    expect(count).toBe(1)
+  })
+})
+
