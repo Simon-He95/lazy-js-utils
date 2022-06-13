@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind } from '../src'
+import { asyncPool, curry, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, traverse } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -329,6 +329,75 @@ describe('Test 8', () => {
     fn()
     fn()
     expect(count).toBe(1)
+  })
+})
+
+describe('Test 9', () => {
+  it('traverse test', async () => {
+    const arr = [
+      {
+        name: 'simon',
+        family: {
+          bro: 'simonBro',
+        },
+        people: {
+          name: 'simonPeople',
+          family: {
+            bro: 'simonPeopleBro',
+          },
+        },
+      }, {
+        name: 'kitty',
+        family: {
+          bro: 'kittyBro',
+        },
+        people: {
+          name: 'kittyPeople',
+          family: {
+            bro: 'kittyPeopleBro',
+          },
+        },
+      },
+    ]
+    expect(traverse(arr, {
+      'family.name': function (target: any, index: number) {
+        console.log(target, index)
+      },
+      people(target: any, index: number) {
+        target.name = 'haha'
+        console.log(target, index)
+      },
+      'people.family': function (target: any, index: number, item: any) {
+        console.log(target, index, item)
+      },
+    })).toMatchInlineSnapshot(`
+      [
+        {
+          "family": {
+            "bro": "simonBro",
+          },
+          "name": "simon",
+          "people": {
+            "family": {
+              "bro": "simonPeopleBro",
+            },
+            "name": "haha",
+          },
+        },
+        {
+          "family": {
+            "bro": "kittyBro",
+          },
+          "name": "kitty",
+          "people": {
+            "family": {
+              "bro": "kittyPeopleBro",
+            },
+            "name": "haha",
+          },
+        },
+      ]
+    `)
   })
 })
 

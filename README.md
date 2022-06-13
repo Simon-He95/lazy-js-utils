@@ -9,6 +9,11 @@
 - memorizeFn // 根据参数返回一个有缓存的函数
 - debounce // 函数防抖
 - throttle // 函数节流
+- traverse // 遍历对象或数组,快速从options中得到指定的属性值,traverse(arr, {
+      'family.name'(target: any, index: number) {
+        console.log(target, index,)
+      }
+    })
 
 ## 使用方法
 ### deepMerge
@@ -27,4 +32,6 @@
 ![curry](assets/curry.png)
 ### memorizeFn
 ![memorizeFn](assets/memorizeFn.png)
+### traverse
+![traverse](assets/traverse.png)
 
