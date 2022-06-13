@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, deepCompare, deepMerge } from '../src'
+import { asyncPool, deepCompare, deepMerge, quickFind } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -141,6 +141,35 @@ describe('Test 3', () => {
         1000,
         1000,
       ]
+    `)
+  })
+})
+
+describe('Test 4', () => {
+  it('quickFind test', async () => {
+    const arr = [
+      {
+        name: 'simon',
+        age: 18,
+        id: 0,
+      },
+      {
+        name: 'simon1',
+        age: 19,
+        id: 1,
+      },
+      {
+        name: 'simon2',
+        age: 29,
+        id: 2,
+      },
+    ]
+    expect(quickFind(arr, 'id').find(2)).toMatchInlineSnapshot(`
+      {
+        "age": 29,
+        "id": 2,
+        "name": "simon2",
+      }
     `)
   })
 })

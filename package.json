@@ -40,7 +40,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "vue-tsc --noEmit",
-    "test": "vitest",
+    "test": "vitest -u",
     "test:e2e": "cypress open",
     "prepublishOnly": "nr build",
     "release": "bumpp --commit --tag --push && pnpm publish"
