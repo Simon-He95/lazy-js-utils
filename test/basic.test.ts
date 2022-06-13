@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, deepCompare, deepMerge, quickFind, quickFilter } from '../src'
+import { asyncPool, deepCompare, deepMerge, quickFilter, quickFind } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
