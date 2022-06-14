@@ -360,7 +360,7 @@ describe('Test 9', () => {
       },
     ]
     expect(traverse(arr, {
-      'family.name': function (target: any, index: number) {
+      'family.bro': function (target: any, index: number) {
         console.log(target, index)
       },
       people(target: any, index: number) {

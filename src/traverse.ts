@@ -9,9 +9,9 @@ export function traverse(target: Record<any, any> | any[], options: Record<strin
 
 function executor(target: Record<any, any>, index: number, options: Record<string, Function> = {}) {
   for (const key in options) {
-    const result = key.split('.').reduce((_, cur) => {
-      return target[cur]
-    }, '')
+    const result = key.split('.').reduce((pre, cur) => {
+      return pre[cur]
+    }, target)
     options[key](result, index, target)
   }
 }
