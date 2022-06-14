@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, traverse } from '../src'
+import { asyncPool, curry, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, transformKey, traverse } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -401,3 +401,40 @@ describe('Test 9', () => {
   })
 })
 
+describe('Test 10', () => {
+  it('transformKey test', async () => {
+    const arr = [
+      {
+        name: 'simon',
+        family: {
+          bro: 'simonBro',
+        },
+        people: {
+          name: 'simonPeople',
+          family: {
+            bro: 'simonPeopleBro',
+          },
+        },
+      },
+    ]
+    expect(transformKey(arr, {
+      'family.bro': 'name',
+      'people.family.bro': 'familyName',
+    })).toMatchInlineSnapshot(`
+      [
+        {
+          "family": {
+            "name": "simonBro",
+          },
+          "name": "simon",
+          "people": {
+            "family": {
+              "familyName": "simonPeopleBro",
+            },
+            "name": "simonPeople",
+          },
+        },
+      ]
+    `)
+  })
+})
