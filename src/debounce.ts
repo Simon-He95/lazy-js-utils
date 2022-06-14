@@ -3,7 +3,7 @@ export function debounce(fn: Function, time: number) {
   return function (this: any, e?: any) {
     if (timer !== null)
       clearTimeout(timer)
-    setTimeout(() => {
+    timer = setTimeout(() => {
       const result = fn.call(this, e)
       timer = null
       return result

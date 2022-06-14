@@ -3,8 +3,9 @@ export function throttle(fn: Function, stop: number) {
   return function (this: any, e?: any) {
     const end = Date.now()
     if (end - start >= stop) {
-      fn.call(this, e)
+      const result = fn.call(this, e)
       start = end
+      return result
     }
   }
 }

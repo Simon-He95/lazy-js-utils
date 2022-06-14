@@ -36,6 +36,10 @@
 ![curry](assets/curry.png)
 ### memorizeFn
 ![memorizeFn](assets/memorizeFn.png)
+### debounce
+![debounce](assets/debounce.png)
+### throttle
+![throttle](assets/throttle.png)
 ### traverse
 ![traverse](assets/traverse.png)
 ### transformKey

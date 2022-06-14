@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, transformKey, traverse } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -361,14 +361,14 @@ describe('Test 9', () => {
     ]
     expect(traverse(arr, {
       'family.bro': function (target: any, index: number) {
-        console.log(target, index)
+        console.log('traverse~', target, index)
       },
       people(target: any, index: number) {
         target.name = 'haha'
-        console.log(target, index)
+        console.log('traverse~', target, index)
       },
       'people.family': function (target: any, index: number, item: any) {
-        console.log(target, index, item)
+        console.log('traverse~', target, index, item)
       },
     })).toMatchInlineSnapshot(`
       [
@@ -436,5 +436,37 @@ describe('Test 10', () => {
         },
       ]
     `)
+  })
+})
+
+describe('Test 11', () => {
+  it('debounce test', async () => {
+    let count = 0
+    function add() {
+      count++
+    }
+    const fn = debounce(add, 1000)
+    fn()
+    fn()
+    fn()
+    fn()
+    fn()
+    setTimeout(() => {
+      expect(count).toBe(1)
+    }, 1000)
+  })
+})
+
+describe('Test 12', () => {
+  it('throttle test', async () => {
+    let count = 0
+    function add() {
+      count++
+    }
+    const fn = throttle(add, 1000)
+    fn()
+    fn()
+    fn()
+    expect(count).toBe(1)
   })
 })
