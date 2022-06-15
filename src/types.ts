@@ -6,7 +6,7 @@ export type BodyType = 'form' | 'json' | 'file'
 export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS'
 export type Credentials = 'omit' | 'include' | 'same-origin'
 
-export interface IFetchUtil {
+export interface IFetch {
   url: string
   method?: Method
   headers?: Record<string, string>

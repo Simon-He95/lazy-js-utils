@@ -1,4 +1,4 @@
-import type { BodyType, Cache, Credentials, IFetchUtil, Method, Mode, Redirect, ReturnType } from './types'
+import type { BodyType, Cache, Credentials, IFetch, Method, Mode, Redirect, ReturnType } from './types'
 export class VFetch {
   url: string
   method: Method = 'GET'
@@ -13,7 +13,7 @@ export class VFetch {
   cache: Cache = 'default'
   redirect: Redirect = 'manual'
   mode: Mode = 'cors'
-  constructor(options: IFetchUtil) {
+  constructor(options: IFetch) {
     const { url, method, headers, bodyType, params, credentials, returnType, timeout, firstThen, cache, redirect, mode } = options
     this.url = url
     this.method = method || this.method
@@ -36,7 +36,7 @@ export class VFetch {
     this.result = this.fetch()
   }
 
-  set(target: keyof FetchUtil, value: Record<string, string> = {}) {
+  set(target: keyof VFetch, value: Record<string, string> = {}) {
     Object.keys(value).forEach((key) => {
       if (this[target] && !this[target][key])
         this[target][key] = value[key]
