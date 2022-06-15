@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse } from 'simon-js-tool'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, interceptError, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -468,5 +468,14 @@ describe('Test 12', () => {
     fn()
     fn()
     expect(count).toBe(1)
+  })
+})
+
+describe('Test 13', async () => {
+  it('interceptError test', async () => {
+    function add() {
+      count++
+    }
+    expect(await interceptError(add).catch(e => e)).toMatchInlineSnapshot('[ReferenceError: count is not defined]')
   })
 })
