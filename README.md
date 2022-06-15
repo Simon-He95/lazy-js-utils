@@ -29,6 +29,22 @@
 - isSymbol  // 判断是否是Symbol
 - isNaN  // 判断是否是NaN
 - isReg  // 判断是否是正则表达式
+- VFetch  // fetch请求封装 export interface IFetch {
+  url: string
+  method?: Method
+  headers?: Record<string, string>
+  credentials?: Credentials
+  params?: Record<string, string>
+  timeout?: number
+  returnType?: ReturnType
+  bodyType?: BodyType
+  cache?: Cache
+  redirect?: Redirect
+  mode?: Mode
+  firstThen?: (response: Response) => Response
+}
+- interceptError  // 自动捕获传入函数执行的异常
+
 
 ## 使用方法
 ### deepMerge
