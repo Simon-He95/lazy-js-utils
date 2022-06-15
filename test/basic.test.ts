@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse } from 'simon-js-tool'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {

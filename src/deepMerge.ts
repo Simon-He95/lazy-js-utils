@@ -1,4 +1,4 @@
-import { isPlainObject } from './common'
+import { isPlainObject } from './isPlainObject'
 
 export function deepMerge(target: Record<any, any>, ...sources: Record<any, any>[]) {
   if (!isPlainObject(target))

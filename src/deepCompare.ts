@@ -1,4 +1,4 @@
-import { isPlainObject } from './common'
+import { isPlainObject } from './isPlainObject'
 
 // 深比较
 export function deepCompare(comp1: any, comp2: any, error: string[] = [], errorMsg: string[] = [], name?: string, index?: string) {

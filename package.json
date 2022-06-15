@@ -56,6 +56,7 @@
     "eslint": "^8.16.0",
     "eslint-plugin-n": "^15.2.1",
     "pkgroll": "^1.3.1",
+    "simon-js-tool": "workspace:^1.0.8",
     "typescript": "^4.7.2",
     "vitest": "^0.14.2"
   }

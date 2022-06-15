@@ -18,6 +18,17 @@
       'family.name': 'familyName',
       'family.age': 'familyAge'
     })
+- isStr  // 判断是否是字符串
+- isNum  // 判断是否是数字
+- isPlainObject  // 判断是否是对象
+- isArray  // 判断是否是数组
+- isFn  // 判断是否是函数
+- isUndef  // 判断是否是undefined
+- isNull  // 判断是否是null
+- isPromise  // 判断是否是Promise
+- isSymbol  // 判断是否是Symbol
+- isNaN  // 判断是否是NaN
+- isReg  // 判断是否是正则表达式
 
 ## 使用方法
 ### deepMerge
