@@ -2,12 +2,15 @@ import type { BodyType, Cache, Credentials, IFetch, Method, Mode, Redirect, Retu
 export class VFetch {
   url: string
   method: Method = 'GET'
-  headers: Record<string, string> = {}
-  credentials: Credentials = 'omit'
+  headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  credentials: Credentials = 'include'
   body: any
   timeout = 0
   returnType: ReturnType = 'json'
-  bodyType: BodyType = 'form'
+  bodyType: BodyType = 'json'
   firstThen?: (response: Response) => Response
   result: Promise<any>
   cache: Cache = 'default'
@@ -38,18 +41,17 @@ export class VFetch {
 
   set(target: keyof VFetch, value: Record<string, string> = {}) {
     Object.keys(value).forEach((key) => {
-      if (this[target] && !this[target][key])
-        this[target][key] = value[key]
+      this[target][key] = value[key]
     })
   }
 
-  async then(callback: Function) {
+  async then(successCallback: Function, errorCallback: Function) {
     try {
       const result = await this.result
-      callback(result)
+      successCallback(result)
     }
-    catch (error: any) {
-      throw new Error(error)
+    catch (error) {
+      errorCallback(error)
     }
   }
 
@@ -64,6 +66,7 @@ export class VFetch {
         this.body = this.bodyToString
       }
       else if (this.bodyType === 'file') {
+        this.set('headers', { 'Content-Type': 'multipart/form-data' })
         this.body = Object.keys(this.body!).reduce((result, key) => {
           result.append(key, this.body![key])
           return result
