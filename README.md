@@ -1,8 +1,8 @@
 ## [docs](https://www.hejian.club/posts/toolsfunction)
 
 ## 工具函数
-- deepCompare  // 比较2个对象的差异返回不同的属性和具体不同的值
-- deepMerge  // Object.assign的深度拷贝版本，返回合并后传入的第一个对象
+- deepCompare  // 比较2个对象的差异返回不同的属性和具体不同的值 params: {obj1: any, obj2: any, ignoreKeys: string[] | RegExp}
+- deepMerge  // Object.assign的深度拷贝版本，返回合并后传入的第一个对象 params: {target: Record<any, any>, ...sources: Record<any, any>[]} => target
 - asyncPool  // limit：控制异步并发执行的数量，tasks：异步任务数组
 - quickFind  // quickFind(array: any[], key: any),返回一个新的实例,在实例中find方法可以根据key查找对应的项,查找效率O(1),set更新或新增项,delete删除项效率都是O(1)
 - quickFilter  // quickFilter(array: any[], key: string | number | Array<string | number>, value: string | number | RegExp), 快速模糊查找key名字的项,支持正则匹配
