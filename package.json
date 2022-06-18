@@ -37,6 +37,7 @@
     "dev": "pkgroll --watch",
     "play": "pnpm run -C playground dev",
     "play:build": "pnpm run -C playground build",
+    "serve": "pnpm run -C playground serve",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "vue-tsc --noEmit",
@@ -61,5 +62,8 @@
     "simon-js-tool": "workspace:^1.0.8",
     "typescript": "^4.7.2",
     "vitest": "^0.14.2"
+  },
+  "eslintConfig": {
+    "extends": "@antfu"
   }
 }

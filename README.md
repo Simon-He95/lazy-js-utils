@@ -31,19 +31,39 @@
 - isSymbol  // 判断是否是Symbol
 - isNaN  // 判断是否是NaN
 - isReg  // 判断是否是正则表达式
-- VFetch  // fetch请求封装 export interface IFetch {
-  url: string
+- vFetch  // 基于fetch的axios api式请求封装 export interface VFetch {
+  url?: string
+  baseURL?: string
+  body?: any
   method?: Method
   headers?: Record<string, string>
   credentials?: Credentials
   params?: Record<string, string>
   timeout?: number
-  returnType?: ReturnType
+  responseType?: ResponseType
   bodyType?: BodyType
   cache?: Cache
   redirect?: Redirect
   mode?: Mode
-  firstThen?: (response: Response) => Response
+  result?: Promise<any>
+  transformResponse?: (response: Response) => Response
+  set?: (target: keyof VFetch, value: Record<string, string>) => void
+  bodyToString?: () => string
+  request?: () => Promise<Response>
+  then?: (resolve: (value: any) => void, reject: (reason: any) => void) => Promise<void>
+  create?: (options: IFetchOptions) => (options: VFetch) => VFetch
+  interceptors?: {
+    request: {
+      use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
+      success: (response: Response) => Response
+      error: (error: any) => Promise<any>
+    },
+    response: {
+      use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
+      success: (response: Response) => Response
+      error: (error: any) => Promise<any>
+    }
+  }
 }
 - interceptError  // 自动捕获传入函数执行的异常
 
@@ -73,4 +93,6 @@
 ![traverse](assets/traverse.png)
 ### transformKey
 ![transformKey](assets/transformKey.png)
+### vFetch
+![vFetch](assets/vFetch.png)
 
