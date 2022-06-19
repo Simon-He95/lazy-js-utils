@@ -31,39 +31,21 @@
 - isSymbol  // 判断是否是Symbol
 - isNaN  // 判断是否是NaN
 - isReg  // 判断是否是正则表达式
-- vFetch  // 基于fetch的axios api式请求封装 export interface VFetch {
-  url?: string
-  baseURL?: string
-  body?: any
-  method?: Method
-  headers?: Record<string, string>
-  credentials?: Credentials
-  params?: Record<string, string>
-  timeout?: number
-  responseType?: ResponseType
-  bodyType?: BodyType
-  cache?: Cache
-  redirect?: Redirect
-  mode?: Mode
-  result?: Promise<any>
-  transformResponse?: (response: Response) => Response
-  set?: (target: keyof VFetch, value: Record<string, string>) => void
-  bodyToString?: () => string
-  request?: () => Promise<Response>
-  then?: (resolve: (value: any) => void, reject: (reason: any) => void) => Promise<void>
-  create?: (options: IFetchOptions) => (options: VFetch) => VFetch
-  interceptors?: {
-    request: {
-      use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
-      success: (response: Response) => Response
-      error: (error: any) => Promise<any>
-    },
-    response: {
-      use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
-      success: (response: Response) => Response
-      error: (error: any) => Promise<any>
-    }
-  }
+- vFetch  // 基于fetch的axios api式请求封装  type VFetchConfig = {
+  url?: string // 请求地址
+  baseURL?: string // 基础url
+  body?: any // body参数 {},GET请求会合并到url后面
+  method?: Method // 请求类型 默认GET 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' 支持vFetch.get | post | delete | put的形式
+  headers?: Record<string, any> // 请求头 例如: {'Content-Type': 'application/json'} 支持在请求拦截器中设置追加 config.headers.set('x-token', token)
+  credentials?: Credentials // 请求是否带上cookie 默认omit 'include' | 'same-origin' | 'omit' 
+  params?: Record<string, string> // 请求参数 根据bodyType决定是否会被序列化
+  timeout?: number // 超时时间 ms 默认为20000
+  responseType?: ResponseType // 返回类型 默认json 'formData' | 'text' | 'blob' | 'arrayBuffer' | 'json'
+  bodyType?: BodyType // 请求类型 默认json 'json' | 'form' | 'file' 
+  cache?: Cache // 缓存类型 默认不缓存 'no-cache' | 'default' | 'force-cache' | 'only-if-cached' 
+  redirect?: Redirect // 重定向 默认follow follow：跟随重定向，error：抛出错误，manual：手动处理
+  mode?: Mode // cors, no-cors, same-origin 默认cors cors：跨域，no-cors：不跨域，same-origin：同源
+  transformResponse?: (response: Response) => Response // 响应数据转换
 }
 - interceptError  // 自动捕获传入函数执行的异常
 

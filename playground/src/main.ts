@@ -17,8 +17,11 @@ app.use(router)
 app.mount('#app')
 
 vFetch.interceptors.request.use((response) => {
-  // console.log('request success', response)
+  response.headers.set('x-simon', 'simon')
   return response
+}, (err) => {
+  // console.log('err', err)
+  return Promise.reject(err)
 })
 const instance = vFetch.create({
   baseURL: 'http://localhost:5001/',

@@ -7,21 +7,8 @@ export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS'
 export type Credentials = 'omit' | 'include' | 'same-origin'
 
 export interface VFetch {
-  url?: string
-  baseURL?: string
-  body?: any
-  method?: Method
-  headers?: Record<string, string>
-  credentials?: Credentials
-  params?: Record<string, string>
-  timeout?: number
-  responseType?: ResponseType
-  bodyType?: BodyType
-  cache?: Cache
-  redirect?: Redirect
-  mode?: Mode
+  config: VFetchConfig
   result?: Promise<any>
-  transformResponse?: (response: Response) => Response
   set?: (target: keyof VFetch, value: Record<string, string>) => void
   bodyToString?: () => string
   request?: () => Promise<Response>
@@ -31,14 +18,31 @@ export interface VFetch {
     request: {
       use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
       success: (response: Response) => Response
-      error: (error: any) => Promise<any>
+      error: (error: any) => void
     }
     response: {
       use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
       success: (response: Response) => Response
-      error: (error: any) => Promise<any>
+      error: (error: any) => void
     }
   }
+}
+
+export interface VFetchConfig {
+  url?: string
+  baseURL?: string
+  body?: any
+  method?: Method
+  headers?: Record<string, any>
+  credentials?: Credentials
+  params?: Record<string, string>
+  timeout?: number
+  responseType?: ResponseType
+  bodyType?: BodyType
+  cache?: Cache
+  redirect?: Redirect
+  mode?: Mode
+  transformResponse?: (response: Response) => Response
 }
 
 export interface IFetchOptions {

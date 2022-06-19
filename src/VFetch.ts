@@ -1,32 +1,42 @@
-import type { IFetchOptions, VFetch } from './types'
+import type { IFetchOptions, VFetch, VFetchConfig } from './types'
 
-export function vFetch(this: any, options: VFetch) {
+export function vFetch(this: any, options: VFetchConfig): any {
+  if (this === undefined)
+    return vFetch.create({})(options)
+
   const { url, method, headers, bodyType, params, credentials, responseType, timeout, transformResponse, cache, redirect, mode } = options
-  if (url?.startsWith('http'))
-    this.url = url
-  else
-    this.url = (this.baseURL || '') + (url || '')
-  this.method = method || this.method || 'GET'
-  this.bodyType = bodyType || 'json'
-  this.credentials = credentials || 'omit'
-  this.responseType = responseType || 'json'
-  this.timeout = timeout || this.timeout
-  this.transformResponse = transformResponse
-  this.cache = cache || 'default'
-  this.redirect = redirect || 'manual'
-  this.mode = mode || 'cors'
-  this.headers = {
-    'Content-Type': 'application/json',
-  }
-  this.body = {}
+  this.config = Object.assign(this.config, {
+    url: url?.startsWith('http')
+      ? url
+      : (this.config.baseURL || '') + (url || ''),
+    method: method || this.config.method || 'GET',
+    bodyType: bodyType || 'json',
+    credentials: credentials || 'omit',
+    responseType: responseType || 'json',
+    timeout: timeout || this.config.timeout,
+    transformResponse,
+    cache: cache || 'default',
+    redirect: redirect || 'manual',
+    mode: mode || 'cors',
+    body: {},
+    headers: Object.assign({
+      'Content-Type': 'application/json',
+      set(this: any, key: string, value: any): void {
+        this[key] = value
+      },
+      has(key: string): boolean {
+        return this.hasOwnProperty(key)
+      },
+    }, this.config.headers),
+  })
   if (headers)
     this.set('headers', headers)
   if (params) {
     this.set('body', params)
-    this.url += `?${this.bodyToString}`
+    this.config.url += `?${this.bodyToString}`
   }
-  if (this.method === 'GET')
-    this.body = undefined
+  if (this.config.method === 'GET')
+    this.config.body = undefined
 
   this.result = this.request()
   return this
@@ -34,12 +44,12 @@ export function vFetch(this: any, options: VFetch) {
 
 vFetch.set = function set(this: any, target: keyof VFetch, value: Record<string, string> = {}) {
   Object.keys(value).forEach((key) => {
-    this[target][key] = value[key]
+    this.config[target][key] = value[key]
   })
 }
 
 vFetch.bodyToString = function bodyToString(this: VFetch) {
-  return Object.keys(this.body!).reduce((result, key) => result += `${key}=${encodeURI(this.body![key])}&`, '')
+  return Object.keys(this.config.body!).reduce((result, key) => result += `${key}=${encodeURI(this.config.body![key])}&`, '')
 }
 
 vFetch.request = function request(this: any) {
@@ -59,9 +69,8 @@ vFetch.request = function request(this: any) {
       this.body = JSON.stringify(this.body)
     }
   }
-
   return Promise.race([
-    fetch(this.url, this),
+    fetch(this.config.url, this.interceptors.request.success(this.config)),
     new Promise((resolve, reject) => {
       setTimeout(() => reject(new Error('request timeout')), this.timeout ? this.timeout : 30 * 1000)
     }),
@@ -69,10 +78,13 @@ vFetch.request = function request(this: any) {
     (response: any) => {
       if (response.status === 200) {
         return this.transformResponse
-          ? this.transformResponse(this.interceptors.request.success(response))
-          : this.interceptors.request.success(response)
+          ? this.transformResponse(this.interceptors.response.success(response))
+          : this.interceptors.response.success(response)
       }
-      return this.interceptors.request.error(response)
+      return this.interceptors.response.error(response)
+    },
+    (err) => {
+      return this.interceptors.request.error(err)
     },
   ).then(
     (response: Response) => {
@@ -87,12 +99,10 @@ vFetch.request = function request(this: any) {
       else if (this.responseType === 'arrayBuffer')
         return response.arrayBuffer()
     },
-  ).catch((err) => {
-    this.interceptors.request.error(err)
-  })
+  )
 }
 
-vFetch.then = async function then(this: any, successCallback: (res: any) => void, errorCallback?: (err: any) => Promise<void>) {
+vFetch.then = async function then(this: any, successCallback: (res: any) => void, errorCallback?: (err: any) => void) {
   try {
     const result = await this.result
     successCallback(this.interceptors.response.success(result))
@@ -106,30 +116,33 @@ vFetch.then = async function then(this: any, successCallback: (res: any) => void
 
 vFetch.create = function create(this: any, options: IFetchOptions) {
   const { baseURL, headers, timeout } = options
-  this.baseURL = baseURL || ''
-  this.headers = headers || {}
-  this.timeout = timeout || 20 * 1000
+  this.config = {
+    baseURL: baseURL || '',
+    headers: headers || {},
+    timeout: timeout || 20 * 1000,
+  }
+
   if (headers)
     this.set('headers', headers)
   return (options: any) => vFetch.call(this, options)
 }
 
-vFetch.get = function get(this: any, options: VFetch) {
+vFetch.get = function get(this: any, options: VFetchConfig) {
   this.method = 'GET'
   return vFetch.call(this, options)
 }
 
-vFetch.post = function post(this: any, options: VFetch) {
+vFetch.post = function post(this: any, options: VFetchConfig) {
   this.method = 'POST'
   return vFetch.call(this, options)
 }
 
-vFetch.put = function put(this: any, options: VFetch) {
+vFetch.put = function put(this: any, options: VFetchConfig) {
   this.method = 'PUT'
   return vFetch.call(this, options)
 }
 
-vFetch.DELETE = function DELETE(this: any, options: VFetch) {
+vFetch.DELETE = function DELETE(this: any, options: VFetchConfig) {
   this.method = 'DELETE'
   return vFetch.call(this, options)
 }
