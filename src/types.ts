@@ -29,7 +29,7 @@ export interface VFetch {
 }
 
 export interface VFetchConfig {
-  url?: string
+  url: string
   baseURL?: string
   body?: any
   method?: Method
