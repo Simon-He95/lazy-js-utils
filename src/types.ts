@@ -48,5 +48,5 @@ export interface VFetchConfig {
 export interface IFetchOptions {
   baseURL?: string
   timeout?: number
-  headers?: Record<string, string>
+  headers?: Record<string, any>
 }

@@ -24,7 +24,7 @@ export function vFetch(this: any, options: VFetchConfig): any {
       set(this: any, key: string, value: any): void {
         this[key] = value
       },
-      has(key: string): boolean {
+      has(this: any, key: string): boolean {
         return this.hasOwnProperty(key)
       },
     }, this.config.headers),
@@ -42,7 +42,7 @@ export function vFetch(this: any, options: VFetchConfig): any {
   return this
 }
 
-vFetch.set = function set(this: any, target: keyof VFetch, value: Record<string, string> = {}) {
+vFetch.set = function set(this: any, target: keyof VFetchConfig, value: Record<string, string> = {}) {
   Object.keys(value).forEach((key) => {
     this.config[target][key] = value[key]
   })
@@ -72,7 +72,7 @@ vFetch.request = function request(this: any) {
   return Promise.race([
     fetch(this.config.url, this.interceptors.request.success(this.config)),
     new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('request timeout')), this.timeout ? this.timeout : 30 * 1000)
+      setTimeout(() => reject(new Error('request timeout')), this.timeout ? this.timeout : 20 * 1000)
     }),
   ]).then(
     (response: any) => {
