@@ -4,7 +4,7 @@ export function monitorPef() {
     const time = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
     if (time.domComplete === 0) {
       setTimeout(function () {
-        getTiming();
+        monitorPef();
       }, 200);
       return;
     }
