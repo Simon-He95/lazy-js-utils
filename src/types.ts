@@ -48,3 +48,5 @@ export interface IFetchOptions {
   timeout?: number
   headers?: Record<string, any>
 }
+
+export interface DeviceType { os: string; dev: string }
