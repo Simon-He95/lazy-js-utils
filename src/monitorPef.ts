@@ -1,4 +1,4 @@
-export function getTiming() {
+export function monitorPef() {
   const timingObj: Record<string, number> = {};
   try {
     const time = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming

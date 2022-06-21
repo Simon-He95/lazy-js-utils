@@ -34,6 +34,9 @@ instance({
   return res
 })
 
+// getTiming()
+// console.log(formateDate(new Date(), 'yyyy-MM-dd hh:mm:ss'))
+// console.log(uuid(8, 16))
 // jsCookie.set('test', 'test', 1)
 // console.log(jsCookie.get('test'))
 // jsCookie.remove('test')
