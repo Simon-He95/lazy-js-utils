@@ -50,7 +50,7 @@
 - parse // parse('user=simon&age=18') => { user: 'simon', age: '18' }
 - stringify // stringify({ user: 'simon', age: '18' }) => 'user=simon&age=18'
 - interceptError  // 自动捕获传入函数执行的异常
-
+- jsCookie // cookie操作 jsCookie.set('name', 'simon') jsCookie.get('name') => 'simon' jsCookie.remove('name')  jsCookie.get('name') => ''
 
 ## 使用方法
 ### deepMerge

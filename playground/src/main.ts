@@ -17,7 +17,7 @@ app.use(router)
 app.mount('#app')
 
 vFetch.interceptors.request.use((response) => {
-  console.log(response)
+  // console.log(response)
   return response
 }, (err) => {
   // console.log('err', err)
@@ -33,6 +33,11 @@ instance({
   // console.log(res)
   return res
 })
+
+// jsCookie.set('test', 'test', 1)
+// console.log(jsCookie.get('test'))
+// jsCookie.remove('test')
+// console.log(jsCookie.get('test'))
 
 // vFetch.get({
 //   url: "http://localhost:5001/t"

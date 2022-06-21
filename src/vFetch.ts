@@ -1,5 +1,5 @@
-import { stringify, deepMerge } from './index'
 import type { IFetchOptions, VFetch, VFetchConfig } from './types'
+import { deepMerge, stringify } from './index'
 
 export function vFetch(this: any, options: VFetchConfig): any {
   if (this === undefined)
@@ -56,7 +56,7 @@ vFetch.request = function request(this: any) {
   return Promise.race([
     fetch(url, this.interceptors.request.success(this.config)),
     new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('request timeout')), timeout ? timeout : 20 * 1000)
+      setTimeout(() => reject(new Error('request timeout')), timeout || 20 * 1000)
     }),
   ]).then(
     (response: any) => {
