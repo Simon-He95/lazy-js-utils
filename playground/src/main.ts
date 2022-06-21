@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { vFetch } from '../../src'
+import { getLocation, uuid, vFetch } from '../../src'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -34,6 +34,12 @@ instance({
   return res
 })
 
+// getLocation().then((res) => {
+//   console.log('res:', res)
+// }).catch((err) => {
+//   console.log('error:', err)
+// })
+// console.log(uuid())
 // getTiming()
 // console.log(formateDate(new Date(), 'yyyy-MM-dd hh:mm:ss'))
 // console.log(uuid(8, 16))

@@ -51,9 +51,10 @@
 - stringify // stringify({ user: 'simon', age: '18' }) => 'user=simon&age=18'
 - interceptError  // 自动捕获传入函数执行的异常
 - jsCookie // cookie操作 jsCookie.set('name', 'simon') jsCookie.get('name') => 'simon' jsCookie.remove('name')  jsCookie.get('name') => ''
-- uuid // 生成uuid 支持限制生成的uuid长度和类型
-- formateData // 格式化日期
-- monitorPef // 数字化浏览器性能指标
+- uuid // 生成uuid 支持限制生成的uuid长度和类型 uuid(16, 'hex') => 'a0b1c2d3e4f5' uuid(8, 2) => '11110011' uuid() => '71A793A9-BBAE-49FC-B957-5BC71E5AD044'
+- formateData // 格式化日期 formateData(new Date(), 'yyyy-MM-dd') => '2019-01-01'
+- monitorPef // 数字化浏览器性能指标: 重定向时间 重定向次数 首屏时间 上一页卸载时间 浏览器读取缓存时间 DNS解析时间 TCP完成握手时间 HTTP请求响应完成时间 DOM开始加载前所花费时间 DOM加载完成时间 脚本加载时间 onload事件时间 页面完全加载时间 
+- getLocation // 基于promise封装的获取地理位置信息 params: { enableHighAccuracy: boolean = false, timeout: number = 5000, maximumAge: number = 0 } 1.高精度 2.超时时间 3.缓存时间
 
 ## 使用方法
 ### deepMerge
