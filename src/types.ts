@@ -9,8 +9,6 @@ export type Credentials = 'omit' | 'include' | 'same-origin'
 export interface VFetch {
   config: VFetchConfig
   result?: Promise<any>
-  set?: (target: keyof VFetch, value: Record<string, string>) => void
-  bodyToString?: () => string
   request?: () => Promise<Response>
   then?: (resolve: (value: any) => void, reject: (reason: any) => void) => Promise<void>
   create?: (options: IFetchOptions) => (options: VFetch) => VFetch
