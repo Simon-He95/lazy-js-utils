@@ -1,5 +1,6 @@
 import type { IFetchOptions, VFetch, VFetchConfig } from './types'
-import { deepMerge, stringify } from './index'
+import { deepMerge } from './deepMerge'
+import { stringify } from './stringify'
 
 export function vFetch(this: any, options: VFetchConfig): any {
   if (this === undefined)
