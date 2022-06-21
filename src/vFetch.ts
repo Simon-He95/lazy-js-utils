@@ -5,34 +5,29 @@ export function vFetch(this: any, options: VFetchConfig): any {
   if (this === undefined)
     return vFetch.create({})(options)
 
-  const { url, method, headers = {}, bodyType, params = {}, credentials, responseType, timeout, transformResponse, cache, redirect, mode } = options
+  const { url, method = 'GET', headers = {}, bodyType = 'json', params = {}, credentials = 'omit', responseType = 'json', timeout, transformResponse, cache = 'default', redirect = 'manual', mode = 'cors' } = options
   this.config = Object.assign(this.config, {
     url: url?.startsWith('http')
       ? url
       : (this.config.baseURL || '') + (url || ''),
-    method: method || this.config.method || 'GET',
-    bodyType: bodyType || 'json',
-    credentials: credentials || 'omit',
-    responseType: responseType || 'json',
+    method,
+    bodyType,
+    credentials,
+    responseType,
     timeout: timeout || this.config.timeout,
     transformResponse,
-    cache: cache || 'default',
-    redirect: redirect || 'manual',
-    mode: mode || 'cors',
+    cache,
+    redirect,
+    mode,
     body: params,
     headers: Object.assign({
       'Content-Type': 'application/json',
-      set(this: any, key: string, value: any): void {
-        this[key] = value
-      },
-      has(this: any, key: string): boolean {
-        return this.hasOwnProperty(key)
-      },
+
     }, this.config.headers, headers),
   })
-
   if (this.config.method === 'GET') {
-    this.config.url += `?${stringify(params)}`
+    if (Object.keys(params).length)
+      this.config.url += `?${stringify(params)}`
     this.config.body = undefined
   }
 
@@ -114,23 +109,19 @@ vFetch.create = function create(this: any, baseOptions: IFetchOptions) {
 }
 
 vFetch.get = function get(this: any, options: VFetchConfig) {
-  this.config.method = 'GET'
-  return vFetch.call(this, options)
+  return vFetch.call(this, Object.assign(options, { method: 'GET' }))
 }
 
 vFetch.post = function post(this: any, options: VFetchConfig) {
-  this.config.method = 'POST'
-  return vFetch.call(this, options)
+  return vFetch.call(this, Object.assign(options, { method: 'POST' }))
 }
 
 vFetch.put = function put(this: any, options: VFetchConfig) {
-  this.config.method = 'PUT'
-  return vFetch.call(this, options)
+  return vFetch.call(this, Object.assign(options, { method: 'PUT' }))
 }
 
 vFetch.DELETE = function DELETE(this: any, options: VFetchConfig) {
-  this.config.method = 'DELETE'
-  return vFetch.call(this, options)
+  return vFetch.call(this, Object.assign(options, { method: 'DELETE' }))
 }
 
 vFetch.interceptors = {

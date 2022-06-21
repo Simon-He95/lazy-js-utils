@@ -17,7 +17,7 @@ app.use(router)
 app.mount('#app')
 
 vFetch.interceptors.request.use((response) => {
-  response.headers.set('x-simon', 'simon')
+  console.log(response)
   return response
 }, (err) => {
   // console.log('err', err)
