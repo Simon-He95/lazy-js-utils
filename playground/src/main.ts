@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { vFetch } from '../../src'
+import { monitorPef, vFetch } from '../../src'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -33,7 +33,7 @@ instance({
   // console.log(res)
   return res
 })
-
+monitorPef()
 // console.log(formateNum(123456789.123456789, 3, 'floor'))
 // console.log(uppercaseNum(-122.12))
 // console.log(trim('  g  xx ', 'all').length)
