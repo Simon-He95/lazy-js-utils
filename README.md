@@ -70,9 +70,10 @@
 - createEventBus // 创建发布订阅模式的实例
 - once(fn: Function) // 只执行一次函数
 - randomHexColor() // 生成随机十六进制颜色
+- randomRgb() // 生成随机rgb颜色
 - httpsRedirect() // https重定向
 - scrollToView(e: Element | string) // 滚动到指定元素
-- getScrollPosition() => { x,y }// 获取滚动位置
+- getScrollPosition() => { x: number, y:number }// 获取滚动位置
 - camelize(s: string) // 驼峰化字符串
 - hyphenate(s: string) // 驼峰转-连接字符串
 - getUrlParam(name: string) // 获取url参数 默认获取当前浏览器地址栏参数
@@ -82,7 +83,7 @@
 - base64ToFile(s: string, name: string) // base64转文件
 - base64ToBlob(s: string) // base64转blob
 - uppercaseNum(num: number) // 转换为大写数字
-- formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'ceil') // 格式化数字 number:数字 decimals:保留小数位数 integer:取整方式 向下取整 向上取整 'floor' | 'ceil'
+- formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'ceil') // 格式化数字 number:数字 decimals:保留小数位数 integer:小数截取方式 floor:向下取整 ceil:向上取整
 
 
 
