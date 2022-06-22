@@ -1,4 +1,3 @@
-import { uuid } from "./uuid"
 export function download(url: string) {
   const a: HTMLAnchorElement = document.createElement('a')
   a.href = url

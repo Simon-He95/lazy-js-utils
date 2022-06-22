@@ -1,4 +1,4 @@
-import { isArray } from "./isArray";
+import { isArray } from './isArray'
 
 export function preload(list: string[] | string) {
   if (isArray(list))

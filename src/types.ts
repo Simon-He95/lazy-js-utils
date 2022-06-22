@@ -50,3 +50,19 @@ export interface IFetchOptions {
 }
 
 export interface DeviceType { os: string; dev: string }
+
+export type TrimType = 'all' | 'pre' | 'around' | 'post'
+
+export interface EventBus {
+  data: Record<string, Function[]>
+  emit: (event: string, data?: any) => void
+  on: (event: string, fn: (data?: any) => void) => void
+  off: (event: string, fn: Function) => void
+}
+
+export interface Position {
+  x: number
+  y: number
+}
+
+export type FileType = 'file' | 'blob' | 'url'

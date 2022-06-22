@@ -34,6 +34,9 @@ instance({
   return res
 })
 
+// console.log(formateNum(123456789.123456789, 3, 'floor'))
+// console.log(uppercaseNum(-122.12))
+// console.log(trim('  g  xx ', 'all').length)
 // console.log(getDevice())
 // getLocation().then((res) => {
 //   console.log('res:', res)

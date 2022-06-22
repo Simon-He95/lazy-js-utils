@@ -1,3 +1,3 @@
 export function isDate(d: any): boolean {
-  return d instanceof Date;
+  return d instanceof Date
 }

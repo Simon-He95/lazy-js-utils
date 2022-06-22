@@ -1,4 +1,4 @@
-import { TrimType } from "./types";
+import type { TrimType } from './types'
 export function trim(s: string, type: TrimType = 'around'): string {
   if (type === 'pre')
     return s.replace(/(^\s*)/g, '')
