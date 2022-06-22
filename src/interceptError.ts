@@ -3,9 +3,8 @@ export function interceptError(fn: Function) {
     try {
       resolve(fn())
     }
-    catch (error) {
-      console.error(error)
-      reject(error)
+    catch (error: any) {
+      reject(new Error(error))
     }
   })
 }
