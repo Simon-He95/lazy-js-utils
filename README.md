@@ -31,6 +31,10 @@
 - isSymbol  // 判断是否是Symbol
 - isNaN  // 判断是否是NaN
 - isReg  // 判断是否是正则表达式
+- isDate // 判断是否是日期
+- isMobile // 判断是否是手机号
+- isEmail // 判断是否是邮箱
+- isIdCard // 判断是否是身份证
 - vFetch  // 基于fetch的axios api式请求封装  type VFetchConfig = {
   url: string // 请求地址
   baseURL?: string // 基础url
@@ -56,6 +60,31 @@
 - monitorPef // 数字化浏览器性能指标: 重定向时间 重定向次数 首屏时间 上一页卸载时间 浏览器读取缓存时间 DNS解析时间 TCP完成握手时间 HTTP请求响应完成时间 DOM开始加载前所花费时间 DOM加载完成时间 脚本加载时间 onload事件时间 页面完全加载时间 
 - getLocation // 基于promise封装的获取地理位置信息 params: { enableHighAccuracy: boolean = false, timeout: number = 5000, maximumAge: number = 0 } 1.高精度 2.超时时间 3.缓存时间
 - getDevice() // 获取系统信息{ os: 'android', dev: 'chrome' } 
+- preload(list: string[] | string)  // 预加载图片
+- addScript(src: string) // 动态添加script
+- download(url) // 下载文件
+- trim(s: string, type: TrimType = 'around') // 字符串去除空格 前空格 后空格 前后空格 所有空格 type: 'pre' | 'post' | 'around' | 'all'
+- compressCss // 压缩css
+- addStyle(s: string) // 动态添加style
+- scrollToTop // 滚动到顶部
+- createEventBus // 创建发布订阅模式的实例
+- once(fn: Function) // 只执行一次函数
+- randomHexColor() // 生成随机十六进制颜色
+- httpsRedirect() // https重定向
+- scrollToView(e: Element | string) // 滚动到指定元素
+- getScrollPosition() => { x,y }// 获取滚动位置
+- camelize(s: string) // 驼峰化字符串
+- hyphenate(s: string) // 驼峰转-连接字符串
+- getUrlParam(name: string) // 获取url参数 默认获取当前浏览器地址栏参数
+- fullScreen()  // 全屏
+- exitFullScreen() // 退出全屏
+- toBase64(o: File | string, type: FileType = 'url') // 转base64格式 type支持'url' | 'blob' | 'file'
+- base64ToFile(s: string, name: string) // base64转文件
+- base64ToBlob(s: string) // base64转blob
+- uppercaseNum(num: number) // 转换为大写数字
+- formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'ceil') // 格式化数字 number:数字 decimals:保留小数位数 integer:取整方式 向下取整 向上取整 'floor' | 'ceil'
+
+
 
 ## 使用方法
 ### deepMerge
