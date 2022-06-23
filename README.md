@@ -1,38 +1,15 @@
 ## [docs](https://www.hejian.club/posts/toolsfunction)
 
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
-还在持续更新中，尽情期待...
+目前整理了<strong>60+</strong>的常用函数,还在持续更新中...
 
 ## 使用说明
 ```bash
 npm i simon-js-tool # 安装
 
 import { 
-asyncPool, 
-curry, 
-debounce, 
-deepClone, 
-deepCompare, 
-deepMerge, 
-memorizeFn, 
-quickFilter, 
-quickFind, 
-throttle, 
-transformKey, 
-traverse,
-isFn,
-isStr,
-isNum,
-isPlainObject,
-isUndef,
-isArray,
-isPromise,
-isNaN.
-isSymbol,
-isNull,
-isReg,
-VFetch,
-interceptError } from 'simon-js-tool' # 按需引入
+  deepCompare
+ } from 'simon-js-tool' # 按需引入
 
 ```
 
@@ -65,6 +42,7 @@ console.log(result) // { a: 1, b: 4, c: { d: 5, e: 6 } }
 - 控制异步并发执行的数量
 - 参数： limit-控制异步并发执行的数量，tasks-异步任务数组
 ```js
+// limit 并发数量 , tasks httpRequest[]
 asyncPool(limit, tasks).then((results) => {
   // results is an array of results
 })
@@ -150,6 +128,7 @@ const f = debounce(() => {
 - 函数接收target-当前遍历的值，index-当前遍历的索引, item-当前遍历的那一项
 - 可以指定多个属性
 - 使用类似与babel的traverse方法
+- 使用场景：快速提取数据中的某些属性,转换为新的数据结构
 ```javascript
 // traverse(arr, { 'family.name'(target: any, index: number, item: any) { console.log(target, index) } })
 const obj = {
@@ -170,6 +149,7 @@ traverse(obj, {
 ## transformKey 
 - 支持多层级的key
 - 将对象的key转换成需要的key
+- 使用场景: 前端定义字段有后端不一样的key，比如后端的key是id，前端的key是_id
 ```javascript
 // transformKey(obj, { 'family.name': 'familyName', 'family.age': 'familyAge' })
 const obj = {
@@ -295,6 +275,7 @@ getDevice() => { os: 'android', dev: 'chrome' }
 preload('https://img.yzcdn.cn/vant/cat.jpeg')
 preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jpeg'])
 ```
+
 ## lazyLoad
 - 图片懒加载
 - params-1: 图片的集合 Element | Element[] | NodeList[] | class | id | tagName 
@@ -309,13 +290,14 @@ preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jp
 // template
   <img src="temp" data-src="../public/favicon.svg" alt="" h-10 bg-red />
 ```
+
 ## addScript
-- 动态添加script标签
+- 动态添加script标签放 => ead
 ```javascript
 addScript('https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js')
 ```
 ## addStyle
-- 动态添加style标签
+- 动态添加style标签 => head
 ```javascript
 addStyle(`
   .test {
@@ -334,6 +316,10 @@ download('https://www.baidu.com/img/bd_logo1.png', 'baidu.png')
 - type: '前空格' | '后空格' | '前后空格' | '所有空格'
 ```javascript
 trim(str: string,type: 'pre' | 'post' | 'around' | 'all' = 'around') 
+trim('  h e l l o  ') => 'h e l l o'
+trim('  h e l l o  ', 'pre') => 'h e l l o  '
+trim('  h e l l o  ', 'post') => '  h e l l o'
+trim('  h e l l o  ', 'all') => 'hello'
 ```
 
 ## compressCss
@@ -456,7 +442,6 @@ formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'c
 // interceptError(() => { throw new Error('error') }).catch(err=>{ console.log(err) })
 interceptError(fn: Function) => Promise<any>
 ```
-
 ## isBottom
 - 判断滚动是否触底
 - distance: 距离底部的距离作为触底的判断标准 默认0
@@ -475,21 +460,22 @@ console.log(calNum.mul(0.1, 0.2, 0.2)) => 0.004
 ```
 
 ## 类型判断
-- isArray(o) - 判断是否是数组
-- isPlainObject(o)  - 判断是否是纯对象
-- isFn(o) - 判断是否是函数
-- isStr(o)  - 判断是否是字符串
-- isNum(o)  - 判断是否是数字
-- isBool(o) - 判断是否是布尔值
-- isUndef(o)  - 判断是否是undefined
-- isNull(o) - 判断是否是null
-- isNaN(o)  - 判断是否是NaN
-- isReg(o)  - 判断是否是正则
-- isSymbol(o)  - 判断是否是Symbol
-- isPromise(o)  - 判断是否是Promise
-- isDate(o) - 判断是否是日期
-- isMobile(o)  - 判断是否是手机号
-- isEmail(o)  - 判断是否是邮箱
+- isArray(obj) - 判断是否是数组
+- isPlainObject(obj)  - 判断是否是纯对象
+- isFn(obj) - 判断是否是函数
+- isStr(obj)  - 判断是否是字符串
+- isNum(obj)  - 判断是否是数字
+- isBool(obj) - 判断是否是布尔值
+- isUndef(obj)  - 判断是否是undefined
+- isNull(obj) - 判断是否是null
+- isNaN(obj)  - 判断是否是NaN
+- isReg(obj)  - 判断是否是正则
+- isSymbol(obj)  - 判断是否是Symbol
+- isPromise(obj)  - 判断是否是Promise
+- isDate(obj) - 判断是否是日期
+- isMobile  - 判断是否是手机号
+- isEmail - 判断是否是邮箱
+- isIdCard  - 判断是否是身份证
 - isSet(o)  - 判断是否是Set
 - isMap(o)  - 判断是否是Map
 
