@@ -476,22 +476,23 @@ console.log(calNum.mul(0.1, 0.2, 0.2)) => 0.004
 ```
 
 ## 类型判断
-- isArray(obj) - 判断是否是数组
-- isPlainObject(obj)  - 判断是否是纯对象
-- isFn(obj) - 判断是否是函数
-- isStr(obj)  - 判断是否是字符串
-- isNum(obj)  - 判断是否是数字
-- isBool(obj) - 判断是否是布尔值
-- isUndef(obj)  - 判断是否是undefined
-- isNull(obj) - 判断是否是null
-- isNaN(obj)  - 判断是否是NaN
-- isReg(obj)  - 判断是否是正则
-- isSymbol(obj)  - 判断是否是Symbol
-- isPromise(obj)  - 判断是否是Promise
-- isDate(obj) - 判断是否是日期
-- isMobile  - 判断是否是手机号
-- isEmail - 判断是否是邮箱
-- isIdCard  - 判断是否是身份证
+- isArray(o) - 判断是否是数组
+- isPlainObject(o)  - 判断是否是纯对象
+- isFn(o) - 判断是否是函数
+- isStr(o)  - 判断是否是字符串
+- isNum(o)  - 判断是否是数字
+- isBool(o) - 判断是否是布尔值
+- isUndef(o)  - 判断是否是undefined
+- isNull(o) - 判断是否是null
+- isNaN(o)  - 判断是否是NaN
+- isReg(o)  - 判断是否是正则
+- isSymbol(o)  - 判断是否是Symbol
+- isPromise(o)  - 判断是否是Promise
+- isDate(o) - 判断是否是日期
+- isMobile(o)  - 判断是否是手机号
+- isEmail(o) - 判断是否是邮箱
+- isSet(o) - 判断是否是Set
+- isMap(o) - 判断是否是Map
 
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)
