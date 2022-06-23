@@ -308,7 +308,6 @@ preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jp
   lazyLoad(".img-wrapper>img");
 // template
   <img src="temp" data-src="../public/favicon.svg" alt="" h-10 bg-red />
-
 ```
 ## addScript
 - 动态添加script标签
@@ -490,9 +489,9 @@ console.log(calNum.mul(0.1, 0.2, 0.2)) => 0.004
 - isPromise(o)  - 判断是否是Promise
 - isDate(o) - 判断是否是日期
 - isMobile(o)  - 判断是否是手机号
-- isEmail(o) - 判断是否是邮箱
-- isSet(o) - 判断是否是Set
-- isMap(o) - 判断是否是Map
+- isEmail(o)  - 判断是否是邮箱
+- isSet(o)  - 判断是否是Set
+- isMap(o)  - 判断是否是Map
 
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)
