@@ -295,7 +295,21 @@ getDevice() => { os: 'android', dev: 'chrome' }
 preload('https://img.yzcdn.cn/vant/cat.jpeg')
 preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jpeg'])
 ```
+## lazyLoad
+- 图片懒加载
+- params-1: 图片的集合 Element | Element[] | NodeList[] | class | id | tagName 
+- params-2: root 指定相对容器默认是body 
+- params-3: rootMargin 指定相对容器的边距 默认距离容器底部200px时候加载(↑ → ↓ ←) '0px 0px 200px 0px' 
+- params-4: threshold 指定图片加载的阈值
+```javascript
+// usage
+  lazyLoad(document.querySelectorAll("img"));
+  lazyLoad("img[data-src]");
+  lazyLoad(".img-wrapper>img");
+// template
+  <img src="temp" data-src="../public/favicon.svg" alt="" h-10 bg-red />
 
+```
 ## addScript
 - 动态添加script标签
 ```javascript
@@ -442,6 +456,23 @@ formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'c
 ```javascript
 // interceptError(() => { throw new Error('error') }).catch(err=>{ console.log(err) })
 interceptError(fn: Function) => Promise<any>
+```
+
+## isBottom
+- 判断滚动是否触底
+- distance: 距离底部的距离作为触底的判断标准 默认0
+```javascript
+isBottom(distance: string = 0) => boolean
+```
+
+## calNum
+- 计算数字
+- type: '加' | '减' | '乘' | '除'
+```javascript
+console.log(calNum.add(0.1, 0.2, 0.2)) => 0.5
+console.log(calNum.div(0.1, 0.2, 0.2)) => 2.5
+console.log(calNum.sub(0.1, 0.2, 0.2)) => -0.3
+console.log(calNum.mul(0.1, 0.2, 0.2)) => 0.004
 ```
 
 ## 类型判断

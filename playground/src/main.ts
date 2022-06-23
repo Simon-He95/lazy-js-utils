@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { monitorPef, vFetch } from '../../src'
+import { monitorPef, vFetch, calNum, lazyLoad } from '../../src'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -34,6 +34,9 @@ instance({
   return res
 })
 monitorPef()
+console.log(calNum.sub(0.1, 0.2, 0.2))
+console.log(calNum.mul(0.1, 0.2, 0.2))
+
 // console.log(formateNum(123456789.123456789, 3, 'floor'))
 // console.log(uppercaseNum(-122.12))
 // console.log(trim('  g  xx ', 'all').length)
