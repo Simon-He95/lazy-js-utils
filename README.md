@@ -38,7 +38,6 @@ const array = [
     ]
 ```
 
-
 ## deepCompare 
 - ignoreKeys忽略指定的keys可以为数组或者正则表达式
 - 比较2个对象的差异返回不同的属性和具体不同的值
