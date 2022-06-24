@@ -551,6 +551,8 @@ console.log(calNum.mul(0.1, 0.2, 0.2)) => 0.004
 - isEmail - 判断是否是邮箱
 - isIdCard  - 判断是否是身份证
 - hasCn - 判断是否含有中文
+- isFile - 判断是否是File类型
+- isBlob - 判断是否是Blob类型
 
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)

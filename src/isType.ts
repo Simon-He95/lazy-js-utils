@@ -15,7 +15,7 @@ import { isPromise } from './isPromise'
 import { isDate } from './isDate'
 import { isWeakMap } from './isWeakMap'
 import { isWeakSet } from './isWeakSet'
-export function isType(s: any, type: string) {
+export function isType(s: any, type: string): boolean {
   type = type.toLocaleLowerCase()
   if (!type)
     throw new Error('type is required')

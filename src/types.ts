@@ -66,3 +66,9 @@ export interface Position {
 }
 
 export type FileType = 'file' | 'blob' | 'url'
+
+export interface JSCookie {
+  get: (key: string) => string | undefined
+  set: (key: string, value: string, exdays?: number) => void
+  remove: (key: string) => void
+}

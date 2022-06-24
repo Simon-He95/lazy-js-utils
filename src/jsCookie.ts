@@ -1,4 +1,5 @@
-export const jsCookie = {
+import type { JSCookie } from './types'
+export const jsCookie: JSCookie = {
   get(cname: string) {
     const name = `${cname}=`
     const ca = document.cookie.split(';')
