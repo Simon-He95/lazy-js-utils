@@ -13,6 +13,14 @@ import {
 
 ```
 
+## randomDate
+- 随机生成日期
+- 可指定随机范围 start:'1999/01/01' end:'2099/12/31'
+```javascript
+// end默认是当前日期
+randomDate('1999/01/01') // Mon Jun 06 2011 15:11:37 GMT+0800 (中国标准时间) 可再通过formateDate转换为其他格式 如'yyyy-MM-dd'
+```
+
 ## uniqueArray
 - 去除数组中重复的元素
 - 支持去除数组中的对象的重复元素
@@ -256,10 +264,10 @@ jsCookie.get('name') => ''
 uuid() => '71A793A9-BBAE-49FC-B957-5BC71E5AD044'
 uuid(16, 'hex') => 'a0b1c2d3e4f5' uuid(8, 2) => '11110011'
 ```
-## formateData
+## formateDate
 - 格式化日期
 ```javascript
-formateData(new Date(), 'yyyy-MM-dd') => '2019-01-01'
+formateDate(new Date(), 'yyyy-MM-dd') => '2019-01-01'
 ```
 ## monitorPef
 - 数字化浏览器性能指标

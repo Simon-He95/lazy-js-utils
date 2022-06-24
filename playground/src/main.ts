@@ -33,6 +33,7 @@ instance({
   // console.log(res)
   return res
 })
+// console.log(randomDate())
 monitorPef()
 // console.log(calNum.sub(0.1, 0.2, 0.2))
 // console.log(calNum.mul(0.1, 0.2, 0.2))
