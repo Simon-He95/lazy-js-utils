@@ -13,6 +13,32 @@ import {
 
 ```
 
+## uniqueArray
+- 去除数组中重复的元素
+- 支持去除数组中的对象的重复元素
+```javascript
+const array = [
+      {
+        name: "simon",
+        age: "19",
+        hobby: ['1', '2', '3']
+      },
+      {
+        name: "simon",
+        age: "19",
+        hobby: ['1', '2', '3']
+      },
+    ]
+    uniqueArray(array) => [
+      {
+        name: "simon",
+        age: "19",
+        hobby: ['1', '2', '3']
+      }
+    ]
+```
+
+
 ## deepCompare 
 - ignoreKeys忽略指定的keys可以为数组或者正则表达式
 - 比较2个对象的差异返回不同的属性和具体不同的值
