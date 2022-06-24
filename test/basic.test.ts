@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse, uniqueArray } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -471,3 +471,68 @@ describe('Test 12', () => {
   })
 })
 
+describe('Test 13', () => {
+  it('uniqueArray test', async () => {
+    const array = [
+      {
+        name: 'simon',
+        age: '18',
+      },
+      {
+        name: 'simon',
+        age: '18',
+        hobby: 'basketball',
+
+      },
+      {
+        name: 'simon',
+        age: 19,
+      },
+      {
+        name: 'simon',
+        age: '19',
+        hobby: ['1', '2', '3'],
+      },
+      {
+        name: 'simon',
+        age: '19',
+        hobby: ['1', '2', '3'],
+      },
+      {
+        name: 'simon',
+        age: '19',
+      },
+
+    ]
+    expect(uniqueArray(array)).toMatchInlineSnapshot(`
+      [
+        {
+          "age": "18",
+          "name": "simon",
+        },
+        {
+          "age": "18",
+          "hobby": "basketball",
+          "name": "simon",
+        },
+        {
+          "age": 19,
+          "name": "simon",
+        },
+        {
+          "age": "19",
+          "hobby": [
+            "1",
+            "2",
+            "3",
+          ],
+          "name": "simon",
+        },
+        {
+          "age": "19",
+          "name": "simon",
+        },
+      ]
+    `)
+  })
+})
