@@ -12,6 +12,42 @@ import {
  } from 'simon-js-tool' # 按需引入
 
 ```
+## log
+- 简化console.log的使用
+```javascript
+log('hello world') # 打印日志
+```
+
+## copy
+- js控制复制的内容
+- copy(str: string): boolean # 成功返回true,失败返回false
+```javascript
+btn.onclick = () =>  {
+  if(copy(textarea.value)){
+    alert('复制成功')
+  }
+}
+```
+
+## getDateList
+- 获取指定日期范围内正负多少天的日期列表
+- getDateList(start: string, day: number = 0) start: 开始日期以/或-分割 1991/03/02 1001-03-02, day: 正负多少天
+
+```javascript
+getDateList('1991/3/02', 7)
+// [ '1991-3-02', '1991-3-03', '1991-3-04', '1991-3-05', '1991-3-06', '1991-3-07', '1991-3-08' ]
+```
+
+## isType
+- `isType(o:any, type:string)`: 判断obj是否是type类型
+- 混合类型判断,type 如果是多种类型,用'|'分隔 如: 缩写 - 'O|S'  全写 - 'Object|String' 
+```javascript
+isType(1, 'Number') // true
+isType('1', 'N') // false
+isType({}, 'O | A') // true (Object | Array)
+isType(new Promise(), 'P') // true (Promise)
+isType(function(){}, 'P | F') // true (Promise | Function)
+```
 
 ## randomDate
 - 随机生成日期
@@ -510,25 +546,11 @@ console.log(calNum.sub(0.1, 0.2, 0.2)) => -0.3
 console.log(calNum.mul(0.1, 0.2, 0.2)) => 0.004
 ```
 
-## 类型判断
-- isArray(obj) - 判断是否是数组
-- isPlainObject(obj)  - 判断是否是纯对象
-- isFn(obj) - 判断是否是函数
-- isStr(obj)  - 判断是否是字符串
-- isNum(obj)  - 判断是否是数字
-- isBool(obj) - 判断是否是布尔值
-- isUndef(obj)  - 判断是否是undefined
-- isNull(obj) - 判断是否是null
-- isNaN(obj)  - 判断是否是NaN
-- isReg(obj)  - 判断是否是正则
-- isSymbol(obj)  - 判断是否是Symbol
-- isPromise(obj)  - 判断是否是Promise
-- isDate(obj) - 判断是否是日期
+## 规则判断
 - isMobile  - 判断是否是手机号
 - isEmail - 判断是否是邮箱
 - isIdCard  - 判断是否是身份证
-- isSet(o)  - 判断是否是Set
-- isMap(o)  - 判断是否是Map
+- hasCn - 判断是否含有中文
 
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)

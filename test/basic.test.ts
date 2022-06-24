@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse, uniqueArray } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, getDateList, isType, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse, uniqueArray } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -539,6 +539,29 @@ describe('Test 13', () => {
           "age": "19",
           "name": "simon",
         },
+      ]
+    `)
+  })
+})
+
+describe('Test 14', () => {
+  it('isType test', async () => {
+    expect(isType([], 'A')).toMatchInlineSnapshot('true')
+  })
+})
+
+describe('Test 15', () => {
+  it('getDateList test', async () => {
+    expect(getDateList('1991/3/02', 7)).toMatchInlineSnapshot(`
+      [
+        "1991-03-02",
+        "1991-03-03",
+        "1991-03-04",
+        "1991-03-05",
+        "1991-03-06",
+        "1991-03-07",
+        "1991-03-08",
+        "1991-03-09",
       ]
     `)
   })
