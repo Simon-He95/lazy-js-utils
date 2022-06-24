@@ -95,11 +95,29 @@ find.delete(1)
 ## quickFilter 
 - 快速模糊查找key名字的项,value支持正则匹配
 ```javascript
-// quickFilter(array: any[], key: string | number | Array<string | number>, value: string | number | RegExp)
-const arr = [{name: 'simon', age: 18}, {name: 'simon', age: 18}]
-const arr2 = quickFilter(arr, 'name', 'simon')
-console.log(arr2)
-// [{name: 'simon', age: 18}, {name: 'simon', age: 18}]
+// quickFilter(array: any[], key: string | Array<string>)
+    const arr = [
+      {
+        name: 'simon',
+        age: 18,
+        id: 0,
+      },
+      {
+        name: 'simon5',
+        age: 49,
+        id: 3,
+      },
+      {
+        name: "hi"
+      },
+      {
+        name: "hi",
+        age: "2",
+        en: "0"
+      }
+    ]
+ quickFilter(arr,['id=22', 'name=simon5']) // [{"age": 39,"id": 22,"name": "simon3"},{"age": 9,"id": 3,"name": "simon5"}]
+ quickFilter(arr,['name=/h/']) // [{"age": "2","en": "0","name": "hi"},{"name": "hi"}]
 ```
 ## deepClone 
 - 支持循环依赖
