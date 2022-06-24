@@ -3,6 +3,7 @@
   "rules": {
     "vue/one-component-per-file": "off",
     "no-console": "off",
-    "no-prototype-builtins": "off"
+    "no-prototype-builtins": "off",
+    "no-eval": "off"
   }
 }

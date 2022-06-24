@@ -247,6 +247,7 @@ describe('Test 5', () => {
       {
         name: 'simon1',
         age: 19,
+        hobby: 18,
         id: 1,
       },
       {
@@ -269,18 +270,24 @@ describe('Test 5', () => {
         age: 49,
         id: 3,
       },
+      {
+        name: 'hi',
+      },
+      {
+        name: 'hi',
+        age: '2',
+        en: '0',
+      },
     ]
-    expect(quickFilter(arr, ['age', 'id'], '3')).toMatchInlineSnapshot(`
+    expect(quickFilter(arr, 'name=/h/')).toMatchInlineSnapshot(`
       [
         {
-          "age": 39,
-          "id": 22,
-          "name": "simon3",
+          "name": "hi",
         },
         {
-          "age": 49,
-          "id": 3,
-          "name": "simon5",
+          "age": "2",
+          "en": "0",
+          "name": "hi",
         },
       ]
     `)
