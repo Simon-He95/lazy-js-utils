@@ -1,4 +1,4 @@
-export function formateDate(datetime: Date, fmt: string) {
+export function formateDate(datetime: Date, fmt: string = 'yyyy-MM-dd') {
   const o: Record<string, any> = {
     'M+': datetime.getMonth() + 1, // 月份
     'd+': datetime.getDate(), // 日
