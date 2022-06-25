@@ -142,7 +142,7 @@ find.set({id:1,name:'simon'})
 find.delete(1)
 ```
 ## quickFilter 
-- 快速模糊查找key名字的项,value支持正则匹配
+- 快速模糊查找key名字的项和值 如: 'name=/h/'
 ```javascript
 // quickFilter(array: any[], key: string | Array<string>)
     const arr = [
