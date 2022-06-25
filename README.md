@@ -12,8 +12,21 @@ import {
  } from 'simon-js-tool' # 按需引入
 
 ```
+
+## timeCost
+- 计算函数执行时间
+- timeCost(fn: Function) : number
+```javascript
+timeCost(()=>{
+  for(let i=0;i<1000;i++){
+    console.log(i)
+  }
+}) // 输出: timeCost: 0.046s
+```
+
 ## log
 - 简化console.log的使用
+- log(s: string,color: string,fontSize: number)
 ```javascript
 log('hello world') # 打印日志
 ```

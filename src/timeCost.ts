@@ -2,6 +2,7 @@ export function timeCost(fn: Function): number {
   const start = new Date().getTime()
   fn()
   const end = new Date().getTime()
-  console.log('timeCost:', end - start)
-  return end - start
+  const time = (end - start) / 1000
+  console.log(`timeCost: ${time}s`)
+  return time
 }
