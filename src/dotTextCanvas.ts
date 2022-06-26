@@ -6,6 +6,7 @@ export class DotTextCanvas {
   fontSize: number
   color: string
   fontWeight: number
+  textImageDate: Array<number[]> = []
   constructor(text: string, fontSize: number, color: string, fontWeight: number) {
     this.originText = text
     this.fontSize = fontSize
@@ -38,7 +39,8 @@ export class DotTextCanvas {
 
   executor(): [HTMLCanvasElement, CanvasRenderingContext2D] {
     this.originText.split('').forEach(text => this.getText(text))
-    return this.getCanvas(this.combineText())
+    this.textImageDate = this.combineText()
+    return this.getCanvas()
   }
 
   getText(text: string) {
@@ -59,17 +61,17 @@ export class DotTextCanvas {
     return result
   }
 
-  getCanvas(textPointSet: Array<number[]>): [HTMLCanvasElement, CanvasRenderingContext2D] {
+  getCanvas(): [HTMLCanvasElement, CanvasRenderingContext2D] {
     const canvas: HTMLCanvasElement = document.createElement('canvas')
     const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!
-    const h = textPointSet.length
-    const w = textPointSet[0].length
+    const h = this.textImageDate.length
+    const w = this.textImageDate[0].length
     const oneTempLength = this.fontSize / h
     canvas.height = this.fontSize
     canvas.width = this.fontSize * this.originText.length
     for (let i = 0; i < h; i++) {
       for (let j = 0; j < w; j++) {
-        if (textPointSet[i][j]) {
+        if (this.textImageDate[i][j]) {
           ctx.beginPath()
           ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), oneTempLength * this.fontWeight / h, 0, Math.PI * 2)
           ctx.fillStyle = this.color
@@ -82,5 +84,11 @@ export class DotTextCanvas {
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+  }
+
+  repaint(color: string) {
+    this.color = color
+    this.clearCanvas()
+    this.getCanvas()
   }
 }
