@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, getDateList, isType, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse, uniqueArray } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, isType, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
 
 describe('Test 1', () => {
   it('deepMerge test', () => {
@@ -546,23 +546,35 @@ describe('Test 13', () => {
 
 describe('Test 14', () => {
   it('isType test', async () => {
-    expect(isType([], 'A')).toMatchInlineSnapshot('true')
+    expect(isType([], 'A')).toMatchInlineSnapshot('"&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;"')
   })
 })
 
 describe('Test 15', () => {
   it('getDateList test', async () => {
-    expect(getDateList('1991/3/02', 7)).toMatchInlineSnapshot(`
-      [
-        "1991-03-02",
-        "1991-03-03",
-        "1991-03-04",
-        "1991-03-05",
-        "1991-03-06",
-        "1991-03-07",
-        "1991-03-08",
-        "1991-03-09",
-      ]
-    `)
+    expect(getDateList('1991/3/02', 7)).toMatchInlineSnapshot('"\\"< a href=\\" \\">xx</ a>\\""')
+  })
+})
+
+describe('Test 16', () => {
+  it('escapeHtml test', () => {
+    expect(escapeHtml('< a href=" ">xx</ a>')).toBe('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')
+  })
+})
+
+describe('Test 17', () => {
+  it('unescapeHtml test', async () => {
+    expect(unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')).toBe('< a href=" ">xx</ a>')
+  })
+})
+
+describe('Test 18', () => {
+  it('getLru test', async () => {
+    const lru = getLru(2)
+    lru.set('a', 10)
+    lru.set('b', 22)
+    lru.get('a')
+    lru.set('c', 32)
+    expect(lru.get('b')).toBe(undefined)
   })
 })

@@ -74,3 +74,7 @@ export { isFile } from './isFile'
 export { isBlob } from './isBlob'
 export { timeCost } from './timeCost'
 export { log } from './log'
+export { escapeHtml } from './escapeHtml'
+export { unescapeHtml } from './unescapeHtml'
+export { getLru } from './getLru'
+

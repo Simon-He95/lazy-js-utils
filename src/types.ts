@@ -72,3 +72,10 @@ export interface JSCookie {
   set: (key: string, value: string, exdays?: number) => void
   remove: (key: string) => void
 }
+
+export interface LRU {
+  set(key: string, value: any): void
+  get(key: string): any
+  cache: Map<string, any>
+  max: number
+}
