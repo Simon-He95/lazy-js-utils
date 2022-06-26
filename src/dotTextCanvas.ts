@@ -1,21 +1,18 @@
 export class DotTextCanvas {
-  canvas: HTMLCanvasElement
-  ctx: CanvasRenderingContext2D
+  canvas: HTMLCanvasElement = document.createElement('canvas')
+  ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
   points: Map<string, Array<number[]>> = new Map()
   originText: string
   fontSize: number
   color: string
   fontWeight: number
-  textImageDate: Array<number[]> = []
+  textPointSet: Array<number[]> = []
   constructor(text: string, fontSize: number, color: string, fontWeight: number) {
     this.originText = text
     this.fontSize = fontSize
     this.color = color
     this.fontWeight = fontWeight
-    this.createTextPoint(text)
-    const [canvas, ctx] = this.executor()
-    this.canvas = canvas
-    this.ctx = ctx
+    this.executor()
   }
 
   createTextPoint(text: string) {
@@ -37,10 +34,10 @@ export class DotTextCanvas {
     return textPointSet
   }
 
-  executor(): [HTMLCanvasElement, CanvasRenderingContext2D] {
+  executor() {
     this.originText.split('').forEach(text => this.getText(text))
-    this.textImageDate = this.combineText()
-    return this.getCanvas()
+    this.textPointSet = this.combineText()
+    this.getCanvas()
   }
 
   getText(text: string) {
@@ -61,34 +58,26 @@ export class DotTextCanvas {
     return result
   }
 
-  getCanvas(): [HTMLCanvasElement, CanvasRenderingContext2D] {
-    const canvas: HTMLCanvasElement = document.createElement('canvas')
-    const ctx: CanvasRenderingContext2D = canvas.getContext('2d')!
-    const h = this.textImageDate.length
-    const w = this.textImageDate[0].length
+  getCanvas(color?: string) {
+    this.color = color || this.color
+    const h = this.textPointSet.length
+    const w = this.textPointSet[0].length
     const oneTempLength = this.fontSize / h
-    canvas.height = this.fontSize
-    canvas.width = this.fontSize * this.originText.length
+    this.canvas.height = this.fontSize
+    this.canvas.width = this.fontSize * this.originText.length
     for (let i = 0; i < h; i++) {
       for (let j = 0; j < w; j++) {
-        if (this.textImageDate[i][j]) {
-          ctx.beginPath()
-          ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), oneTempLength * this.fontWeight / h, 0, Math.PI * 2)
-          ctx.fillStyle = this.color
-          ctx.fill()
+        if (this.textPointSet[i][j]) {
+          this.ctx.beginPath()
+          this.ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), oneTempLength * this.fontWeight / h, 0, Math.PI * 2)
+          this.ctx.fillStyle = this.color
+          this.ctx.fill()
         }
       }
     }
-    return [canvas, ctx]
   }
 
   clearCanvas() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-  }
-
-  repaint(color: string) {
-    this.color = color
-    this.clearCanvas()
-    this.getCanvas()
+    this.ctx?.clearRect(0, 0, this.canvas!.width, this.canvas!.height)
   }
 }
