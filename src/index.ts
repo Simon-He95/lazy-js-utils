@@ -77,4 +77,5 @@ export { log } from './log'
 export { escapeHtml } from './escapeHtml'
 export { unescapeHtml } from './unescapeHtml'
 export { getLru } from './getLru'
+export { DotTextCanvas } from './DotTextCanvas'
 
