@@ -13,6 +13,14 @@ import {
 
 ```
 
+## DotTextCanvas
+- 根据文字返回一个点阵的canvas
+- 入参：text: string // 内容, fontSize: number // 文字大小, color: string // 颜色, fontWeight: number  // 字体粗细
+```javascript
+const dotText = DotTextCanvas('hello', 20, '#000', 1)
+document.body.appendChild(dotText.canvas)
+```
+
 ## getLru
 - 记录有限的数据,删除最久未访问的数据
 - 参数: maxSize, 存储的最大数据量 (默认为50)
