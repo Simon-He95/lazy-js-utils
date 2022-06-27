@@ -58,8 +58,7 @@ export class DotTextCanvas {
     return result
   }
 
-  getCanvas(color?: string) {
-    this.color = color || this.color
+  getCanvas() {
     const h = this.textPointSet.length
     const w = this.textPointSet[0].length
     const oneTempLength = this.fontSize / h
@@ -75,6 +74,19 @@ export class DotTextCanvas {
         }
       }
     }
+  }
+
+  repaint(this: any, text: string, fontSize: number, color: string, fontWeight: number): DotTextCanvas {
+    // 如果text相同
+    if (this.originText !== text)
+      return Object.assign(this, new DotTextCanvas(text, fontSize, color, fontWeight))
+
+    this.fontSize = fontSize
+    this.color = color
+    this.fontWeight = fontWeight
+    this.clearCanvas()
+    this.getCanvas()
+    return this
   }
 
   clearCanvas() {
