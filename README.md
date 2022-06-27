@@ -13,6 +13,15 @@ import {
 
 ```
 
+## CreateSignatureCanvas
+- 生成一个签名的canvas模板
+```javascript
+const signature = new CreateSignatureCanvas(400, 400)
+document.body.appendChild(signature.canvas)
+const base64 = signature.save()
+signature.clear() // 清除签名
+```
+
 ## DotTextCanvas
 - 根据文字返回一个点阵的canvas
 - 入参：text: string // 内容, fontSize: number // 文字大小, color: string // 颜色, fontWeight: number  // 字体粗细

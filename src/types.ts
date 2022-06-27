@@ -79,3 +79,10 @@ export interface LRU {
   cache: Map<string, any>
   max: number
 }
+
+export interface ISignature {
+  canvas: HTMLCanvasElement
+  ctx: CanvasRenderingContext2D
+  createCanvas(w: number, h: number): void
+  clearCanvas(): void
+}

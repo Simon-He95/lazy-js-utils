@@ -79,4 +79,4 @@ export { escapeHtml } from './escapeHtml'
 export { unescapeHtml } from './unescapeHtml'
 export { getLru } from './getLru'
 export { DotTextCanvas } from './DotTextCanvas'
-
+export { CreateSignatureCanvas } from './CreateSignatureCanvas'
