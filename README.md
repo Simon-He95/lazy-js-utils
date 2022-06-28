@@ -13,6 +13,32 @@ import {
 
 ```
 
+## pwdLevel
+- 判断数字的强度
+- 参数: 数字 (必须) , 最小长度 (可选) 默认6
+- 返回: 强度等级 0-4
+```javascript
+const levels = ['', '低', '中', '高', '极高']
+console.log(levels[pwdLevel('123456')]) // 低
+console.log(levels[pwdLevel('123456', 7)]) // ''
+console.log(levels[pwdLevel('q123456')]) // 高
+```
+
+## sort
+- 数组排序
+- 支持升序降序和多条件排序
+```javascript
+const numbers =  [1, 5, 7, 3, 2, 4, 6, 8, 9, 10]
+console.log(sort(numbers,1)) // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(sort(numbers,-1)) // [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+const array = [{name: 'simon', age: 18}, {name: 'kitty', age: 20}]
+console.log(sort(array, 'name')) // [{name: 'kitty', age: 20}, {name: 'simon', age: 18}]
+console.log(sort(array, '-name')) // [{name: 'simon', age: 18}, {name: 'kitty', age: 20}]
+const array2 = [{name: 'simon', age: 18}, {name: 'kitty', age: 20},{name: 'simon', age: 19}]
+console.log(sort(array2, ['age','name'])) // [{name: 'kitty', age: 20}, {name: 'simon', age: 18}, {name: 'simon', age: 19}]
+console.log(sort(array2, ['-age','name'])) // [{name: 'simon', age: 19}, {name: 'simon', age: 18}, {name: 'kitty', age: 20}]
+```
+
 ## CreateSignatureCanvas
 - 生成一个签名的canvas模板
 ```javascript

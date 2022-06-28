@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, isType, memorizeFn, quickFilter, quickFind, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sort, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
 
-describe('Test 1', () => {
+describe('Test deepMerge', () => {
   it('deepMerge test', () => {
     const b = {
       people: {
@@ -49,7 +49,7 @@ describe('Test 1', () => {
   })
 })
 
-describe('Test 2', () => {
+describe('Test deepCompare', () => {
   it('deepCompare test', () => {
     const b = {
       people: {
@@ -107,7 +107,7 @@ describe('Test 2', () => {
   })
 })
 
-describe('Test 3', () => {
+describe('Test asyncPool', () => {
   it('asyncPool test', async () => {
     function delay(interval: number) {
       return () => new Promise((resolve, reject) => {
@@ -145,7 +145,7 @@ describe('Test 3', () => {
   })
 })
 
-describe('Test 4', () => {
+describe('Test quickFind', () => {
   it('quickFind test', async () => {
     const arr = [
       {
@@ -236,7 +236,7 @@ describe('Test 4', () => {
   })
 })
 
-describe('Test 5', () => {
+describe('Test quickFilter', () => {
   it('quickFilter test', async () => {
     const arr = [
       {
@@ -294,7 +294,7 @@ describe('Test 5', () => {
   })
 })
 
-describe('Test 6', () => {
+describe('Test deepClone', () => {
   it('deepClone test', async () => {
     const arr: any = {
       name: 'simon5',
@@ -314,7 +314,7 @@ describe('Test 6', () => {
   })
 })
 
-describe('Test 7', () => {
+describe('Test curry', () => {
   it('curry test', async () => {
     function __add(a: number, b: number, c: number, d: number) {
       return a + b + c + d
@@ -324,7 +324,7 @@ describe('Test 7', () => {
   })
 })
 
-describe('Test 8', () => {
+describe('Test memorizeFn8', () => {
   it('memorizeFn test', async () => {
     let count = 0
     function hello(name: string) {
@@ -339,7 +339,7 @@ describe('Test 8', () => {
   })
 })
 
-describe('Test 9', () => {
+describe('Test traverse9', () => {
   it('traverse test', async () => {
     const arr = [
       {
@@ -408,7 +408,7 @@ describe('Test 9', () => {
   })
 })
 
-describe('Test 10', () => {
+describe('Test transformKey', () => {
   it('transformKey test', async () => {
     const arr = [
       {
@@ -446,7 +446,7 @@ describe('Test 10', () => {
   })
 })
 
-describe('Test 11', () => {
+describe('Test debounce', () => {
   it('debounce test', async () => {
     let count = 0
     function add() {
@@ -464,7 +464,7 @@ describe('Test 11', () => {
   })
 })
 
-describe('Test 12', () => {
+describe('Test throttle', () => {
   it('throttle test', async () => {
     let count = 0
     function add() {
@@ -478,7 +478,7 @@ describe('Test 12', () => {
   })
 })
 
-describe('Test 13', () => {
+describe('Test uniqueArray', () => {
   it('uniqueArray test', async () => {
     const array = [
       {
@@ -544,31 +544,42 @@ describe('Test 13', () => {
   })
 })
 
-describe('Test 14', () => {
+describe('Test isType', () => {
   it('isType test', async () => {
-    expect(isType([], 'A')).toMatchInlineSnapshot('"&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;"')
+    expect(isType([], 'A')).toBe(true)
   })
 })
 
-describe('Test 15', () => {
+describe('Test getDateList', () => {
   it('getDateList test', async () => {
-    expect(getDateList('1991/3/02', 7)).toMatchInlineSnapshot('"\\"< a href=\\" \\">xx</ a>\\""')
+    expect(getDateList('1991/3/02', 7)).toMatchInlineSnapshot(`
+      [
+        "1991-03-02",
+        "1991-03-03",
+        "1991-03-04",
+        "1991-03-05",
+        "1991-03-06",
+        "1991-03-07",
+        "1991-03-08",
+        "1991-03-09",
+      ]
+    `)
   })
 })
 
-describe('Test 16', () => {
+describe('Test escapeHtml', () => {
   it('escapeHtml test', () => {
     expect(escapeHtml('< a href=" ">xx</ a>')).toBe('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')
   })
 })
 
-describe('Test 17', () => {
+describe('Test unescapeHtml', () => {
   it('unescapeHtml test', async () => {
     expect(unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')).toBe('< a href=" ">xx</ a>')
   })
 })
 
-describe('Test 18', () => {
+describe('Test getLru', () => {
   it('getLru test', async () => {
     const lru = getLru(2)
     lru.set('a', 10)
@@ -576,5 +587,38 @@ describe('Test 18', () => {
     lru.get('a')
     lru.set('c', 32)
     expect(lru.get('b')).toBe(undefined)
+  })
+})
+
+describe('Test sort', () => {
+  it('sort test', async () => {
+    const arr = [
+      {
+        name: 'simon1',
+        age: 11,
+      },
+      {
+        name: 'simon3',
+        age: 22,
+      },
+      {
+        name: 'simon2',
+        age: 33,
+      },
+      {
+        name: 'simon2',
+        age: 4,
+      },
+    ]
+    expect(sort(arr, 1)).toMatchInlineSnapshot('3')
+  })
+})
+
+describe('Test pwdLevel', () => {
+  it.only('pwdLevel test', async () => {
+    let pwd = '!dasdasdqq12QQ3456'
+    expect(pwdLevel(pwd)).toBe(4)
+    pwd = '123456'
+    expect(pwdLevel(pwd)).toBe(1)
   })
 })
