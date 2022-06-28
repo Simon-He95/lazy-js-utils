@@ -15,8 +15,8 @@
   "keywords": [
     "simon-js-tool",
     "javascript",
-    "deepCompare",
-    "deepMerge",
+    "common-function",
+    "utils",
     "asyncPool"
   ],
   "exports": {

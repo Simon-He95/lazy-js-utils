@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs'
-import { resolve as pathResolve } from 'path'
+import { resolve } from 'path'
 export async function exportsCode(relativePath: string): Promise<string> {
-  const pkgPath = pathResolve(__dirname, relativePath)
+  const pkgPath = resolve(__dirname, relativePath)
   try {
     const code = await fs.readFile(pkgPath, 'utf8')
     if (code[0] === '{')
