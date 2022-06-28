@@ -211,9 +211,9 @@ asyncPool(limit, tasks).then((results) => {
 - delete删除项-O(1)
 ```javascript
 const find = quickFind([{id:1,name:'simon'},{id:2,name:'simon'},'id'])
-find.find(1)
+find.find(1) // find: id = 1 => {id:1,name:'simon'}
 find.set({id:1,name:'simon'})
-find.delete(1)
+find.delete(1) // delete: id = 1 => {id:1,name:'simon'}
 ```
 ## quickFilter 
 - 快速模糊查找key名字的项和值 如: 'name=/h/'
