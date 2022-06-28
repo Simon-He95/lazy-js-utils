@@ -78,6 +78,7 @@ export interface LRU {
   get(key: string): any
   cache: Map<string, any>
   max: number
+  size: () => number
 }
 
 export interface ISignature {

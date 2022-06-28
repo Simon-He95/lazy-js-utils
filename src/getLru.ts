@@ -19,5 +19,6 @@ export function getLru(max = 50): LRU {
     },
     cache: new Map(),
     max,
+    size() { return this.cache.size },
   }
 }

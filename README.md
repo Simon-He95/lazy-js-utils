@@ -1,12 +1,13 @@
-## [docs](https://www.hejian.club/posts/toolsfunction)
+## 相关文档
+[docs](https://www.hejian.club/posts/toolsfunction)
 
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
 目前整理了<strong>80+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
 
 ## 赞助我
+![img](/assets/wechat.jpg 'wechat')
 
-<img src="./assets/wechat.jpg" alt="wechat" style="margin-right:20px;box-shadow: 0px 0px 10px lightdark;border-radius:20px;" />
-<img src="./assets/alipay.jpg" alt="alipay" style="box-shadow:box-shadow: 0px 0px 10px lightdark;border-radius:20px;" />
+![img](/assets/alipay.jpg 'alipay')
 
 ## 使用说明
 ```bash
@@ -68,23 +69,23 @@ document.body.appendChild(dotText.canvas)
 const lru = getLru(2)
 lru.set('a', 1)
 lru.set('b', 2)
-lru.get('a') // 1
+console.log(lru.get('a')) // 1
 lru.set('b', 3)
-lru.cache.size // 2
-lru.get('a') // 1
-lru.get('b') // undefined
+console.log(lru.size()) // 2
+console.log(lru.get('a')) // 1
+console.log(lru.get('b')) // undefined
 ```
 
 ## escapeHtml
 - 将html字符串转换为实体字符串
 ```javascript
-excapeHtml("< a href=" ">xx</ a>") // "&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;"
+console.log(excapeHtml("< a href=" ">xx</ a>")) // "&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;"
 ```
 
 ## unescapeHtml
 - 将实体字符串转换为html字符串
 ```javascript
-unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;') // "< a href=" ">xx</ a>"
+console.log(unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')) // "< a href=" ">xx</ a>"
 ```
 
 ## timeCost
@@ -92,8 +93,9 @@ unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;') // "< a href=" ">xx</
 - timeCost(fn: Function) : number
 ```javascript
 timeCost(()=>{
+  let a = 1
   for(let i=0;i<1000;i++){
-    console.log(i)
+    a++
   }
 }) // 输出: timeCost: 0.046s
 ```
@@ -102,7 +104,7 @@ timeCost(()=>{
 - 简化console.log的使用
 - log(s: string,color: string,fontSize: number)
 ```javascript
-log('hello world') # 打印日志
+log('hello world') // hello world
 ```
 
 ## copy
@@ -119,21 +121,19 @@ btn.onclick = () =>  {
 ## getDateList
 - 获取指定日期范围内正负多少天的日期列表
 - getDateList(start: string, day: number = 0) start: 开始日期以/或-分割 1991/03/02 1001-03-02, day: 正负多少天
-
 ```javascript
-getDateList('1991/3/02', 7)
-// [ '1991-3-02', '1991-3-03', '1991-3-04', '1991-3-05', '1991-3-06', '1991-3-07', '1991-3-08' ]
+console.log(getDateList('1991/3/02', 7)) // [ '1991-3-02', '1991-3-03', '1991-3-04', '1991-3-05', '1991-3-06', '1991-3-07', '1991-3-08' ]
 ```
 
 ## isType
 - `isType(o:any, type:string)`: 判断obj是否是type类型
 - 混合类型判断,type 如果是多种类型,用'|'分隔 如: 缩写 - 'O|S'  全写 - 'Object|String' 
 ```javascript
-isType(1, 'Number') // true
-isType('1', 'N') // false
-isType({}, 'O | A') // true (Object | Array)
-isType(new Promise(), 'P') // true (Promise)
-isType(function(){}, 'P | F') // true (Promise | Function)
+console.log(isType(1, 'Number')) // true
+console.log(isType('1', 'N')) // false
+console.log(isType({}, 'O | A')) // true (Object | Array)
+console.log(isType(new Promise(), 'P')) // true (Promise)
+console.log(isType(function(){}, 'P | F')) // true (Promise | Function)
 ```
 
 ## randomDate
@@ -141,13 +141,14 @@ isType(function(){}, 'P | F') // true (Promise | Function)
 - 可指定随机范围 start:'1999/01/01' end:'2099/12/31'
 ```javascript
 // end默认是当前日期
-randomDate('1999/01/01') // Mon Jun 06 2011 15:11:37 GMT+0800 (中国标准时间) 可再通过formateDate转换为其他格式 如'yyyy-MM-dd'
+console.log(randomDate('1999/01/01')) // Mon Jun 06 2011 15:11:37 GMT+0800 (中国标准时间) 可再通过formateDate转换为其他格式 如'yyyy-MM-dd'
 ```
 
 ## uniqueArray
 - 去除数组中重复的元素
 - 支持去除数组中的对象的重复元素
 ```javascript
+// 完全比对值来判断是否重复
 const array = [
       {
         name: "simon",
@@ -257,7 +258,7 @@ const obj = {
   }
 }
 obj.self = obj
-const obj2 = deepClone(obj)
+const obj2 = deepClone(obj) // 返回一个新对象
 ```
 ## curry 
 - 函数柯里化
@@ -277,7 +278,7 @@ let count = 0
 const fn = memorizeFn(()=> count++)
 fn()
 fn()
-count => 1
+console.log(count) // => 1
 ```
 
 ## debounce 
@@ -314,7 +315,7 @@ const obj = {
   },
 }
 traverse(obj, {
-  'family.name'(target: any, index: number, item: any) {
+  'family.name'(target: any, index: number, item: any) { // 遍历obj.family.name
     console.log(target, index)
   }
 })
@@ -333,7 +334,7 @@ const obj = {
   },
   name: 'simon'
 }
-const newObj = transformKey(obj, {
+const newObj = transformKey(obj, { // 将obj的key转换成新的key
   'family.name': 'familyName',
   'family.age': 'familyAge'
 })
@@ -348,12 +349,14 @@ console.log(newObj)
 document.addEventListener('click', once(() => {
   console.log('click')
 }))
+document.click() // click
+document.click() // 
 ```
 
 ## vFetch
 - 基于fetch的axios api 式promise请求封装
 - 支持拦截前追加headers
-```javascript
+```typescript
 type VFetchConfig = {
   url: string // 请求地址
   baseURL?: string // 基础url
@@ -372,43 +375,48 @@ type VFetchConfig = {
 }
 interface Interceptors {
     request: {
-      use: (successCallback // 请求前拦截处理, errorCallback // 错误处理)
+      use: (successCallback /* 请求前拦截处理*/, errorCallback /* 错误处理*/)
     }
     response: {
-      use: (successCallback // 响应后成功处理), errorCallback // 响应后失败处理)
+      use: (successCallback /* 响应后成功处理*/, errorCallback /* 响应后失败处理*/)
     }
   }
   // useage
-vFetch(options:Record<string,string>).then(res =>{}, err =>{})
+vFetch(options:Record<string,string>).then(res =>{
+  // success
+}, err =>{
+  // error
+})
 ```
 
 
 ## stringify
 ```javascript
-stringify({ user: 'simon', age: '18' }) => 'user=simon&age=18'
+console.log(stringify({ user: 'simon', age: '18' })) // 'user=simon&age=18'
 ```
 ## parse
 ```javascript
-parse('user=simon&age=18') => { user: 'simon', age: '18' }
+console.log(parse('user=simon&age=18')) // { user: 'simon', age: '18' }
 ```
 ## jsCookie
 ```javascript
 jsCookie.set('name', 'simon') 
-jsCookie.get('name') => 'simon' 
+console.log(jsCookie.get('name')) // 'simon' 
 jsCookie.remove('name')  
-jsCookie.get('name') => ''
+console.log(jsCookie.get('name')) // ''
 ```
 ## uuid
 - 生成uuid 
 - 支持限制生成的uuid长度和类型 
 ```javascript
-uuid() => '71A793A9-BBAE-49FC-B957-5BC71E5AD044'
-uuid(16, 'hex') => 'a0b1c2d3e4f5' uuid(8, 2) => '11110011'
+console.log(uuid()) // '71A793A9-BBAE-49FC-B957-5BC71E5AD044'
+console.log(uuid(16, 'hex')) // 'a0b1c2d3e4f5' 
+console.log(uuid(8, 2)) // '11110011'
 ```
 ## formateDate
 - 格式化日期
 ```javascript
-formateDate(new Date(), 'yyyy-MM-dd') => '2019-01-01'
+console.log(formateDate(new Date(), 'yyyy-MM-dd')) // '2019-01-01'
 ```
 ## monitorPef
 - 数字化浏览器性能指标
@@ -435,19 +443,20 @@ onload事件时间	0
 - 基于promise封装的获取地理位置信息
 - params: 高精度 超时时间 缓存时间
 ```javascript
-await getLocation() =>  { enableHighAccuracy: boolean = false, timeout: number = 5000, maximumAge: number = 0 }
+console.log(await getLocation()) //  { enableHighAccuracy: boolean = false, timeout: number = 5000, maximumAge: number = 0 }
 ```
 ## getDevice
 - 获取系统信息
 - os:系统 dev:浏览器
 ```javascript
-getDevice() => { os: 'android', dev: 'chrome' }
+console.log(getDevice()) // { os: 'android', dev: 'chrome' }
 ```
 ## preload
 - 预加载图片
 ```javascript
 preload('https://img.yzcdn.cn/vant/cat.jpeg')
 preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jpeg'])
+<img src="https://img.yzcdn.cn/vant/cat.jpeg" /> // memory cache
 ```
 
 ## lazyLoad
@@ -458,6 +467,7 @@ preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jp
 - params-4: threshold 指定图片加载的阈值
 ```javascript
 // usage
+// 默认展示src的图片，当滚动到图片的时候data-src替换src
   lazyLoad(document.querySelectorAll("img"));
   lazyLoad("img[data-src]");
   lazyLoad(".img-wrapper>img");
@@ -473,6 +483,14 @@ addScript('https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js')
 ## addStyle
 - 动态添加style标签 => head
 ```javascript
+/* 
+<style>
+ .test {
+  color: red;
+ }
+</style>
+将会杯插入head标签中
+*/
 addStyle(`
   .test {
     color: red;
@@ -482,6 +500,7 @@ addStyle(`
 ## download
 - 下载文件
 ```javascript
+// 下载名为baidu.png地址为https://www.baidu.com/img/bd_logo1.png图片
 download('https://www.baidu.com/img/bd_logo1.png', 'baidu.png')
 ```
 
@@ -490,22 +509,23 @@ download('https://www.baidu.com/img/bd_logo1.png', 'baidu.png')
 - type: '前空格' | '后空格' | '前后空格' | '所有空格'
 ```javascript
 trim(str: string,type: 'pre' | 'post' | 'around' | 'all' = 'around') 
-trim('  h e l l o  ') => 'h e l l o'
-trim('  h e l l o  ', 'pre') => 'h e l l o  '
-trim('  h e l l o  ', 'post') => '  h e l l o'
-trim('  h e l l o  ', 'all') => 'hello'
+console.log(trim('  h e l l o  ')) // 'h e l l o'
+console.log(trim('  h e l l o  ', 'pre')) // 'h e l l o  '
+console.log(trim('  h e l l o  ', 'post')) // '  h e l l o'
+console.log(trim('  h e l l o  ', 'all')) // 'hello'
 ```
 
 ## compressCss
 - 压缩css
 - 参数: css: string
-```javascript
-compressCss(css: string) => string
+```typescript
+compressCss(css: string): string
 ```
 
 ## scrollToTop
 - 回到顶部
 ```javascript
+// 缓慢回到顶部
 scrollToTop()
 ```
 
@@ -515,22 +535,32 @@ scrollToTop()
 - on 事件监听
 - off 事件取消
 - 创建发布订阅模式的实例
+```javascript
+const eventBus = createEventBus()
+eventBus.emit('test', 'hello')
+const listener = (data: string) => {
+  console.log(data)
+}
+eventBus.on('test', listener)
+eventBus.off('test',listener)
+```
 
 ## randomHexColor
 - 随机生成十六进制颜色
 ```javascript
-randomHexColor() => '#ff0000'
+console.log(randomHexColor()) // '#ff0000'
 ```
 
 ## randomRgb
 - 随机生成RGB颜色
 ```javascript
-randomRgb() => 'rgb(255,0,0)'
+console.log(randomRgb())// 'rgb(255,0,0)'
 ```
 
 ## httpsRedirect
 - https重定向
 ```javascript
+// http://www.baidu.com => https://www.baidu.com
 httpsRedirect()
 ```
 
@@ -543,69 +573,73 @@ scrollToView(el: HTMLElement | string)
 ## getScrollPosition
 - 获取滚动位置
 ```javascript
-getScrollPosition() => { x: number, y: number }
+console.log(getScrollPosition()) // { x: number, y: number }
 ```
 
 ## camelize
 - 驼峰化
 ```javascript
-// hello-world
-camelize(str: string) => 'helloWorld'
+console.log(camelize(hello-world)) // 'helloWorld'
 ```
 
 ## hyphenate
 - 连字符化
 ```javascript
-// helloWorld
-hyphenate(str: string) => 'hello-world'
+console.log(hyphenate(helloWorld)) // 'hello-world'
 ```
 
 ## getUrlParam
 - 获取url参数
 - 默认不传入url，获取当前页面url参数
 ```javascript
-getUrlParam('?name=simon&age=18') => { name: 'simon', age: '18' }
+console.log(getUrlParam('?name=simon&age=18'))// { name: 'simon', age: '18' }
 ```
 
 ## fullScreen
 - fullScreen()
 - 全屏
+```javascript
+fullScreen()
+```
 
 ## exitFullScreen
 - exitFullScreen()
 - 退出全屏
+```javascript
+exitFullScreen()
+```
 
 ## toBase64
 - 将blob | file | url转换为base64
-```javascript
-toBase64(file: File, type: 'file' | 'blob' | 'url' = 'url') => string
+```typescript
+toBase64(file: File, type: 'file' | 'blob' | 'url' = 'url'): string
 ```
 
 ## base64ToFile
 - 将base64转换为file
-```javascript
-base64ToFile(s: string, name: string) => File
+```typescript
+base64ToFile(s: string, name: string): File
 ```
 
 ## base64ToBlob
 - 将base64转换为blob
-```javascript
-base64ToBlob(s: string) => Blob
+```typescript
+base64ToBlob(s: string): Blob
 ```
 
 ## uppercaseNum
 - 将数字转换为大写字母
 ```javascript
-// 1 => '一'
-uppercaseNum(num: number | string) => string
+// uppercaseNum(num: number | string) => string
+console.log(uppercaseNum(1)) // '一'
 ```
 
 ## formateNum
 - 将数字格式化
 - integer: 'floor' | 'ceil' 小数截取方式 floor:向下取整 ceil:向上取整
 ```javascript
-// 12253.123 => 12,253.12
-formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'ceil') => string
+// formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'ceil') => string
+console.log(formateNum(12253.123, 2)) // '12,253.12'
 ```
 
 ## interceptError
@@ -613,24 +647,25 @@ formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'c
 - 参数：可能存在异常的函数，返回一个promise类型的错误处理函数
 - 可以避免不断的try...catch
 ```javascript
-// interceptError(() => { throw new Error('error') }).catch(err=>{ console.log(err) })
-interceptError(fn: Function) => Promise<any>
+// interceptError(fn: Function) => Promise<any>
+interceptError(() => { throw new Error('error') }).catch(err=>{ console.log(err) })
 ```
 ## isBottom
 - 判断滚动是否触底
 - distance: 距离底部的距离作为触底的判断标准 默认0
 ```javascript
-isBottom(distance: string = 0) => boolean
+// isBottom(distance: string = 0): boolean
+console.log(isBottom()) // false
 ```
 
 ## calNum
 - 计算数字
 - type: '加' | '减' | '乘' | '除'
 ```javascript
-console.log(calNum.add(0.1, 0.2, 0.2)) => 0.5
-console.log(calNum.div(0.1, 0.2, 0.2)) => 2.5
-console.log(calNum.sub(0.1, 0.2, 0.2)) => -0.3
-console.log(calNum.mul(0.1, 0.2, 0.2)) => 0.004
+console.log(calNum.add(0.1, 0.2, 0.2)) // 0.5
+console.log(calNum.div(0.1, 0.2, 0.2)) // 2.5
+console.log(calNum.sub(0.1, 0.2, 0.2)) // -0.3
+console.log(calNum.mul(0.1, 0.2, 0.2)) // 0.004
 ```
 
 ## 规则判断
