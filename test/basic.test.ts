@@ -610,12 +610,31 @@ describe('Test sort', () => {
         age: 4,
       },
     ]
-    expect(sort(arr, 1)).toMatchInlineSnapshot('3')
+    expect(sort(arr, 1)).toMatchInlineSnapshot(`
+      [
+        {
+          "age": 4,
+          "name": "simon2",
+        },
+        {
+          "age": 33,
+          "name": "simon2",
+        },
+        {
+          "age": 22,
+          "name": "simon3",
+        },
+        {
+          "age": 11,
+          "name": "simon1",
+        },
+      ]
+    `)
   })
 })
 
 describe('Test pwdLevel', () => {
-  it.only('pwdLevel test', async () => {
+  it('pwdLevel test', async () => {
     let pwd = '!dasdasdqq12QQ3456'
     expect(pwdLevel(pwd)).toBe(4)
     pwd = '123456'

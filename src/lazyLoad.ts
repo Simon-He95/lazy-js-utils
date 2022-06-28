@@ -10,7 +10,6 @@ export function lazyLoad(imgList: any, root: Element, rootMargin = '0px 0px 200p
       (entries, observer) => {
         entries.forEach((entry) => {
           /* 替换属性 */
-          console.log(entry.isIntersecting)
           if (entry.isIntersecting) {
             (entry.target as HTMLImageElement).src = (entry.target as any).dataset.src
             observer.unobserve(entry.target)
