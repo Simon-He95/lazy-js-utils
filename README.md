@@ -7,7 +7,7 @@
 ## 赞助我
 ![img](/assets/wechat.jpg 'wechat')
 
-![img](/assets/alipay.jpg 'alipay')
+![img](/assets/zfb.jpg 'zfb')
 
 ## 使用说明
 ```bash
