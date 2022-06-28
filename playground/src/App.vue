@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import { fileSplice } from '../../src'
 // import { lazyLoad } from "../../src";
 // import { vFetch } from "../../src";
-
+// const upload = ref(null)
+// onMounted(() => {
+//   upload.value.addEventListener('change', (e) => {
+//     const _file = upload.value.files[0]
+//     fileSplice(_file)
+//   })
+// })
 // setTimeout(() => {
 //   vFetch({
 //     url: "test1",
@@ -22,6 +29,7 @@
 
 <template>
   <main font-sans p="x-4 y-10" text="center gray-700 dark:gray-200">
+    上传:<input ref="upload" type="file" name="" value="">
     <router-view />
     <Footer />
   </main>

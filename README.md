@@ -5,9 +5,9 @@
 目前整理了<strong>80+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
 
 ## 赞助我
-![img](/assets/wechat.jpg 'wechat')
+![img](/assets/wechat.jpg 'WeChat')
 
-![img](/assets/zfb.jpg 'zfb')
+![img](/assets/zfb.jpg 'Alipay')
 
 ## 使用说明
 ```bash
@@ -17,6 +17,17 @@ import {
   deepCompare
  } from 'simon-js-tool' # 按需引入
 
+```
+
+## fileSplice
+- 大文件切片处理函数
+- 接收File对象,切片大小
+- 默认以100kb为单位切片, 如果文件切片的数量超过100就设定最大切片数量为100,那么以文件大小 / 100为单位切片
+- 返回切片数组
+
+```javascript
+// fileSplice(file: File, chunkSize: number = 1024 * 100) 
+const chunks = fileSplice(file, 1024 * 1024) // [ { file: Blob, filename: string } ]
 ```
 
 ## pwdLevel
