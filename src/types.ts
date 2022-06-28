@@ -87,3 +87,15 @@ export interface ISignature {
   createCanvas(w: number, h: number): void
   clearCanvas(): void
 }
+
+export interface FileMD5 {
+  HASH: string
+  suffix: string
+  filename: string
+  buffer: ArrayBuffer
+}
+
+export interface FileChunk {
+  file: Blob
+  filename: string
+}
