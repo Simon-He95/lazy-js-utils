@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sort, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, exportsCode, getDateList, getLru, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sort, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
 
 describe('Test deepMerge', () => {
   it('deepMerge test', () => {
@@ -639,5 +639,12 @@ describe('Test pwdLevel', () => {
     expect(pwdLevel(pwd)).toBe(4)
     pwd = '123456'
     expect(pwdLevel(pwd)).toBe(1)
+  })
+})
+
+describe('Test exportsCode', () => {
+  it.only('exportsCode test', async () => {
+    const result = await exportsCode('../package.json')
+    expect(result.version).toMatchInlineSnapshot('"2.0.10"')
   })
 })

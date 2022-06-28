@@ -19,12 +19,20 @@ import {
 
 ```
 
+## exportsCode
+- node环境下获取文件内容
+- 如果是json格式的文件,返回的是json对象，否则返回string
+```javascript
+const pkg = await exportsCode('../package.json') // {name: 'simon-js-tool', version: '1.0.0' ...}
+console.log(pkg.name) // 'simon-js-tool'
+console.log(await exportsCide('../.npmrc')) // 'shamefully-hoist=true'
+```
+
 ## fileSplice
 - 大文件切片处理函数
 - 接收File对象,切片大小
 - 默认以100kb为单位切片, 如果文件切片的数量超过100就设定最大切片数量为100,那么以文件大小 / 100为单位切片
 - 返回切片数组
-
 ```javascript
 // fileSplice(file: File, chunkSize: number = 1024 * 100) 
 const chunks = fileSplice(file, 1024 * 1024) // [ { file: Blob, filename: string } ]
