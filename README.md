@@ -1,7 +1,12 @@
 ## [docs](https://www.hejian.club/posts/toolsfunction)
 
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
-目前整理了<strong>60+</strong>的常用函数,还在持续更新中...
+目前整理了<strong>80+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
+
+## 赞助我
+
+![wechat](/assets/wechat.jpg 'wechat')
+![alipay](/assets/alipay.jpg 'alipay')
 
 ## 使用说明
 ```bash
