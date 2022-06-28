@@ -5,8 +5,8 @@
 
 ## 赞助我
 
-![wechat](/assets/wechat.jpg 'wechat')
-![alipay](/assets/alipay.jpg 'alipay')
+<img src="./assets/wechat.jpg" alt="wechat" style="margin-right:20px;box-shadow: 0px 0px 10px lightdark;border-radius:20px;" />
+<img src="./assets/alipay.jpg" alt="alipay" style="box-shadow:box-shadow: 0px 0px 10px lightdark;border-radius:20px;" />
 
 ## 使用说明
 ```bash
