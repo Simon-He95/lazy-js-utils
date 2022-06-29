@@ -18,14 +18,15 @@ export class DotImageCanvas {
     const canvasData = this.ctx.getImageData(0, 0, this.image!.width, this.image!.height).data
     const imagePointSet = []
     for (let i = 0; i < this.image!.height; i++) {
-      const temp: number[] = []
+      const temp: any[] = []
       imagePointSet.push(temp)
       for (let j = 0; j < this.image!.width; j++) {
         const index = (i * this.image!.width * 4 + j * 4)
+        const color = `rgba(${canvasData[index + 0]},${canvasData[index + 1]},${canvasData[index + 2]},${canvasData[index + 3]})`
         if (canvasData[index + 0] > 230 && canvasData[index + 1] > 230 && canvasData[index + 2] > 230)
           temp.push(0)
         else
-          temp.push(canvasData[index + 3] ? 1 : 0)
+          temp.push(canvasData[index + 3] ? color : 0)
       }
     }
     this.points.set(this.originSrc, imagePointSet)
@@ -74,7 +75,7 @@ export class DotImageCanvas {
         if (this.imagePointSet[i][j]) {
           this.ctx.beginPath()
           this.ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), this.fontWeight * 50 / this.image!.width, 0, Math.PI * 2)
-          this.ctx.fillStyle = this.color
+          this.ctx.fillStyle = this.color || (this.imagePointSet[i][j] || 'black') as string
           this.ctx.fill()
         }
       }
