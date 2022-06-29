@@ -82,7 +82,7 @@ export class DotImageCanvas {
     }
   }
 
-  repaint(src: string, fontWeight: number, color: string,) {
+  repaint(src: string, fontWeight: number, color: string) {
     this.originSrc = src
     this.color = color
     this.fontWeight = fontWeight
