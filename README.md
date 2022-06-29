@@ -19,6 +19,18 @@ import {
 
 ```
 
+## DotImageCanvas
+- 将图片的像素转为点阵图片
+- 入参: 图片的路径 图片的颜色 点阵的粗细
+```javascript
+const dotImage = new DotImageCanvas('./img/1.jpg', '#000', 1)
+document.body.appendChild(dotImage.canvas)
+// 如果有更新,可以调用dotImage.repaint('xxx','xxx',x)更新，url一致回会服用上次的图片，只更新颜色和粗细
+setTimeout(() => {
+  dotImage.repaint('./img/1.jpg', '#000', 1)
+}, 1000)
+```
+
 ## exportsCode
 - node环境下获取文件内容
 - 如果是json格式的文件,返回的是json对象，否则返回string
