@@ -19,6 +19,84 @@ import {
 
 ```
 
+## idleCallbackWrapper
+- 包裹了requestIdleCallback和cancelIdleCallback的一个封装函数
+- 兼容了浏览器的不同版本
+- 简化了调用方式
+- 返回stop方法可以停止执行
+- 默认timeout为2000
+```typescript
+const tasks: Function[] = [
+  () => {
+    for (let i = 0; i < 3000; i++) {
+      console.log(i);
+    }
+    console.log("first task");
+  },
+  () => {
+    for (let i = 0; i < 30000; i++) {
+      console.log(i);
+    }
+    console.log("second task");
+  },
+  () => {
+    for (let i = 0; i < 30000; i++) {
+      console.log(i);
+    }
+    console.log("third task");
+  },
+];
+// 封装前的场景
+requestIdleCallback(fn, { timeout: 1000 });
+function fn(deadline: Deadline) {
+  console.log("deadline", deadline);
+  while ((deadline.timeRemaining() > 0 || deadline.didTimeout) && tasks.length > 0) {
+    tasks.shift()();
+  }
+  if (tasks.length > 0) {
+    requestIdleCallback(fn1);
+  }
+}
+
+// 封装后的场景 更加简短方便
+const stop = idleCallbackWrapper(tasks, 1000)
+```
+
+## animationFrameWrapper
+- 包裹了requestAnimationFrame和cancelAnimationFrame的封装函数
+- 兼容了浏览器的不同版本
+- 简化了调用方式
+- 返回stop方法可以停止动画
+- 默认间隔为1000
+```javascript
+const count = ref(0)
+// 封装前的场景
+const animationId = requestAnimationFrame(fn)
+
+function fn(timestamp) {
+  if (start === null) {
+    start = timestamp
+  }
+  else {
+    const delta = timestamp - start
+    if (delta > 1000) {
+      count.value++
+      if (count.value > 10) {
+        cancelAnimationFrame(animationId)
+      }
+    }
+  }
+  requestAnimationFrame(fn)
+}
+// 封装后的场景 更加简短方便
+const stop = animationFrameWrapper(() => {
+  count.value++
+  if (count.value > 10) {
+    stop()
+  }
+}，1000)
+```
+
 ## DotImageCanvas
 - 将图片的像素转为点阵图片
 - 入参: src: 图片的路径, fontWeight: 点阵粗细, color: 颜色 不传默认取原图片像素

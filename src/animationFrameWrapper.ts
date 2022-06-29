@@ -1,4 +1,4 @@
-export function animationFrameWrapper(fn: () => void, delta: number): (() => void) {
+export function animationFrameWrapper(fn: () => void, delta = 1000): (() => void) {
   let start: number
   const animationFrame = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
@@ -6,11 +6,11 @@ export function animationFrameWrapper(fn: () => void, delta: number): (() => voi
     || window.msRequestAnimationFrame
     || (fn => setTimeout(fn, 1000 / 60))
   const cancelAnimation = window.cancelAnimationFrame
-      || window.webkitCancelAnimationFrame
-      || window.mozCancelAnimationFrame
-      || window.oCancelAnimationFrame
-      || window.msCancelAnimationFrame
-      || clearTimeout
+    || window.webkitCancelAnimationFrame
+    || window.mozCancelAnimationFrame
+    || window.oCancelAnimationFrame
+    || window.msCancelAnimationFrame
+    || clearTimeout
   const animationId = animationFrame(function myFrame(timestamp: number = Date.now()) {
     if (start === undefined) { start = timestamp }
     else {

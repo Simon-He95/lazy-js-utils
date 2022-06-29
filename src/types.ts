@@ -1,3 +1,16 @@
+declare global {
+  interface Window {
+    webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number
+    mozRequestAnimationFrame: (callback: FrameRequestCallback) => number
+    msRequestAnimationFrame: (callback: FrameRequestCallback) => number
+    oRequestAnimationFrame: (callback: FrameRequestCallback) => number
+    webkitCancelAnimationFrame: (handle: number) => void
+    mozCancelAnimationFrame: (handle: number) => void
+    oCancelAnimationFrame: (handle: number) => void
+    msCancelAnimationFrame: (handle: number) => void
+  }
+}
+
 export type Redirect = 'follow' | 'error' | 'manual'
 export type Cache = 'default' | 'no-store' | 'reload' | 'no-cache' | 'force-cache'
 export type Mode = 'cors' | 'no-cors' | 'same-origin' | 'navigate'
@@ -98,4 +111,9 @@ export interface FileMD5 {
 export interface FileChunk {
   file: Blob
   filename: string
+}
+
+export interface Deadline {
+  timeRemaining: () => number
+  didTimeout: boolean
 }
