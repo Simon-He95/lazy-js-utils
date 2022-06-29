@@ -7,7 +7,7 @@ export class DotImageCanvas {
   fontWeight: number
   imagePointSet: Array<number[]> = []
   image?: HTMLImageElement
-  constructor(src: string, color: string, fontWeight: number) {
+  constructor(src: string, fontWeight: number, color: string = '') {
     this.originSrc = src
     this.color = color
     this.fontWeight = fontWeight
