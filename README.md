@@ -22,6 +22,7 @@ import {
 ## DotImageCanvas
 - 将图片的像素转为点阵图片
 - 入参: src: 图片的路径, fontWeight: 点阵粗细, color: 颜色 不传默认取原图片像素
+- 可以await repaint中的dotImage.repaint(xxx)中的dotImage.status判断正确的src被加载完成的时机
 ```javascript
 const dotImage = new DotImageCanvas('./img/1.jpg', 1, '#000')
 document.body.appendChild(dotImage.canvas)

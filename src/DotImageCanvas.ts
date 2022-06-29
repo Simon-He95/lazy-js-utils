@@ -1,27 +1,25 @@
 export class DotImageCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
   ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
-  points: Map<string, Array<number[]>> = new Map()
-  originSrc: string
-  color: string
-  fontWeight: number
+  points: Map<string, Record<string, any>> = new Map()
+  originSrc = ''
+  color = ''
+  fontWeight = 1
   imagePointSet: Array<number[]> = []
-  image?: HTMLImageElement
-  constructor(src: string, fontWeight: number, color = '') {
-    this.originSrc = src
-    this.color = color
-    this.fontWeight = fontWeight
+  status = 'pending'
+  constructor(src: string, color: string, fontWeight: number) {
+    this.initOptions(src, color, fontWeight)
     this.executor()
   }
 
   createDotImage() {
-    const canvasData = this.ctx.getImageData(0, 0, this.image!.width, this.image!.height).data
+    const canvasData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height).data
     const imagePointSet = []
-    for (let i = 0; i < this.image!.height; i++) {
+    for (let i = 0; i < this.canvas.height; i++) {
       const temp: any[] = []
       imagePointSet.push(temp)
-      for (let j = 0; j < this.image!.width; j++) {
-        const index = (i * this.image!.width * 4 + j * 4)
+      for (let j = 0; j < this.canvas.width; j++) {
+        const index = (i * this.canvas.width * 4 + j * 4)
         const color = `rgba(${canvasData[index + 0]},${canvasData[index + 1]},${canvasData[index + 2]},${canvasData[index + 3]})`
         if (canvasData[index + 0] > 230 && canvasData[index + 1] > 230 && canvasData[index + 2] > 230)
           temp.push(0)
@@ -29,28 +27,31 @@ export class DotImageCanvas {
           temp.push(canvasData[index + 3] ? color : 0)
       }
     }
-    this.points.set(this.originSrc, imagePointSet)
+    this.points.set(this.originSrc, { width: this.canvas.width, imagePointSet, height: this.canvas.height })
     return imagePointSet
   }
 
   createImage() {
-    if (this.hasImage())
+    if (this.hasImage()) {
+      const { imagePointSet, width, height } = this.points.get(this.originSrc) as Record<string, any>
+      this.imagePointSet = imagePointSet
+      this.canvas.width = width
+      this.canvas.height = height
       return
+    }
     const img = new Image()
-    img.src = this.originSrc
     return new Promise((resolve, reject) => {
-      try {
-        img.onload = () => {
-          this.image = img
-          this.canvas.width = img.width * 0.8
-          this.canvas.height = img.height * 0.8
-          this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
-          this.imagePointSet = this.createDotImage()
-          resolve(img)
-        }
+      img.src = this.originSrc
+      img.onload = () => {
+        this.canvas.width = img.width
+        this.canvas.height = img.height
+        this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
+        this.imagePointSet = this.createDotImage()
+        resolve(img)
       }
-      catch (error) {
-        reject(new Error(`图片加载失败,请检查图片路径:${this.originSrc}`))
+      img.onerror = () => {
+        this.status = 'fail'
+        reject(new Error('create image error'))
       }
     })
   }
@@ -60,21 +61,27 @@ export class DotImageCanvas {
   }
 
   async executor() {
-    await this.createImage()
-    this.getCanvas()
+    try {
+      await this.createImage()
+      this.clearCanvas()
+      this.status = 'success'
+      this.getCanvas()
+    }
+    catch (error) {
+    }
   }
 
   getCanvas() {
     const h = this.imagePointSet.length
     const w = this.imagePointSet[0].length
-    const oneTempLength = this.image!.width / h
-    this.canvas.height = this.image!.height
-    this.canvas.width = this.image!.width
+    const oneTempLength = this.canvas.width * 1 / h
+    this.ctx.scale(0.8, 0.8)
+    this.ctx.translate(this.canvas.width * 0.1, this.canvas.height * 0.1)
     for (let i = 0; i < h; i++) {
       for (let j = 0; j < w; j++) {
         if (this.imagePointSet[i][j]) {
           this.ctx.beginPath()
-          this.ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), this.fontWeight * 50 / this.image!.width, 0, Math.PI * 2)
+          this.ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), this.fontWeight * 50 / this.canvas.width, 0, Math.PI * 2)
           this.ctx.fillStyle = this.color || (this.imagePointSet[i][j] || 'black') as string
           this.ctx.fill()
         }
@@ -82,15 +89,19 @@ export class DotImageCanvas {
     }
   }
 
-  repaint(src: string, fontWeight: number, color: string) {
+  initOptions(src: string, color: string, fontWeight: number) {
     this.originSrc = src
     this.color = color
     this.fontWeight = fontWeight
-    this.executor()
+  }
+
+  async repaint(src: string, color: string, fontWeight: number) {
+    this.initOptions(src, color, fontWeight)
+    await this.executor()
     return this
   }
 
   clearCanvas() {
-    this.ctx?.clearRect(0, 0, this.canvas!.width, this.canvas!.height)
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
   }
 }
