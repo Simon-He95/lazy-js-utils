@@ -7,8 +7,8 @@ export class DotImageCanvas {
   fontWeight = 1
   imagePointSet: Array<number[]> = []
   status = 'pending'
-  constructor(src: string, color: string, fontWeight: number) {
-    this.initOptions(src, color, fontWeight)
+  constructor(src: string, fontWeight: number, color: string) {
+    this.initOptions(src, fontWeight, color)
     this.executor()
   }
 
@@ -89,14 +89,14 @@ export class DotImageCanvas {
     }
   }
 
-  initOptions(src: string, color: string, fontWeight: number) {
+  initOptions(src: string, fontWeight: number, color: string) {
     this.originSrc = src
     this.color = color
     this.fontWeight = fontWeight
   }
 
-  async repaint(src: string, color: string, fontWeight: number) {
-    this.initOptions(src, color, fontWeight)
+  async repaint(src: string, fontWeight: number, color: string) {
+    this.initOptions(src, fontWeight, color)
     await this.executor()
     return this
   }
