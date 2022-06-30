@@ -19,6 +19,26 @@ import {
 
 ```
 
+## htmlTransform
+- 将template字符串通过ast操作后转回字符串
+- 只支持对于html的简单操作,不支持对于js的操作
+- 可用于小程序不同渠道的转换
+
+```javascript
+  const code = await htmlTransform('<div>hello</div>', {
+    div(node, { setAttribs,beforeInsert, afterInsert }) {
+      node.name = 'p'
+      setAttribs(age,'19')
+      beforeInsert('<span>hi</span>')
+      afterInsert('<span>你好</span>')
+    },
+    '*'(node){
+      // 所有的节点都会进入这里
+    }
+  })
+  console.log(code) // <span>hi</span><p age="19">hello</p><span>你好</span>
+```
+
 ## idleCallbackWrapper
 - 包裹了requestIdleCallback和cancelIdleCallback的一个封装函数
 - 兼容了浏览器的不同版本

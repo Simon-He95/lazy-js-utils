@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { copy, log, monitorPef, timeCost, vFetch } from '../../src'
+import { copy, log, monitorPef, timeCost, vFetch } from 'simon-js-tool'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -42,6 +42,7 @@ timeCost(() => {
   for (let i = 0; i < 1000; i++)
     log(i)
 })
+
 // console.log(calNum.sub(0.1, 0.2, 0.2))
 // console.log(calNum.mul(0.1, 0.2, 0.2))
 
