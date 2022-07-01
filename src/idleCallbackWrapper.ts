@@ -1,6 +1,6 @@
 import type { Deadline } from './types'
 
-export function idleCallbackWrapper(tasks: Function[], timeout = 2000): (() => void) {
+export function idleCallbackWrapper(tasks: Function[], timeout = 2000, callback: () => {}): (() => void) {
   let work = true
   const idleCallback = window.requestIdleCallback || function (handler) {
     const startTime = Date.now()
@@ -20,6 +20,8 @@ export function idleCallbackWrapper(tasks: Function[], timeout = 2000): (() => v
 
     if (tasks.length > 0)
       requestIdleCallback(animationCallback)
+    else
+      callback()
   }, { timeout })
   return () => {
     work = false
