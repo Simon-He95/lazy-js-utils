@@ -22,24 +22,27 @@ import {
 ## htmlTransform
 - 将template字符串通过ast操作后转回字符串
 - 只支持对于html的简单操作,不支持对于js的操作
-- 可用于小程序不同渠道的转换
+- 可用于小程序不同渠道的转换、一些特殊占位符的替换、模板的替换插入删除操作等等
 
 ```javascript
-  const code = await htmlTransform('<div class="_ee">hello</div>', {
+  const code = await htmlTransform('<div class="_ee">hello</div><view bindtap="xx"></view>', {
     div(node, { setAttribs,beforeInsert, afterInsert }) {
       node.name = 'p'
-      setAttribs(age,'19')
+      setAttribs('age','19')
       beforeInsert('<span>hi</span>')
       afterInsert('<span>你好</span>')
     },
     '*'(node){
       // 所有的节点都会进入这里
     },
-    "$attr_ee"(node){
-      // $attr开头会匹配存在_ee属性的节点
+    "$attr$_ee"(node){
+      // $attr$开头会匹配存在_ee属性的节点
+    },
+    "$attr$bindtap"(node,{ renameAttribs }){
+      setAttribs('bindtap','onTap')
     }
   })
-  console.log(code) // <span>hi</span><p age="19">hello</p><span>你好</span>
+  console.log(code) // <span>hi</span><p age="19" class="_ee">hello</p><span>你好</span><view onTao="xx"></view>
 ```
 
 ## idleCallbackWrapper

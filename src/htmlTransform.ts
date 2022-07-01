@@ -5,6 +5,7 @@ interface Update {
   setAttribs: (key: string, value?: string) => void
   beforeInsert: (str: string) => void
   afterInsert: (s: string) => void
+  renameAttribs: (key: string, value: string) => void
 }
 type HtmlTransformOptions = Record<string, (node: Element, update: Update) => void>
 
@@ -32,12 +33,13 @@ function astToCode(ast: any[], options: HtmlTransformOptions) {
       setAttribs,
       beforeInsert,
       afterInsert,
+      renameAttribs,
     }
     if (node.type === 'tag' || node.type === 'script') {
       options['*']?.(node, update)
       options[node.tagName]?.(node, update)
       for (const key in node.attribs) {
-        const fn = options[`$attr${key}`]
+        const fn = options[`$attr$${key}`]
         if (fn) {
           fn(node, update)
           break
@@ -59,6 +61,11 @@ function astToCode(ast: any[], options: HtmlTransformOptions) {
 
     function setAttribs(key: string, value?: string) {
       node.attribs[key] = value
+    }
+
+    function renameAttribs(key: string, value: string) {
+      node.attribs[value] = node.attribs[key]
+      delete node.attribs[key]
     }
 
     function beforeInsert(str: string) {

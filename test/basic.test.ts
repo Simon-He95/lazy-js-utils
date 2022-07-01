@@ -651,11 +651,23 @@ describe('Test pwdLevel', () => {
 
 describe('Test htmlTransform', () => {
   it('htmlTransform test', async () => {
-    const result = await htmlTransform('<div :class="myclass"></div>', {
-      '$attr:class': function (node, { setAttribs }) {
-        setAttribs('name', 'simon')
+    const code = await htmlTransform('<div class="_ee">hello</div><view bindtap="xx"></view>', {
+      div(node, { setAttribs, beforeInsert, afterInsert }) {
+        node.name = 'p'
+        setAttribs('age', '19')
+        beforeInsert('<span>hi</span>')
+        afterInsert('<span>你好</span>')
+      },
+      '*': function (node) {
+        // 所有的节点都会进入这里
+      },
+      '$attr$_ee': function (node) {
+        // $attr开头会匹配存在_ee属性的节点
+      },
+      '$attr$bindtap': function (node, { renameAttribs }) {
+        renameAttribs('bindtap', 'onTap')
       },
     })
-    expect(result).toMatchSnapshot()
+    expect(code).toMatchSnapshot()
   })
 })
