@@ -1,3 +1,6 @@
+import { memorizeFn } from "./memorizeFn"
+import { idleCallbackWrapper } from "./idleCallbackWrapper"
+
 export class DotImageCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
   ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
@@ -5,28 +8,38 @@ export class DotImageCanvas {
   originSrc = ''
   color = ''
   fontWeight = 1
-  imagePointSet: Array<number[]> = []
   status = 'pending'
-  constructor(src: string, fontWeight: number, color: string) {
-    this.initOptions(src, fontWeight, color)
+  bgColor?: string
+  constructor(src: string, color: string, fontWeight: number, bgColor = '#fff') {
+    this.initOptions(src, color, fontWeight, bgColor)
     this.executor()
   }
 
-  createDotImage() {
-    const canvasData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height).data
-    const imagePointSet = []
-    for (let i = 0; i < this.canvas.height; i++) {
+  createDotImage(img: HTMLImageElement) {
+    this.canvas.width = img.width
+    this.canvas.height = img.height
+    this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
+    const { data: imageData, width, height } = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
+    const imagePointSet: number[][] = []
+    for (let i = 0; i < height; i++) {
       const temp: any[] = []
       imagePointSet.push(temp)
-      for (let j = 0; j < this.canvas.width; j++) {
-        const index = (i * this.canvas.width * 4 + j * 4)
-        const color = `rgba(${canvasData[index + 0]},${canvasData[index + 1]},${canvasData[index + 2]},${canvasData[index + 3]})`
-        if (canvasData[index + 0] > 230 && canvasData[index + 1] > 230 && canvasData[index + 2] > 230)
-          temp.push(0)
+      for (let j = 0; j < width; j++) {
+        const pxStartIndex = (i * width * 4 + j * 4)
+        const pxData = {
+          r: imageData[pxStartIndex],
+          g: imageData[pxStartIndex + 1],
+          b: imageData[pxStartIndex + 2],
+          a: imageData[pxStartIndex + 3],
+        }
+        const color = `rgba(${pxData.r},${pxData.g},${pxData.b},${pxData.a})`
+        if (pxData.r > 230 && pxData.g > 230 && pxData.b > 230)
+          temp.push(this.color ? 0 : this.bgColor)
         else
-          temp.push(canvasData[index + 3] ? color : 0)
+          temp.push(pxData.a ? color : 0)
       }
     }
+
     this.points.set(this.originSrc, { width: this.canvas.width, imagePointSet, height: this.canvas.height })
     return imagePointSet
   }
@@ -34,24 +47,21 @@ export class DotImageCanvas {
   createImage() {
     if (this.hasImage()) {
       const { imagePointSet, width, height } = this.points.get(this.originSrc) as Record<string, any>
-      this.imagePointSet = imagePointSet
       this.canvas.width = width
       this.canvas.height = height
+      this.getCanvas(imagePointSet)
       return
     }
     const img = new Image()
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       img.src = this.originSrc
       img.onload = () => {
-        this.canvas.width = img.width
-        this.canvas.height = img.height
-        this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
-        this.imagePointSet = this.createDotImage()
+        this.getCanvas(this.createDotImage(img))
         resolve(img)
       }
       img.onerror = () => {
         this.status = 'fail'
-        reject(new Error('create image error'))
+        // reject(new Error('create image error'))
       }
     })
   }
@@ -62,43 +72,50 @@ export class DotImageCanvas {
 
   async executor() {
     try {
-      await this.createImage()
-      this.clearCanvas()
-      this.status = 'success'
-      this.getCanvas()
+      this.createImage()
     }
     catch (error) {
     }
+    return this
   }
 
-  getCanvas() {
-    const h = this.imagePointSet.length
-    const w = this.imagePointSet[0].length
+  getCanvas(imagePointSet: Array<number[]>) {
+    this.clearCanvas()
+    const h = imagePointSet.length
+    const w = imagePointSet[0]?.length
     const oneTempLength = this.canvas.width * 1 / h
-    this.ctx.scale(0.8, 0.8)
-    this.ctx.translate(this.canvas.width * 0.1, this.canvas.height * 0.1)
+    const size = this.fontWeight * 50 / this.canvas.width
+    const getPoint = memorizeFn((i: number) => oneTempLength * (i + 0.5))
+    const tasks: Function[] = []
     for (let i = 0; i < h; i++) {
-      for (let j = 0; j < w; j++) {
-        if (this.imagePointSet[i][j]) {
-          this.ctx.beginPath()
-          this.ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), this.fontWeight * 50 / this.canvas.width, 0, Math.PI * 2)
-          this.ctx.fillStyle = this.color || (this.imagePointSet[i][j] || 'black') as string
-          this.ctx.fill()
+      tasks.push(() => {
+        for (let j = 0; j < w; j++) {
+          const color = imagePointSet[i][j]
+          if (color) {
+            this.ctx.beginPath()
+            this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
+            this.ctx.fillStyle = this.color || `${color}`
+            this.ctx.fill()
+          }
         }
-      }
+      })
     }
+    idleCallbackWrapper(tasks, () => {
+      this.status = 'success'
+    })
   }
 
-  initOptions(src: string, fontWeight: number, color: string) {
+  initOptions(src: string, color: string, fontWeight: number, bgColor: string) {
     this.originSrc = src
     this.color = color
     this.fontWeight = fontWeight
+    this.bgColor = bgColor
   }
 
-  async repaint(src: string, fontWeight: number, color: string) {
-    this.initOptions(src, fontWeight, color)
-    await this.executor()
-    return this
+  async repaint(src: string, color: string, fontWeight: number, bgColor = '#fff') {
+    this.status = 'pending'
+    this.initOptions(src, color, fontWeight, bgColor)
+    return this.executor()
   }
 
   clearCanvas() {
