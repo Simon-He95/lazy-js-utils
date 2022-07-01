@@ -660,9 +660,11 @@ describe('Test htmlTransform', () => {
       },
       '*': function (node) {
         // 所有的节点都会进入这里
+        console.log(node)
       },
       '$attr$_ee': function (node) {
         // $attr开头会匹配存在_ee属性的节点
+        console.log(node)
       },
       '$attr$bindtap': function (node, { renameAttribs }) {
         renameAttribs('bindtap', 'onTap')

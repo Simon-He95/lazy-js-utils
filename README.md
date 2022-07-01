@@ -39,7 +39,7 @@ import {
       // $attr$开头会匹配存在_ee属性的节点
     },
     "$attr$bindtap"(node,{ renameAttribs }){
-      setAttribs('bindtap','onTap')
+      renameAttribs('bindtap','onTap')
     }
   })
   console.log(code) // <span>hi</span><p age="19" class="_ee">hello</p><span>你好</span><view onTao="xx"></view>
