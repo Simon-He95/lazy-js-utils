@@ -1,3 +1,5 @@
+import { memorizeFn } from './memorizeFn'
+import { idleCallbackWrapper } from './idleCallbackWrapper'
 export class DotTextCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
   ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
@@ -7,6 +9,7 @@ export class DotTextCanvas {
   color: string
   fontWeight: number
   textPointSet: Array<number[]> = []
+  status = 'pending'
   constructor(text: string, fontSize: number, color: string, fontWeight: number) {
     this.originText = text
     this.fontSize = fontSize
@@ -62,24 +65,32 @@ export class DotTextCanvas {
     const h = this.textPointSet.length
     const w = this.textPointSet[0].length
     const oneTempLength = this.fontSize / h
+    const tasks: Function[] = []
+    const getPoint = memorizeFn((i: number) => oneTempLength * (i + 0.5))
+    const size = oneTempLength * this.fontWeight / h
     this.canvas.height = this.fontSize
     this.canvas.width = this.fontSize * this.originText.length
+
     for (let i = 0; i < h; i++) {
-      for (let j = 0; j < w; j++) {
-        if (this.textPointSet[i][j]) {
-          this.ctx.beginPath()
-          this.ctx.arc(oneTempLength * (j + 0.5), oneTempLength * (i + 0.5), oneTempLength * this.fontWeight / h, 0, Math.PI * 2)
-          this.ctx.fillStyle = this.color
-          this.ctx.fill()
+      tasks.push(() => {
+        for (let j = 0; j < w; j++) {
+          if (this.textPointSet[i][j]) {
+            this.ctx.beginPath()
+            this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
+            this.ctx.fillStyle = this.color
+            this.ctx.fill()
+          }
         }
-      }
+      })
     }
+    idleCallbackWrapper(tasks, 1000, () => this.status = 'success')
   }
 
   repaint(this: any, text: string, fontSize: number, color: string, fontWeight: number): DotTextCanvas {
+    this.status = 'pending'
     // 如果text相同
     if (this.originText !== text)
-      return Object.assign(this, new DotTextCanvas(text, fontSize, color, fontWeight))
+      return new DotTextCanvas(text, fontSize, color, fontWeight)
 
     this.fontSize = fontSize
     this.color = color

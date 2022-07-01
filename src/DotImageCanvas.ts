@@ -1,5 +1,5 @@
-import { memorizeFn } from "./memorizeFn"
-import { idleCallbackWrapper } from "./idleCallbackWrapper"
+import { memorizeFn } from './memorizeFn'
+import { idleCallbackWrapper } from './idleCallbackWrapper'
 
 export class DotImageCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
