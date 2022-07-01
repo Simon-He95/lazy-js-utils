@@ -1,6 +1,13 @@
 import type { Deadline } from './types'
+import { isFn } from './isFn'
 
-export function idleCallbackWrapper(tasks: Function[], timeout = 2000, callback: () => {}): (() => void) {
+type Timeout = number | (() => void)
+
+export function idleCallbackWrapper(tasks: Function[], timeout: Timeout = 2000, callback?: () => void): () => void {
+  if (isFn(timeout)) {
+    callback = timeout as unknown as () => void
+    timeout = 2000
+  }
   let work = true
   const idleCallback = window.requestIdleCallback || function (handler) {
     const startTime = Date.now()
@@ -12,17 +19,16 @@ export function idleCallbackWrapper(tasks: Function[], timeout = 2000, callback:
         },
       }), 1)
   }; const idleCancel = window.cancelIdleCallback || clearTimeout
-  const animationId = idleCallback(function animationCallback(deadline: Deadline) {
+  const animationId = idleCallback(async function animationCallback(deadline: Deadline) {
     if (!work)
       return
     if ((deadline.timeRemaining() > 0 || deadline.didTimeout) && tasks.length > 0)
       tasks.shift()?.()
-
     if (tasks.length > 0)
       requestIdleCallback(animationCallback)
     else
-      callback()
-  }, { timeout })
+      callback?.()
+  }, { timeout: timeout as number })
   return () => {
     work = false
     idleCancel(animationId)
