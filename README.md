@@ -18,6 +18,17 @@ import {
  } from 'simon-js-tool' # 按需引入
 
 ```
+## sleep
+- 睡眠函数
+- 参数:
+  - time: 睡眠时间(单位:毫秒)
+  - callback: 睡眠结束后的回调函数
+```javascript
+  sleep(1000, () => {
+    console.log('睡眠结束')
+  })
+  // await sleep(1000)
+```
 
 ## htmlTransform
 - 将template字符串通过ast操作后转回字符串
@@ -50,8 +61,14 @@ import {
 - 兼容了浏览器的不同版本
 - 简化了调用方式
 - 返回stop方法可以停止执行
+- 默认在tasks为[],auto stop
 - 默认timeout为2000
-```typescript
+- 参数:
+  - tasks: 待执行的任务数组
+  - timeout: 超时时间(单位:毫秒)
+  - callback: 执行完成后的回调函数
+```javascript
+// idleCallbackWrapper(tasks,()=>{console.log('end')}) // 默认第二个参数为2000的简写
 const tasks: Function[] = [
   () => {
     for (let i = 0; i < 3000; i++) {
@@ -93,7 +110,10 @@ const stop = idleCallbackWrapper(tasks, 1000)
 - 兼容了浏览器的不同版本
 - 简化了调用方式
 - 返回stop方法可以停止动画
-- 默认间隔为1000
+- 参数:
+  - fn: 待执行的函数
+  - timeout: 超时时间(单位:毫秒) = 1000
+  - autoStop: 执行一次后停止动画
 ```javascript
 const count = ref(0)
 // 封装前的场景
@@ -125,7 +145,10 @@ const stop = animationFrameWrapper(() => {
 
 ## DotImageCanvas
 - 将图片的像素转为点阵图片
-- 入参: src: 图片的路径, fontWeight: 点阵粗细, color: 颜色 不传默认取原图片像素
+- 参数:
+  - src: 图片路径
+  - fontWeigth: 点阵的粗细
+  - color: 点阵的颜色 默认为原图片色
 - 可以await repaint中的dotImage.repaint(xxx)中的dotImage.status判断正确的src被加载完成的时机
 ```javascript
 const dotImage = new DotImageCanvas('./img/1.jpg', 1, '#000')
@@ -147,8 +170,9 @@ console.log(await exportsCide('../.npmrc')) // 'shamefully-hoist=true'
 
 ## fileSplice
 - 大文件切片处理函数
-- 接收File对象,切片大小
-- 默认以100kb为单位切片, 如果文件切片的数量超过100就设定最大切片数量为100,那么以文件大小 / 100为单位切片
+- 参数:
+  - file: File文件对象
+  - size: 切片大小(单位:字节) = 100kb // 切片的数量超过100就设定最大切片数量为100,大小为 File.size / 100
 - 返回切片数组
 ```javascript
 // fileSplice(file: File, chunkSize: number = 1024 * 100) 
@@ -157,7 +181,9 @@ const chunks = fileSplice(file, 1024 * 1024) // [ { file: Blob, filename: string
 
 ## pwdLevel
 - 判断数字的强度
-- 参数: 数字 (必须) , 最小长度 (可选) 默认6
+- 参数:
+  - num: 待判断的数字
+  - min: 数字最少长度
 - 返回: 强度等级 0-4
 ```javascript
 const levels = ['', '低', '中', '高', '极高']
@@ -168,6 +194,9 @@ console.log(levels[pwdLevel('q123456')]) // 高
 
 ## sort
 - 数组排序
+- 参数:
+  - arr: 待排序的数组
+  - regular: 排序规则,常规number[],1升序,-1降序,默认升序; 复杂类型需要自定义排序规则['name'],安装数组对象name属性升序等等...
 - 支持升序降序和多条件排序
 ```javascript
 const numbers =  [1, 5, 7, 3, 2, 4, 6, 8, 9, 10]
@@ -183,6 +212,9 @@ console.log(sort(array2, ['-age','name'])) // [{name: 'simon', age: 19}, {name: 
 
 ## CreateSignatureCanvas
 - 生成一个签名的canvas模板
+- 参数:
+  - width: canvas宽度
+  - height: canvas高度
 ```javascript
 const signature = new CreateSignatureCanvas(400, 400)
 document.body.appendChild(signature.canvas)
@@ -192,15 +224,21 @@ signature.clear() // 清除签名
 
 ## DotTextCanvas
 - 根据文字返回一个点阵的canvas
-- 入参：text: string // 内容, fontSize: number // 文字大小, color: string // 颜色, fontWeight: number  // 字体粗细
+- 入参：
+  - text: 文字
+  - fontSize: 字体大小
+  - color: 字体颜色
+  - fontWeight: 点阵粗细
 ```javascript
+// 可从dotText.status判断是否加载完成,如果加载完成,可以调用dotText.repaint(xxx)更新文字
 const dotText = DotTextCanvas('hello', 20, '#000', 1)
 document.body.appendChild(dotText.canvas)
 ```
 
 ## getLru
 - 记录有限的数据,删除最久未访问的数据
-- 参数: maxSize, 存储的最大数据量 (默认为50)
+- 参数:
+  - max: 最大缓存数量
 ```javascript
 const lru = getLru(2)
 lru.set('a', 1)
@@ -214,19 +252,24 @@ console.log(lru.get('b')) // undefined
 
 ## escapeHtml
 - 将html字符串转换为实体字符串
+- 参数:
+  - html: html字符串
 ```javascript
 console.log(excapeHtml("< a href=" ">xx</ a>")) // "&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;"
 ```
 
 ## unescapeHtml
 - 将实体字符串转换为html字符串
+- 参数:
+  - html: 实体字符串
 ```javascript
 console.log(unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')) // "< a href=" ">xx</ a>"
 ```
 
 ## timeCost
 - 计算函数执行时间
-- timeCost(fn: Function) : number
+- 参数:
+  - fn: 函数
 ```javascript
 timeCost(()=>{
   let a = 1
@@ -238,14 +281,18 @@ timeCost(()=>{
 
 ## log
 - 简化console.log的使用
-- log(s: string,color: string,fontSize: number)
+- 参数:
+  - msg: 打印的信息
+  - color: 打印的颜色
+  - fontSize: 打印的字体大小
 ```javascript
 log('hello world') // hello world
 ```
 
 ## copy
 - js控制复制的内容
-- copy(str: string): boolean # 成功返回true,失败返回false
+- 参数:
+  - str: 待复制的内容
 ```javascript
 btn.onclick = () =>  {
   if(copy(textarea.value)){
@@ -256,14 +303,18 @@ btn.onclick = () =>  {
 
 ## getDateList
 - 获取指定日期范围内正负多少天的日期列表
-- getDateList(start: string, day: number = 0) start: 开始日期以/或-分割 1991/03/02 1001-03-02, day: 正负多少天
+- 参数:
+  - startDate: 开始日期
+  - days: 正负多少天
 ```javascript
 console.log(getDateList('1991/3/02', 7)) // [ '1991-3-02', '1991-3-03', '1991-3-04', '1991-3-05', '1991-3-06', '1991-3-07', '1991-3-08' ]
 ```
 
 ## isType
 - `isType(o:any, type:string)`: 判断obj是否是type类型
-- 混合类型判断,type 如果是多种类型,用'|'分隔 如: 缩写 - 'O|S'  全写 - 'Object|String' 
+- 参数:
+  - o: 待判断的对象
+  - type: 待判断的类型 // 如果是多种类型,用'|'分隔 如: 缩写 - 'O|S'  全写 - 'Object|String'
 ```javascript
 console.log(isType(1, 'Number')) // true
 console.log(isType('1', 'N')) // false
@@ -274,7 +325,9 @@ console.log(isType(function(){}, 'P | F')) // true (Promise | Function)
 
 ## randomDate
 - 随机生成日期
-- 可指定随机范围 start:'1999/01/01' end:'2099/12/31'
+- 参数:
+  - startDate: 开始日期 1999/01/01 支持/或-
+  - endDate: 结束日期
 ```javascript
 // end默认是当前日期
 console.log(randomDate('1999/01/01')) // Mon Jun 06 2011 15:11:37 GMT+0800 (中国标准时间) 可再通过formateDate转换为其他格式 如'yyyy-MM-dd'
@@ -308,6 +361,9 @@ const array = [
 
 ## deepCompare 
 - ignoreKeys忽略指定的keys可以为数组或者正则表达式
+- 参数:
+  - a: 待比较的对象
+  - b: 待比较的对象
 - 比较2个对象的差异返回不同的属性和具体不同的值
 - 返回{error:[],errorMsg:[]} 格式,error对应的是不同的属性，errorMsg对应的是不同的属性的不同的值和位置
 - 如果两个对象相同，则返回{error:[],errorMsg:[]}，error为空，errorMsg为空
@@ -321,6 +377,9 @@ deepCompare(obj1,obj3) // {error:['c'],errorMsg:['3','4']}
 ```
 ## deepMerge 
 - Object.assign的深度拷贝版本
+- 参数:
+  - a: 待返回的对象
+  - ...args: 待合并的对象
 - 可以接受多个参数，存在相同层级的相同属性，后者覆盖前者
 - 返回第一个对象
 ```javascript
@@ -333,7 +392,9 @@ console.log(result) // { a: 1, b: 4, c: { d: 5, e: 6 } }
 ```
 ## asyncPool 
 - 控制异步并发执行的数量
-- 参数： limit-控制异步并发执行的数量，tasks-异步任务数组
+- 参数:
+  - max: 最大并发数量
+  - fn: Promise[]
 ```js
 // limit 并发数量 , tasks httpRequest[]
 asyncPool(limit, tasks).then((results) => {
@@ -343,6 +404,9 @@ asyncPool(limit, tasks).then((results) => {
 
 ## quickFind 
 -  quickFind(array: any[], key: any) ,返回一个新的实例
+- 参数:
+  - array: 待查找的数组
+  - key: 待查找的key,根据key来查找
 - 在实例中find方法可以根据key查找对应的项-O(1)
 - set更新或新增项-O(1)
 - delete删除项-O(1)
@@ -354,6 +418,9 @@ find.delete(1) // delete: id = 1 => {id:1,name:'simon'}
 ```
 ## quickFilter 
 - 快速模糊查找key名字的项和值 如: 'name=/h/'
+- 参数:
+  - array: 待过滤的数组
+  - key: 待过滤的key,根据key来过滤,支持正则匹配key名字的项和值的项
 ```javascript
 // quickFilter(array: any[], key: string | Array<string>)
     const arr = [
@@ -383,6 +450,8 @@ find.delete(1) // delete: id = 1 => {id:1,name:'simon'}
 - 支持循环依赖
 - 支持复杂类型
 - 轻量级的深拷贝
+- 参数:
+  - obj: 待拷贝的对象
 ```javascript
 const obj = {
   a: 1,
@@ -398,6 +467,8 @@ const obj2 = deepClone(obj) // 返回一个新对象
 ```
 ## curry 
 - 函数柯里化
+- 参数:
+  - fn: 待柯里化的函数
 ```javascript
 const add = (a, b) => a + b
 const add1 = curry(add)
@@ -408,7 +479,8 @@ add3(3) // 6
 
 ## memorizeFn 
 - 根据参数返回一个能缓存结果的函数
-- 参数：fn-需要缓存的函数
+- 参数：
+  - fn: 待缓存的函数
 ```javascript
 let count = 0
 const fn = memorizeFn(()=> count++)
@@ -419,7 +491,9 @@ console.log(count) // => 1
 
 ## debounce 
 -  函数防抖
--  参数：fn-需要防抖的函数，delay-防抖的时间
+-  参数：
+  - fn: 待防抖的函数
+  - delay: 延迟时间
 ```javascript
 const f = debounce(() => {
   console.log('debounce')
@@ -427,7 +501,9 @@ const f = debounce(() => {
 ```
 ## throttle 
 - 函数节流
-- 参数：fn-要节流的函数, delay-节流时间
+- 参数：
+  - fn: 待节流的函数
+  - delay: 延迟时间
 ``` javascript
   const f = throttle(() => {
     console.log('throttle')
@@ -440,6 +516,9 @@ const f = debounce(() => {
 - 可以指定多个属性
 - 使用类似与babel的traverse方法
 - 使用场景：快速提取数据中的某些属性,转换为新的数据结构
+- 参数:
+  - target: 待遍历的对象或数组
+  - options: 多个函数,以函数名来获取对象或数组中的key的item值
 ```javascript
 // traverse(arr, { 'family.name'(target: any, index: number, item: any) { console.log(target, index) } })
 const obj = {
@@ -460,6 +539,9 @@ traverse(obj, {
 ## transformKey 
 - 支持多层级的key
 - 将对象的key转换成需要的key
+- 参数:
+  - obj: 待转换的对象
+  - options: 通过键值对象来设置转换的key,可通过.来设置多层级的key
 - 使用场景: 前端定义字段有后端不一样的key，比如后端的key是id，前端的key是_id
 ```javascript
 // transformKey(obj, { 'family.name': 'familyName', 'family.age': 'familyAge' })
@@ -481,6 +563,8 @@ console.log(newObj)
 
 ## once
 - 只执行一次的函数
+- 参数:
+  - fn: 待执行一次的函数
 ```javascript
 document.addEventListener('click', once(() => {
   console.log('click')
@@ -527,10 +611,14 @@ vFetch(options:Record<string,string>).then(res =>{
 
 
 ## stringify
+- 参数:
+  - obj: 待转换的对象
 ```javascript
 console.log(stringify({ user: 'simon', age: '18' })) // 'user=simon&age=18'
 ```
 ## parse
+- 参数:
+  - str: 待转换的字符串
 ```javascript
 console.log(parse('user=simon&age=18')) // { user: 'simon', age: '18' }
 ```
@@ -543,6 +631,9 @@ console.log(jsCookie.get('name')) // ''
 ```
 ## uuid
 - 生成uuid 
+- 参数:
+  - len: 长度 默认为8
+  - radix: 进制 默认为16
 - 支持限制生成的uuid长度和类型 
 ```javascript
 console.log(uuid()) // '71A793A9-BBAE-49FC-B957-5BC71E5AD044'
@@ -551,6 +642,9 @@ console.log(uuid(8, 2)) // '11110011'
 ```
 ## formateDate
 - 格式化日期
+- 参数:
+  - date: 日期
+  - fmt: 格式 默认为'yyyy-MM-dd'
 ```javascript
 console.log(formateDate(new Date(), 'yyyy-MM-dd')) // '2019-01-01'
 ```
@@ -589,6 +683,8 @@ console.log(getDevice()) // { os: 'android', dev: 'chrome' }
 ```
 ## preload
 - 预加载图片
+- 参数:
+  - src: 图片路径或图片路径集合
 ```javascript
 preload('https://img.yzcdn.cn/vant/cat.jpeg')
 preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jpeg'])
@@ -597,6 +693,8 @@ preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jp
 
 ## lazyLoad
 - 图片懒加载
+- 参数:
+  - element: 图片元素,如果是属性会自动获取element
 - params-1: 图片的集合 Element | Element[] | NodeList[] | class | id | tagName 
 - params-2: root 指定相对容器默认是body 
 - params-3: rootMargin 指定相对容器的边距 默认距离容器底部200px时候加载(↑ → ↓ ←) '0px 0px 200px 0px' 
@@ -612,12 +710,16 @@ preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jp
 ```
 
 ## addScript
-- 动态添加script标签放 => ead
+- 动态添加script标签放 => head
+- 参数:
+  - src: script路径
 ```javascript
 addScript('https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js')
 ```
 ## addStyle
 - 动态添加style标签 => head
+- 参数:
+  - str: style内容
 ```javascript
 /* 
 <style>
@@ -635,6 +737,9 @@ addStyle(`
 ```
 ## download
 - 下载文件
+- 参数:
+  - url: 文件路径
+  - filename: 文件名
 ```javascript
 // 下载名为baidu.png地址为https://www.baidu.com/img/bd_logo1.png图片
 download('https://www.baidu.com/img/bd_logo1.png', 'baidu.png')
@@ -642,7 +747,9 @@ download('https://www.baidu.com/img/bd_logo1.png', 'baidu.png')
 
 ## trim
 - 字符串去除空格
-- type: '前空格' | '后空格' | '前后空格' | '所有空格'
+- 参数:
+  - str: 字符串
+  - type: 去除空格类型,默认去除前后空格
 ```javascript
 trim(str: string,type: 'pre' | 'post' | 'around' | 'all' = 'around') 
 console.log(trim('  h e l l o  ')) // 'h e l l o'
@@ -653,7 +760,8 @@ console.log(trim('  h e l l o  ', 'all')) // 'hello'
 
 ## compressCss
 - 压缩css
-- 参数: css: string
+- 参数: 
+  - str: css内容
 ```typescript
 compressCss(css: string): string
 ```
@@ -702,6 +810,8 @@ httpsRedirect()
 
 ## scrollToView
 - 滚动到指定元素
+- 参数:
+  - element: 可视目标元素
 ```javascript
 scrollToView(el: HTMLElement | string)
 ```
@@ -714,19 +824,24 @@ console.log(getScrollPosition()) // { x: number, y: number }
 
 ## camelize
 - 驼峰化
+- 参数:
+  - str: 字符串
 ```javascript
 console.log(camelize(hello-world)) // 'helloWorld'
 ```
 
 ## hyphenate
 - 连字符化
+- 参数:
+  - str: 字符串
 ```javascript
 console.log(hyphenate(helloWorld)) // 'hello-world'
 ```
 
 ## getUrlParam
 - 获取url参数
-- 默认不传入url，获取当前页面url参数
+- 参数:
+  - url: string // url地址, 默认获取当前页面url参数
 ```javascript
 console.log(getUrlParam('?name=simon&age=18'))// { name: 'simon', age: '18' }
 ```
@@ -747,24 +862,33 @@ exitFullScreen()
 
 ## toBase64
 - 将blob | file | url转换为base64
+- 参数:
+  - blob: blob对象 | file: file对象 | url: string // 图片地址
 ```typescript
 toBase64(file: File, type: 'file' | 'blob' | 'url' = 'url'): string
 ```
 
 ## base64ToFile
 - 将base64转换为file
+- 参数:
+  - base64: string // base64字符串
+  - name: string // 文件名
 ```typescript
 base64ToFile(s: string, name: string): File
 ```
 
 ## base64ToBlob
 - 将base64转换为blob
+- 参数:
+  - base64: string // base64字符串
 ```typescript
 base64ToBlob(s: string): Blob
 ```
 
 ## uppercaseNum
 - 将数字转换为大写字母
+- 参数:
+  - num: number // 数字
 ```javascript
 // uppercaseNum(num: number | string) => string
 console.log(uppercaseNum(1)) // '一'
@@ -772,7 +896,10 @@ console.log(uppercaseNum(1)) // '一'
 
 ## formateNum
 - 将数字格式化
-- integer: 'floor' | 'ceil' 小数截取方式 floor:向下取整 ceil:向上取整
+- 参数:
+  - num: number // 数字
+  - decimals: number // 小数位数, 默认为2
+  - integer: 'floor' | 'ceil' 小数截取方式 floor:向下取整 ceil:向上取整
 ```javascript
 // formateNum(number: number | string, decimals = 2, integer: 'floor' | 'ceil' = 'ceil') => string
 console.log(formateNum(12253.123, 2)) // '12,253.12'
@@ -782,6 +909,8 @@ console.log(formateNum(12253.123, 2)) // '12,253.12'
 - 异常拦截
 - 参数：可能存在异常的函数，返回一个promise类型的错误处理函数
 - 可以避免不断的try...catch
+- 参数:
+  - fn: 可能存在异常的函数
 ```javascript
 // interceptError(fn: Function) => Promise<any>
 interceptError(() => { throw new Error('error') }).catch(err=>{ console.log(err) })
@@ -797,6 +926,9 @@ console.log(isBottom()) // false
 ## calNum
 - 计算数字
 - type: '加' | '减' | '乘' | '除'
+- 参数:
+  - num1: number // 数字1
+  - ...args: number[] // 数字n
 ```javascript
 console.log(calNum.add(0.1, 0.2, 0.2)) // 0.5
 console.log(calNum.div(0.1, 0.2, 0.2)) // 2.5
