@@ -24,14 +24,17 @@ export function idleCallbackWrapper(tasks: Function[], timeout: Timeout = 2000, 
       return
     if ((deadline.timeRemaining() > 0 || deadline.didTimeout) && tasks.length > 0)
       tasks.shift()?.()
-    if (tasks.length > 0)
-      requestIdleCallback(animationCallback)
-    else
+    if (tasks.length > 0) { requestIdleCallback(animationCallback) }
+    else {
       callback?.()
+      stop()
+    }
   }, { timeout: timeout as number })
-  return () => {
+
+  function stop() {
     work = false
     idleCancel(animationId)
   }
+  return stop
 }
 

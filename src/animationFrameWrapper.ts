@@ -1,4 +1,4 @@
-export function animationFrameWrapper(fn: () => void, delta = 1000): (() => void) {
+export function animationFrameWrapper(fn: () => void, delta = 1000, autoStop = false): (() => void) {
   let start: number; let work = true
   const animationFrame = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
@@ -18,11 +18,14 @@ export function animationFrameWrapper(fn: () => void, delta = 1000): (() => void
     else if (timestamp - start > delta) {
       fn?.()
       start = timestamp
+      if (autoStop)
+        stop()
     }
     animationFrame(myFrame)
   })
-  return () => {
+  function stop() {
     work = false
     cancelAnimation(animationId)
   }
+  return stop
 }
