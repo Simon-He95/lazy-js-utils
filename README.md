@@ -42,7 +42,7 @@ import {
       renameAttribs('bindtap','onTap')
     }
   })
-  console.log(code) // <span>hi</span><p age="19" class="_ee">hello</p><span>你好</span><view onTao="xx"></view>
+  console.log(code) // <span>hi</span><p age="19" class="_ee">hello</p><span>你好</span><view onTap="xx"></view>
 ```
 
 ## idleCallbackWrapper
