@@ -1,4 +1,4 @@
-export function memorizeFn(fn: Function, cache: Map<string, string> = new Map()) {
+export function memorizeFn(fn: Function, cache: Map<string, string> = new Map()): (...args: any[]) => any {
   return function (...args: any[]) {
     const _args = JSON.stringify(args)
     if (cache.has(_args))
