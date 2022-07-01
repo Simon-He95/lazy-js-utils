@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, exportsCode, getDateList, getLru, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sort, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, htmlTransform, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sleep, sort, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
 
 describe('Test deepMerge', () => {
   it('deepMerge test', () => {
@@ -146,7 +146,7 @@ describe('Test asyncPool', () => {
 })
 
 describe('Test quickFind', () => {
-  it('quickFind test', async () => {
+  it('quickFind test', () => {
     const arr = [
       {
         name: 'simon',
@@ -237,7 +237,7 @@ describe('Test quickFind', () => {
 })
 
 describe('Test quickFilter', () => {
-  it('quickFilter test', async () => {
+  it('quickFilter test', () => {
     const arr = [
       {
         name: 'simon',
@@ -295,7 +295,7 @@ describe('Test quickFilter', () => {
 })
 
 describe('Test deepClone', () => {
-  it('deepClone test', async () => {
+  it('deepClone test', () => {
     const arr: any = {
       name: 'simon5',
       age: 49,
@@ -315,7 +315,7 @@ describe('Test deepClone', () => {
 })
 
 describe('Test curry', () => {
-  it('curry test', async () => {
+  it('curry test', () => {
     function __add(a: number, b: number, c: number, d: number) {
       return a + b + c + d
     }
@@ -325,7 +325,7 @@ describe('Test curry', () => {
 })
 
 describe('Test memorizeFn8', () => {
-  it('memorizeFn test', async () => {
+  it('memorizeFn test', () => {
     let count = 0
     function hello(name: string) {
       count++
@@ -458,9 +458,8 @@ describe('Test debounce', () => {
     fn()
     fn()
     fn()
-    setTimeout(() => {
-      expect(count).toBe(1)
-    }, 1000)
+    await sleep(1000)
+    expect(count).toBe(1)
   })
 })
 
@@ -474,12 +473,13 @@ describe('Test throttle', () => {
     fn()
     fn()
     fn()
+    await sleep(1000)
     expect(count).toBe(1)
   })
 })
 
 describe('Test uniqueArray', () => {
-  it('uniqueArray test', async () => {
+  it('uniqueArray test', () => {
     const array = [
       {
         name: 'simon',
@@ -551,7 +551,7 @@ describe('Test isType', () => {
 })
 
 describe('Test getDateList', () => {
-  it('getDateList test', async () => {
+  it('getDateList test', () => {
     expect(getDateList('1991/3/02', 7)).toMatchInlineSnapshot(`
       [
         "1991-03-02",
@@ -591,7 +591,7 @@ describe('Test getLru', () => {
 })
 
 describe('Test sort', () => {
-  it('sort test', async () => {
+  it('sort test', () => {
     const arr = [
       {
         name: 'simon1',
@@ -642,9 +642,20 @@ describe('Test pwdLevel', () => {
   })
 })
 
-describe('Test exportsCode', () => {
-  it.only('exportsCode test', async () => {
-    const result = await exportsCode('../package.json')
-    expect(result.version).toMatchInlineSnapshot('"2.0.10"')
+// describe('Test exportsCode', () => {
+//   it('exportsCode test', async () => {
+//     const result = await exportsCode('../package.json')
+//     expect(result.version).toMatchInlineSnapshot('"<div :class=\\"myclass\\"></div>"')
+//   })
+// })
+
+describe('Test htmlTransform', () => {
+  it('htmlTransform test', async () => {
+    const result = await htmlTransform('<div :class="myclass"></div>', {
+      '$attr:class': function (node, { setAttribs }) {
+        setAttribs('name', 'simon')
+      },
+    })
+    expect(result).toMatchSnapshot()
   })
 })

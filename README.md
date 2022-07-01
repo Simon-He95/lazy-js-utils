@@ -25,7 +25,7 @@ import {
 - 可用于小程序不同渠道的转换
 
 ```javascript
-  const code = await htmlTransform('<div>hello</div>', {
+  const code = await htmlTransform('<div class="_ee">hello</div>', {
     div(node, { setAttribs,beforeInsert, afterInsert }) {
       node.name = 'p'
       setAttribs(age,'19')
@@ -34,6 +34,9 @@ import {
     },
     '*'(node){
       // 所有的节点都会进入这里
+    },
+    "$attr_ee"(node){
+      // $attr开头会匹配存在_ee属性的节点
     }
   })
   console.log(code) // <span>hi</span><p age="19">hello</p><span>你好</span>
