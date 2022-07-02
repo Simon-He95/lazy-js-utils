@@ -24,7 +24,7 @@ export function idleCallbackWrapper(tasks: Function[], timeout: Timeout = 2000, 
       return
     if ((deadline.timeRemaining() > 0 || deadline.didTimeout) && tasks.length > 0)
       tasks.shift()?.()
-    if (tasks.length > 0) { requestIdleCallback(animationCallback) }
+    if (tasks.length > 0) { idleCallback(animationCallback) }
     else {
       callback?.()
       stop()
