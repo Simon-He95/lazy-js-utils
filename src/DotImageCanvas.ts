@@ -47,13 +47,15 @@ export class DotImageCanvas {
   createImage() {
     if (this.hasImage()) {
       const { imagePointSet, width, height } = this.points.get(this.originSrc) as Record<string, any>
-      this.canvas.width = width
-      this.canvas.height = height
+      const pRatio = window.devicePixelRatio || 1
+      this.canvas.width = width * pRatio
+      this.canvas.height = height * pRatio
       this.getCanvas(imagePointSet)
       return
     }
     const img = new Image()
     return new Promise((resolve) => {
+      img.setAttribute('crossorigin', 'anonymous')
       img.src = this.originSrc
       img.onload = () => {
         this.getCanvas(this.createDotImage(img))
@@ -122,3 +124,4 @@ export class DotImageCanvas {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
   }
 }
+
