@@ -6,7 +6,7 @@ export function scrollToTop() {
       const t = document.documentElement.scrollTop || document.body.scrollTop
       if (pre === undefined)
         pre = t
-      if (pre < t || t === 0)
+      if (pre + 5 < t || t === 0)
         stop()
       window.scrollTo(0, pre = t - t / 8)
     }, 0)
