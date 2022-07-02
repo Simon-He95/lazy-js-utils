@@ -1,10 +1,15 @@
+import { animationFrameWrapper } from './animationFrameWrapper'
 export function scrollToTop() {
   try {
-    const t = document.documentElement.scrollTop || document.body.scrollTop
-    if (t > 0) {
-      window.requestAnimationFrame(scrollToTop)
-      window.scrollTo(0, t - t / 8)
-    }
+    let pre: number
+    const stop = animationFrameWrapper(() => {
+      const t = document.documentElement.scrollTop || document.body.scrollTop
+      if (pre === undefined)
+        pre = t
+      if (pre < t || t === 0)
+        stop()
+      window.scrollTo(0, pre = t - t / 8)
+    }, 0)
   }
   catch (error: any) {
     throw new Error(error)
