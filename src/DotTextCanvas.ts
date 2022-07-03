@@ -27,7 +27,6 @@ export class DotTextCanvas {
     ctx.font = `${size}px SimSun`
     ctx.fillText(text, 0, 14 * pRatio)
     const { data: imageData, width, height } = ctx.getImageData(0, 0, size, size)
-
     const textPointSet = []
     for (let i = 0; i < height; i++) {
       const temp: number[] = []

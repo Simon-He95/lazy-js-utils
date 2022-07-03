@@ -1,5 +1,6 @@
 import { memorizeFn } from './memorizeFn'
 import { idleCallbackWrapper } from './idleCallbackWrapper'
+import { createElement } from './createElement'
 
 export class DotImageCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
@@ -53,12 +54,13 @@ export class DotImageCanvas {
       this.getCanvas(imagePointSet)
       return
     }
-    const img = new Image()
+    const img = createElement('img', {
+      crossOrigin: 'anonymous',
+      src: this.originSrc,
+    })
     return new Promise((resolve) => {
-      img.setAttribute('crossorigin', 'anonymous')
-      img.src = this.originSrc
       img.onload = () => {
-        this.getCanvas(this.createDotImage(img))
+        this.getCanvas(this.createDotImage(img as HTMLImageElement))
         resolve(img)
       }
       img.onerror = () => {

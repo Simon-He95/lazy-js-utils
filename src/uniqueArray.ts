@@ -1,13 +1,8 @@
-import { isPlainObject } from './isPlainObject'
-import { isArray } from './isArray'
-
-function isObjectOrArray(o: any) {
-  return isPlainObject(o) || isArray(o)
-}
+import { isType } from './isType'
 
 export function uniqueArray(array: any[]): any[] {
   return array.reduce((result, item) => {
-    if (isObjectOrArray(item)) {
+    if (isType(item, 'o|a')) {
       if (!isHave(result, item))
         result.push(item)
     }
@@ -23,7 +18,7 @@ function equals(a: Record<any, any>, b: Record<any, any>): boolean {
   if (Object.keys(a).length !== Object.keys(b).length)
     return false
   for (const key in a) {
-    if (isObjectOrArray(a[key]) && isObjectOrArray(b[key])) {
+    if (isType(a[key], 'o|a') && isType(b[key], 'o|a')) {
       if (!equals(a[key], b[key]))
         return false
     }
@@ -36,5 +31,5 @@ function equals(a: Record<any, any>, b: Record<any, any>): boolean {
 }
 
 function isHave(result: any[], item: any) {
-  return result.some(i => isObjectOrArray(i) && equals(item, i))
+  return result.some(i => isType(i, 'o|a') && equals(item, i))
 }

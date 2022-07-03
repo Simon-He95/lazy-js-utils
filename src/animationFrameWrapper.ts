@@ -1,5 +1,6 @@
 export function animationFrameWrapper(fn: () => void, delta = 1000, autoStop = false): (() => void) {
-  let start: number; let work = true
+  let start: number
+  let work = true
   const animationFrame = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
     || window.mozRequestAnimationFrame

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { copy, log, monitorPef, timeCost, vFetch } from 'simon-js-tool'
+import { copy, monitorPef, vFetch } from 'simon-js-tool'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -15,7 +15,6 @@ const router = createRouter({
 })
 app.use(router)
 app.mount('#app')
-
 vFetch.interceptors.request.use((response) => {
   // console.log(response)
   return response
@@ -26,7 +25,6 @@ vFetch.interceptors.request.use((response) => {
 const instance = vFetch.create({
   baseURL: 'http://localhost:5001/',
 })
-
 instance({
   url: 'test',
 }).then((res: any) => {
@@ -38,10 +36,10 @@ monitorPef()
 window.onclick = () => {
   copy('hello')
 }
-timeCost(() => {
-  for (let i = 0; i < 1000; i++)
-    log(i)
-})
+// timeCost(() => {
+//   for (let i = 0; i < 1000; i++)
+//     log(i)
+// })
 
 // console.log(calNum.sub(0.1, 0.2, 0.2))
 // console.log(calNum.mul(0.1, 0.2, 0.2))

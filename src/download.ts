@@ -1,9 +1,10 @@
+import { createElement } from './createElement'
 export function download(url: string) {
   try {
-    const a: HTMLAnchorElement = document.createElement('a')
-    a.href = url
-    a.download = url.substring(url.lastIndexOf('/') + 1, url.length)
-    a.click()
+    createElement('a', {
+      href: url,
+      download: url.substring(url.lastIndexOf('/') + 1, url.length),
+    }).click()
   }
   catch (error: any) {
     throw new Error(error)

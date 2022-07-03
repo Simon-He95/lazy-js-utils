@@ -1,12 +1,14 @@
+import { createElement } from './createElement'
 export function copy(s: string): boolean {
   try {
-    const dom = document.createElement('textarea')
-    dom.setAttribute('readonly', 'readonly')
-    dom.value = s
-    document.body.appendChild(dom)
-    dom.select()
+    const textarea: any = createElement('textarea', {
+      readonly: 'readonly',
+    })
+    textarea.innerHTML = s
+    document.body.appendChild(textarea)
+    textarea.select()
     const res = document.execCommand('copy')
-    document.body.removeChild(dom)
+    document.body.removeChild(textarea)
     return res
   }
   catch (error: any) {

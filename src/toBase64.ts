@@ -1,3 +1,4 @@
+import { createElement } from './createElement'
 import type { FileType } from './types'
 export async function toBase64(o: File | string, type: FileType = 'url') {
   if (type === 'file' || type === 'blob')
@@ -26,9 +27,10 @@ export function urlToBase64(url: string) {
     try {
       const canvas: HTMLCanvasElement = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
-      const img = new Image()
-      img.crossOrigin = 'Anonymous'
-      img.src = `${url}?timeStamp=${new Date().getTime()}`
+      const img = createElement('img', {
+        src: `${url}?timeStamp=${new Date().getTime()}`,
+        crossOrigin: 'anonymous',
+      }) as HTMLImageElement
       img.onload = function () {
         ctx?.drawImage(img, 0, 0, canvas.width = img.width, canvas.height = img.height)
         resolve(canvas.toDataURL())

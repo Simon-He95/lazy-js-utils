@@ -18,7 +18,8 @@ export function idleCallbackWrapper(tasks: Function[], timeout: Timeout = 2000, 
           return Math.max(0, 50.0 - (Date.now() - startTime))
         },
       }), 1)
-  }; const idleCancel = window.cancelIdleCallback || clearTimeout
+  }
+  const idleCancel = window.cancelIdleCallback || clearTimeout
   const animationId = idleCallback(async function animationCallback(deadline: Deadline) {
     if (!work)
       return

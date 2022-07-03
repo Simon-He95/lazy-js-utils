@@ -1,4 +1,5 @@
 import { isArray } from './isArray'
+import { createElement } from './createElement'
 
 export function preload(list: string[] | string) {
   if (isArray(list))
@@ -8,6 +9,7 @@ export function preload(list: string[] | string) {
 }
 
 function createImage(src: string) {
-  const image = new Image()
-  image.src = src
+  createElement('img', {
+    src,
+  })
 }
