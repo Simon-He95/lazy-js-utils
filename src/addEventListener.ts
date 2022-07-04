@@ -1,8 +1,12 @@
-export function addEventListener(eventName: string, callback: (...args: any[]) => void, useCapture?: boolean, autoStop?: boolean): (() => void) {
-  const remove = () => window.removeEventListener(eventName, callback)
-  window.addEventListener(eventName, (e: Event) => {
+import { isStr } from './isStr'
+
+export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: Event) => void, useCapture?: boolean, autoRemove?: boolean): (() => void) {
+  if (isStr(target))
+    target = document.querySelector(target as string) as Element
+  const remove = () => (target as Element)?.removeEventListener(eventName, callback);
+  (target as Element).addEventListener(eventName, (e: Event) => {
     callback.call(e.target, e)
-    if (autoStop)
+    if (autoRemove)
       remove()
   }, useCapture)
   return remove
