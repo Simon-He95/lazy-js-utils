@@ -19,6 +19,51 @@ import {
 
 ```
 
+## sCharts
+- 简单的echarts图表封装
+- 不需要在onMounted中执行,可以在任意时刻使用
+- 参数:
+  - container: string | HTMLElement, 图表容器
+  - options: SChartsOption, echarts配置options,扩展了w: 初始化宽度, h: 初始化高度, theme: echarts主题, 所有的事件行为以on开头都会被调用
+  - autoResize: boolean, 是否自动调整宽高, 根据container容器的宽高自动撑满,监听window的resize事件,自动调整宽高 
+```javascript
+const charts = sCharts('#main', {
+  w: 500,
+  h: 300,
+  theme: 'dark',
+  xAxis: {
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  },
+  yAxis: {},
+  series: [
+    {
+      type: 'bar',
+      data: [23, 24, 18, 25, 27, 28, 25],
+    },
+  ],
+})
+```
+
+## addEventListener
+- 给元素添加事件函数
+- 返回一个remove函数
+- 参数:
+  - target: Element | string, 目标元素
+  - eventName: string, 事件名称
+  - callback: (e)=>void, 回调函数
+  - capture: boolean, 是否捕获
+  - autoRemove: boolean, 是否自动移除事件
+```javascript
+const remove = addEventListener('#btn',
+  'click',
+  () => {
+    console.log('click')
+  }
+)
+addEventListener(document,'DOMContentLoaded', () => {
+  console.log('我就执行一次,然后事件就被自动移除了')
+}, false, true)
+```
 ## createElement
 - 创建dom函数
 - 参数:

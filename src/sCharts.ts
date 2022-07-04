@@ -1,17 +1,19 @@
 import * as echarts from 'echarts'
-import type { EChartsOption, XAXisComponentOption, YAXisComponentOption } from 'echarts'
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 
-interface SChartsOption extends EChartsOption {
+interface SChartsOption extends Record<string, any> {
   theme?: string | object
-  x: XAXisComponentOption | XAXisComponentOption[]
-  y: YAXisComponentOption | YAXisComponentOption[]
+  x: Record<string, any>
+  y: Record<string, any>
+  xAxis?: Record<string, any>
+  yAxis?: Record<string, any>
   w?: number
   h?: number
+
 }
 
-export function sCharts(container: string | HTMLElement, options: SChartsOption, autoResize: boolean = true): echarts.ECharts {
+export function sCharts(container: string | HTMLElement, options: SChartsOption, autoResize = true): echarts.ECharts {
   const fragment = document.createDocumentFragment()
   const { x, y, xAxis, yAxis, w = 100, h = 100 } = options
 
