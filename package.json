@@ -54,6 +54,7 @@
     "@antfu/eslint-config": "^0.25.0",
     "@types/node": "^17.0.38",
     "@types/spark-md5": "^3.0.2",
+    "@types/three": "^0.141.0",
     "bumpp": "^7.1.1",
     "echarts": "^5.3.3",
     "eslint": "^8.16.0",
@@ -63,6 +64,7 @@
     "pkgroll": "^1.3.1",
     "simon-js-tool": "workspace:^3.0.6",
     "spark-md5": "^3.0.2",
+    "three": "^0.142.0",
     "typescript": "^4.7.2",
     "vitest": "^0.14.2"
   },

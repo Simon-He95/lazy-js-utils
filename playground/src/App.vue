@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { fileSplice, sCharts } from '../../src'
+import { fileSplice, sThree } from '../../src'
 
 // import { lazyLoad } from "../../src";
 // import { vFetch } from "../../src";
@@ -26,55 +26,85 @@ import { fileSplice, sCharts } from '../../src'
 //   //   lazyLoad(img);
 //   // });
 // });
-// onMounted(() => {
-sCharts(
-  '#main',
-  {
-    w: 400,
-    h: 300,
-    theme: 'dark',
-    xAxis: {
-      data: ['A', 'B', 'C', 'D', 'E'],
-    },
-    yAxis: {},
-    series: [
-      {
-        type: 'bar',
-        data: [
-          10,
-          22,
-          28,
-          {
-            value: 43,
-            // 设置单个柱子的样式
-            itemStyle: {
-              color: '#91cc75',
-              shadowColor: '#91cc75',
-              borderType: 'dashed',
-              opacity: 0.5,
-            },
-          },
-          49,
-        ],
-        itemStyle: {
-          barBorderRadius: 5,
-          borderWidth: 1,
-          borderType: 'solid',
-          borderColor: '#73c0de',
-          shadowColor: '#5470c6',
-          shadowBlur: 3,
-        },
-      },
-    ],
+sThree('#main', {
+  createCamera(THREE) {
+    const fov = 40
+    const aspect = 2 // the canvas default
+    const near = 0.1
+    const far = 1000
+    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far)
+    camera.position.set(0, 50, 0)
+    camera.up.set(0, 0, 1)
+    camera.lookAt(0, 0, 0)
+    return camera
   },
-  true,
-)
-// });
+  createTargets(THREE) {
+    const sphereGeometry = new THREE.SphereGeometry(1, 6, 6)
+    const solarSystem = new THREE.Object3D()
+    const sunMesh = makeSun(THREE, sphereGeometry)
+    const earthOrbit = new THREE.Object3D()
+    const earthMesh = makeEarth(THREE, sphereGeometry)
+    const moonMesh = makeMoon(THREE, sphereGeometry)
+    earthOrbit.position.x = 10
+    earthOrbit.add(earthMesh)
+    earthOrbit.add(moonMesh)
+    solarSystem.add(earthOrbit)
+    solarSystem.add(sunMesh)
+    return {
+      contents: [makeLight(THREE), solarSystem],
+      targets: [makeLight(THREE), solarSystem, earthOrbit, sunMesh, earthMesh, moonMesh],
+    }
+  },
+  middleware(THREE, targets) {
+    // targets.forEach((node) => {
+    //   const axes = new THREE.AxesHelper();
+    //   axes.material.depthTest = false;
+    //   axes.renderOrder = 1;
+    //   node.add(axes);
+    // });
+  },
+  animate(THREE, objects, time) {
+    time *= 0.001
+    objects.forEach((node) => {
+      node.rotation.y = time
+    })
+  },
+})
+
+function makeLight(THREE) {
+  const color = 0xFFFFFF
+  const intensity = 3
+  return new THREE.PointLight(color, intensity)
+}
+function makeEarth(THREE, sphereGeometry) {
+  const earthMaterial = new THREE.MeshPhongMaterial({
+    color: 0x2233FF,
+    emissive: 0x112244,
+  })
+  const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial)
+  return earthMesh
+}
+function makeSun(THREE, sphereGeometry) {
+  const sunMaterial = new THREE.MeshPhongMaterial({ emissive: 0xFFFF00 })
+  const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial)
+  sunMesh.scale.set(5, 5, 5)
+  return sunMesh
+}
+function makeMoon(THREE, sphereGeometry) {
+  const moonMaterial = new THREE.MeshPhongMaterial({
+    color: 0x888888,
+    emissive: 0x222222,
+  })
+  const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial)
+  moonMesh.position.x = 2
+  moonMesh.scale.set(0.5, 0.5, 0.5)
+  return moonMesh
+}
 </script>
 
 <template>
   <main font-sans p=" y-10" text="center gray-700 dark:gray-200">
-    <div id="main" w-full ma inline-block />
+    <div id="main" w-full h-200 ma inline-block />
     <Footer />
   </main>
   <!-- <img src="temp" data-src="../public/favicon.svg" alt="" h-10 bg-red /> -->

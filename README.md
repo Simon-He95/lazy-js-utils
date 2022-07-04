@@ -19,13 +19,94 @@ import {
 
 ```
 
-## sCharts
-- 简单的echarts图表封装
+## sThree
+- 简单化three的使用
+- 可以让你的代码更加简洁,更加美观
 - 不需要在onMounted中执行,可以在任意时刻使用
+- 自动监听resize事件,自动更新canvas的大小
 - 参数:
-  - container: string | HTMLElement, 图表容器
+  - container: string | HTMLElement, 父容器
+  - options: SThreeOptions, 函数式的方式去创建场景、渲染器、相机等元素
+```javascript
+sThree("#main", {
+  createCamera(THREE) { // 创建相机，返回相机对象
+    const fov = 40;
+    const aspect = 2;
+    const near = 0.1;
+    const far = 1000;
+    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    camera.position.set(0, 50, 0);
+    camera.up.set(0, 0, 1);
+    camera.lookAt(0, 0, 0);
+    return camera;
+  },
+  createTargets(THREE) { // 创建目标，返回[contents, target]数组,contents的结果会在animate钩子中作为参数传入animate函数，target是目标对象，会被自动加入到场景中
+    const sphereGeometry = new THREE.SphereGeometry(1, 6, 6);
+    const solarSystem = new THREE.Object3D();
+    const sunMesh = makeSun(THREE, sphereGeometry);
+    const earthOrbit = new THREE.Object3D();
+    const earthMesh = makeEarth(THREE, sphereGeometry);
+    const moonMesh = makeMoon(THREE, sphereGeometry);
+    earthOrbit.position.x = 10;
+    earthOrbit.add(earthMesh);
+    earthOrbit.add(moonMesh);
+    solarSystem.add(earthOrbit);
+    solarSystem.add(sunMesh);
+    return {
+      contents: [makeLight(THREE), solarSystem],
+      targets: [makeLight(THREE), solarSystem, earthOrbit, sunMesh, earthMesh, moonMesh],
+    };
+  },
+  middleware(THREE, targets) { // 在渲染前的钩子函数，可以对目标进行一些操作，比如加入动画等
+  },
+  animate(THREE, objects, time) { // 此函数会被循环调用，用来更新目标的位置和旋转等信息，参数是THREE, 目标数组(createTargets返回的contents), timestamp
+    time *= 0.001;
+    objects.forEach((node) => {
+      node.rotation.y = time;
+    })
+  }
+})
+
+function makeLight(THREE) {
+  const color = 0xffffff;
+  const intensity = 3;
+  return new THREE.PointLight(color, intensity);
+}
+function makeEarth(THREE, sphereGeometry) {
+  const earthMaterial = new THREE.MeshPhongMaterial({
+    color: 0x2233ff,
+    emissive: 0x112244,
+  });
+  const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+  return earthMesh;
+}
+function makeSun(THREE, sphereGeometry) {
+  const sunMaterial = new THREE.MeshPhongMaterial({ emissive: 0xffff00 });
+  const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+  sunMesh.scale.set(5, 5, 5);
+  return sunMesh;
+}
+function makeMoon(THREE, sphereGeometry) {
+  const moonMaterial = new THREE.MeshPhongMaterial({
+    color: 0x888888,
+    emissive: 0x222222,
+  });
+  const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
+  moonMesh.position.x = 2;
+  moonMesh.scale.set(0.5, 0.5, 0.5);
+  return moonMesh;
+}
+```
+
+## sCharts
+- 简单化echarts使用
+- 可以让你的代码更加简洁,更加美观
+- 不需要在onMounted中执行,可以在任意时刻使用
+- 自动监听resize事件,自动更新canvas的大小
+- 参数:
+  - container: string | HTMLElement, 父容器
   - options: SChartsOption, echarts配置options,扩展了w: 初始化宽度, h: 初始化高度, theme: echarts主题, 所有的事件行为以on开头都会被调用
-  - autoResize: boolean, 是否自动调整宽高, 根据container容器的宽高自动撑满,监听window的resize事件,自动调整宽高 
+  - autoResize: boolean, 是否自动调整宽高
 ```javascript
 const charts = sCharts('#main', {
   w: 500,
