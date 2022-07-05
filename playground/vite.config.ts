@@ -7,6 +7,7 @@ import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
+import vitePluginRequireTransform from 'vite-plugin-require-transform'
 
 export default defineConfig({
   resolve: {
@@ -15,6 +16,9 @@ export default defineConfig({
     },
   },
   plugins: [
+    vitePluginRequireTransform({
+      fileRegex: /.ts$/,
+    }),
     Vue({
       reactivityTransform: true,
     }),

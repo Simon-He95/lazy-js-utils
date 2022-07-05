@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { copy, monitorPef, vFetch } from 'simon-js-tool'
+import { copy, monitorPef, vFetch } from '../../src'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
