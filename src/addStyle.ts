@@ -1,6 +1,10 @@
+import { createElement } from './createElement'
+
 export function addStyle(s: string) {
   try {
-    const style = document.createElement('style')
+    const style = createElement('style', {
+      type: 'text/css',
+    })
     style.innerHTML = s
     document.head.appendChild(style)
   }

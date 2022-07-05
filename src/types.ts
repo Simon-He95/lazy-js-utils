@@ -8,6 +8,7 @@ declare global {
     mozCancelAnimationFrame: (handle: number) => void
     oCancelAnimationFrame: (handle: number) => void
     msCancelAnimationFrame: (handle: number) => void
+    Odometer: any
   }
 }
 
@@ -123,4 +124,12 @@ export interface DragEvent {
   dragStart?: (e: any) => void
   dragMove?: (e: any) => void
   dragEnd?: (e: any) => void
+}
+
+export interface NumWheelOptions {
+  format: '(,ddd)' | '(,ddd).dd' | '(.ddd),dd' | '( ddd),dd' | 'd'
+  startVal: number
+  endVal: number
+  duration: number
+  animation: 'count' | 'countdown'
 }

@@ -1,19 +1,13 @@
 import { addEventListener } from './addEventListener'
 import { isStr } from './isStr'
 import { createElement } from './createElement'
-const Odometer = require('odometer')
-require('odometer/themes/odometer-theme-minimal.css')
+import type { NumWheelOptions } from './types'
+import { odometer } from './odometer'
 
-interface NumWheelOptions {
-  format: '(,ddd)' | '(,ddd).dd' | '(.ddd),dd' | '( ddd),dd' | 'd'
-  startVal: number
-  endVal: number
-  duration: number
-  animation: 'count' | 'countdown'
-}
 export function numWheel(container: string | HTMLElement, options: NumWheelOptions) {
   const el = createElement('div')
   const { format = '(,ddd).dd', startVal = 0, endVal, duration = 500, animation = 'countdown' } = options
+  const Odometer = odometer()
   new Odometer({
     el,
     value: startVal,
