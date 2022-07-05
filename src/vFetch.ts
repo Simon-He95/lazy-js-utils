@@ -6,7 +6,23 @@ export function vFetch(this: any, options: VFetchConfig): any {
   if (this === undefined)
     return vFetch.create({})(options)
 
-  const { url, method = 'GET', headers = {}, bodyType = 'json', params = {}, credentials = 'omit', responseType = 'json', timeout, transformResponse, cache = 'default', redirect = 'manual', mode = 'cors' } = options
+  const {
+    url,
+    method = 'GET',
+    headers = {},
+    bodyType = 'json',
+    params = {},
+    credentials = 'omit',
+    integrity, referrerPolicy = 'no-referrer-when-downgrade"',
+    referrer = '',
+    responseType = 'json',
+    keepalive = false,
+    timeout,
+    transformResponse,
+    cache = 'default',
+    redirect = 'manual',
+    mode = 'cors',
+  } = options
   this.config = Object.assign(this.config, {
     url: url?.startsWith('http')
       ? url
@@ -21,6 +37,10 @@ export function vFetch(this: any, options: VFetchConfig): any {
     redirect,
     mode,
     body: params,
+    keepalive,
+    integrity,
+    referrerPolicy,
+    referrer,
     headers: Object.assign({
       'Content-Type': 'application/json',
 
@@ -37,6 +57,9 @@ export function vFetch(this: any, options: VFetchConfig): any {
 }
 
 vFetch.request = function request(this: any) {
+  const controller = new AbortController()
+  const signal = controller.signal
+  this.config.signal = signal
   const { body, method, bodyType, url, timeout, responseType, transformResponse } = this.config
   if (body && method !== 'GET') {
     if (bodyType === 'form') {
@@ -56,8 +79,11 @@ vFetch.request = function request(this: any) {
   }
   return Promise.race([
     fetch(url, this.interceptors.request.success(this.config)),
-    new Promise((resolve, reject) => {
-      setTimeout(() => reject(new Error('request timeout')), timeout || 20 * 1000)
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(new Response('timeout', { status: 504, statusText: 'timeout ' }))
+        controller.abort()
+      }, timeout || 20 * 1000)
     }),
   ]).then(
     (response: any) => {
