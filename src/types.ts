@@ -39,15 +39,16 @@ export interface VFetch {
   }
 }
 
-export interface VFetchConfig {
+export interface VFetchConfig extends IFetchOptions {
   url: string
-  baseURL?: string
+  keepalive?: boolean
   body?: any
+  integrity?: string
+  referrer?: string
+  referrerPolicy: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin'
   method?: Method
-  headers?: Record<string, any>
   credentials?: Credentials
   params?: Record<string, string>
-  timeout?: number
   responseType?: ResponseType
   bodyType?: BodyType
   cache?: Cache
@@ -116,4 +117,10 @@ export interface FileChunk {
 export interface Deadline {
   timeRemaining: () => number
   didTimeout: boolean
+}
+
+export interface DragEvent {
+  dragStart?: (e: any) => void
+  dragMove?: (e: any) => void
+  dragEnd?: (e: any) => void
 }

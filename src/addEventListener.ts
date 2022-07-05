@@ -1,6 +1,6 @@
 import { isStr } from './isStr'
 
-export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: Event) => void, useCapture?: boolean, autoRemove?: boolean): (() => void) {
+export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean, autoRemove?: boolean): (() => void) {
   if (isStr(target))
     target = document.querySelector(target as string) as Element
   const remove = () => (target as Element)?.removeEventListener(eventName, callback);

@@ -19,6 +19,43 @@ import {
 
 ```
 
+## dragEvent
+- 点击拖拽松开事件封装
+- 移动端touch会有更好的体验，但是与mouse的event有所区别
+- dragEvent会在移动端是切换touch事件,在PC端是用mouse事件，保持接收的event对象基本是一致的
+- 参数:
+  - target: string | HTMLElement 目标元素
+  - options: { dragStart: (e) => void 按下, dragMove: (e) => void 拖拽, dragEnd: (e) => void 松开 }
+```javascript
+dragEvent('#main', {
+  dragStart(e) {
+    console.log('start', e.clientX, e.clientY)
+  },
+  dragMove(e) {
+    console.log('move',  e.clientX, e.clientY)
+  },
+  dragEnd(e) {
+    console.log('end',  e.clientX, e.clientY)
+  },
+})
+```
+
+## compressImage
+- 图片压缩函数
+- Promise
+- 参数:
+ - source: 图片路径 | 图片base64 | 图片blob
+  - options: { quality: number 压缩质量  maxWidth: number 图片宽度  maxHeight: number 图片的高度  type: 'Blob' | 'base64' | 'blob' 图片返回的类型 }
+```javascript
+  const file = fileEl.value.files[0];
+  const result = await compressImage(file, {
+    quality: 0.5,
+    maxWidth: 100,
+    maxHeight: 100,
+    type: "blob",
+  }); // Blob {size: 3095, type: 'image/jpeg'}
+```
+
 ## sThree
 - 简单化three的使用
 - 可以让你的代码更加简洁,更加美观
@@ -720,6 +757,10 @@ type VFetchConfig = {
   url: string // 请求地址
   baseURL?: string // 基础url
   body?: any // body参数 {},GET请求会合并到url后面
+  keepalive?: boolean // 属性用于页面卸载时，告诉浏览器在后台保持连接，继续发送数据
+  integrity?: string // 属性指定一个哈希值，用于检查 HTTP 回应传回的数据是否等于这个预先设定的哈希值。
+  referrer?: string // 属性用于设定fetch()请求的referer标头。
+  referrerPolicy: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin' // 属性用于设定Referer标头的规则。可能的取值如下：
   method?: Method // 请求类型 默认GET 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' 支持vFetch.get | post | delete | put的形式
   headers?: Record<string, any> // 请求头 例如: {'Content-Type': 'application/json'} 支持在请求拦截器中设置追加
   credentials?: Credentials // 请求是否带上cookie 默认omit 'include' | 'same-origin' | 'omit' 
@@ -728,7 +769,7 @@ type VFetchConfig = {
   responseType?: ResponseType // 返回类型 默认json 'formData' | 'text' | 'blob' | 'arrayBuffer' | 'json'
   bodyType?: BodyType // 请求类型 默认json 'json' | 'form' | 'file' 
   cache?: Cache // 缓存类型 默认不缓存 'no-cache' | 'default' | 'force-cache' | 'only-if-cached' 
-  redirect?: Redirect // 重定向 默认follow follow：跟随重定向，error：抛出错误，manual：手动处理
+  redirect?: Redirect // 属性指定 HTTP 跳转的处理方法。可能的取值如下： 默认follow follow：跟随重定向，error：抛出错误，manual：手动处理
   mode?: Mode // cors, no-cors, same-origin 默认cors cors：跨域，no-cors：不跨域，same-origin：同源
   transformResponse?: (response: Response) => Response // 响应数据转换
 }
