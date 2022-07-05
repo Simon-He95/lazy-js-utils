@@ -3,7 +3,7 @@ import { compressImage, dragEvent, fileSplice, numWheel } from '../../src'
 
 numWheel('#main', {
   startVal: 5,
-  endVal: 90000099,
+  endVal: 900000.99,
   duration: 500,
   animation: 'countdown',
 })

@@ -13,7 +13,7 @@ interface NumWheelOptions {
 }
 export function numWheel(container: string | HTMLElement, options: NumWheelOptions) {
   const el = createElement('div')
-  const { format = '(,ddd).dd', startVal, endVal, duration = 500, animation = 'countdown' } = options
+  const { format = '(,ddd).dd', startVal = 0, endVal, duration = 500, animation = 'countdown' } = options
   new Odometer({
     el,
     value: startVal,
