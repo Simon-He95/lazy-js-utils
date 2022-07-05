@@ -22,6 +22,7 @@ import {
 ## numWheel
 - 数字滚轮控件
 - 无需在onMounted中调用,可以在任意地方调用
+- 基于odometer封装, 更简单的在业务中使用
 - 参数:
   - container: string | HTMLElement 父容器
   - options: {  format: '(,ddd)' | '(,ddd).dd' | '(.ddd),dd' | '( ddd),dd' | 'd' 数字格式 startVal: number 起始数字 endVal: number 最终数字  duration: number 动画时长  animation: 'count' | 'countdown' 动画方式 }
