@@ -2,8 +2,13 @@ import { isStr } from './isStr'
 import { preload } from './preload'
 import { addEventListener } from './addEventListener'
 import { createElement } from './createElement'
+import { isNum } from './isNum'
 
-export function waterfall(imageList: string[], container: string | HTMLElement, width = 200, space = 20) {
+export function waterfall(imageList: string[], container: string | HTMLElement | number, width = 200, space = 20) {
+  if (isNum(container)) {
+    width = container as number
+    container = 'body'
+  }
   const imagesElement = preload(imageList, `width:${width}px;position:absolute;`)
   const wrapper = createElement('div', {
     id: 'simon-waterfall',

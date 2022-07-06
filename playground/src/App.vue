@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { compressImage, dragEvent, fileSplice, numWheel } from '../../src'
+import {
+  compressImage,
+  dbStorage,
+  dragEvent,
+  fileSplice,
+  numWheel,
+  picInPic,
+} from '../../src'
 
-numWheel('#main', {
-  startVal: 5,
-  endVal: 900000.99,
-  duration: 500,
-  animation: 'countdown',
-})
+const toggle = picInPic('#video')
 </script>
 
 <template>
@@ -14,8 +16,16 @@ numWheel('#main', {
     <div>
       <div id="main" font-mono text-2xl />
     </div>
+    <video
+      id="video"
+      width="500"
+      height="500"
+      src="https://static.newcger.com/uploads/preview/ae/2022/07/51629.mp4"
+      controls
+    />
+    <button @click="toggle()">
+      toggle
+    </button>
     <Footer />
   </main>
-  <!-- <img src="temp" data-src="../public/favicon.svg" alt="" h-10 bg-red /> -->
-  <!-- <img src="temp" alt="" h-10 bg-red /> -->
 </template>

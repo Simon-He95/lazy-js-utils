@@ -19,6 +19,69 @@ import {
 
 ```
 
+## picInPic
+- 给video开启画中画模式
+- 参数:
+  - video: string | HTMLVideoElement
+```javascript
+const toggle = picInPic('#video')
+toggle() // 开启关闭画中画模式
+```
+
+## shareScreen
+- 浏览器屏幕分享
+- 部分浏览器可能存在兼容问题
+- 浏览器需要授权
+- 参数:
+  - container: 屏幕分享的展示容器
+  - callback: 停止分享时的回调
+```javascript
+shareScreen('#main',() => {
+  console.log("已停止分享");
+});
+```
+
+## dbStorage
+- 浏览器大数据存储
+- 存储容量大 >250MB
+- 同源策略
+- 异步操作
+- 持久化存储
+- 支持二进制储存
+```javascript
+  const { add, read, remove } = await dbStorage()
+  set('key', { video:Blob }) // 添加数据或更新数据 key: string | number, value: object
+  read('key') // 读取数据 key: string | number, 返回 { video:Blob }
+  remove('key') // 删除数据 key: string | number
+```
+
+## waterfall
+- 瀑布流布局
+- 宽度固定
+- 支持追加新的图片
+- 参数:
+  - urlList 图片地址列表
+  - container 父容器 默认为body
+  - width 图片宽度 默认为200
+```javascript
+const append = waterfall([
+  '../assets/1.jpg',
+  '../assets/2.jpg',
+  '../assets/3.jpg',
+  ...
+])
+// 如果触底了,追加新的图片
+addEventListener(window,'scroll',()=>{
+  if(isBottom()){
+    append([
+      '../assets/4.jpg',
+      '../assets/5.jpg',
+      '../assets/6.jpg',
+      ...
+    ])
+  }
+})
+```
 ## numWheel
 - 数字滚轮控件
 - 无需在onMounted中调用,可以在任意地方调用

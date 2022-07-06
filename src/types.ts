@@ -9,6 +9,10 @@ declare global {
     oCancelAnimationFrame: (handle: number) => void
     msCancelAnimationFrame: (handle: number) => void
     Odometer: any
+    webkitIndexedDB: IDBFactory
+    mozIndexedDB: IDBFactory
+    msIndexedDB: IDBFactory
+    indexedDB: IDBFactory
   }
 }
 
