@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { copy, monitorPef, vFetch } from '../../src'
+import { copy, monitorPef } from '../../src'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
@@ -15,22 +15,7 @@ const router = createRouter({
 })
 app.use(router)
 app.mount('#app')
-vFetch.interceptors.request.use((response) => {
-  // console.log(response)
-  return response
-}, (err) => {
-  // console.log('err', err)
-  return Promise.reject(err)
-})
-const instance = vFetch.create({
-  baseURL: 'http://localhost:5001/',
-})
-instance({
-  url: 'test',
-}).then((res: any) => {
-  // console.log(res)
-  return res
-})
+
 // console.log(randomDate())
 monitorPef()
 window.onclick = () => {

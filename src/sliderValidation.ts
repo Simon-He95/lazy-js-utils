@@ -1,10 +1,11 @@
 import { addStyle } from './addStyle'
+import { createElement } from './createElement'
 import { dragEvent } from './dragEvent'
 import { isFn } from './isFn'
 import { isStr } from './isStr'
 import { randomRange } from './randomRange'
 
-export function sliderValidation(url: string, container: HTMLElement | string, l: number | (() => void) = 42, callback: () => void) {
+export async function sliderValidation(url: string, container: HTMLElement | string, l: number | (() => void) = 42, callback: () => void) {
   if (isFn(l)) {
     callback = l as () => void
     l = 42
@@ -16,6 +17,9 @@ export function sliderValidation(url: string, container: HTMLElement | string, l
   const image = new Image()
   image.src = url
   image.onload = () => {
+    const fragment = createElement('div', {
+      style: 'position:relative',
+    })
     const PI = Math.PI
     const canvas = document.createElement('canvas')
     const moveCanvas = canvas.cloneNode() as HTMLCanvasElement
@@ -88,9 +92,10 @@ export function sliderValidation(url: string, container: HTMLElement | string, l
       },
     })
     moveCanvas.style.position = 'absolute'
-    moveCanvas.style.top = '0px';
-    (container as HTMLElement).appendChild(canvas);
-    (container as HTMLElement).appendChild(moveCanvas)
+    moveCanvas.style.top = '0px'
+    fragment.appendChild(canvas)
+    fragment.appendChild(moveCanvas);
+    (container as HTMLElement).appendChild(fragment)
   }
 }
 

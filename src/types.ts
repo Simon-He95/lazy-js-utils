@@ -50,7 +50,7 @@ export interface VFetchConfig extends IFetchOptions {
   body?: any
   integrity?: string
   referrer?: string
-  referrerPolicy: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin'
+  referrerPolicy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin'
   method?: Method
   credentials?: Credentials
   params?: Record<string, string>

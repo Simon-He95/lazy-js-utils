@@ -19,6 +19,17 @@ import {
 
 ```
 
+## sliderValidation
+- 滑块验证功能
+- 参数:
+  - url: 背景图片地址
+  - container: 滑块容器
+  - width: 滑块大小 默认42px
+  - callback: 滑块验证成功回调函数
+```javascript
+sliderValidation('/assets/image.jpg', document.body)
+```
+
 ## picInPic
 - 给video开启画中画模式
 - 参数:
