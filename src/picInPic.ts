@@ -1,15 +1,11 @@
 import { isStr } from './isStr'
-import { addEventListener } from './addEventListener'
 
 export function picInPic(video: HTMLVideoElement | string) {
-  addEventListener(document, 'DOMContentLoaded', () => {
+  return async () => {
     if (isStr(video))
       video = document.querySelector(video as string) as HTMLVideoElement || video
     if (isStr(video))
-      throw new Error(`${video} is not found`)
-  })
-
-  return async () => {
+      throw new Error(`${video} is not a HTMLVideoElement`)
     try {
       if (video !== document.pictureInPictureElement)
         await (video as HTMLVideoElement).requestPictureInPicture()

@@ -13,10 +13,13 @@ interface SChartsOption extends Record<string, any> {
 
 }
 
-export function sCharts(container: string | HTMLElement, options: SChartsOption, autoResize = true): echarts.ECharts {
+export function sCharts(container: HTMLElement | string, options: SChartsOption, autoResize = true): echarts.ECharts {
   const fragment = document.createDocumentFragment()
   const { x, y, xAxis, yAxis, w = 100, h = 100 } = options
-
+  if (isStr(container))
+    container = document.querySelector(container as string) as HTMLElement || container
+  if (isStr(container))
+    throw new Error(`${container} is not a HTMLElement`)
   const charts = echarts.init(fragment as unknown as HTMLElement, options.theme || '', {
     width: w,
     height: h,
@@ -27,17 +30,11 @@ export function sCharts(container: string | HTMLElement, options: SChartsOption,
   }
   options.xAxis = x || xAxis
   options.yAxis = y || yAxis
-  charts.setOption(options)
-  addEventListener(document, 'DOMContentLoaded', () => {
-    if (isStr(container))
-      container = document.querySelector(container as string) as HTMLElement || container
+  charts.setOption(options);
 
-    if (isStr(container))
-      throw new Error(`${container} container is not found`);
-    (container as HTMLElement).appendChild(fragment)
-    if (autoResize)
-      resize()
-  }, false, true)
+  (container as HTMLElement).appendChild(fragment)
+  if (autoResize)
+    resize()
   if (autoResize)
     addEventListener(window, 'resize', resize, false)
   function resize() {

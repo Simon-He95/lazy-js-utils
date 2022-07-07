@@ -10,6 +10,10 @@ interface SThreeOptions extends Record<string, any> {
   middleware: (THREE: any, targets: any[]) => void
 }
 export function sThree(container: HTMLElement | string, options: SThreeOptions) {
+  if (isStr(container))
+    container = document.querySelector(container as string) as HTMLElement || container
+  if (isStr(container))
+    throw new Error(`${container} container is not found`)
   const renderer = new THREE.WebGLRenderer()
   const scene = new THREE.Scene()
   const camera = options.createCamera(THREE)
@@ -19,16 +23,10 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
   if (options.animate)
     animationFrameWrapper((time: number) => renderer.render(scene, options.animate(THREE, targets, time) || camera), 0)
   else
-    renderer.render(scene, camera)
+    renderer.render(scene, camera);
 
-  addEventListener(document, 'DOMContentLoaded', () => {
-    if (isStr(container))
-      container = document.querySelector(container as string) as HTMLElement || container
-    if (isStr(container))
-      throw new Error(`${container} container is not found`)
-      ; (container as HTMLElement).appendChild(renderer.domElement)
-    resize()
-  })
+  (container as HTMLElement).appendChild(renderer.domElement)
+  resize()
   addEventListener(window, 'resize', resize)
 
   function resize() {

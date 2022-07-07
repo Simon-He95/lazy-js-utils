@@ -9,12 +9,17 @@ export function waterfall(imageList: string[], container: string | HTMLElement |
     width = container as number
     container = 'body'
   }
+  if (isStr(container))
+    container = document.querySelector(container as string) as HTMLElement || container
+  if (isStr(container))
+    throw new Error(`${container} is not a HTMLElement`)
   const imagesElement = preload(imageList, `width:${width}px;position:absolute;`)
   const wrapper = createElement('div', {
     id: 'simon-waterfall',
     style: 'position:relative;width:100%;height:100%;',
   })
-  addEventListener(document, 'DOMContentLoaded', load)
+
+  update()
   addEventListener(window, 'resize', update)
   async function update() {
     if (isStr(container)) {
@@ -60,13 +65,7 @@ export function waterfall(imageList: string[], container: string | HTMLElement |
 
     (container as HTMLElement).append(wrapper)
   }
-  function load() {
-    if (isStr(container))
-      container = document.querySelector(container as string) as HTMLElement || container
-    if (isStr(container))
-      container = document.body as HTMLElement
-    update()
-  }
+
   return (imageList: string[]) => {
     const appendElement = preload(imageList, `width:${width}px;position:absolute;`)
     imagesElement.push(...appendElement)
