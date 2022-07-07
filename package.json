@@ -1,6 +1,6 @@
 {
   "name": "simon-js-tool",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "packageManager": "pnpm@6.32.3",
   "description": "js-tool",
   "author": "Simon He",
