@@ -672,7 +672,7 @@ asyncPool(limit, tasks).then((results) => {
 - set更新或新增项-O(1)
 - delete删除项-O(1)
 ```javascript
-const find = quickFind([{id:1,name:'simon'},{id:2,name:'simon'},'id'])
+const find = quickFind([{id:1,name:'simon'},{id:2,name:'simon'}],'id')
 find.find(1) // find: id = 1 => {id:1,name:'simon'}
 find.set({id:1,name:'simon'})
 find.delete(1) // delete: id = 1 => {id:1,name:'simon'}
