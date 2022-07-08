@@ -23,6 +23,64 @@ import {
 
 ```
 
+## calFps
+- 计算FPS
+```javascript
+const stop = calFps()
+stop() // 停止计算
+```
+
+## useResizeObserver
+- 监听浏览器窗口变化
+- 参数:
+  - callback: 回调函数
+```javascript
+const stop = useResizeObserver((width,height)=>{
+  console.log(width,height)
+})
+stop() // 停止监听
+```
+
+## useWindowScroll
+- 监听浏览器滚动位置
+- 参数:
+  - callback: 回调函数
+```javascript
+const stop = useWindowScroll((left,top)=>{
+  console.log(left,top)
+})
+stop() // 停止监听
+```
+
+## useElementBounding
+- getBoundingClientRect封装
+- 参数:
+  - element: string | Element
+```javascript
+const rect = useElementBounding('#id')
+```
+
+## useMutationObserver
+- MutationObserver封装
+- 参数:
+  - element: string | Element
+  - callback: (mutationObserver: MutationObserver) => void
+  - options:  {
+    childList?: boolean
+    attributes?: boolean
+    characterData?: boolean
+    subtree?: boolean
+    attributeOldValue?: boolean
+    characterDataOldValue?: boolean
+    attributeFilter?: string[]
+    }
+```javascript
+const stop = useMutationObserver('#main', (mutations)=>{
+  console.log(mutations)
+}, {attributes:true})
+stop() // 停止监听
+```
+
 ## sliderValidation
 - 滑块验证功能
 - 参数:

@@ -23,6 +23,64 @@ import {
 
 ```
 
+## calFps
+- Calculate the FPS
+```javascript
+const stop = calFps()
+stop() // Stop the calculation
+```
+
+## useResizeObserver
+- Listen for browser window changes
+- params:
+  - callback: callback
+```javascript
+const stop = useResizeObserver((width,height)=>{
+  console.log(width,height)
+})
+stop() // Stop listening
+```
+
+## useWindowScroll
+- Listens for browser scroll positions
+- params:
+  - callback: callback
+```javascript
+const stop = useWindowScroll((left,top)=>{
+  console.log(left,top)
+})
+stop() // Stop listening
+```
+
+## useElementBounding
+- getBoundingClientRect encapsulation
+- params:
+  - element: string | Element
+```javascript
+const rect = useElementBounding('#id')
+```
+
+## useMutationObserver
+- MutationObserver encapsulation
+- params:
+  - element: string | Element
+  - callback: (mutationObserver: MutationObserver) => void
+  - options:  {
+    childList?: boolean
+    attributes?: boolean
+    characterData?: boolean
+    subtree?: boolean
+    attributeOldValue?: boolean
+    characterDataOldValue?: boolean
+    attributeFilter?: string[]
+    }
+```javascript
+const stop = useMutationObserver('#main', (mutations)=>{
+  console.log(mutations)
+}, {attributes:true})
+stop() // stop mutation observer
+```
+
 ## sliderValidation
 - Slider verification function
 - params:

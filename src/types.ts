@@ -137,3 +137,13 @@ export interface NumWheelOptions {
   duration: number
   animation: 'count' | 'countdown'
 }
+
+export interface MutationObserverInit {
+  childList?: boolean
+  attributes?: boolean
+  characterData?: boolean
+  subtree?: boolean
+  attributeOldValue?: boolean
+  characterDataOldValue?: boolean
+  attributeFilter?: string[]
+}
