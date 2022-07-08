@@ -13,7 +13,7 @@ At present, <strong>80+</strong> common functions have been sorted out, and they
 
 ![img](/assets/zfb.jpg 'Alipay')
 
-## 使用说明
+## Instructions for use
 ```bash
 npm i simon-js-tool # Installation
 
@@ -1216,7 +1216,7 @@ console.log(calNum.sub(0.1, 0.2, 0.2)) // -0.3
 console.log(calNum.mul(0.1, 0.2, 0.2)) // 0.004
 ```
 
-## Rule judgment
+## ruleJudgment
 - isMobile  - Determine if it is a mobile phone number
 - isEmail - Determine if it is a mailbox
 - isIdCard - Determines if it is an ID card
