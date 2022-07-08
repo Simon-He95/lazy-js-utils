@@ -5,7 +5,7 @@
 <p align="center"><a href="https://www.hejian.club/posts/toolsfunction">Docs</a></p>
 <p align="center"> English | <a href="./README.md">简体中文</a></p>
 
-## This article is documentation that describes the encapsulated utility functions[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
+## This article is documentation that describes the encapsulated utility functions [simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
 At present, <strong>80+</strong> common functions have been sorted out, and they are still being updated..., and your recognition is the biggest encouragement to me!
 
 ## Sponsor me
