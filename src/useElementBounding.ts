@@ -1,9 +1,9 @@
 import { isStr } from './isStr'
 
-export function useElementBounding(el: Element | string): DOMRect {
-  if (isStr(el))
-    el = document.querySelector(el as string) as Element || el
-  if (isStr(el))
-    throw new Error(`${el} is not a Element`)
-  return (el as Element).getBoundingClientRect()
+export function useElementBounding(element: Element | string): DOMRect {
+  if (isStr(element))
+    element = document.querySelector(element as string) as Element || element
+  if (isStr(element))
+    throw new Error(`${element} is not a Element`)
+  return (element as Element).getBoundingClientRect()
 }
