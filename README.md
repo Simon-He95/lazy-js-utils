@@ -1,5 +1,9 @@
-## 相关文档
-[docs](https://www.hejian.club/posts/toolsfunction)
+<p align="center">
+<img height="200" src="./assets/kt.png" alt="simon-js-tool">
+</p>
+<p align="center"><a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/v/simon-js-tool?color=3fb883&amp;label=" alt="NPM version"></a></p>
+<p align="center"><a href="https://www.hejian.club/posts/toolsfunction">Docs</a></p>
+<p align="center"> <a href="./README_en.md">English</a> | 简体中文</p>
 
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
 目前整理了<strong>80+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
@@ -54,7 +58,7 @@ shareScreen('#main',() => {
 
 ## dbStorage
 - 浏览器大数据存储
-- 存储容量大 >250MB
+- 存储容量 >250MB
 - 同源策略
 - 异步操作
 - 持久化存储
@@ -408,7 +412,7 @@ const stop = animationFrameWrapper(() => {
 - 将图片的像素转为点阵图片
 - 参数:
   - src: 图片路径
-  - fontWeigth: 点阵的粗细
+  - fontWeight: 点阵的粗细
   - color: 点阵的颜色 默认为原图片色
 - 可以await repaint中的dotImage.repaint(xxx)中的dotImage.status判断正确的src被加载完成的时机
 ```javascript
@@ -485,7 +489,7 @@ signature.clear() // 清除签名
 
 ## DotTextCanvas
 - 根据文字返回一个点阵的canvas
-- 入参：
+- 参数：
   - text: 文字
   - fontSize: 字体大小
   - color: 字体颜色
@@ -621,6 +625,7 @@ const array = [
 ```
 
 ## deepCompare 
+- 深度比较两个对象是否相等
 - ignoreKeys忽略指定的keys可以为数组或者正则表达式
 - 参数:
   - a: 待比较的对象
@@ -664,7 +669,7 @@ asyncPool(limit, tasks).then((results) => {
 ```
 
 ## quickFind 
--  quickFind(array: any[], key: any) ,返回一个新的实例
+- quickFind(array: any[], key: any) ,返回一个新的实例
 - 参数:
   - array: 待查找的数组
   - key: 待查找的key,根据key来查找
@@ -708,6 +713,7 @@ find.delete(1) // delete: id = 1 => {id:1,name:'simon'}
  quickFilter(arr,['name=/h/']) // [{"age": "2","en": "0","name": "hi"},{"name": "hi"}]
 ```
 ## deepClone 
+- 深拷贝对象
 - 支持循环依赖
 - 支持复杂类型
 - 轻量级的深拷贝
@@ -845,7 +851,7 @@ type VFetchConfig = {
   keepalive?: boolean // 属性用于页面卸载时，告诉浏览器在后台保持连接，继续发送数据
   integrity?: string // 属性指定一个哈希值，用于检查 HTTP 回应传回的数据是否等于这个预先设定的哈希值。
   referrer?: string // 属性用于设定fetch()请求的referer标头。
-  referrerPolicy: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin' // 属性用于设定Referer标头的规则。可能的取值如下：
+  referrerPolicy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin' // 属性用于设定Referer标头的规则。可能的取值如下：
   method?: Method // 请求类型 默认GET 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' 支持vFetch.get | post | delete | put的形式
   headers?: Record<string, any> // 请求头 例如: {'Content-Type': 'application/json'} 支持在请求拦截器中设置追加
   credentials?: Credentials // 请求是否带上cookie 默认omit 'include' | 'same-origin' | 'omit' 
@@ -936,7 +942,10 @@ onload事件时间	0
 ```
 ## getLocation
 - 基于promise封装的获取地理位置信息
-- params: 高精度 超时时间 缓存时间
+- params: 
+  - enableHighAccuracy: boolean 高精度 
+  - timeout: number 超时时间 
+  - maximumAge: number 缓存时间
 ```javascript
 console.log(await getLocation()) //  { enableHighAccuracy: boolean = false, timeout: number = 5000, maximumAge: number = 0 }
 ```
@@ -960,10 +969,10 @@ preload(['https://img.yzcdn.cn/vant/cat.jpeg', 'https://img.yzcdn.cn/vant/dog.jp
 - 图片懒加载
 - 参数:
   - element: 图片元素,如果是属性会自动获取element
-- params-1: 图片的集合 Element | Element[] | NodeList[] | class | id | tagName 
-- params-2: root 指定相对容器默认是body 
-- params-3: rootMargin 指定相对容器的边距 默认距离容器底部200px时候加载(↑ → ↓ ←) '0px 0px 200px 0px' 
-- params-4: threshold 指定图片加载的阈值
+  - params-1: 图片的集合 Element | Element[] | NodeList[] | class | id | tagName 
+  - params-2: root 指定相对容器默认是body 
+  - params-3: rootMargin 指定相对容器的边距 默认距离容器底部200px时候加载(↑ → ↓ ←) '0px 0px 200px 0px' 
+  - params-4: threshold 指定图片加载的阈值
 ```javascript
 // usage
 // 默认展示src的图片，当滚动到图片的时候data-src替换src
