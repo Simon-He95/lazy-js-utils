@@ -12,7 +12,11 @@ export function addEventListener(target: Window | Document | Element | string, e
       stop()
   }
   update()
-  window.addEventListener('DOMContentLoaded', update)
+  window.addEventListener('DOMContentLoaded', () => {
+    update()
+    if (stopped)
+      stop()
+  })
 
   function update() {
     if (isStr(target))
@@ -23,15 +27,13 @@ export function addEventListener(target: Window | Document | Element | string, e
       throw new Error(`${target} is not a Element`);
     (target as Element).addEventListener(eventName, event, useCapture)
     stop = () => (target as Element).removeEventListener(eventName, event, useCapture)
-    if (stopped)
-      stop()
   }
   return () => {
     if (!stop) {
       stopped = true
       return
     }
-    stop?.()
+    setTimeout(stop)
   }
 }
 

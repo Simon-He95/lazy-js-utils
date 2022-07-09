@@ -4,6 +4,5 @@ export function createElement(tag: string, attributes?: Record<string, string>) 
     return el
   for (const key in attributes)
     el.setAttribute(key, attributes[key])
-
   return el
 }
