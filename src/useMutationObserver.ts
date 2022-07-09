@@ -1,11 +1,13 @@
 import { isStr } from './isStr'
+import { addEventListener } from './addEventListener'
 import type { MutationObserverInit } from './types'
 export function useMutationObserver(element: Element | string, callback: (...args: any[]) => void, options: MutationObserverInit = {}) {
   let mounted = false
   let stopped = false
-  update()
-  addEventListener('DOMContentLoaded', update)
   let stop: () => void
+
+  update()
+  addEventListener(document, 'DOMContentLoaded', update)
   function update() {
     if (isStr(element))
       element = document.querySelector(element as string) as Element || element
