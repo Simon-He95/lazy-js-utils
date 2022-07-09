@@ -16,7 +16,8 @@ export function useMutationObserver(element: Element | string, callback: (...arg
     const mutationObserver = new MutationObserver(callback)
     mutationObserver.observe(element as Element, options)
     stop = () => mutationObserver.disconnect()
-    if (stopped) stop()
+    if (stopped)
+      stop()
   }
   return () => {
     if (!stop) {
@@ -26,5 +27,4 @@ export function useMutationObserver(element: Element | string, callback: (...arg
     stop?.()
   }
 }
-
 
