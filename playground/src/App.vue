@@ -6,15 +6,18 @@ import {
   fileSplice,
   numWheel,
   picInPic,
+  useElementBounding,
 } from '../../src'
-
+const stop = useElementBounding('#main', (data) => {
+  console.log('222', data)
+})
 const toggle = picInPic('#video')
 </script>
 
 <template>
   <main p=" y-10" text="center gray-700 dark:gray-200">
     <div>
-      <div id="main" font-mono text-2xl />
+      <div id="main" font-mono text-2xl h-500 />
     </div>
     <video
       id="video"

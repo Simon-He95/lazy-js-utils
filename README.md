@@ -53,11 +53,15 @@ stop() // 停止监听
 ```
 
 ## useElementBounding
-- getBoundingClientRect封装
+- getBoundingClientRect响应式的封装
 - 参数:
   - element: string | Element
+  - callback: (rect: DOMRect) => void
 ```javascript
-const rect = useElementBounding('#id')
+const stop = useElementBounding('#id',(rect)=>{
+  console.log(rect)
+})
+stop() // 停止监听
 ```
 
 ## useMutationObserver
