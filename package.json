@@ -33,7 +33,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "pkgroll --minify --max-old-space-size=8192",
+    "build": "pkgroll --minify",
     "dev": "pkgroll --watch",
     "play": "pnpm run -C playground dev",
     "play:build": "pnpm run -C playground build",
