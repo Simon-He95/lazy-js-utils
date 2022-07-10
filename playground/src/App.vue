@@ -12,19 +12,9 @@ import {
   picInPic,
   tableExportExcel,
   useElementBounding,
-} from '../../src'
+} from "../../src";
 
-const toggle = picInPic('#video')
-// tableExportExcel(".table", "表格.xls");
-jsonExportZip({
-  header: ['column1', 'column2', 'column3'],
-  data: [
-    ['a', 'b', 'c'],
-    ['d', 'e', 'f'],
-    ['g', 'h', 'i'],
-  ],
-  fileName: 'json',
-})
+const toggle = picInPic("#video");
 </script>
 
 <template>
@@ -51,9 +41,7 @@ jsonExportZip({
         <td>3</td>
       </tr>
     </table>
-    <button @click="toggle()">
-      toggle
-    </button>
+    <button @click="toggle()">toggle</button>
     <Footer />
   </main>
 </template>
