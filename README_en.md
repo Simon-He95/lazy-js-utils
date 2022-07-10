@@ -23,6 +23,44 @@ import {
 
 ```
 
+## insertElement
+- Insert a dom element
+- params:
+  - parent: string | HTMLElement /* The parent element */
+  - element: HTMLElement /* Insert elements */
+  - target?: null | HTMLElement /* Insertion position (inserted to first node by default) */
+```js
+const div = createElement('div', {
+  id: 'main',
+  style: 'background: red;font-size:20px',
+})
+insertElement('#main', div) // Insert into the first node
+insertElement('#main', div, null) // Insert to the end
+```
+
+## removeElement
+- Delete the dom element
+- params:
+  - element: dom element
+```js
+removeElement(element)
+```
+## findElement
+- Look for the dom element
+- params:
+  - selector: Find the selector
+  - single: Whether to look for only one element
+```js
+findElement('video') // <video>
+findElement('video', true) // [<video>, <video>]
+```
+
+## useWebp
+- Determine whether the current environment supports webp
+```javascript
+useWebp() // true or false
+```
+
 ## calFps
 - Calculate the FPS
 ```javascript

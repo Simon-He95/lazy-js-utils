@@ -8,9 +8,7 @@ import {
   picInPic,
   useElementBounding,
 } from '../../src'
-const stop = useElementBounding('#main', (data) => {
-  console.log('222', data)
-})
+
 const toggle = picInPic('#video')
 </script>
 

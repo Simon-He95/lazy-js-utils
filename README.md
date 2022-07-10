@@ -23,6 +23,44 @@ import {
 
 ```
 
+## insertElement
+- 插入dom元素
+- 参数:
+  - parent: string | HTMLElement 父元素
+  - element: 插入元素
+  - target: 插入位置 (默认插入到第一个节点)
+```js
+const div = createElement('div', {
+  id: 'main',
+  style: 'background: red;font-size:20px',
+})
+insertElement('#main', div) // 插入到第一个节点
+insertElement('#main', div, null) // 插入到最后
+```
+
+## removeElement
+- 删除dom元素
+- 参数:
+  - element: dom元素
+```js
+removeElement(element)
+```
+## findElement
+- 查找dom元素
+- 参数:
+  - selector: 查找的选择器
+  - single: 是否只查找一个元素
+```js
+findElement('video') // <video>
+findElement('video', true) // [<video>, <video>]
+```
+
+## useWebp
+- 判断当前环境是否支持webp
+```javascript
+useWebp() // true or false
+```
+
 ## calFps
 - 计算FPS
 ```javascript
