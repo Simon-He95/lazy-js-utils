@@ -12,9 +12,9 @@ import {
   picInPic,
   tableExportExcel,
   useElementBounding,
-} from "../../src";
+} from '../../src'
 
-const toggle = picInPic("#video");
+const toggle = picInPic('#video')
 </script>
 
 <template>
@@ -41,7 +41,9 @@ const toggle = picInPic("#video");
         <td>3</td>
       </tr>
     </table>
-    <button @click="toggle()">toggle</button>
+    <button @click="toggle()">
+      toggle
+    </button>
     <Footer />
   </main>
 </template>
