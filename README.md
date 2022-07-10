@@ -6,7 +6,7 @@
 <p align="center"> <a href="./README_en.md">English</a> | 简体中文</p>
 
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
-目前整理了<strong>80+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
+目前整理了<strong>90+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
 
 ## 赞助我
 ![img](/assets/wechat.jpg 'WeChat')
@@ -21,6 +21,72 @@ import {
   deepCompare
  } from 'simon-js-tool' # 按需引入
 
+```
+
+## jsonExportZip
+- json导出为zip文件
+- 参数:
+  - header: string[]
+  - data: any[][]
+  - fileName: string
+```js
+jsonExportZip({
+  header: ['colums1', 'colums2', 'colums3'],
+  data: [
+    ['data1', 'data2', 'data3'],
+    ['data4', 'data5', 'data6'],
+    ['data7', 'data8', 'data9'],
+  ],
+  fileName: 'test'
+})
+```
+
+## tableExportExcel
+- HTMLTableElement 转换为 Excel 导出
+- 参数:
+  - table: HTMLTableElement | string
+  - filename: string = 'test.xlsx
+  - sheetname: string = 'sheet1'
+```js
+tableExportExcel('.my-table', '表格.xlsx') // 导出 .my-table 元素的表格.xlsx
+```
+
+## jsonExportExcel
+- json导出成excel
+- 参数:
+  - exportExcelOptions： {
+    multiHeader?: [],
+    header: [],
+    data: any[][],
+    filename?: string = 'excel-list',
+    merges?: string[] = [],
+    autoWidth: Boolean = false,
+    bookType?: string = 'xlsx',
+    sheetName?:string = 'sheet1',
+  }
+```js
+jsonExportExcel({
+  header: ['姓名', '年龄', '性别'],
+  data: [
+    ['小王', '18', '男'],
+    ['小李', '20', '男'],
+    ['小赵', '21', '男'],
+    ['小张', '22', '男'],
+    ['小刘', '23', '男'],
+  ],
+  fileName: '三年二班学生信息',
+  bookType: 'xlsx',
+  sheetName: '学生信息表',
+}) // 导出三年二班学生信息.xlsx
+```
+
+## exportPdf
+- 导出pdf文件
+- 参数:
+  - src: 图片地址
+  - filename: 文件名
+```js
+exportPdf('./a.jpg', 'xxx') // 导出xxx.pdf
 ```
 
 ## insertElement

@@ -1,6 +1,7 @@
 import Jspdf from 'jspdf'
+import { uuid } from './uuid'
 
-export async function exportPdf(src: string, filename: string) {
+export async function exportPdf(src: string, filename: string = uuid(8)) {
   return toPDF(await transformPicture(src), filename)
 }
 

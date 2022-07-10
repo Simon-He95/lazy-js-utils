@@ -6,7 +6,7 @@ import { s2ab, sheet_from_array_of_arrays, workbook } from './common'
 export interface exportExcelOptions {
   header: string[]
   data?: any[][]
-  filename?: string
+  fileName?: string
   multiHeader?: string[]
   merges?: string[]
   autoWidth?: Boolean
@@ -21,9 +21,9 @@ export function jsonExportExcel(options: exportExcelOptions) {
     multiHeader = [],
     header = [],
     data = [],
-    filename = 'excel-list',
+    fileName = 'excel-list',
     merges = [],
-    autoWidth = true,
+    autoWidth = false,
     bookType = 'xlsx',
     sheetName = 'sheet1',
   } = options
@@ -81,6 +81,6 @@ export function jsonExportExcel(options: exportExcelOptions) {
   })
   saveAs(new Blob([s2ab(wbout)], {
     type: 'application/octet-stream',
-  }), `${filename}.${bookType}`)
+  }), `${fileName}.${bookType}`)
 }
 

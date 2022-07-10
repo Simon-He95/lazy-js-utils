@@ -3,19 +3,34 @@ import {
   compressImage,
   dbStorage,
   dragEvent,
+  exportExcel,
+  exportPdf,
   fileSplice,
+  jsonExportExcel,
+  jsonExportZip,
   numWheel,
   picInPic,
+  tableExportExcel,
   useElementBounding,
 } from '../../src'
 
 const toggle = picInPic('#video')
+// tableExportExcel(".table", "表格.xls");
+jsonExportZip({
+  header: ['column1', 'column2', 'column3'],
+  data: [
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f'],
+    ['g', 'h', 'i'],
+  ],
+  fileName: 'json',
+})
 </script>
 
 <template>
   <main p=" y-10" text="center gray-700 dark:gray-200">
     <div>
-      <div id="main" font-mono text-2xl h-500 />
+      <div id="main" font-mono text-2xl />
     </div>
     <video
       id="video"
@@ -24,6 +39,18 @@ const toggle = picInPic('#video')
       src="https://static.newcger.com/uploads/preview/ae/2022/07/51629.mp4"
       controls
     />
+    <table class="table">
+      <tr>
+        <th>column1</th>
+        <th>column2</th>
+        <th>column3</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+    </table>
     <button @click="toggle()">
       toggle
     </button>
