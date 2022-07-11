@@ -1,7 +1,5 @@
 import * as THREE from 'three'
-import { isStr } from './isStr'
-import { addEventListener } from './addEventListener'
-import { animationFrameWrapper } from './animationFrameWrapper'
+import { addEventListener, animationFrameWrapper, isStr } from 'simon-js-tool'
 
 interface SThreeOptions extends Record<string, any> {
   createTargets: (THREE: any) => { targets: any[]; contents: any[] }
