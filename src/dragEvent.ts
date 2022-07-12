@@ -3,7 +3,7 @@ import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 import type { DragEvent } from './types'
 
-export function dragEvent(target: HTMLElement | string, options: DragEvent = {}) {
+export function dragEvent(target: HTMLElement | string, options: DragEvent = {}, trigger?: boolean) {
   let mounted = false
   const { os } = getDevice()
   const isPhone = os === 'ios' || os === 'android'
@@ -21,7 +21,8 @@ export function dragEvent(target: HTMLElement | string, options: DragEvent = {})
         options.dragStart && options.dragStart(wrapperE(e))
       }, false))
       options.dragMove && stop.push(addEventListener(target as HTMLElement, 'touchmove', (e: any) => {
-        options.dragMove?.(wrapperE(e))
+        if (!trigger || down)
+          options.dragMove?.(wrapperE(e))
       }, false))
       options.dragEnd && stop.push(addEventListener(target as HTMLElement, 'touchend', (e: any) => {
         options.dragEnd?.(wrapperE(e))
@@ -34,7 +35,7 @@ export function dragEvent(target: HTMLElement | string, options: DragEvent = {})
         options.dragStart && options.dragStart(e)
       }, false))
       options.dragMove && stop.push(addEventListener(target as HTMLElement, 'mousemove', (e: any) => {
-        if (down)
+        if (!trigger || down)
           options.dragMove?.(e)
       }, false))
       options.dragEnd && stop.push(addEventListener(target as HTMLElement, 'mouseup', (e: any) => {
