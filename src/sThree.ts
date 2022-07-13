@@ -2,8 +2,11 @@ import * as THREE from 'three'
 import { OrbitControls as Orbit } from 'three/examples/jsm/controls/OrbitControls'
 import type { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import type { Mesh, Object3D, PerspectiveCamera } from 'three'
-import { addEventListener, animationFrameWrapper, dragEvent, isStr } from 'simon-js-tool'
 import * as dat from 'dat.gui'
+import { addEventListener } from './addEventListener'
+import { animationFrameWrapper } from './animationFrameWrapper'
+import { dragEvent } from './dragEvent'
+import { isStr } from './isStr'
 type T = typeof THREE
 
 interface AnimateOptions {
@@ -285,7 +288,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       return loader.load(...args)
     }
     // @ts-expect-error three not export specific name
-    return new _class()?.(...args)
+    return new _class(...args)
   }
   function track(...args: [target: Object, propName: string, min?: number, max?: number, step?: number]): dat.GUIController {
     if (!gui)
