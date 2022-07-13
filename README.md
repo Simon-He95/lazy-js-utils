@@ -253,78 +253,67 @@ dragEvent('#main', {
 - 可以让你的代码更加简洁,更加美观
 - 不需要在onMounted中执行,可以在任意时刻使用
 - 自动监听resize事件,自动更新canvas的大小
+- 内置了一下简单的创建函数和一些修改属性函数后自动化更新视图的功能
 - 参数:
   - container: string | HTMLElement, 父容器
-  - options: SThreeOptions, 函数式的方式去创建场景、渲染器、相机等元素
-```javascript
-sThree("#main", {
-  createCamera(THREE) { // 创建相机，返回相机对象
-    const fov = 40;
-    const aspect = 2;
-    const near = 0.1;
-    const far = 1000;
-    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 50, 0);
-    camera.up.set(0, 0, 1);
-    camera.lookAt(0, 0, 0);
-    return camera;
-  },
-  createTargets(THREE) { // 创建目标，返回[contents, target]数组,contents的结果会在animate钩子中作为参数传入animate函数，target是目标对象，会被自动加入到场景中
-    const sphereGeometry = new THREE.SphereGeometry(1, 6, 6);
-    const solarSystem = new THREE.Object3D();
-    const sunMesh = makeSun(THREE, sphereGeometry);
-    const earthOrbit = new THREE.Object3D();
-    const earthMesh = makeEarth(THREE, sphereGeometry);
-    const moonMesh = makeMoon(THREE, sphereGeometry);
-    earthOrbit.position.x = 10;
-    earthOrbit.add(earthMesh);
-    earthOrbit.add(moonMesh);
-    solarSystem.add(earthOrbit);
-    solarSystem.add(sunMesh);
-    return {
-      contents: [makeLight(THREE), solarSystem],
-      targets: [makeLight(THREE), solarSystem, earthOrbit, sunMesh, earthMesh, moonMesh],
-    };
-  },
-  middleware(THREE, targets) { // 在渲染前的钩子函数，可以对目标进行一些操作，比如加入动画等
-  },
-  animate(THREE, objects, time) { // 此函数会被循环调用，用来更新目标的位置和旋转等信息，参数是THREE, 目标数组(createTargets返回的contents), timestamp
-    time *= 0.001;
-    objects.forEach((node) => {
-      node.rotation.y = time;
-    })
+  - options: {
+     createMesh: (
+    c?: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => Mesh[], // 一个创建函数c,const material = c("Mesh", {
+        matcap: texture,
+      });
+    animationArray?: Mesh[], // 会在animate中传入,可以用来操作可能被合并的mesh，但是想单独处理的mesh,animationArray
+    THREE?: T,
+    track?: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController 
+  ) => any[] // track只有在开启debug模式下使用,可以在track中添加控件,返回一个数组,数组中的每个元素是一个dat.GUIController对象,可以用来操作控件,返回的控件会被添加到gui中
+  createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera // 创建camera, const camera = c("PC"); return camera, 返回的camera会被添加到scene中
+  animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera // 动画函数,每秒60帧,可以在这里添加修改camera或者mesh的属性,会被自动update,如果需要使用新的camera在这里返回一个新的camera即可
+  middleware?: (middlewareOptions: MiddlewareOptions) => any // 中间件函数,可以在这里额外做一下操作，比如添加axes,使用 OrbitControls等等，返回的内容会被传入到animation函数中的params中
+  mousemove?: (e: Event) => void // 自动监听画布的mousemove事件
+  mousedown?: (e: Event) => void // 自动监听画布的mousedown事件
+  mouseup?: (e: Event) => void // 自动监听画布的mouseup事件
+  debug?: boolean // 是否开启debug模式,默认false
+  alias?: Record<string, string> // 配置别名,在c函数中作为映射使用例如 {m:"Mesh",pc:"PerspectiveCamera"}等等，根据自己的命名规则来配置别名
   }
-})
+```javascript
+ const cursor = {
+    x: 0,
+    y: 0,
+  };
+  SThree("#main", {
+    createMesh(c, animationArray, track, THREE) {
+      const texture = c("tl", "../public/door.png");
+      const material = c("mmm", {
+        matcap: texture,
+      });
 
-function makeLight(THREE) {
-  const color = 0xffffff;
-  const intensity = 3;
-  return new THREE.PointLight(color, intensity);
-}
-function makeEarth(THREE, sphereGeometry) {
-  const earthMaterial = new THREE.MeshPhongMaterial({
-    color: 0x2233ff,
-    emissive: 0x112244,
+      const sphere = c("m", c("sg", 0.5, 16, 16), material);
+      sphere.position.x = -1.5;
+      const plane = c("m", c("planeg", 1, 1), material);
+      const torus = c("m", c("torusg", 0.3, 0.2, 16, 32), material);
+      torus.position.x = 1.5;
+      return [sphere, plane, torus];
+    },
+    createCamera(c, meshes) {
+      const camera = c("PC");
+      camera.position.z = 5;
+      return camera;
+    },
+    middleware({ c, meshes, camera, scene, OrbitControls, dom }) {
+      const controls = new OrbitControls(camera, dom);
+      controls.enableDamping = true;
+      return controls;
+    },
+    animate({ c, meshes, camera, elapsedTime, params }) {
+      // console.log(params);
+      // meshes.forEach((mesh) => {
+      //   mesh.rotation.y = time * Math.PI;
+      // });
+      // meshes[0].rotation.x += 0.01;
+      // meshes[0].rotation.y += 0.01;
+      params.update();
+    },
+    debug: true,
   });
-  const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
-  return earthMesh;
-}
-function makeSun(THREE, sphereGeometry) {
-  const sunMaterial = new THREE.MeshPhongMaterial({ emissive: 0xffff00 });
-  const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
-  sunMesh.scale.set(5, 5, 5);
-  return sunMesh;
-}
-function makeMoon(THREE, sphereGeometry) {
-  const moonMaterial = new THREE.MeshPhongMaterial({
-    color: 0x888888,
-    emissive: 0x222222,
-  });
-  const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
-  moonMesh.position.x = 2;
-  moonMesh.scale.set(0.5, 0.5, 0.5);
-  return moonMesh;
-}
 ```
 
 ## sCharts

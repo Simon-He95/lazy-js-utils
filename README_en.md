@@ -246,76 +246,64 @@ dragEvent('#main', {
 - Automatically listens for resize events and automatically updates the size of the canvas
 - params:
   - container: string | HTMLElement /* Parent container */
-  - options: SThreeOptions  /* A functional way to create scenes, renderers, cameras, and other elements */
-```javascript
-sThree("#main", {
-  createCamera(THREE) { // Creates a camera and returns a camera object
-    const fov = 40;
-    const aspect = 2;
-    const near = 0.1;
-    const far = 1000;
-    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 50, 0);
-    camera.up.set(0, 0, 1);
-    camera.lookAt(0, 0, 0);
-    return camera;
-  },
-  createTargets(THREE) { // Create the target, return the [contents, target] array, the result of contents will be passed as an argument in the animate hook to the animate function, the target is the target object, will be automatically added to the scene
-    const sphereGeometry = new THREE.SphereGeometry(1, 6, 6);
-    const solarSystem = new THREE.Object3D();
-    const sunMesh = makeSun(THREE, sphereGeometry);
-    const earthOrbit = new THREE.Object3D();
-    const earthMesh = makeEarth(THREE, sphereGeometry);
-    const moonMesh = makeMoon(THREE, sphereGeometry);
-    earthOrbit.position.x = 10;
-    earthOrbit.add(earthMesh);
-    earthOrbit.add(moonMesh);
-    solarSystem.add(earthOrbit);
-    solarSystem.add(sunMesh);
-    return {
-      contents: [makeLight(THREE), solarSystem],
-      targets: [makeLight(THREE), solarSystem, earthOrbit, sunMesh, earthMesh, moonMesh],
-    };
-  },
-  middleware(THREE, targets) { // Before rendering, the hook function can perform some operations on the target, such as adding animation
-  },
-  animate(THREE, objects, time) { // This function is called in a loop to update information such as the position and rotation of the target, the argument is THREE, the target array (create Targets returns contents), timestamp
-    time *= 0.001;
-    objects.forEach((node) => {
-      node.rotation.y = time;
-    })
+  - options: {
+     createMesh: (
+    c?: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => Mesh[], // 一个创建函数c,const material = c("Mesh", {
+        matcap: texture,
+      });
+    animationArray?: Mesh[], // It will be passed in in the animate and can be used to manipulate mesh that may be merged, but want to handle mesh, animationArray, which you want to handle separately
+    THREE?: T,
+    track?: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController 
+  ) => any[] // track is only used in debug mode, you can add controls to the track, return an array, each element in the array is a dat. The GUIController object can be used to manipulate the control, and the returned control is added to the gui
+  createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera // Create camera, const camera = c("PC"); Return camera, the returned camera will be added to the scene
+  animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera // The animation function, at 60 frames per second, can be added here to modify the camera or mesh property, which will be automatically updated, if you need to use the new camera here to return a new camera
+  middleware?: (middlewareOptions: MiddlewareOptions) => any // Middleware functions, you can do an extra operation here, such as adding axes, using OrbitControls, etc., the returned content will be passed into the params in the organization function
+  mousemove?: (e: Event) => void // Automatically listens for mousemove events on the canvas
+  mousedown?: (e: Event) => void // Automatically listens for mousedown events on canvas
+  mouseup?: (e: Event) => void // Automatically listens for mouseup events on the canvas
+  debug?: boolean // Whether debug mode is enabled, false is the default
+  alias?: Record<string, string> // Configure aliases, such as {m:Mesh", pc:PerspectiveCamera"} in the c function, as mappings, etc., according to their own naming conventions
   }
-})
+```javascript
+ const cursor = {
+    x: 0,
+    y: 0,
+  };
+  SThree("#main", {
+    createMesh(c, animationArray, track, THREE) {
+      const texture = c("tl", "../public/door.png");
+      const material = c("mmm", {
+        matcap: texture,
+      });
 
-function makeLight(THREE) {
-  const color = 0xffffff;
-  const intensity = 3;
-  return new THREE.PointLight(color, intensity);
-}
-function makeEarth(THREE, sphereGeometry) {
-  const earthMaterial = new THREE.MeshPhongMaterial({
-    color: 0x2233ff,
-    emissive: 0x112244,
+      const sphere = c("m", c("sg", 0.5, 16, 16), material);
+      sphere.position.x = -1.5;
+      const plane = c("m", c("planeg", 1, 1), material);
+      const torus = c("m", c("torusg", 0.3, 0.2, 16, 32), material);
+      torus.position.x = 1.5;
+      return [sphere, plane, torus];
+    },
+    createCamera(c, meshes) {
+      const camera = c("PC");
+      camera.position.z = 5;
+      return camera;
+    },
+    middleware({ c, meshes, camera, scene, OrbitControls, dom }) {
+      const controls = new OrbitControls(camera, dom);
+      controls.enableDamping = true;
+      return controls;
+    },
+    animate({ c, meshes, camera, elapsedTime, params }) {
+      // console.log(params);
+      // meshes.forEach((mesh) => {
+      //   mesh.rotation.y = time * Math.PI;
+      // });
+      // meshes[0].rotation.x += 0.01;
+      // meshes[0].rotation.y += 0.01;
+      params.update();
+    },
+    debug: true,
   });
-  const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
-  return earthMesh;
-}
-function makeSun(THREE, sphereGeometry) {
-  const sunMaterial = new THREE.MeshPhongMaterial({ emissive: 0xffff00 });
-  const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
-  sunMesh.scale.set(5, 5, 5);
-  return sunMesh;
-}
-function makeMoon(THREE, sphereGeometry) {
-  const moonMaterial = new THREE.MeshPhongMaterial({
-    color: 0x888888,
-    emissive: 0x222222,
-  });
-  const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
-  moonMesh.position.x = 2;
-  moonMesh.scale.set(0.5, 0.5, 0.5);
-  return moonMesh;
-}
 ```
 
 ## sCharts
