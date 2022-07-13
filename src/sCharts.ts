@@ -1,5 +1,6 @@
 import * as echarts from 'echarts'
-import { addEventListener, isStr } from 'simon-js-tool'
+import { addEventListener } from './addEventListener'
+import { isStr } from './isStr'
 
 interface SChartsOption extends Record<string, any> {
   theme?: string | object
