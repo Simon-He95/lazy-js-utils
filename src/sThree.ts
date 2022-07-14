@@ -115,6 +115,19 @@ interface FnNameMap {
   line: 'Line'
   lp: 'LineLoop'
   ls: 'LineSegments'
+  al: 'AmbientLight'
+  alp: 'AmbientLightProbe'
+  dl: 'DirectionalLight'
+  hl: 'HemisphereLight'
+  hlp: 'HemisphereLightProbe'
+  pl: 'PointLight'
+  ral: 'RectAreaLight'
+  sl: 'SpotLight'
+  pls: 'PointLightShadow'
+  dls: 'DirectionalLightShadow'
+  sls: 'SpotLightShadow'
+  lph: 'LightProbeHelper'
+  ralh: 'RectAreaLightHelper'
 }
 interface SThreeOptions extends Record<string, any> {
   createMesh: (
@@ -232,6 +245,19 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     line: 'Line',
     lp: 'LineLoop',
     ls: 'LineSegments',
+    al: 'AmbientLight',
+    alp: 'AmbientLightProbe',
+    dl: 'DirectionalLight',
+    hl: 'HemisphereLight',
+    hlp: 'HemisphereLightProbe',
+    pl: 'PointLight',
+    ral: 'RectAreaLight',
+    sl: 'SpotLight',
+    pls: 'PointLightShadow',
+    dls: 'DirectionalLightShadow',
+    sls: 'SpotLightShadow',
+    lph: 'LightProbeHelper',
+    ralh: 'RectAreaLightHelper',
   }, alias) as FnNameMap
   const meshes: Mesh[] = createMesh?.(c, animationArray, THREE, track)
   scene.add(...meshes)
