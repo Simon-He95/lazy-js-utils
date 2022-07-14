@@ -260,6 +260,32 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     ralh: 'RectAreaLightHelper',
   }, alias) as FnNameMap
   const meshes: Mesh[] = createMesh?.(c, animationArray, THREE, track)
+  const loaderArray: string[] = [
+    'animationl',
+    'AnimationLoader',
+    'audiol',
+    'AudioLoader',
+    'bgl',
+    'BufferGeometryLoader',
+    'compressedtl',
+    'CompressedTextureLoader',
+    'cubetl',
+    'CubeTextureLoader',
+    'dtl',
+    'DataTextureLoader',
+    'fl',
+    'FileLoader',
+    'il',
+    'ImageLoader',
+    'ibl',
+    'ImageBitmapLoader',
+    'ml',
+    'MaterialLoader',
+    'ol',
+    'ObjectLoader',
+    'tl',
+    'TextureLoader',
+  ]
   scene.add(...meshes)
   const camera = createCamera?.(c, meshes, scene)
   if (!camera)
@@ -305,7 +331,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       console.log(`${lowName}: ${fnNameMapKey}`)
     if (!_class)
       throw new Error(`${fnName} is not found`)
-    if (lowName === 'tl') {
+    if (loaderArray.includes(lowName)) {
       if (cacheLoader.has(lowName))
         return cacheLoader.get(lowName).load(...args)
       // @ts-expect-error three not export specific name
