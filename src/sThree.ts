@@ -103,7 +103,7 @@ interface FnNameMap {
   mlm: 'MeshLambertMaterial'
   mmm: 'MeshMatcapMaterial'
   mnm: 'MeshNormalMaterial'
-  mpongm: 'MeshPhongMaterial'
+  mphongm: 'MeshPhongMaterial'
   mphysicalm: 'MeshPhysicalMaterial'
   msm: 'MeshStandardMaterial'
   mtm: 'MeshToonMaterial'
@@ -233,7 +233,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     mlm: 'MeshLambertMaterial',
     mmm: 'MeshMatcapMaterial',
     mnm: 'MeshNormalMaterial',
-    mpongm: 'MeshPhongMaterial',
+    mphongm: 'MeshPhongMaterial',
     mphysicalm: 'MeshPhysicalMaterial',
     msm: 'MeshStandardMaterial',
     mtm: 'MeshToonMaterial',
