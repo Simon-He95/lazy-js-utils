@@ -3,6 +3,9 @@ import { OrbitControls as Orbit } from 'three/examples/jsm/controls/OrbitControl
 import type { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import type { Mesh, Object3D, PerspectiveCamera } from 'three'
 import * as dat from 'dat.gui'
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+import type { TextGeometryParameters } from 'three/examples/jsm/geometries/TextGeometry.js'
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 import { addEventListener } from './addEventListener'
 import { animationFrameWrapper } from './animationFrameWrapper'
 import { dragEvent } from './dragEvent'
@@ -14,14 +17,12 @@ interface AnimateOptions {
   animationArray: Mesh[]
   camera: PerspectiveCamera
   elapsedTime: number
-  meshes: Mesh[]
   scene: Object3D
   dom: HTMLCanvasElement
   timestamp: number
 }
 interface MiddlewareOptions {
   c: (fnName: keyof T, ...args: any[]) => any
-  meshes: Mesh[]
   animationArray: Mesh[]
   scene: Object3D
   OrbitControls: OrbitControls
@@ -35,7 +36,7 @@ interface FnNameMap {
   pc: 'PerspectiveCamera'
   sc: 'StereoCamera'
   bg: 'BoxGeometry'
-  buffera: 'BufferAttribute'
+  ba: 'BufferAttribute'
   bufferg: 'BufferGeometry'
   capsuleg: 'CapsuleGeometry'
   coneg: 'ConeGeometry'
@@ -85,7 +86,9 @@ interface FnNameMap {
   compressedtl: 'CompressedTextureLoader'
   cubetl: 'CubeTextureLoader'
   dtl: 'DataTextureLoader'
-  fl: 'FileLoader'
+  filel: 'FileLoader'
+  fl: 'FontLoader'
+  svgl: 'SVGLoader'
   il: 'ImageLoader'
   ibl: 'ImageBitmapLoader'
   l: 'Loader'
@@ -103,7 +106,7 @@ interface FnNameMap {
   mlm: 'MeshLambertMaterial'
   mmm: 'MeshMatcapMaterial'
   mnm: 'MeshNormalMaterial'
-  mphongm: 'MeshPhongMaterial'
+  mpongm: 'MeshPhongMaterial'
   mphysicalm: 'MeshPhysicalMaterial'
   msm: 'MeshStandardMaterial'
   mtm: 'MeshToonMaterial'
@@ -115,27 +118,16 @@ interface FnNameMap {
   line: 'Line'
   lp: 'LineLoop'
   ls: 'LineSegments'
-  al: 'AmbientLight'
-  alp: 'AmbientLightProbe'
-  dl: 'DirectionalLight'
-  hl: 'HemisphereLight'
-  hlp: 'HemisphereLightProbe'
-  pl: 'PointLight'
-  ral: 'RectAreaLight'
-  sl: 'SpotLight'
-  pls: 'PointLightShadow'
-  dls: 'DirectionalLightShadow'
-  sls: 'SpotLightShadow'
-  lph: 'LightProbeHelper'
-  ralh: 'RectAreaLightHelper'
 }
 interface SThreeOptions extends Record<string, any> {
-  createMesh: (
-    c?: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any,
-    animationArray?: any,
-    THREE?: T,
+  createMesh: (options: {
+    cf?: (url: string, text: string, options: TextGeometryParameters) => Promise<TextGeometry>
+    animationArray?: Mesh[]
     track?: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController
-  ) => Mesh[]
+    c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any
+    scene?: Object3D
+    THREE?: T
+  }) => void
   createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera
   animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera
   middleware?: (middlewareOptions: MiddlewareOptions) => any
@@ -145,6 +137,7 @@ interface SThreeOptions extends Record<string, any> {
   debug?: boolean
   alias?: Record<string, string>
 }
+
 export function sThree(container: HTMLElement | string, options: SThreeOptions) {
   if (isStr(container))
     container = document.querySelector(container as string) as HTMLElement || container
@@ -165,7 +158,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     pc: 'PerspectiveCamera',
     sc: 'StereoCamera',
     bg: 'BoxGeometry',
-    buffera: 'BufferAttribute',
+    ba: 'BufferAttribute',
     bufferg: 'BufferGeometry',
     capsuleg: 'CapsuleGeometry',
     coneg: 'ConeGeometry',
@@ -215,7 +208,9 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     compressedtl: 'CompressedTextureLoader',
     cubetl: 'CubeTextureLoader',
     dtl: 'DataTextureLoader',
-    fl: 'FileLoader',
+    filel: 'FileLoader',
+    fl: 'FontLoader',
+    svgl: 'SVGLoader',
     il: 'ImageLoader',
     ibl: 'ImageBitmapLoader',
     l: 'Loader',
@@ -258,8 +253,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     sls: 'SpotLightShadow',
     lph: 'LightProbeHelper',
     ralh: 'RectAreaLightHelper',
-  }, alias) as FnNameMap
-  const meshes: Mesh[] = createMesh?.(c, animationArray, THREE, track)
+  }, alias) as unknown as FnNameMap
   const loaderArray: string[] = [
     'animationl',
     'AnimationLoader',
@@ -286,17 +280,23 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     'tl',
     'TextureLoader',
   ]
-  scene.add(...meshes)
-  const camera = createCamera?.(c, meshes, scene)
+  createMesh?.({
+    c: c as unknown as any,
+    animationArray,
+    THREE,
+    track,
+    cf,
+    scene,
+  })
+  const camera = createCamera?.(c, animationArray, scene)
   if (!camera)
     throw new Error('camera is not created')
   const dom = renderer.domElement
   const animationOptions = {
-    params: options.middleware?.({ c, meshes, scene, OrbitControls: Orbit as unknown as OrbitControls, camera, dom, animationArray }),
+    params: options.middleware?.({ c, scene, OrbitControls: Orbit as unknown as OrbitControls, camera, dom, animationArray }),
     c,
     dom,
     scene,
-    meshes,
     camera,
     animationArray,
     elapsedTime: new THREE.Clock().getElapsedTime(),
@@ -342,6 +342,11 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     // @ts-expect-error three not export specific name
     return new _class(...args)
   }
+  function cf(url: string, text: string, options: TextGeometryParameters): Promise<TextGeometry> {
+    if (!url.endsWith('.json'))
+      throw new Error('You need to use typeface.json')
+    return new Promise(resolve => new FontLoader().load(url, font => resolve(new TextGeometry(text, Object.assign(options, { font })))))
+  }
   function track(...args: [target: Object, propName: string, min?: number, max?: number, step?: number]): dat.GUIController {
     if (!gui)
       throw new Error('gui is not created, please use debug option')
@@ -353,3 +358,4 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     return gui.add(...args)
   }
 }
+
