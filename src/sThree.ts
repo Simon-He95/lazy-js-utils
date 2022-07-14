@@ -299,7 +299,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
   }
   function c(fnName: keyof FnNameMap | keyof T, ...args: any[]): any {
     const lowName = fnName.toLowerCase() as keyof FnNameMap
-    const fnNameMapKey = fnNameMap[lowName]
+    const fnNameMapKey = fnNameMap[lowName] as keyof T
     const _class = THREE[fnNameMapKey || fnName]
     if (lowName)
       console.log(`${lowName}: ${fnNameMapKey}`)
