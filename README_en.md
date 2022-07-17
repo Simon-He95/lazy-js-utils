@@ -244,6 +244,7 @@ dragEvent('#main', {
 - Simplify the use of three
 - It can make your code more concise and beautiful
 - Automatically listens for resize events and automatically updates the size of the canvas
+- Built-in a simple creation function and some modify the property function after the automatic update of the view function such as the loading of the text does not have to call additional .load, you can directly pass the picture address, and this text is cached, built-in dat.gui debug function, can open debug:true, in the creationMesh structure trace function to use, If you need addColor and additional geotopry.color.set, you can automatically set Colon directly through track ('color', geometry, 'color').
 - params:
   - container: string | HTMLElement /* Parent container */
   - options: {

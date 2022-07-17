@@ -253,7 +253,7 @@ dragEvent('#main', {
 - 可以让你的代码更加简洁,更加美观
 - 不需要在onMounted中执行,可以在任意时刻使用
 - 自动监听resize事件,自动更新canvas的大小
-- 内置了一下简单的创建函数和一些修改属性函数后自动化更新视图的功能
+- 内置了一下简单的创建函数和一些修改属性函数后自动化更新视图的功能比如texture的加载不必额外再调用.load,可以直接传图片地址,并且这个texture是会被cache的,内置了dat.gui的debugger功能,可开启debug:true,在createMesh中结构track函数使用，如果是geometry的color需要addColor和额外设置geometry.color.set,可直接通过track('color',geometry,'color')就会自动去setColor
 - 参数:
   - container: string | HTMLElement, 父容器
   - options: {
