@@ -28,6 +28,7 @@ interface MiddlewareOptions {
   OrbitControls: OrbitControls
   dom: HTMLCanvasElement
   camera: PerspectiveCamera
+  renderer: THREE.WebGLRenderer
 }
 interface FnNameMap {
   cc: 'CubeCamera'
@@ -110,6 +111,7 @@ interface FnNameMap {
   mphysicalm: 'MeshPhysicalMaterial'
   msm: 'MeshStandardMaterial'
   mtm: 'MeshToonMaterial'
+  p: 'Points'
   pm: 'PointsMaterial'
   rm: 'RawShaderMaterial'
   shaderm: 'ShaderMaterial'
@@ -118,7 +120,9 @@ interface FnNameMap {
   line: 'Line'
   lp: 'LineLoop'
   ls: 'LineSegments'
+  f: 'Fog'
 }
+type ShadowType = 'BasicShadowMap' | 'PCFShadowMap' | 'PCFSoftShadowMap' | 'VSMShadowMap'
 interface SThreeOptions extends Record<string, any> {
   createMesh: (options: {
     cf?: (url: string, text: string, options: TextGeometryParameters) => Promise<TextGeometry>
@@ -127,6 +131,7 @@ interface SThreeOptions extends Record<string, any> {
     c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any
     scene?: Object3D
     THREE?: T
+    setUV?: (target: Mesh, size?: number) => void
   }) => void
   createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera
   animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera
@@ -136,6 +141,11 @@ interface SThreeOptions extends Record<string, any> {
   mouseup?: (e: Event) => void
   debug?: boolean
   alias?: Record<string, string>
+  shadowType?: ShadowType
+}
+
+interface Scene extends Object3D {
+  _add: (...args: any[]) => void
 }
 
 export function sThree(container: HTMLElement | string, options: SThreeOptions) {
@@ -144,10 +154,10 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
   if (isStr(container))
     throw new Error(`${container} container is not found`)
   const renderer = new THREE.WebGLRenderer()
-  const scene = new THREE.Scene() as Object3D
+  const scene = new THREE.Scene() as unknown as Scene
   const animationArray: Mesh[] = []
   const cacheLoader = new Map()
-  const { createCamera, createMesh, animate, mousemove, mousedown, mouseup, debug, alias } = options
+  const { createCamera, createMesh, animate, mousemove, mousedown, mouseup, debug, alias, shadowType } = options
   let gui: dat.GUI
   if (debug)
     gui = new dat.GUI()
@@ -232,6 +242,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     mphysicalm: 'MeshPhysicalMaterial',
     msm: 'MeshStandardMaterial',
     mtm: 'MeshToonMaterial',
+    p: 'Points',
     pm: 'PointsMaterial',
     rm: 'RawShaderMaterial',
     shaderm: 'ShaderMaterial',
@@ -253,6 +264,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     sls: 'SpotLightShadow',
     lph: 'LightProbeHelper',
     ralh: 'RectAreaLightHelper',
+    f: 'Fog',
   }, alias) as unknown as FnNameMap
   const loaderArray: string[] = [
     'animationl',
@@ -280,6 +292,18 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     'tl',
     'TextureLoader',
   ]
+  const sceneAdd = scene.add
+  scene._add = function (...args: any[]) {
+    sceneAdd.apply(scene, args)
+    const result = args.map(arg => () => unmount(arg))
+    return result.length === 1 ? result[0] : result
+    function unmount(arg: Mesh) {
+      const { material, geometry } = arg;
+      (material as any).dispose()
+      geometry.dispose()
+      scene.remove(arg)
+    }
+  }
   createMesh?.({
     c: c as unknown as any,
     animationArray,
@@ -287,24 +311,30 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     track,
     cf,
     scene,
+    setUV,
   })
   const camera = createCamera?.(c, animationArray, scene)
   if (!camera)
     throw new Error('camera is not created')
+  if (shadowType) {
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE[shadowType]
+  }
   const dom = renderer.domElement
   const animationOptions = {
-    params: options.middleware?.({ c, scene, OrbitControls: Orbit as unknown as OrbitControls, camera, dom, animationArray }),
+    params: options.middleware?.({ c, scene, OrbitControls: Orbit as unknown as OrbitControls, camera, dom, animationArray, renderer }),
     c,
     dom,
     scene,
     camera,
     animationArray,
-    elapsedTime: new THREE.Clock().getElapsedTime(),
   }
-  if (animate)
-    animationFrameWrapper((time: number) => renderer.render(scene, animate(Object.assign(animationOptions, { timestamp: time })) || camera), 0)
-  else
-    renderer.render(scene, camera);
+  if (animate) {
+    const clock = new THREE.Clock()
+    animationFrameWrapper((time: number) => renderer.render(scene, animate(Object.assign(animationOptions, { elapsedTime: clock.getElapsedTime(), timestamp: time })) || camera), 0)
+  }
+  else { animationFrameWrapper(() => renderer.render(scene, camera), 0, true) }
+
   (container as HTMLElement).appendChild(dom)
 
   dragEvent(dom, {
@@ -351,11 +381,13 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     if (!gui)
       throw new Error('gui is not created, please use debug option')
     if (args[0] === 'color') {
-      return gui.addColor(args[2] as unknown as { color: string }, 'color').onChange(() => {
-        (args[1] as unknown as { color: any }).color.set((args[2] as unknown as { color: string }).color)
+      return gui.addColor(args[1] as unknown as Record<string, any>, args[2] as unknown as string).onChange(() => {
+        (args[1] as unknown as Record<string, any>)?.color?.set(args[1][args[2] as any])
       })
     }
     return gui.add(...args)
   }
+  function setUV(target: Mesh, size = 2) {
+    target.geometry.setAttribute('uv2', c('ba', target.geometry.attributes.uv.array, size))
+  }
 }
-
