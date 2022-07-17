@@ -4,15 +4,18 @@ import { addEventListener } from './addEventListener'
 import type { DragEvent } from './types'
 
 export function dragEvent(target: HTMLElement | string, options: DragEvent = {}, trigger?: boolean) {
-  let mounted = false
+  let isMounted = false
+  let hasMounted = false
   const { os } = getDevice()
   const isPhone = os === 'ios' || os === 'android'
   const stop: (() => void)[] = []
   function update() {
+    if (hasMounted)
+      return
     if (isStr(target))
       target = document.querySelector(target as string) as HTMLElement || target
-    if (!mounted && isStr(target))
-      return mounted = true
+    if (!isMounted && isStr(target))
+      return isMounted = true
     else if (isStr(target))
       throw new Error(`${target} is not a HTMLElement`)
     let down = false
@@ -43,6 +46,7 @@ export function dragEvent(target: HTMLElement | string, options: DragEvent = {},
         down = false
       }, false))
     }
+    hasMounted = true
     function wrapperE(e: any) {
       const { clientX, clientY, pageX, pageY, screenX, screenY } = e?.changedTouches[0]
       e.clientX = clientX

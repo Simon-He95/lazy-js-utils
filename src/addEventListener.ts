@@ -1,7 +1,8 @@
 import { isStr } from './isStr'
 
 export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean, autoRemove?: boolean): (() => void) {
-  let mounted = false
+  let isMounted = false
+  let hasMounted = false
   let stopped = false
   let stop: () => void
   if (eventName === 'DOMContentLoaded')
@@ -19,14 +20,17 @@ export function addEventListener(target: Window | Document | Element | string, e
   })
 
   function update() {
+    if (hasMounted)
+      return
     if (isStr(target))
       target = document.querySelector(target as string) as Element || target
-    if (!mounted && isStr(target))
-      return mounted = true
+    if (!isMounted && isStr(target))
+      return isMounted = true
     else if (isStr(target))
       throw new Error(`${target} is not a Element`);
     (target as Element).addEventListener(eventName, event, useCapture)
     stop = () => (target as Element).removeEventListener(eventName, event, useCapture)
+    hasMounted = true
   }
   return () => {
     if (!stop) {

@@ -5,14 +5,17 @@ import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 
 export function numWheel(container: HTMLElement | string, options: NumWheelOptions) {
-  let mounted = false
+  let isMounted = false
+  let hasMounted = false
   update()
   addEventListener(document, 'DOMContentLoaded', update)
   function update() {
+    if (hasMounted)
+      return
     if (isStr(container))
       container = document.querySelector(container as string) as HTMLElement || container
-    if (!mounted && isStr(container))
-      return mounted = true
+    if (!isMounted && isStr(container))
+      return isMounted = true
     else if (isStr(container))
       throw new Error(`${container} is not a HTMLElement`)
     const el = createElement('div')
@@ -28,6 +31,7 @@ export function numWheel(container: HTMLElement | string, options: NumWheelOptio
       auto: false,
     }).update(endVal);
     (container as HTMLElement).appendChild(el)
+    hasMounted = true
   }
 }
 

@@ -2,22 +2,26 @@ import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 import type { MutationObserverInit } from './types'
 export function useMutationObserver(element: Element | string, callback: (...args: any[]) => void, options: MutationObserverInit = {}) {
-  let mounted = false
+  let isMounted = false
+  let hasMounted = false
   let stopped = false
   let stop: () => void
 
   update()
   addEventListener(document, 'DOMContentLoaded', update)
   function update() {
+    if (hasMounted)
+      return
     if (isStr(element))
       element = document.querySelector(element as string) as Element || element
-    if (!mounted && isStr(element))
-      return mounted = true
+    if (!isMounted && isStr(element))
+      return isMounted = true
     else if (isStr(element))
       throw new Error(`${element} is not a Element`)
     const mutationObserver = new MutationObserver(callback)
     mutationObserver.observe(element as Element, options)
     stop = () => mutationObserver.disconnect()
+    hasMounted = true
     if (stopped)
       stop()
   }
