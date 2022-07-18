@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import { OrbitControls as Orbit } from 'three/examples/jsm/controls/OrbitControls'
-import type { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import type { Mesh, Object3D, PerspectiveCamera } from 'three'
 import * as dat from 'dat.gui'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
@@ -10,7 +10,9 @@ import { addEventListener } from './addEventListener'
 import { animationFrameWrapper } from './animationFrameWrapper'
 import { dragEvent } from './dragEvent'
 import { isStr } from './isStr'
+
 type T = typeof THREE
+
 interface AnimateOptions {
   c: (fnName: keyof T, ...args: any[]) => any
   animationArray: Mesh[]
@@ -106,7 +108,7 @@ interface FnNameMap {
   mlm: 'MeshLambertMaterial'
   mmm: 'MeshMatcapMaterial'
   mnm: 'MeshNormalMaterial'
-  mpongm: 'MeshPhongMaterial'
+  mpm: 'MeshPhongMaterial'
   mphysicalm: 'MeshPhysicalMaterial'
   msm: 'MeshStandardMaterial'
   mtm: 'MeshToonMaterial'
@@ -119,6 +121,19 @@ interface FnNameMap {
   line: 'Line'
   lp: 'LineLoop'
   ls: 'LineSegments'
+  al: 'AmbientLight'
+  alp: 'AmbientLightProbe'
+  dl: 'DirectionalLight'
+  hl: 'HemisphereLight'
+  hlp: 'HemisphereLightProbe'
+  pl: 'PointLight'
+  ral: 'RectAreaLight'
+  sl: 'SpotLight'
+  pls: 'PointLightShadow'
+  dls: 'DirectionalLightShadow'
+  sls: 'SpotLightShadow'
+  lph: 'LightProbeHelper'
+  ralh: 'RectAreaLightHelper'
   f: 'Fog'
 }
 type ShadowType = 'BasicShadowMap' | 'PCFShadowMap' | 'PCFSoftShadowMap' | 'VSMShadowMap'
@@ -131,6 +146,7 @@ interface SThreeOptions extends Record<string, any> {
     scene?: Object3D
     THREE?: T
     setUV?: (target: Mesh, size?: number) => void
+    GLTFLoader: GLTFLoader
   }) => void
   createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera
   animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera
@@ -229,7 +245,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     mlm: 'MeshLambertMaterial',
     mmm: 'MeshMatcapMaterial',
     mnm: 'MeshNormalMaterial',
-    mphongm: 'MeshPhongMaterial',
+    mpm: 'MeshPhongMaterial',
     mphysicalm: 'MeshPhysicalMaterial',
     msm: 'MeshStandardMaterial',
     mtm: 'MeshToonMaterial',
@@ -318,13 +334,14 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       }
     }
     createMesh?.({
-      c: c as unknown as any,
+      c,
       animationArray,
       THREE,
       track,
       cf,
       scene,
       setUV,
+      GLTFLoader: GLTFLoader as unknown as GLTFLoader,
     })
     const camera = createCamera?.(c, animationArray, scene)
     if (!camera)
@@ -335,7 +352,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     }
     const dom = renderer.domElement
     const animationOptions = {
-      params: options.middleware?.({ c, scene, OrbitControls: Orbit as unknown as OrbitControls, camera, dom, animationArray, renderer }),
+      params: options.middleware?.({ c, scene, OrbitControls: OrbitControls as unknown as OrbitControls, camera, dom, animationArray, renderer }),
       c,
       dom,
       scene,
