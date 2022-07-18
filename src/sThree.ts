@@ -48,7 +48,7 @@ interface FnNameMap {
   ig: 'IcosahedronGeometry'
   lg: 'LatheGeometry'
   og: 'OctahedronGeometry'
-  planeg: 'PlaneGeometry'
+  pg: 'PlaneGeometry'
   polyg: 'PolyhedronGeometry'
   rg: 'RingGeometry'
   sg: 'SphereGeometry'
@@ -160,7 +160,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       container = document.querySelector(container as string) as HTMLElement || container
     if (!isMounted && isStr(container))
       return isMounted = true
-    else if (isStr(container))
+    else if (!container)
       throw new Error(`${container} container is not found`)
 
     const renderer = new THREE.WebGLRenderer()
@@ -189,7 +189,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       ig: 'IcosahedronGeometry',
       lg: 'LatheGeometry',
       og: 'OctahedronGeometry',
-      planeg: 'PlaneGeometry',
+      pg: 'PlaneGeometry',
       polyg: 'PolyhedronGeometry',
       rg: 'RingGeometry',
       sg: 'SphereGeometry',
