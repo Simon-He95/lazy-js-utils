@@ -1,4 +1,5 @@
 import { isStr } from './isStr'
+import { animationFrameWrapper } from './animationFrameWrapper'
 
 export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean, autoRemove?: boolean): (() => void) {
   let isMounted = false
@@ -18,6 +19,7 @@ export function addEventListener(target: Window | Document | Element | string, e
     if (stopped)
       stop()
   })
+  animationFrameWrapper(update, 0, true)
 
   function update() {
     if (hasMounted)
