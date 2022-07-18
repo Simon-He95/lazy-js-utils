@@ -6,10 +6,17 @@ export function addEventListener(target: Window | Document | Element | string, e
   let hasMounted = false
   let stopped = false
   let stop: () => void
+  let animationStop: (() => void)
   if (eventName === 'DOMContentLoaded')
     stopped = true
   function event(e: Event) {
-    callback.call(e.target, e)
+    try {
+      callback.call(e.target, e)
+    }
+    catch (error: any) {
+      animationStop?.()
+      throw new Error(error)
+    }
     if (autoRemove)
       stop()
   }
@@ -19,8 +26,10 @@ export function addEventListener(target: Window | Document | Element | string, e
     if (stopped)
       stop()
   })
+
   if (eventName === 'DOMContentLoaded')
-    animationFrameWrapper(callback, 0, true)
+    animationStop = animationFrameWrapper(callback, 0, true)
+
   else
     animationFrameWrapper(update, 0, true)
 

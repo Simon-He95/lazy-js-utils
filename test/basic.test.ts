@@ -1,3 +1,6 @@
+/**
+ * @vitest-environment jsdom
+ */
 import { describe, expect, it } from 'vitest'
 import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, htmlTransform, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sleep, sort, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
 

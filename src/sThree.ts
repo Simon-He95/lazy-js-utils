@@ -11,7 +11,6 @@ import { animationFrameWrapper } from './animationFrameWrapper'
 import { dragEvent } from './dragEvent'
 import { isStr } from './isStr'
 type T = typeof THREE
-
 interface AnimateOptions {
   c: (fnName: keyof T, ...args: any[]) => any
   animationArray: Mesh[]
@@ -367,10 +366,11 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       const lowName = fnName.toLowerCase() as keyof FnNameMap
       const fnNameMapKey = fnNameMap[lowName] as keyof T
       const _class = THREE[fnNameMapKey || fnName]
-      if (lowName)
-        console.log(`${lowName}: ${fnNameMapKey}`)
-      if (!_class)
-        throw new Error(`${fnName} is not found`)
+      if (!_class) {
+        throw new Error(`${fnName} is not found, maybe you want to use ${Object.keys(fnNameMap).filter(key => key.startsWith(fnName[0]) && key.endsWith(fnName.slice(-1))).reduce((result, key) => {
+          return result += `\n ${key} : ${(fnNameMap as any)[key]}`
+        }, '')} `)
+      }
       if (loaderArray.includes(lowName)) {
         if (cacheLoader.has(lowName))
           return cacheLoader.get(lowName).load(...args)
