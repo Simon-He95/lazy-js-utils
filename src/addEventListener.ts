@@ -19,7 +19,10 @@ export function addEventListener(target: Window | Document | Element | string, e
     if (stopped)
       stop()
   })
-  animationFrameWrapper(update, 0, true)
+  if (eventName === 'DOMContentLoaded')
+    animationFrameWrapper(callback, 0, true)
+  else
+    animationFrameWrapper(update, 0, true)
 
   function update() {
     if (hasMounted)
