@@ -16,18 +16,12 @@ import { isFn } from './isFn'
 type T = typeof THREE
 
 interface AnimateOptions {
-  c: (fnName: keyof T, ...args: any[]) => any
-  animationArray: Mesh[]
   camera: PerspectiveCamera
   elapsedTime: number
-  scene: Object3D
   dom: HTMLCanvasElement
   timestamp: number
 }
 interface MiddlewareOptions {
-  c: (fnName: keyof T, ...args: any[]) => any
-  animationArray: Mesh[]
-  scene: Object3D
   OrbitControls: OrbitControls
   dom: HTMLCanvasElement
   camera: PerspectiveCamera
@@ -147,18 +141,8 @@ interface FnNameMap {
 }
 type ShadowType = 'BasicShadowMap' | 'PCFShadowMap' | 'PCFSoftShadowMap' | 'VSMShadowMap'
 interface SThreeOptions extends Record<string, any> {
-  createMesh: (options: {
-    cf?: (url: string, text: string, options: TextGeometryParameters) => Promise<TextGeometry>
-    animationArray?: Mesh[]
-    track?: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController
-    c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any
-    scene?: Object3D
-    THREE?: T
-    setUV?: (target: Mesh, size?: number) => void
-    glTFLoader: (url: string, dracoLoader?: DRACOLoader) => Promise<GLTFLoader>
-    draCOLoader: (decoderPath: string) => DRACOLoader
-  }) => void
-  createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera
+  createMesh: () => void
+  createCamera: () => PerspectiveCamera
   animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera
   middleware?: (middlewareOptions: MiddlewareOptions) => any
   mousemove?: (e: Event) => void
@@ -170,14 +154,25 @@ interface SThreeOptions extends Record<string, any> {
 }
 
 interface Scene extends Object3D {
-  _add: (...args: any[]) => void
+  _add?: (...args: any[]) => void
 }
 
-export function sThree(container: HTMLElement | string, options: SThreeOptions) {
+interface ReturnType {
+  c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any
+  cf: (url: string, text: string, options: TextGeometryParameters) => Promise<TextGeometry>
+  track: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController
+  setUV: (target: Mesh, size?: number) => void
+  glTFLoader: (url: string, dracoLoader?: DRACOLoader, callback?: (gltf: GLTFLoader) => void) => Promise<GLTFLoader>
+  draCOLoader: (decoderPath: string) => DRACOLoader
+  animationArray: Mesh[]
+  THREE: T
+  scene: Scene
+}
+export function sThree(container: HTMLElement | string, options: SThreeOptions): ReturnType {
   let isMounted = false
   let hasMounted = false
   let gui: dat.GUI
-  let scene: Scene
+  const scene: Scene = new THREE.Scene()
   const fnNameMap: FnNameMap = {
     v3: 'Vector3',
     cc: 'CubeCamera',
@@ -320,9 +315,21 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
   const gltfLoaderMap = new Map()
   const dracoLoaderMap = new Map()
   const animationArray: Mesh[] = []
-
   update()
   addEventListener(document, 'DOMContentLoaded', update)
+
+  return {
+    c,
+    cf,
+    track,
+    setUV,
+    animationArray,
+    glTFLoader,
+    draCOLoader,
+    THREE,
+    scene,
+  }
+
   function update() {
     if (hasMounted)
       return
@@ -334,7 +341,6 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       throw new Error(`${container} container is not found`)
 
     const renderer = new THREE.WebGLRenderer()
-    scene = new THREE.Scene() as unknown as Scene
     const { createCamera, createMesh, animate, mousemove, mousedown, mouseup, debug, alias, shadowType } = options
     if (debug)
       gui = new dat.GUI()
@@ -358,18 +364,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
         scene.remove(arg)
       }
     }
-    createMesh?.({
-      c,
-      animationArray,
-      THREE,
-      track,
-      cf,
-      scene,
-      setUV,
-      glTFLoader,
-      draCOLoader,
-    })
-    const camera = createCamera?.(c, animationArray, scene)
+    createMesh?.()
+    const camera = createCamera?.()
     if (!camera)
       throw new Error('camera is not created')
     if (shadowType) {
@@ -378,12 +374,9 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     }
     const dom = renderer.domElement
     const animationOptions = {
-      params: options.middleware?.({ c, scene, OrbitControls: OrbitControls as unknown as OrbitControls, camera, dom, animationArray, renderer }),
-      c,
+      params: options.middleware?.({ OrbitControls: OrbitControls as unknown as OrbitControls, camera, dom, renderer }),
       dom,
-      scene,
       camera,
-      animationArray,
     }
     if (animate) {
       const clock = new THREE.Clock()
@@ -409,16 +402,6 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       renderer.setSize(width, height, false)
     }
   }
-  return {
-    c,
-    cf,
-    track,
-    setUV,
-    animationArray,
-    glTFLoader,
-    draCOLoader,
-  }
-
   function c(fnName: keyof FnNameMap | keyof T, ...args: any[]): any {
     const lowName = fnName.toLowerCase() as keyof FnNameMap
     const fnNameMapKey = fnNameMap[lowName] as keyof T
