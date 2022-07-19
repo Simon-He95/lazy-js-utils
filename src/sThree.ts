@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import type { Mesh, Object3D, PerspectiveCamera } from 'three'
 import * as dat from 'dat.gui'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
@@ -10,6 +11,7 @@ import { addEventListener } from './addEventListener'
 import { animationFrameWrapper } from './animationFrameWrapper'
 import { dragEvent } from './dragEvent'
 import { isStr } from './isStr'
+import { isFn } from './isFn'
 
 type T = typeof THREE
 
@@ -86,7 +88,7 @@ interface FnNameMap {
   bgl: 'BufferGeometryLoader'
   c: 'Cache'
   compressedtl: 'CompressedTextureLoader'
-  cubetl: 'CubeTextureLoader'
+  ctl: 'CubeTextureLoader'
   dtl: 'DataTextureLoader'
   filel: 'FileLoader'
   fl: 'FontLoader'
@@ -135,6 +137,13 @@ interface FnNameMap {
   lph: 'LightProbeHelper'
   ralh: 'RectAreaLightHelper'
   f: 'Fog'
+  aa: 'AnimationAction'
+  anc: 'AnimationClip'
+  am: 'AnimationMixer'
+  aog: 'AnimationObjectGroup'
+  au: 'AnimationUtils'
+  a: 'Animation'
+  anl: 'AnimationLoader'
 }
 type ShadowType = 'BasicShadowMap' | 'PCFShadowMap' | 'PCFSoftShadowMap' | 'VSMShadowMap'
 interface SThreeOptions extends Record<string, any> {
@@ -146,7 +155,8 @@ interface SThreeOptions extends Record<string, any> {
     scene?: Object3D
     THREE?: T
     setUV?: (target: Mesh, size?: number) => void
-    GLTFLoader: GLTFLoader
+    glTFLoader: (url: string, dracoLoader?: DRACOLoader) => Promise<GLTFLoader>
+    draCOLoader: (decoderPath: string) => DRACOLoader
   }) => void
   createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera
   animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera
@@ -223,7 +233,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     bgl: 'BufferGeometryLoader',
     c: 'Cache',
     compressedtl: 'CompressedTextureLoader',
-    cubetl: 'CubeTextureLoader',
+    ctl: 'CubeTextureLoader',
     dtl: 'DataTextureLoader',
     filel: 'FileLoader',
     fl: 'FontLoader',
@@ -272,6 +282,13 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     lph: 'LightProbeHelper',
     ralh: 'RectAreaLightHelper',
     f: 'Fog',
+    aa: 'AnimationAction',
+    anc: 'AnimationClip',
+    am: 'AnimationMixer',
+    aog: 'AnimationObjectGroup',
+    au: 'AnimationUtils',
+    a: 'Animation',
+    anl: 'AnimationLoader',
   }
   const loaderArray: string[] = [
     'animationl',
@@ -282,7 +299,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     'BufferGeometryLoader',
     'compressedtl',
     'CompressedTextureLoader',
-    'cubetl',
+    'ctl',
     'CubeTextureLoader',
     'dtl',
     'DataTextureLoader',
@@ -300,6 +317,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     'TextureLoader',
   ]
   const cacheLoader = new Map()
+  const gltfLoaderMap = new Map()
+  const dracoLoaderMap = new Map()
   const animationArray: Mesh[] = []
 
   update()
@@ -319,8 +338,14 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     const { createCamera, createMesh, animate, mousemove, mousedown, mouseup, debug, alias, shadowType } = options
     if (debug)
       gui = new dat.GUI()
-    Object.assign(fnNameMap, alias)
-
+    if (alias) {
+      Object.assign(fnNameMap, alias)
+      Object.keys(alias).forEach((key) => {
+        if (!alias[key].includes('Loader') || loaderArray.includes(key))
+          return
+        loaderArray.push(key)
+      })
+    }
     const sceneAdd = scene.add
     scene._add = function (...args: any[]) {
       sceneAdd.apply(scene, args)
@@ -341,7 +366,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
       cf,
       scene,
       setUV,
-      GLTFLoader: GLTFLoader as unknown as GLTFLoader,
+      glTFLoader,
+      draCOLoader,
     })
     const camera = createCamera?.(c, animationArray, scene)
     if (!camera)
@@ -389,6 +415,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
     track,
     setUV,
     animationArray,
+    glTFLoader,
+    draCOLoader,
   }
 
   function c(fnName: keyof FnNameMap | keyof T, ...args: any[]): any {
@@ -428,5 +456,35 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions) 
   }
   function setUV(target: Mesh, size = 2) {
     target.geometry.setAttribute('uv2', c('ba', target.geometry.attributes.uv.array, size))
+  }
+  function glTFLoader(url: string, dracoLoader?: DRACOLoader, callback?: (gltf: GLTFLoader) => void): Promise<GLTFLoader> {
+    return new Promise((resolve) => {
+      if (isFn(dracoLoader)) {
+        callback = dracoLoader as unknown as (gltf: GLTFLoader) => void
+        dracoLoader = undefined
+      }
+      let gltfLoader
+      if (!gltfLoaderMap.get('gltf')) {
+        gltfLoader = new GLTFLoader()
+        gltfLoaderMap.set('gltf', gltfLoader)
+      }
+      else { gltfLoader = gltfLoaderMap.get('gltf') }
+      if (dracoLoader)
+        gltfLoader.setDRACOLoader(dracoLoader)
+      gltfLoader.load(url, (gltf: GLTFLoader) => {
+        resolve(gltf)
+        callback?.(gltf)
+      })
+    })
+  }
+  function draCOLoader(decoderPath: string): DRACOLoader {
+    let dracoLoader
+    if (!dracoLoaderMap.get('draco')) {
+      dracoLoader = new DRACOLoader()
+      dracoLoaderMap.set('draco', dracoLoader)
+    }
+    else { dracoLoader = dracoLoaderMap.get('draco') }
+    dracoLoader.setDecoderPath(decoderPath)
+    return dracoLoader
   }
 }
