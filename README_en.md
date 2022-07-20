@@ -23,6 +23,18 @@ import {
 
 ```
 
+## ExportPlugin
+- VitePlugin
+- Export directly to a file that ends with parameters
+```js
+// The glsl file is available for import glsl from 'xxx.glsl
+export default defineConfig({
+  plugins: [
+    exportPlugin('glsl'),
+  ],
+})
+```
+
 ## insertElement
 - Insert a dom element
 - params:
@@ -248,22 +260,30 @@ dragEvent('#main', {
 - params:
   - container: string | HTMLElement /* Parent container */
   - options: {
-     createMesh: (
-    c?: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => Mesh[], // 一个创建函数c,const material = c("Mesh", {
-        matcap: texture,
-      });
-    animationArray?: Mesh[], // It will be passed in in the animate and can be used to manipulate mesh that may be merged, but want to handle mesh, animationArray, which you want to handle separately
-    THREE?: T,
-    track?: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController 
-  ) => any[] // track is only used in debug mode, you can add controls to the track, return an array, each element in the array is a dat. The GUIController object can be used to manipulate the control, and the returned control is added to the gui
-  createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera // Create camera, const camera = c("PC"); Return camera, the returned camera will be added to the scene
-  animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera // The animation function, at 60 frames per second, can be added here to modify the camera or mesh property, which will be automatically updated, if you need to use the new camera here to return a new camera
-  middleware?: (middlewareOptions: MiddlewareOptions) => any // Middleware functions, you can do an extra operation here, such as adding axes, using OrbitControls, etc., the returned content will be passed into the params in the organization function
-  mousemove?: (e: Event) => void // Automatically listens for mousemove events on the canvas
-  mousedown?: (e: Event) => void // Automatically listens for mousedown events on canvas
-  mouseup?: (e: Event) => void // Automatically listens for mouseup events on the canvas
-  debug?: boolean // Whether debug mode is enabled, false is the default
-  alias?: Record<string, string> // Configure aliases, such as {m:Mesh", pc:PerspectiveCamera"} in the c function, as mappings, etc., according to their own naming conventions
+    createMesh: () => void
+    createCamera: (scene: Object3D) = > PerspectiveCamera /* Create camera, const camera = c("PC"); Return camera, the returned camera will be added to the scene */
+    animate?: (animationOptions: AnimateOptions) => void | THREE. The PerspectiveCamera /* animation function, 60 frames per second, can be added here to modify the camera or mesh property, will be automatically updated, if you need to use the new camera here to return a new camera */
+    middleware?: (middlewareOptions: MiddlewareOptions) = > any /* middleware function, you can do an extra operation here, such as adding axes, using OrbitControls, etc., the returned content will be passed into the params in the organization function */
+    mousemove?: (e: Event) = > void /* Automatically listens to the mousemove event of the canvas */
+    mousedown?: (e: Event) = > void /* Automatically listens for mousedown events on the canvas */
+    mouseup?: (e: Event) = > void /* Automatically listens for mouseup events on the canvas */
+    debug?: Boolean /* Does debug mode be turned on, with false by default */
+    alias?: Record<tring, string> /* configuration aliases, using for example {m:"Mesh", pc: PerspectiveCamera"} in the c function as a mapping, etc., to configure the alias according to its own naming conventions */
+  }
+- Return:
+  - ReturnType {
+    c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any /* Using c can be used to more concisely create some geometry, material, texture, etc., such as c ("m", c('bg', 1, 1, 1), c('msm') is equivalent to creating a mesh, bg is a 1x1x1 boxGeometry, msm is a MeshStandardMaterial */
+    cf: (url: string, text: string, options: TextGeometryParameters) => Promise<TextGeometry> /* Create a text geometry, you can pass in the text content and text configuration parameters, return <TextGeometry>the Promise */
+    track: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController /* Open the debug in the upper right corner, you can track the properties of mesh, you can add and modify the properties of mesh here, will be automatically updated, such astrack ('color', mesh, 'color') will automatically go to setColor, appended _add method will export a method to destroy the original mesh, const unmount = scene._add (mesh), You can call the uninstall method to uninstall mesh before the update, and call the mount method to re-add mesh after the update */
+    setUV: (target: Mesh, size?: number) => void /* Quickly set the UV of the geometry, you can pass in the size parameter, the default is 2 */
+    glTFLoader: (url: string, dracoLoader?: DRACOLoader, callback?: (gltf: GLTFLoader) => void) => Promise<GLTFLoader> /* Create a gltf loader, you can pass in the dracoLoader parameter, if you need to use the draco loader, you need to introduce the draco-loader, and set the dracoLoader parameter in the callback to <GLTFLoader>return the Promise , you can directly get the result after the load, such as const gltf = await glTFLoader('/model.gltf'), gltf.scene is the scene object of gltf, and gltf is capable of being used by cache with the same gltfLoader */
+    draCOLoader: (decoderPath: string) = > DRACOLoader /* Creates a draco loader that can pass in the decoderPath parameter and return the DRACOLoader */
+    animationArray: Mesh[] /* Animation array, used to record all animation mesh, can be in the organization function to batch update mesh properties, such as organizationArray.forEach(mesh = > mesh.rotation.x += 0.01) */
+    THREE: T /* Three objects */
+    scene: Scene /* Scene object */
+    renderer: WebGLRenderer /* renderer object */
+    dom: HTMLCanvasElement /* dom instance */
+    setRendererAttributes: (options: Record<K, any>) = > void /* Batch add the properties of the renderer, you can add modified properties here, will be automatically update, such as setRendererAttributes({antialias:true}) will automatically set antiialias to true */
   }
 ```javascript
  const cursor = {

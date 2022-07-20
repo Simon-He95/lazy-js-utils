@@ -26,6 +26,18 @@ import {
 
 ```
 
+## ExportPlugin
+- VitePlugin
+- 将以参数结尾的文件直接导出
+```js
+// glsl文件即可import glsl from 'xxx.glsl
+export default defineConfig({
+  plugins: [
+    exportPlugin('glsl'),
+  ],
+})
+```
+
 ## insertElement
 - 插入dom元素
 - 参数:
@@ -257,63 +269,143 @@ dragEvent('#main', {
 - 参数:
   - container: string | HTMLElement, 父容器
   - options: {
-     createMesh: (
-    c?: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => Mesh[], // 一个创建函数c,const material = c("Mesh", {
-        matcap: texture,
-      });
-    animationArray?: Mesh[], // 会在animate中传入,可以用来操作可能被合并的mesh，但是想单独处理的mesh,animationArray
-    THREE?: T,
-    track?: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController 
-  ) => any[] // track只有在开启debug模式下使用,可以在track中添加控件,返回一个数组,数组中的每个元素是一个dat.GUIController对象,可以用来操作控件,返回的控件会被添加到gui中
-  createCamera: (c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any, meshes: Mesh[], scene: Object3D) => PerspectiveCamera // 创建camera, const camera = c("PC"); return camera, 返回的camera会被添加到scene中
-  animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera // 动画函数,每秒60帧,可以在这里添加修改camera或者mesh的属性,会被自动update,如果需要使用新的camera在这里返回一个新的camera即可
-  middleware?: (middlewareOptions: MiddlewareOptions) => any // 中间件函数,可以在这里额外做一下操作，比如添加axes,使用 OrbitControls等等，返回的内容会被传入到animation函数中的params中
-  mousemove?: (e: Event) => void // 自动监听画布的mousemove事件
-  mousedown?: (e: Event) => void // 自动监听画布的mousedown事件
-  mouseup?: (e: Event) => void // 自动监听画布的mouseup事件
-  debug?: boolean // 是否开启debug模式,默认false
-  alias?: Record<string, string> // 配置别名,在c函数中作为映射使用例如 {m:"Mesh",pc:"PerspectiveCamera"}等等，根据自己的命名规则来配置别名
+    createMesh: () => void
+    createCamera: (scene: Object3D) => PerspectiveCamera /* 创建camera, const camera = c("PC"); return camera, 返回的camera会被添加到scene中 */
+    animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera /* 动画函数,每秒60帧,可以在这里添加修改camera或者mesh的属性,会被自动update,如果需要使用新的camera在这里返回一个新的camera即可 */
+    middleware?: (middlewareOptions: MiddlewareOptions) => any /* 中间件函数,可以在这里额外做一下操作，比如添加axes,使用 OrbitControls等等，返回的内容会被传入到animation函数中的params中 */
+    mousemove?: (e: Event) => void /* 自动监听画布的mousemove事件 */
+    mousedown?: (e: Event) => void /* 自动监听画布的mousedown事件 */
+    mouseup?: (e: Event) => void /* 自动监听画布的mouseup事件 */
+    debug?: boolean /* 是否开启debug模式,默认false */
+    alias?: Record<string, string> /* 配置别名,在c函数中作为映射使用例如 {m:"Mesh",pc:"PerspectiveCamera"}等等，根据自己的命名规则来配置别名 */
+  }
+- 返回值:
+  - ReturnType {
+    c: (fnName: keyof FnNameMap | keyof T, ...args: any[]) => any /* 使用c可以更简洁的创建一些geometry、material、texture等,如c("m",c('bg',1,1,1),c('msm'))等同于创建一个Mesh,bg是一个1x1x1的boxGeometry,msm是一个MeshStandardMaterial */
+    cf: (url: string, text: string, options: TextGeometryParameters) => Promise<TextGeometry> /* 创建文字geometry,可以传入文字内容和文字配置参数,返回Promise<TextGeometry>
+    track: (...args: [target: Object, propName: string, min?: number, max?: number, step?: number]) => dat.GUIController // 开启右上角的debugger,可以追踪mesh的属性,可以在这里添加修改mesh的属性,会被自动update,如track('color',mesh,'color')就会自动去setColor,追加了_add方法会导出一个销毁原mesh的方法,const unmount = scene._add(mesh) ,可在更新前调用unmount方法卸载mesh,更新后调用mount方法重新添加mesh */
+    setUV: (target: Mesh, size?: number) => void // 快速设置geometry的uv,可以传入size参数,默认为2
+    glTFLoader: (url: string, dracoLoader?: DRACOLoader, callback?: (gltf: GLTFLoader) => void) => Promise<GLTFLoader> /* 创建gltf加载器,可以传入dracoLoader参数,如果需要使用draco加载器,需要引入draco-loader,并且在callback中设置dracoLoader参数,返回Promise<GLTFLoader>,可直接获取load后的结果,如const gltf = await glTFLoader('/model.gltf') ,gltf.scene就是gltf的scene对象，并且gltf是能够被cache使用同一个gltfLoader */
+    draCOLoader: (decoderPath: string) => DRACOLoader /* 创建draco加载器,可以传入decoderPath参数,返回DRACOLoader */
+    animationArray: Mesh[] /* 动画数组,用于记录所有的动画mesh,可在animation函数中去批量更新mesh的属性,如animationArray.forEach(mesh => mesh.rotation.x += 0.01) */
+    THREE: T /* THREE对象 */
+    scene: Scene /* 场景对象 */
+    renderer: WebGLRenderer /* 渲染器对象 */
+    dom: HTMLCanvasElement /* dom实例 */
+    setRendererAttributes: (options: Record<K, any>) => void /* 批量添加renderer的属性,可以在这里添加修改renderer的属性,会被自动update,如setRendererAttributes({antialias:true})就会自动设置antialias为true */
   }
 ```javascript
- const cursor = {
-    x: 0,
-    y: 0,
-  };
-  SThree("#main", {
-    createMesh(c, animationArray, track, THREE) {
-      const texture = c("tl", "../public/door.png");
-      const material = c("mmm", {
-        matcap: texture,
-      });
 
-      const sphere = c("m", c("sg", 0.5, 16, 16), material);
-      sphere.position.x = -1.5;
-      const plane = c("m", c("planeg", 1, 1), material);
-      const torus = c("m", c("torusg", 0.3, 0.2, 16, 32), material);
-      torus.position.x = 1.5;
-      return [sphere, plane, torus];
-    },
-    createCamera(c, meshes) {
-      const camera = c("PC");
-      camera.position.z = 5;
-      return camera;
-    },
-    middleware({ c, meshes, camera, scene, OrbitControls, dom }) {
-      const controls = new OrbitControls(camera, dom);
-      controls.enableDamping = true;
-      return controls;
-    },
-    animate({ c, meshes, camera, elapsedTime, params }) {
-      // console.log(params);
-      // meshes.forEach((mesh) => {
-      //   mesh.rotation.y = time * Math.PI;
-      // });
-      // meshes[0].rotation.x += 0.01;
-      // meshes[0].rotation.y += 0.01;
-      params.update();
-    },
-    debug: true,
-  });
+const {
+  c,
+  track,
+  cf,
+  animationArray,
+  glTFLoader,
+  draCOLoader,
+  setUV,
+  THREE,
+  scene,
+  dom,
+  renderer,
+} = sThree("#galaxy", {
+  createMesh() {
+    // Galaxy
+    const params = {
+      count: 30000,
+      size: 0.02,
+      radius: 4.5,
+      branch: 8,
+      spin: 1,
+      randomness: 0.35,
+      randomnessPower: 3,
+      insideColor: "#b77863",
+      outsideColor: "#2755e2",
+    };
+    let geometry;
+    let material;
+    let points;
+    let unmount;
+    const generateGalaxy = () => {
+      if (points) unmount();
+      geometry = c("bufferg");
+      const positions = new Float32Array(params.count * 3);
+      const colors = new Float32Array(params.count * 3);
+      const colorInside = new THREE.Color(params.insideColor);
+      const colorOutside = new THREE.Color(params.outsideColor);
+      for (let i = 0; i < params.count; i++) {
+        const i3 = i * 3;
+        // Position
+        const radius = Math.random() * params.radius;
+        const spinAngle = radius * params.spin;
+        const randomX =
+          Math.pow(Math.random(), params.randomnessPower) *
+          (Math.random() < 0.5 ? -1 : 1) *
+          params.randomness;
+        const randomY =
+          Math.pow(Math.random(), params.randomnessPower) *
+          (Math.random() < 0.5 ? -1 : 1) *
+          params.randomness;
+        const randomZ =
+          Math.pow(Math.random(), params.randomnessPower) *
+          (Math.random() < 0.5 ? -1 : 1) *
+          params.randomness;
+        const branchAngle = ((i % params.branch) / params.branch) * Math.PI * 2 + randomX;
+        positions[i3 + 0] = Math.cos(branchAngle + spinAngle) * radius;
+        positions[i3 + 1] = 0 + randomY;
+        positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+        // Color
+        const mixedColor = colorInside.clone();
+        mixedColor.lerp(colorOutside, radius / params.radius);
+        colors[i3 + 0] = mixedColor.r;
+        colors[i3 + 1] = mixedColor.g;
+        colors[i3 + 2] = mixedColor.b;
+      }
+      geometry.setAttribute("position", c("ba", positions, 3));
+      geometry.setAttribute("color", c("ba", colors, 3));
+      console.log(geometry);
+      // Material
+      material = c("pm", {
+        size: params.size,
+        sizeAttenuation: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        vertexColors: true,
+      });
+      points = c("p", geometry, material);
+      unmount = scene._add(points);
+      animationArray.push(points);
+    };
+    track(params, "count").min(100).max(100000).step(100).onFinishChange(generateGalaxy);
+    track(params, "size").min(0.001).max(0.1).step(0.001).onFinishChange(generateGalaxy);
+
+    track(params, "radius").min(0.01).max(20).step(0.01).onFinishChange(generateGalaxy);
+    track(params, "branch").min(2).max(20).step(1).onFinishChange(generateGalaxy);
+    track(params, "spin").min(-5).max(5).step(0.001).onFinishChange(generateGalaxy);
+    track(params, "randomness").min(0).max(2).step(0.001).onFinishChange(generateGalaxy);
+    track(params, "randomnessPower")
+      .min(1)
+      .max(10)
+      .step(0.001)
+      .onFinishChange(generateGalaxy);
+    track("color", params, "insideColor").onFinishChange(generateGalaxy);
+    track("color", params, "outsideColor").onFinishChange(generateGalaxy);
+    generateGalaxy();
+  },
+  createCamera(scene) {
+    const camera = c("PC");
+    camera.position.z = 1;
+    camera.position.y = 4;
+    return camera;
+  },
+  middleware({ camera, OrbitControls }) {
+    const controls = new OrbitControls(camera, dom);
+  },
+  animate({ camera, elapsedTime, params }) {
+    animationArray[0].rotation.y = elapsedTime * 0.1;
+  },
+  debug: true,
+});
 ```
 
 ## sCharts

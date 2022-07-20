@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
-import type { Mesh, Object3D, PerspectiveCamera } from 'three'
+import type { Mesh, Object3D, PerspectiveCamera, WebGLRenderer } from 'three'
 import * as dat from 'dat.gui'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import type { TextGeometryParameters } from 'three/examples/jsm/geometries/TextGeometry.js'
@@ -14,22 +14,21 @@ import { isStr } from './isStr'
 import { isFn } from './isFn'
 
 type T = typeof THREE
-
+type K = keyof WebGLRenderer
 interface AnimateOptions {
   camera: PerspectiveCamera
   elapsedTime: number
-  dom: HTMLCanvasElement
   timestamp: number
 }
 interface MiddlewareOptions {
   OrbitControls: OrbitControls
-  dom: HTMLCanvasElement
   camera: PerspectiveCamera
-  renderer: THREE.WebGLRenderer
 }
 interface FnNameMap {
   cc: 'CubeCamera'
   v3: 'Vector3'
+  v2: 'Vector2'
+  v4: 'Vector4'
   oc: 'OrthographicCamera'
   pc: 'PerspectiveCamera'
   sc: 'StereoCamera'
@@ -54,6 +53,7 @@ interface FnNameMap {
   tkg: 'TorusKnotGeometry'
   tubeg: 'TubeGeometry'
   wfg: 'WireframeGeometry'
+  cg: 'CircleGeometry'
   ac: 'ArcCurve'
   crc3: 'CatmullRomCurve3'
   cbc: 'CubicBezierCurve'
@@ -110,8 +110,8 @@ interface FnNameMap {
   mtm: 'MeshToonMaterial'
   p: 'Points'
   pm: 'PointsMaterial'
-  rm: 'RawShaderMaterial'
-  shaderm: 'ShaderMaterial'
+  rsm: 'RawShaderMaterial'
+  sm: 'ShaderMaterial'
   shadowm: 'ShadowMaterial'
   spritem: 'SpriteMaterial'
   line: 'Line'
@@ -143,7 +143,7 @@ type ShadowType = 'BasicShadowMap' | 'PCFShadowMap' | 'PCFSoftShadowMap' | 'VSMS
 interface SThreeOptions extends Record<string, any> {
   createMesh: () => void
   createCamera: () => PerspectiveCamera
-  animate?: (animationOptions: AnimateOptions) => void | THREE.PerspectiveCamera
+  animate?: (animationOptions: AnimateOptions) => void | PerspectiveCamera
   middleware?: (middlewareOptions: MiddlewareOptions) => any
   mousemove?: (e: Event) => void
   mousedown?: (e: Event) => void
@@ -167,14 +167,21 @@ interface ReturnType {
   animationArray: Mesh[]
   THREE: T
   scene: Scene
+  renderer: WebGLRenderer
+  dom: HTMLCanvasElement
+  setRendererAttributes: (options: Record<K, any>) => void
 }
 export function sThree(container: HTMLElement | string, options: SThreeOptions): ReturnType {
   let isMounted = false
   let hasMounted = false
   let gui: dat.GUI
   const scene: Scene = new THREE.Scene()
+  const renderer = new THREE.WebGLRenderer()
+  const dom = renderer.domElement
   const fnNameMap: FnNameMap = {
     v3: 'Vector3',
+    v2: 'Vector2',
+    v4: 'Vector4',
     cc: 'CubeCamera',
     oc: 'OrthographicCamera',
     pc: 'PerspectiveCamera',
@@ -200,6 +207,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     tkg: 'TorusKnotGeometry',
     tubeg: 'TubeGeometry',
     wfg: 'WireframeGeometry',
+    cg: 'CircleGeometry',
     ac: 'ArcCurve',
     crc3: 'CatmullRomCurve3',
     cbc: 'CubicBezierCurve',
@@ -256,8 +264,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     mtm: 'MeshToonMaterial',
     p: 'Points',
     pm: 'PointsMaterial',
-    rm: 'RawShaderMaterial',
-    shaderm: 'ShaderMaterial',
+    rsm: 'RawShaderMaterial',
+    sm: 'ShaderMaterial',
     shadowm: 'ShadowMaterial',
     spritem: 'SpriteMaterial',
     line: 'Line',
@@ -328,6 +336,9 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     draCOLoader,
     THREE,
     scene,
+    renderer,
+    dom,
+    setRendererAttributes,
   }
 
   function update() {
@@ -340,9 +351,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     else if (!container)
       throw new Error(`${container} container is not found`)
 
-    const renderer = new THREE.WebGLRenderer()
     const { createCamera, createMesh, animate, mousemove, mousedown, mouseup, debug, alias, shadowType } = options
-    if (debug)
+    if (debug && !gui)
       gui = new dat.GUI()
     if (alias) {
       Object.assign(fnNameMap, alias)
@@ -372,10 +382,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
       renderer.shadowMap.enabled = true
       renderer.shadowMap.type = THREE[shadowType]
     }
-    const dom = renderer.domElement
     const animationOptions = {
-      params: options.middleware?.({ OrbitControls: OrbitControls as unknown as OrbitControls, camera, dom, renderer }),
-      dom,
+      params: options.middleware?.({ OrbitControls: OrbitControls as unknown as OrbitControls, camera }),
       camera,
     }
     if (animate) {
@@ -400,6 +408,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
       camera.aspect = Math.min(width / height, 2)
       camera.updateProjectionMatrix()
       renderer.setSize(width, height, false)
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     }
   }
   function c(fnName: keyof FnNameMap | keyof T, ...args: any[]): any {
@@ -430,6 +439,9 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
   function track(...args: [target: Object, propName: string, min?: number, max?: number, step?: number]): dat.GUIController {
     if (!gui)
       throw new Error('gui is not created, please use debug option')
+    const p = gui.domElement.parentNode!
+    if (p?.childNodes.length > 1)
+      p?.removeChild(p.childNodes[0])
     if (args[0] === 'color') {
       return gui.addColor(args[1] as unknown as Record<string, any>, args[2] as unknown as string).onChange(() => {
         (args[1] as unknown as Record<string, any>)?.color?.set(args[1][args[2] as any])
@@ -469,5 +481,10 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     else { dracoLoader = dracoLoaderMap.get('draco') }
     dracoLoader.setDecoderPath(decoderPath)
     return dracoLoader
+  }
+  function setRendererAttributes(options: Record<K, any>) {
+    (Object.keys(options) as K[]).forEach((key: K) => {
+      (renderer as any)[key] = options[key]
+    })
   }
 }
