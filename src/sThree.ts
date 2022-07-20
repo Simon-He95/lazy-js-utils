@@ -415,11 +415,9 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     const lowName = fnName.toLowerCase() as keyof FnNameMap
     const fnNameMapKey = fnNameMap[lowName] as keyof T
     const _class = THREE[fnNameMapKey || fnName]
-    if (!_class) {
-      throw new Error(`${fnName} is not found, maybe you want to use ${Object.keys(fnNameMap).filter(key => key.startsWith(fnName[0]) && key.endsWith(fnName.slice(-1))).reduce((result, key) => {
-        return result += `\n ${key} : ${(fnNameMap as any)[key]}`
-      }, '')} `)
-    }
+    if (!_class)
+      throw new Error(`${fnName} is not found, maybe you want to use ${Object.keys(fnNameMap).filter(key => new RegExp(fnName.split('').reduce((result, key) => result += `${key}(\\w+)?`, '')).test(key)).reduce((result, key) => result += `\n ${key} : ${(fnNameMap as any)[key]}`, '')} `)
+
     if (loaderArray.includes(lowName)) {
       if (cacheLoader.has(lowName))
         return cacheLoader.get(lowName).load(...args)
