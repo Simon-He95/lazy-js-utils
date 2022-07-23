@@ -382,14 +382,14 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
       })
     }
     scene!._add = function (...args: any[]) {
-      scene!.add(...args)
+      scene.add(...args)
       const result = args.map(arg => () => unmount(arg))
       return result.length === 1 ? result[0] : result
       function unmount(arg: Mesh) {
         const { material, geometry } = arg;
         (material as any).dispose()
         geometry.dispose()
-        scene!.remove(arg)
+        scene.remove(arg)
       }
     }
     createMesh?.()
@@ -419,7 +419,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     })
     resize()
     addEventListener(window, 'resize', resize)
-    useMutationObserver((container as HTMLElement)?.parentNode, (mutations) => {
+    useMutationObserver((container as HTMLElement)?.parentNode, (mutations: MutationRecord[]) => {
       mutations.forEach((mutation) => {
         mutation.removedNodes.forEach((node) => {
           if (node === container)
