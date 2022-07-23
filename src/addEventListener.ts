@@ -24,12 +24,12 @@ export function addEventListener(target: Window | Document | Element | string, e
   window.addEventListener('DOMContentLoaded', () => {
     update()
     if (stopped)
-      stop()
+      stop?.()
   })
 
+  window.onunload = () => stop?.()
   if (eventName === 'DOMContentLoaded')
     animationStop = animationFrameWrapper(callback, 0, true)
-
   else
     animationFrameWrapper(update, 0, true)
 

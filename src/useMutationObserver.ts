@@ -1,7 +1,9 @@
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 import type { MutationObserverInit } from './types'
-export function useMutationObserver(element: Element | string, callback: (...args: any[]) => void, options: MutationObserverInit = {}) {
+export function useMutationObserver(element: Element | string | ParentNode | null, callback: MutationCallback, options: MutationObserverInit = {}) {
+  if (!element)
+    return
   let isMounted = false
   let hasMounted = false
   let stopped = false

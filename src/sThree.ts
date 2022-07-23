@@ -12,7 +12,7 @@ import { animationFrameWrapper } from './animationFrameWrapper'
 import { dragEvent } from './dragEvent'
 import { isStr } from './isStr'
 import { isFn } from './isFn'
-
+import { useMutationObserver } from './useMutationObserver'
 type T = typeof THREE
 type K = keyof WebGLRenderer
 interface AnimateOptions {
@@ -49,7 +49,7 @@ interface FnNameMap {
   rg: 'RingGeometry'
   sg: 'SphereGeometry'
   tetrag: 'TetrahedronGeometry'
-  torusg: 'TorusGeometry'
+  tg: 'TorusGeometry'
   tkg: 'TorusKnotGeometry'
   tubeg: 'TubeGeometry'
   wfg: 'WireframeGeometry'
@@ -65,7 +65,7 @@ interface FnNameMap {
   qbc3: 'QuadraticBezierCurve3'
   splinec: 'SplineCurve'
   arrowh: 'ArrowHelper'
-  axesh: 'AxesHelper'
+  ah: 'AxesHelper'
   bh: 'BoxHelper'
   b3h: 'Box3Helper'
   ch: 'CameraHelper'
@@ -80,7 +80,8 @@ interface FnNameMap {
   animationl: 'AnimationLoader'
   audiol: 'AudioLoader'
   bgl: 'BufferGeometryLoader'
-  c: 'Cache'
+  cache: 'Cache'
+  c: 'Color'
   compressedtl: 'CompressedTextureLoader'
   ctl: 'CubeTextureLoader'
   dtl: 'DataTextureLoader'
@@ -175,10 +176,11 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
   let isMounted = false
   let hasMounted = false
   let gui: dat.GUI
-  const scene: Scene = new THREE.Scene()
+  let scene: Scene | null = new THREE.Scene()
   const renderer = new THREE.WebGLRenderer()
-  const dom = renderer.domElement
-  const fnNameMap: FnNameMap = {
+  let dom: HTMLCanvasElement | null = renderer.domElement
+  let stop: () => void
+  let fnNameMap: FnNameMap | null = {
     v3: 'Vector3',
     v2: 'Vector2',
     v4: 'Vector4',
@@ -203,7 +205,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     rg: 'RingGeometry',
     sg: 'SphereGeometry',
     tetrag: 'TetrahedronGeometry',
-    torusg: 'TorusGeometry',
+    tg: 'TorusGeometry',
     tkg: 'TorusKnotGeometry',
     tubeg: 'TubeGeometry',
     wfg: 'WireframeGeometry',
@@ -219,7 +221,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     qbc3: 'QuadraticBezierCurve3',
     splinec: 'SplineCurve',
     arrowh: 'ArrowHelper',
-    axesh: 'AxesHelper',
+    ah: 'AxesHelper',
     bh: 'BoxHelper',
     b3h: 'Box3Helper',
     ch: 'CameraHelper',
@@ -234,7 +236,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     animationl: 'AnimationLoader',
     audiol: 'AudioLoader',
     bgl: 'BufferGeometryLoader',
-    c: 'Cache',
+    cache: 'Cache',
+    c: 'Color',
     compressedtl: 'CompressedTextureLoader',
     ctl: 'CubeTextureLoader',
     dtl: 'DataTextureLoader',
@@ -326,6 +329,20 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
   update()
   addEventListener(document, 'DOMContentLoaded', update)
 
+  function destoryStop() {
+    gui?.hide()
+    stop?.()
+    scene = null
+    renderer.dispose()
+    dom = null
+    loaderArray.length = 0
+    fnNameMap = null
+    cacheLoader.clear()
+    gltfLoaderMap.clear()
+    dracoLoaderMap.clear()
+    animationArray.length = 0
+  }
+
   return {
     c,
     cf,
@@ -354,24 +371,25 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     const { createCamera, createMesh, animate, mousemove, mousedown, mouseup, debug, alias, shadowType } = options
     if (debug && !gui)
       gui = new dat.GUI()
+    else
+      gui?.hide()
     if (alias) {
-      Object.assign(fnNameMap, alias)
+      Object.assign(fnNameMap!, alias)
       Object.keys(alias).forEach((key) => {
         if (!alias[key].includes('Loader') || loaderArray.includes(key))
           return
         loaderArray.push(key)
       })
     }
-    const sceneAdd = scene.add
-    scene._add = function (...args: any[]) {
-      sceneAdd.apply(scene, args)
+    scene!._add = function (...args: any[]) {
+      scene!.add(...args)
       const result = args.map(arg => () => unmount(arg))
       return result.length === 1 ? result[0] : result
       function unmount(arg: Mesh) {
         const { material, geometry } = arg;
         (material as any).dispose()
         geometry.dispose()
-        scene.remove(arg)
+        scene!.remove(arg)
       }
     }
     createMesh?.()
@@ -388,20 +406,27 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     }
     if (animate) {
       const clock = new THREE.Clock()
-      animationFrameWrapper((time: number) => renderer.render(scene, animate(Object.assign(animationOptions, { elapsedTime: clock.getElapsedTime(), timestamp: time })) || camera), 0)
+      stop = animationFrameWrapper((time: number) => renderer.render(scene!, animate(Object.assign(animationOptions, { elapsedTime: clock.getElapsedTime(), timestamp: time })) || camera), 0)
     }
-    else { animationFrameWrapper(() => renderer.render(scene, camera), 0, true) }
+    else { animationFrameWrapper(() => renderer.render(scene!, camera), 0, true) }
 
-    (container as HTMLElement).appendChild(dom)
+    (container as HTMLElement).appendChild(dom!)
     hasMounted = true
-    dragEvent(dom, {
+    dragEvent(dom!, {
       dragStart: mousedown,
       dragMove: mousemove,
       dragEnd: mouseup,
     })
     resize()
     addEventListener(window, 'resize', resize)
-
+    useMutationObserver((container as HTMLElement)?.parentNode, (mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.removedNodes.forEach((node) => {
+          if (node === container)
+            destoryStop()
+        })
+      })
+    }, { childList: true })
     function resize() {
       const width = (container as HTMLElement).offsetWidth
       const height = (container as HTMLElement).offsetHeight
@@ -413,10 +438,10 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
   }
   function c(fnName: keyof FnNameMap | keyof T, ...args: any[]): any {
     const lowName = fnName.toLowerCase() as keyof FnNameMap
-    const fnNameMapKey = fnNameMap[lowName] as keyof T
+    const fnNameMapKey = fnNameMap![lowName] as keyof T
     const _class = THREE[fnNameMapKey || fnName]
     if (!_class)
-      throw new Error(`${fnName} is not found, maybe you want to use ${Object.keys(fnNameMap).filter(key => new RegExp(fnName.split('').reduce((result, key) => result += `${key}(\\w+)?`, '')).test(key)).reduce((result, key) => result += `\n ${key} : ${(fnNameMap as any)[key]}`, '')} `)
+      throw new Error(`${fnName} is not found, maybe you want to use ${Object.keys(fnNameMap!).filter(key => new RegExp(fnName.split('').reduce((result, key) => result += `${key}(\\w+)?`, '')).test(key)).reduce((result, key) => result += `\n ${key} : ${(fnNameMap as any)[key]}`, '')} `)
 
     if (loaderArray.includes(lowName)) {
       if (cacheLoader.has(lowName))
@@ -441,9 +466,8 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
     if (p?.childNodes.length > 1)
       p?.removeChild(p.childNodes[0])
     if (args[0] === 'color') {
-      return gui.addColor(args[1] as unknown as Record<string, any>, args[2] as unknown as string).onChange(() => {
-        (args[1] as unknown as Record<string, any>)?.color?.set(args[1][args[2] as any])
-      })
+      const target = args[1][args[2]!] as any
+      return gui.addColor(args[1] as unknown as Record<string, any>, args[2] as unknown as string).onChange(() => target?.set?.(args[1][args[2]!]))
     }
     return gui.add(...args)
   }
