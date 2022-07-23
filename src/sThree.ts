@@ -488,6 +488,7 @@ export function sThree(container: HTMLElement | string, options: SThreeOptions):
       else { gltfLoader = gltfLoaderMap.get('gltf') }
       if (dracoLoader)
         gltfLoader.setDRACOLoader(dracoLoader)
+      gltfLoader.setCrossOrigin('Anonymous')
       gltfLoader.load(url, (gltf: GLTFLoader) => {
         resolve(gltf)
         callback?.(gltf)
