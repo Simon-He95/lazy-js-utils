@@ -1,7 +1,7 @@
 import { isStr } from './isStr'
 import { animationFrameWrapper } from './animationFrameWrapper'
 
-export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean, autoRemove?: boolean): (() => void) {
+export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean | AddEventListenerOptions, autoRemove?: boolean): (() => void) {
   let isMounted = false
   let hasMounted = false
   let stopped = false
