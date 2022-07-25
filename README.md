@@ -26,6 +26,58 @@ import {
 
 ```
 
+## sortByOrder
+- 将数组按照另一个数组的顺序排序
+- 参数:
+  - arr: 数组
+  - prop: 数组的对象中的属性名称
+  - order: 排序的数组
+```js
+const order = ['name', '*', 'weight']
+const arr = [{
+  props: {
+    key: 'weight'
+  }
+}, {
+  props: {
+    key: 'name'
+  }
+}, {
+  props: {
+    key: 'width'
+  }
+}, {
+  props: {
+    key: 'age'
+  }
+}]
+const result = sortByOrder(arr, order, 'props.key')
+/*
+ [
+        {
+          "props": {
+            "key": "name",
+          },
+        },
+        {
+          "props": {
+            "key": "width",
+          },
+        },
+        {
+          "props": {
+            "key": "age",
+          },
+        },
+        {
+          "props": {
+            "key": "weight",
+          },
+        },
+      ]
+*/
+```
+
 ## ExportPlugin
 - VitePlugin
 - 将以参数结尾的文件直接导出

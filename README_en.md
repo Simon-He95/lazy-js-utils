@@ -23,6 +23,59 @@ import {
 
 ```
 
+## sortByOrder
+- Sorts the array in the order of another array
+- params:
+  - arr: Array
+  - prop: The name of the property in the array object
+  - order: Sorts the array
+```js
+const order = ['name', '*', 'weight']
+const arr = [{
+  props: {
+    key: 'weight'
+  }
+}, {
+  props: {
+    key: 'name'
+  }
+}, {
+  props: {
+    key: 'width'
+  }
+}, {
+  props: {
+    key: 'age'
+  }
+}
+]
+const result = sortByOrder(arr, 'props.key', order)
+/*
+ [
+        {
+          "props": {
+            "key": "name",
+          },
+        },
+        {
+          "props": {
+            "key": "width",
+          },
+        },
+        {
+          "props": {
+            "key": "age",
+          },
+        },
+        {
+          "props": {
+            "key": "weight",
+          },
+        },
+      ]
+*/
+```
+
 ## ExportPlugin
 - VitePlugin
 - Export directly to a file that ends with parameters

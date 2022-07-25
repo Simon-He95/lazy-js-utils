@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, htmlTransform, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sleep, sort, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
+import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, htmlTransform, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sleep, sort, sortByOrder, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
 
 describe('Test deepMerge', () => {
   it('deepMerge test', () => {
@@ -674,5 +674,53 @@ describe('Test htmlTransform', () => {
       },
     })
     expect(code).toMatchSnapshot()
+  })
+})
+
+describe('Test sortByOrder', () => {
+  const order = ['name', '*', 'weight']
+  const arr = [{
+    props: {
+      key: 'weight',
+    },
+  }, {
+    props: {
+      key: 'name',
+    },
+  }, {
+    props: {
+      key: 'width',
+    },
+  }, {
+    props: {
+      key: 'age',
+    },
+  }]
+
+  it('sortByOrder test', () => {
+    expect(sortByOrder(arr, order, 'props.key')).toMatchInlineSnapshot(`
+      [
+        {
+          "props": {
+            "key": "name",
+          },
+        },
+        {
+          "props": {
+            "key": "width",
+          },
+        },
+        {
+          "props": {
+            "key": "age",
+          },
+        },
+        {
+          "props": {
+            "key": "weight",
+          },
+        },
+      ]
+    `)
   })
 })
