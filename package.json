@@ -14,9 +14,8 @@
   },
   "keywords": [
     "simon-js-tool",
-    "dat.gui",
-    "three",
-    "echarts"
+    "@simon_he/s-three",
+    "@simon_he/s-charts"
   ],
   "exports": {
     ".": {
