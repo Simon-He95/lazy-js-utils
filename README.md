@@ -8,14 +8,16 @@
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
 目前整理了<strong>90+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
 
-额外的导出函数[exports-function](https://github.com/SimonHe1995/exportsFunction)
-
+## 更多
+- 导出函数 [exports-function](https://github.com/SimonHe1995/exportsFunction)
+- threejs [@simon_he/s-three](https://github.com/SimonHe1995/sThree)
+- Echarts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
 
 ## 赞助我
 ![img](/assets/wechat.jpg 'WeChat')
 
 ![img](/assets/zfb.jpg 'Alipay')
-https://github.com/SimonHe1995/exportsFunction
+
 ## 使用说明
 ```bash
 npm i simon-js-tool # 安装
