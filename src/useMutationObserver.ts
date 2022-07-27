@@ -28,10 +28,8 @@ export function useMutationObserver(element: Element | string | ParentNode | nul
       stop()
   }
   return () => {
-    if (!stop) {
-      stopped = true
-      return
-    }
+    if (!stop)
+      return stopped = true
     stop?.()
   }
 }

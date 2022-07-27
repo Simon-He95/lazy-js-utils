@@ -29,6 +29,22 @@ import {
 
 ```
 
+## useIntersectionObserver
+- 监听元素重叠事件
+- 参数:
+  - element: Element | string 被观察元素
+  - callback: Function 回调函数
+  - options: {
+    root?: Element | Document | null; // 可选，可以指定一个节点作为视口的根节点，默认为document.body
+    rootMargin?: string; // 可选，可以指定一个节点作为视口的根节点，默认为document.body
+    threshold?: number | number[]; // 可选，可以指定一个或多个触发重叠检测的阈值，默认为0
+}
+```js
+useIntersectionObserver('.loading', (entries) => {
+  // 相对body容器.loading的重叠事件
+})
+```
+
 ## sortByOrder
 - 将数组按照另一个数组的顺序排序
 - 参数:

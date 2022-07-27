@@ -8,21 +8,18 @@ import {
   fileSplice,
   jsonExportExcel,
   jsonExportZip,
-  numWheel,
   picInPic,
   tableExportExcel,
   useElementBounding,
+  useIntersectionObserver,
 } from '../../src'
 
 const toggle = picInPic('#video')
-numWheel('#main', {
-  endVal: 999999,
-})
 </script>
 
 <template>
   <main p=" y-10" text="center gray-700 dark:gray-200">
-    <div>
+    <div h-200>
       <div id="main" font-mono text-2xl />
     </div>
     <video

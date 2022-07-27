@@ -28,6 +28,21 @@ import {
  } from 'simon-js-tool' # Ingestion on demand
 
 ```
+## useIntersectionObserver
+- Listen for element overlap events
+- Parameters:
+  - element: Element | String is observed element
+  - callback: Function callback function
+  - options: {
+    root?: Element | Document | null; Optionally, you can specify a node as the root node of the viewport, which defaults to document.body
+    rootMargin?: string; Optionally, you can specify a node as the root node of the viewport, which defaults to document.body
+    threshold?: number | number[]; Optionally, you can specify one or more thresholds that trigger overlap detection, which defaults to 0
+}
+```js
+useIntersectionObserver('.loading', (entries)=>{
+  Overlapping events relative to body container.loading
+})
+```
 
 ## sortByOrder
 - Sorts the array in the order of another array

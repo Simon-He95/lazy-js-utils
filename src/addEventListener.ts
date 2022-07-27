@@ -47,10 +47,8 @@ export function addEventListener(target: Window | Document | Element | string, e
     hasMounted = true
   }
   return () => {
-    if (!stop) {
-      stopped = true
-      return
-    }
+    if (!stop)
+      return stopped = true
     setTimeout(stop)
   }
 }
