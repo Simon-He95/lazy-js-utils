@@ -31,7 +31,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "pkgroll",
+    "build": "pkgroll --minify",
     "dev": "pkgroll --watch",
     "play": "pnpm run -C playground dev",
     "play:build": "pnpm run -C playground build",
