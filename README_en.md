@@ -40,7 +40,7 @@ import {
 }
 ```js
 useIntersectionObserver('.loading', (entries)=>{
-  Overlapping events relative to body container.loading
+  // Overlapping events relative to body container.loading
 })
 ```
 
