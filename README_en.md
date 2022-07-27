@@ -39,7 +39,7 @@ import {
     threshold?: number | number[]; Optionally, you can specify one or more thresholds that trigger overlap detection, which defaults to 0
 }
 ```js
-useIntersectionObserver('.loading', (entries)=>{
+useIntersectionObserver('.loading', (entries) => {
   // Overlapping events relative to body container.loading
 })
 ```
