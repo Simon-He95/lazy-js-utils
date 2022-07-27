@@ -8,6 +8,12 @@
 ## This article is documentation that describes the encapsulated utility functions [simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
 At present, I have sorted out <strong>90+</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me!
 
+## More
+- Export function [exports-function](https://github.com/SimonHe1995/exportsFunction)
+- threejs [@simon_he/s-three](https://github.com/SimonHe1995/sThree)
+- Echarts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
+- numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
+
 ## Sponsor me
 ![img](/assets/wechat.jpg 'WeChat')
 
@@ -257,15 +263,6 @@ addEventListener(window,'scroll',()=>{
     ])
   }
 })
-```
-## numWheel
-- Digital wheel control
-- Based on the odometer package, it is simpler to use in the business
-- params:
-  - container: string | HTMLElement /* Parent container */
-  - options: {  format: '(,ddd)' | '(,ddd).dd' | '(.ddd),dd' | '( ddd),dd' | 'd' /* Number format */ startVal: number /* The starting number */ endVal: number /* Final number */  duration: number /* The duration of the animation */  animation: 'count' | 'countdown' /* Animation mode */ }
-```javascript
-numWheel('#main', {  endVal: 9000.12 }) // Default format: '(,ddd).dd' startVal: 0 duration: 500 animation: 'countdown', Can be customized format, startVal, duration, animation
 ```
 
 ## dragEvent

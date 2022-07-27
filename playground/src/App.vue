@@ -15,6 +15,9 @@ import {
 } from '../../src'
 
 const toggle = picInPic('#video')
+numWheel('#main', {
+  endVal: 999999,
+})
 </script>
 
 <template>
