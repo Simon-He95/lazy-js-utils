@@ -2,7 +2,7 @@ import SparkMD5 from 'spark-md5'
 import type { FileChunk, FileMD5 } from './types'
 
 export async function fileSplice(_file: File, _chunkSize: number = 1024 * 100): Promise<FileChunk[]> {
-  const { HASH, suffix } = await getMD5(_file)
+  const { HASH, suffix } = await getMD5()
   const chunks: FileChunk[] = []
   // 实现切片处理 [固定切片大小 & 数量]
   let max = _chunkSize // 100kb
@@ -21,31 +21,32 @@ export async function fileSplice(_file: File, _chunkSize: number = 1024 * 100): 
     index++
   }
   return chunks
+  function getMD5(): Promise<FileMD5> {
+    const fileReader = new FileReader()
+    fileReader.readAsArrayBuffer(_file)
+    return new Promise((resolve, reject) => {
+      try {
+        fileReader.onload = function (e: any) {
+          const buffer = e?.target.result; const // buffer编码
+            spark = new SparkMD5.ArrayBuffer()
+          spark.append(buffer)
+          const HASH = spark.end()
+          const suffix = /\.([a-zA-Z0-9]+)$/.exec(_file.name)![1]
+          const filename = `${HASH}.${suffix}`
+          resolve({
+            HASH,
+            suffix,
+            filename,
+            buffer,
+          })
+        }
+      }
+      catch (error: any) {
+        reject(new Error(error))
+      }
+    })
+  }
 }
 
-function getMD5(_file: File): Promise<FileMD5> {
-  const fileReader = new FileReader()
-  fileReader.readAsArrayBuffer(_file)
-  return new Promise((resolve, reject) => {
-    try {
-      fileReader.onload = function (e: any) {
-        const buffer = e?.target.result; const // buffer编码
-          spark = new SparkMD5.ArrayBuffer()
-        spark.append(buffer)
-        const HASH = spark.end()
-        const suffix = /\.([a-zA-Z0-9]+)$/.exec(_file.name)![1]
-        const filename = `${HASH}.${suffix}`
-        resolve({
-          HASH,
-          suffix,
-          filename,
-          buffer,
-        })
-      }
-    }
-    catch (error: any) {
-      reject(new Error(error))
-    }
-  })
-}
+
 
