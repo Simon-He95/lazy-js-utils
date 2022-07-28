@@ -29,6 +29,25 @@ import {
 
 ```
 
+## writeFile
+- 快速修改文件内容,支持多个文件同时修改
+- 参数:
+  - filePath: string | string[] 文件路径
+  - callback: (content: string, index: number) => string 传入文件string类型的内容,可以修改后返回新的内容
+```js
+writeFile('./a.js', (content) => {
+  return content.replace('a', 'b')
+})
+```
+
+## insertUnocssInclude
+- unocss作为props传入的组件打包会丢失注释// @unocss-include,这个函数会自动插入到打包后的文件头部
+- 参数:
+  - path: string | string[] 文件路径, 默认 ['./dist/index.js', './dist/index.mjs']
+```js
+insertUnocssInclude()
+```
+
 ## useIntersectionObserver
 - 监听元素重叠事件
 - 参数:

@@ -6,14 +6,14 @@ import {
   exportExcel,
   exportPdf,
   fileSplice,
+  insertUnocssInclude,
   jsonExportExcel,
   jsonExportZip,
   picInPic,
   tableExportExcel,
   useElementBounding,
   useIntersectionObserver,
-} from '../../src'
-
+} from 'simon-js-tool'
 const toggle = picInPic('#video')
 </script>
 

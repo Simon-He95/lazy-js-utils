@@ -28,6 +28,26 @@ import {
  } from 'simon-js-tool' # Ingestion on demand
 
 ```
+
+## writeFile
+- Quickly modify file content, support multiple files to modify at the same time
+- params:
+  - filePath: string | string[]  file path
+  - callback: (content: string, index: number) => string Incoming file string type content can be modified to return new content
+```js
+writeFile('./a.js', (content) => {
+  return content.replace('a', 'b')
+})
+```
+
+## insertUnocssInclude
+- Unocss packaged components passed in as props will lose comments) @unocss-include, this function is automatically inserted into the header of the packaged file
+- params:
+  - path: string | string[] File path, default is ['./dist/index.js', './dist/index.mjs']
+```js
+insertUnocssInclude()
+```
+
 ## useIntersectionObserver
 - Listen for element overlap events
 - Parameters:
