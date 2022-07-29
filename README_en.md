@@ -19,7 +19,7 @@ At present, I have sorted out <strong>90+</strong> commonly used functions, and 
 - threejs [@simon_he/s-three](https://github.com/SimonHe1995/sThree)
 - Echarts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
 - numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
-- vAxios [@simon_he/v-axios][https://github.com/SimonHe1995/vAxios]
+- vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
 ## Sponsor me
 ![img](/assets/wechat.jpg 'WeChat')
