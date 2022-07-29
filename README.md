@@ -8,6 +8,12 @@
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
 目前整理了<strong>90+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励!
 
+## 亮点
+- 纯js的工具函数,不依赖vue,react,angular
+- dom操作的api封装,如在vue中使用是不需要onMounted获取dom节点的,可以直接使用class或者id传入
+- 副作用函数,可以在函数执行的结果去stop,也会在页面销毁时被自动stop
+- api设计简单、实用
+
 ## 更多
 - 导出函数 [exports-function](https://github.com/SimonHe1995/exportsFunction)
 - threejs [@simon_he/s-three](https://github.com/SimonHe1995/sThree)
@@ -132,14 +138,15 @@ export default defineConfig({
 - 插入dom元素
 - 参数:
   - parent: string | HTMLElement 父元素
-  - element: 插入元素
+  - element: string | HTMLElement 插入元素
   - target: 插入位置 (默认插入到第一个节点)
 ```js
 const div = createElement('div', {
-  id: 'main',
+  id: 'test',
   style: 'background: red;font-size:20px',
 })
 insertElement('#main', div) // 插入到第一个节点
+insertElement('#main', '#test') // 插入到第一个节点
 insertElement('#main', div, null) // 插入到最后
 ```
 
@@ -969,13 +976,13 @@ vFetch(options:Record<string,string>).then(res =>{
 })
 ```
 
-
 ## stringify
 - 参数:
   - obj: 待转换的对象
 ```javascript
 console.log(stringify({ user: 'simon', age: '18' })) // 'user=simon&age=18'
 ```
+
 ## parse
 - 参数:
   - str: 待转换的字符串

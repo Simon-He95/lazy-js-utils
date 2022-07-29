@@ -1,7 +1,7 @@
 import { addEventListener } from './addEventListener'
 import { isStr } from './isStr'
 
-export function insertElement(parent: HTMLElement | string, element: HTMLElement, target?: HTMLElement | null): void {
+export function insertElement(parent: HTMLElement | string, element: HTMLElement | string, target?: HTMLElement | null): void {
   let isMounted = false
   let hasMounted = false
   update()
@@ -11,10 +11,14 @@ export function insertElement(parent: HTMLElement | string, element: HTMLElement
       return
     if (isStr(parent))
       parent = document.querySelector(parent as string) as HTMLElement || parent
-    if (!isMounted && isStr(parent))
+    if (isStr(element))
+      element = document.querySelector(element as string) as HTMLElement || element
+    if (!isMounted && (isStr(parent) || isStr(element)))
       return isMounted = true
     if (isStr(parent))
-      throw new Error(`${parent} is not a HTMLElement`);
+      throw new Error(`${parent} is not a HTMLElement`)
+    if (isStr(element))
+      throw new Error(`${element} is not a HTMLElement`);
     (parent as HTMLElement).insertBefore(element as HTMLElement, target === undefined ? (parent as HTMLElement).firstChild : target)
     hasMounted = true
   }
