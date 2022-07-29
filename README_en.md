@@ -143,10 +143,11 @@ export default defineConfig({
   - target?: null | HTMLElement /* Insertion position (inserted to first node by default) */
 ```js
 const div = createElement('div', {
-  id: 'main',
+  id: 'test',
   style: 'background: red;font-size:20px',
 })
 insertElement('#main', div) // Insert into the first node
+insertElement('#main', 'test') // Insert into the first node
 insertElement('#main', div, null) // Insert to the end
 ```
 
@@ -574,7 +575,8 @@ console.log(sort(array2, ['-age','name'])) // [{name: 'simon', age: 19}, {name: 
   - height: canvas Height
 ```javascript
 const signature = new CreateSignatureCanvas(400, 400)
-document.body.appendChild(signature.canvas)
+signature.mount('#main') // Mount the canvas to the element with id 'main'
+signature.unmount() // Unmount the canvas
 const base64 = signature.save()
 signature.clear() // Clear the signature
 ```
