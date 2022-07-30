@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
 import { copy, monitorPef } from '../../src'
 import App from './App.vue'
-
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
@@ -53,4 +52,29 @@ window.onclick = () => {
 //   console.log(res)
 // }, err => {
 //   console.log(err)
+// })
+
+// const axios = vFetch.create({
+//   baseURL: 'http://localhost:5001/t',
+// })
+// console.log(axios)
+// axios({
+//   method: 'GET',
+//   url: 'nihao',
+// }).then((res: any) => {
+//   console.log(res)
+// })
+
+// axios({
+//   method: 'GET',
+//   url: 'nihao',
+// }).then((res: any) => {
+//   console.log(res)
+// })
+
+// axios({
+//   method: 'GET',
+//   url: 'nihao1',
+// }).then((res: any) => {
+//   console.log(res)
 // })

@@ -1,184 +1,175 @@
-import type { IFetchOptions, VFetch, VFetchConfig } from './types'
+import type { IFetchConfig, IFetchOptions, ResponseType } from './types'
 import { deepMerge } from './deepMerge'
 import { stringify } from './stringify'
 
-export function vFetch(this: any, options: VFetchConfig): any {
-  if (this === undefined)
-    return vFetch.create({})(options)
+const cancelMap = new Map()
 
-  const {
-    url,
-    method = 'GET',
-    headers = {},
-    bodyType = 'json',
-    params = {},
-    credentials = 'omit',
-    integrity,
-    referrerPolicy = 'no-referrer-when-downgrade',
-    referrer = '',
-    responseType = 'json',
-    keepalive = false,
-    timeout,
-    transformResponse,
-    cache = 'default',
-    redirect = 'manual',
-    mode = 'cors',
-  } = options
-  this.config = Object.assign(this.config, {
-    url: url?.startsWith('http')
-      ? url
-      : (this.config.baseURL || '') + (url || ''),
-    method,
-    bodyType,
-    credentials,
-    responseType,
-    timeout: timeout || this.config.timeout,
-    transformResponse,
-    cache,
-    redirect,
-    mode,
-    body: params,
-    keepalive,
-    integrity,
-    referrerPolicy,
-    referrer,
-    headers: Object.assign({
-      'Content-Type': 'application/json',
-
-    }, this.config.headers, headers),
-  })
-  if (this.config.method === 'GET') {
-    if (Object.keys(params).length)
-      this.config.url += `?${stringify(params)}`
-    this.config.body = undefined
+export class VFetch {
+  config: IFetchConfig
+  constructor(baseOptions: IFetchOptions) {
+    const { baseURL = '', headers = {}, timeout = 20 * 1000, interceptors } = baseOptions || {}
+    this.config = {
+      baseURL,
+      headers,
+      timeout,
+      interceptors,
+    } as IFetchConfig
   }
 
-  this.result = this.request()
-  return this
-}
+  init(this: VFetch, options: IFetchConfig) {
+    const {
+      url,
+      method = 'GET',
+      headers = {},
+      bodyType = 'json',
+      params = {},
+      credentials = 'omit',
+      integrity,
+      referrerPolicy = 'no-referrer-when-downgrade',
+      referrer = '',
+      responseType = 'json',
+      keepalive = false,
+      timeout,
+      transformResponse,
+      cache = 'default',
+      redirect = 'manual',
+      mode = 'cors',
+    } = options
+    this.config = Object.assign(this.config, {
+      url: url?.startsWith('http')
+        ? url
+        : (this.config.baseURL || '') + (url || ''),
+      method,
+      bodyType,
+      credentials,
+      responseType,
+      timeout: timeout || this.config.timeout,
+      transformResponse,
+      cache,
+      redirect,
+      mode,
+      body: params,
+      keepalive,
+      integrity,
+      referrerPolicy,
+      referrer,
+      headers: Object.assign({
+        'Content-Type': 'application/json',
 
-vFetch.request = function request(this: any) {
-  const controller = new AbortController()
-  const signal = controller.signal
-  this.config.signal = signal
-  const { body, method, bodyType, url, timeout, responseType, transformResponse } = this.config
-  if (body && method !== 'GET') {
-    if (bodyType === 'form') {
-      deepMerge(this.config.headers, { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' })
-      this.config.body = stringify(body)
+      }, this.config.headers, headers),
+    })
+
+    if (this.config.method === 'GET') {
+      if (Object.keys(params).length)
+        this.config.url += `?${stringify(params)}`
+      this.config.body = undefined
     }
-    else if (bodyType === 'file') {
-      deepMerge(this.config.headers, { 'Content-Type': 'multipart/form-data' })
-      this.config.body = Object.keys(body).reduce((result, key) => {
-        result.append(key, body[key])
-        return result
-      }, new FormData())
-    }
-    else if (bodyType === 'json') {
-      this.config.body = JSON.stringify(body)
-    }
+    return this.request()
   }
-  return Promise.race([
-    fetch(url, this.interceptors.request.success(this.config)),
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(new Response('timeout', { status: 504, statusText: 'timeout ' }))
-        controller.abort()
-      }, timeout || 20 * 1000)
-    }),
-  ]).then(
-    (response: any) => {
-      if (response.status === 200) {
-        return transformResponse
-          ? transformResponse(this.interceptors.response.success(response))
-          : this.interceptors.response.success(response)
+
+  request(this: VFetch) {
+    const controller = new AbortController()
+    const signal = controller.signal
+    this.config.signal = signal
+    this.config.cancel = () => controller.abort()
+    const { body, method, bodyType, url, timeout, responseType, transformResponse } = this.config
+    if (body && method !== 'GET') {
+      if (bodyType === 'form') {
+        deepMerge(this.config.headers!, { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' })
+        this.config.body = stringify(body)
       }
-      return this.interceptors.response.error(response)
-    },
-    (err) => {
-      return this.interceptors.request.error(err)
-    },
-  ).then(
-    (response: Response) => {
-      if (responseType === 'json')
-        return response.json()
-      else if (responseType === 'text')
-        return response.text()
-      else if (responseType === 'blob')
-        return response.blob()
-      else if (responseType === 'formData')
-        return response.formData()
-      else if (responseType === 'arrayBuffer')
-        return response.arrayBuffer()
-    },
-  )
-}
+      else if (bodyType === 'file') {
+        deepMerge(this.config.headers!, { 'Content-Type': 'multipart/form-data' })
+        this.config.body = Object.keys(body).reduce((result, key) => {
+          result.append(key, body[key])
+          return result
+        }, new FormData())
+      }
+      else if (bodyType === 'json') {
+        this.config.body = JSON.stringify(body)
+      }
+    }
+    const key = generateKey(this.config)
+    if (cancelMap.has(key))
+      cancelMap.get(key)?.()
+    cancelMap.set(key, this.config.cancel)
 
-vFetch.then = async function then(this: any, successCallback: (res: any) => void, errorCallback?: (err: any) => void) {
-  try {
-    const result = await this.result
-    successCallback(this.interceptors.response.success(result))
+    return Promise.race([
+      fetch(url, this.config?.interceptors?.request?.success?.(this.config) || this.config),
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(new Response('timeout', { status: 504, statusText: 'timeout ' }))
+          controller.abort()
+        }, timeout || 20 * 1000)
+      }),
+    ]).then(
+      (response: any) => {
+        if (response.status === 200) {
+          return transformResponse
+            ? transformResponse(response)
+            : response
+        }
+        return this.config?.interceptors?.response?.error?.(response) || Promise.reject(response)
+      },
+      (err) => {
+        return this.config?.interceptors?.request?.error?.(err) || Promise.reject(err)
+      },
+    ).then(
+      async (response: Response) => {
+        try {
+          const data = this.getResponseData(response, responseType)
+          const result = await data
+          cancelMap.delete(generateKey(this.config))
+          return this.config?.interceptors?.response?.success?.(result) || result
+        }
+        catch (error) {
+          cancelMap.delete(generateKey(this.config))
+          return this.config?.interceptors?.response?.error?.(error)
+            || Promise.reject(error)
+        }
+      },
+    )
   }
-  catch (error) {
-    this.interceptors.response.error(error)
-    if (errorCallback)
-      errorCallback(error)
+
+  getResponseData(response: Response, responseType?: ResponseType) {
+    if (responseType === 'json')
+      return response?.json()
+    else if (responseType === 'text')
+      return response?.text()
+    else if (responseType === 'blob')
+      return response?.blob()
+    else if (responseType === 'formData')
+      return response?.formData()
+    else if (responseType === 'arrayBuffer')
+      return response?.arrayBuffer()
+  }
+
+  get(this: VFetch, options: IFetchConfig): Promise<any> {
+    return new VFetch(this.config).init(Object.assign(options, {
+      method: 'GET',
+    }))
+  }
+
+  post(this: VFetch, options: IFetchConfig): Promise<any> {
+    return new VFetch(this.config).init(Object.assign(options, {
+      method: 'post',
+    }))
+  }
+
+  put(this: VFetch, options: IFetchConfig): Promise<any> {
+    return new VFetch(this.config).init(Object.assign(options, {
+      method: 'put',
+    }))
+  }
+
+  delete(this: VFetch, options: IFetchConfig): Promise<any> {
+    return new VFetch(this.config).init(Object.assign(options, {
+      method: 'delete',
+    }))
   }
 }
 
-vFetch.create = function create(this: any, baseOptions: IFetchOptions) {
-  const { baseURL = '', headers = {}, timeout = 20 * 1000 } = baseOptions
-  this.config = {
-    baseURL,
-    headers,
-    timeout,
-  }
-  return (options: any) => vFetch.call(this, options)
-}
-
-vFetch.get = function get(this: any, options: VFetchConfig) {
-  return vFetch.call(this, Object.assign(options, { method: 'GET' }))
-}
-
-vFetch.post = function post(this: any, options: VFetchConfig) {
-  return vFetch.call(this, Object.assign(options, { method: 'POST' }))
-}
-
-vFetch.put = function put(this: any, options: VFetchConfig) {
-  return vFetch.call(this, Object.assign(options, { method: 'PUT' }))
-}
-
-vFetch.DELETE = function DELETE(this: any, options: VFetchConfig) {
-  return vFetch.call(this, Object.assign(options, { method: 'DELETE' }))
-}
-
-vFetch.interceptors = {
-  request: {
-    use(successCallback?: (response: Response) => Response, errorCallback?: (error: any) => Promise<never>) {
-      if (successCallback)
-        vFetch.interceptors.request.success = successCallback
-      if (errorCallback)
-        vFetch.interceptors.request.error = errorCallback
-    },
-    success(this: VFetch, response: Response) {
-      return response
-    },
-    error(this: VFetch, error: any) {
-      return Promise.reject(error)
-    },
-  },
-  response: {
-    use(successCallback?: (response: Response) => Response, errorCallback?: (error: any) => Promise<never>) {
-      if (successCallback)
-        vFetch.interceptors.request.success = successCallback
-      if (errorCallback)
-        vFetch.interceptors.request.error = errorCallback
-    },
-    success: function success(this: VFetch, response: Response) {
-      return response
-    },
-    error: function error(this: VFetch, error: Error) {
-      return Promise.reject(error)
-    },
-  },
+function generateKey(config: Record<string, any>) {
+  const { url, method, params, data } = config
+  return `${url}-${method}-${JSON.stringify(method === 'get' ? params : data)}`
 }

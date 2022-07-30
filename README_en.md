@@ -935,43 +935,79 @@ document.click() // click
 document.click() // 
 ```
 
-## vFetch
+## VFetch
 - Fetch-based axios API-style promise request wrapping
-- Supports appending headers before interception
+- Repeating a request if the previous request is not completed cancels the previous request and re-initiates the request
 ```typescript
-type VFetchConfig = {
-  url: string // The request address
-  baseURL?: string // Base URL
-  body?: any // Body parameter {}, GET request is merged after url
-  keepalive?: boolean // The Page property is used when the page is unloaded, telling the browser to stay connected in the background and continue sending data
-  integrity?: string // The Hash property specifies a hash value that checks whether the data sent back by the HTTP response is equal to this preset hash value.
-  referrer?: string // The Fetch() property is used to set the referer header for fetch() requests.
-  referrerPolicy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin' // The Referer header is used to set the rules for the Referer header.
-  method?: Method // Request Type The default GET 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' supports vFetch.get | post | delete | Put in the form
-  headers?: Record<string, any> // Request headers such as: {'Content-Type': 'application/json'} supports setting appends in the request interceptor
-  credentials?: Credentials // The default | to request whether to bring a cookie or not 'same-origin' | 'omit' 
-  params?: Record<string, string> // The request parameters are determined according to the bodyType whether they will be serialized
-  timeout?: number // The timeout ms defaults to 20000
-  responseType?: ResponseType // Returns type the default json 'formData' | 'text' | 'blob' | 'arrayBuffer' | 'json'
-  bodyType?: BodyType // Request Type Default json 'json' | 'form' | 'file' 
-  cache?: Cache // Cache type The 'no-cache' | is not cached by default 'default' | 'force-cache' | 'only-if-cached' 
-  redirect?: Redirect // The HTTP Jump property specifies how HTTP jumps are handled. The possible values are as follows: default follow: follow redirect, error: throw error, manual: manual processing
-  mode?: Mode // cors, no-cors, same-origin default cors cors: cross-domain, no-cors: not cross-domain, same-origin: homologous
-  transformResponse?: (response: Response) => Response // Response data transformation
-}
-interface Interceptors {
-    request: {
-      use: (successCallback /* Pre-request interception processing */, errorCallback /* Error handling */)
-    }
-    response: {
-      use: (successCallback /* Successful processing after response */, errorCallback /* Failed processing after response */)
-    }
+interface IFetchInterceptors {
+  request?: {
+    success?: (config: IFetchConfig) => IFetchConfig
+    error?: (error: any) => Promise<never>
   }
+  response?: {
+    success?: (response: any) => any
+    error?: (error: any) => Promise<never>
+  }
+  success?: (response: Response) => Response
+  error?: (error: any) => Promise<never>
+}
+
+interface IFetchConfig extends IFetchOptions {
+  url: string // Request address
+  Keepalive?: The boolean // property is used when the page is unloaded, telling the browser to keep the connection in the background and continue sending data
+  body?: any // body parameter {}, GET requests are merged after url
+  Integrity?: The string // attribute specifies a hash value that checks whether the data sent back by the HTTP response is equal to this preset hash value.
+  referrer?: The string // attribute is used to set the referer header for fetch() requests.
+  referrerPolicy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin'
+  method?: Method // Request Type The default GET 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' supports vFetch.get | post | delete | Put in the form
+  credentials?: Credentials // Request with cookie Default of ofomi 'include' | 'same-origin' | 'omit'
+  params?: Record<tring, string> // Request parameters determine whether they will be serialized according to the bodyType
+  responseType?: ResponseType // Return Type Default json 'formData' | 'text' | 'blob' | 'arrayBuffer' | 'json'
+  bodyType?: BodyType // Request Type Default json 'json' | 'form' | 'file'
+  cache?: Cache // Cache type The 'no-cache' | is not cached by default 'default' | 'force-cache' | 'only-if-cached'
+  Redirect?: The Redirect // property specifies how HTTP jumps are handled. The possible values are as follows: default follow: follow redirect, error: throw error, manual: manual processing
+  mode?: Mode // cors, no-cors, same-origin default cors cors: cross-domain, no-cors: not cross-domain, same-origin: homologous
+  signal?: AbortSignal // Cancels the requested signal
+  cancel?: () = > void // method to cancel the request
+  transformResponse?: (response: Response) = > Response // Response data conversion
+}
+
+interface IFetchOptions {
+  baseURL?: string // base url
+  timeout?: number // Timeout ms defaults to 20000
+  headers?: Record<tring, any> // request header For example: {'Content-Type': 'application/json'}
+  interceptors?: IFetchInterceptors // Request Interceptor
+}
   // useage
-vFetch(options:Record<string,string>).then(res =>{
-  // success
-}, err =>{
-  // error
+const request = new VFetch({
+  baseURL: 'http://localhost:3001/',
+  interceptors: {
+    response: {
+      success(data) {
+        console.log('拦截', data)
+        return `${data}nihao`
+      },
+    },
+    request: {
+      success(data) {
+        // data.headers.token = 'test'
+        return data
+      },
+    },
+  },
+})
+request.get({
+  url: 'nihao',
+  responseType: 'text',
+}).then((res: any) => {
+  console.log(res)
+})
+
+request.get({ // Cancels the previous request
+  url: 'nihao',
+  responseType: 'text',
+}).then((res: any) => {
+  console.log(res)
 })
 ```
 

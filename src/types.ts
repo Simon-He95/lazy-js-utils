@@ -23,27 +23,20 @@ export type BodyType = 'form' | 'json' | 'file'
 export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS'
 export type Credentials = 'omit' | 'include' | 'same-origin'
 
-export interface VFetch {
-  config: VFetchConfig
-  result?: Promise<any>
-  request?: () => Promise<Response>
-  then?: (resolve: (value: any) => void, reject: (reason: any) => void) => Promise<void>
-  create?: (options: IFetchOptions) => (options: VFetch) => VFetch
-  interceptors?: {
-    request: {
-      use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
-      success: (response: Response) => Response
-      error: (error: any) => void
-    }
-    response: {
-      use: (successCallback?: ((response: Response) => Response), errorCallback?: ((error: any) => Promise<never>)) => void
-      success: (response: Response) => Response
-      error: (error: any) => void
-    }
+export interface IFetchInterceptors {
+  request?: {
+    success?: (config: IFetchConfig) => IFetchConfig
+    error?: (error: any) => Promise<never>
   }
+  response?: {
+    success?: (response: any) => any
+    error?: (error: any) => Promise<never>
+  }
+  success?: (response: Response) => Response
+  error?: (error: any) => Promise<never>
 }
 
-export interface VFetchConfig extends IFetchOptions {
+export interface IFetchConfig extends IFetchOptions {
   url: string
   keepalive?: boolean
   body?: any
@@ -58,6 +51,8 @@ export interface VFetchConfig extends IFetchOptions {
   cache?: Cache
   redirect?: Redirect
   mode?: Mode
+  signal?: AbortSignal
+  cancel?: () => void
   transformResponse?: (response: Response) => Response
 }
 
@@ -65,6 +60,7 @@ export interface IFetchOptions {
   baseURL?: string
   timeout?: number
   headers?: Record<string, any>
+  interceptors?: IFetchInterceptors
 }
 
 export interface DeviceType { os: string; dev: string }
