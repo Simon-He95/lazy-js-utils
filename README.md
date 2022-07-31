@@ -300,22 +300,30 @@ shareScreen('#main',() => {
   - width 图片宽度 默认为200
 ```javascript
 const append = waterfall([
-  '../assets/1.jpg',
-  '../assets/2.jpg',
-  '../assets/3.jpg',
-  ...
-])
-// 如果触底了,追加新的图片
-addEventListener(window,'scroll',()=>{
-  if(isBottom()){
+  "../public/kt.png",
+  "../public/favicon.svg",
+  "../public/wechat.jpg",
+  "../public/favicon.svg",
+  "../public/favicon.svg",
+  "../public/zfb.jpg",
+  "../public/favicon.svg",
+  "../public/favicon.svg",
+]);
+
+useWindowScroll(() => {
+  if (isBottom()) { // 触底追加新图片
     append([
-      '../assets/4.jpg',
-      '../assets/5.jpg',
-      '../assets/6.jpg',
-      ...
-    ])
+      "../public/kt.png",
+      "../public/favicon.svg",
+      "../public/wechat.jpg",
+      "../public/favicon.svg",
+      "../public/favicon.svg",
+      "../public/zfb.jpg",
+      "../public/favicon.svg",
+      "../public/favicon.svg",
+    ]);
   }
-})
+});
 ```
 
 ## dragEvent
@@ -325,6 +333,7 @@ addEventListener(window,'scroll',()=>{
 - 参数:
   - target: string | HTMLElement 目标元素
   - options: { dragStart: (e) => void 按下, dragMove: (e) => void 拖拽, dragEnd: (e) => void 松开 }
+  - trigger: boolean 默认false,在容器上移动就会触发，为true时，只有按下在目标元素上移动才会触发
 ```javascript
 dragEvent('#main', {
   dragStart(e) {

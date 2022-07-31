@@ -297,22 +297,30 @@ shareScreen('#main',() => {
   - width: Picture width default 200
 ```javascript
 const append = waterfall([
-  '../assets/1.jpg',
-  '../assets/2.jpg',
-  '../assets/3.jpg',
-  ...
-])
-// If you bottom out, add a new image
-addEventListener(window,'scroll',()=>{
-  if(isBottom()){
+  "../public/kt.png",
+  "../public/favicon.svg",
+  "../public/wechat.jpg",
+  "../public/favicon.svg",
+  "../public/favicon.svg",
+  "../public/zfb.jpg",
+  "../public/favicon.svg",
+  "../public/favicon.svg",
+]);
+
+useWindowScroll(() => {
+  if (isBottom()) { // Touch the bottom to add a new image
     append([
-      '../assets/4.jpg',
-      '../assets/5.jpg',
-      '../assets/6.jpg',
-      ...
-    ])
+      "../public/kt.png",
+      "../public/favicon.svg",
+      "../public/wechat.jpg",
+      "../public/favicon.svg",
+      "../public/favicon.svg",
+      "../public/zfb.jpg",
+      "../public/favicon.svg",
+      "../public/favicon.svg",
+    ]);
   }
-})
+});
 ```
 
 ## dragEvent
@@ -322,6 +330,7 @@ addEventListener(window,'scroll',()=>{
 - params:
   - target: string | HTMLElement The target element
   - options: { dragStart: (e) => void /* Press */, dragMove: (e) => void /* Drag and drop */, dragEnd: (e) => void /* Drag and drop */ }
+    - trigger: Boolean /* defaults to false, triggered when moving on the container, and only when pressed to move on the target element when true */
 ```javascript
 dragEvent('#main', {
   dragStart(e) {

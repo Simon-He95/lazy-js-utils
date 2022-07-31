@@ -5,10 +5,14 @@ import { createElement } from './createElement'
 import { isNum } from './isNum'
 
 export function waterfall(imageList: string[], container: string | HTMLElement | number, width = 200, space = 20) {
+  let mounted = false
+  let hasMounted = false
   if (isNum(container)) {
     width = container as number
     container = 'body'
   }
+  if (!container)
+    container = 'body'
   if (isStr(container))
     container = document.querySelector(container as string) as HTMLElement || container
   if (isStr(container))
@@ -20,12 +24,18 @@ export function waterfall(imageList: string[], container: string | HTMLElement |
   })
 
   update()
-  addEventListener(window, 'resize', update)
+  addEventListener(window, 'resize', () => {
+    hasMounted = false
+    update()
+  })
   async function update() {
-    if (isStr(container)) {
-      console.warn('请刷新页面后重试')
+    if (hasMounted)
       return
-    }
+
+    if (isStr(container) && !mounted)
+      return mounted = true
+    if (isStr(container))
+      throw new Error(`${container} is not a HTMLElement`)
     const realWidth = width + space
     const n = Math.floor((container as HTMLElement).offsetWidth / realWidth)
     const H = new Array(n).fill(0)
@@ -61,14 +71,23 @@ export function waterfall(imageList: string[], container: string | HTMLElement |
         })
       })
     }
-    (await promiseElements()).forEach(image => wrapper.appendChild(image));
-
-    (container as HTMLElement).append(wrapper)
+    (await promiseElements()).forEach(image => wrapper.appendChild(image))
+    removeWrapper(container as HTMLElement);
+    (container as HTMLElement).appendChild(wrapper)
+    hasMounted = true
   }
 
   return (imageList: string[]) => {
     const appendElement = preload(imageList, `width:${width}px;position:absolute;`)
     imagesElement.push(...appendElement)
+    hasMounted = false
     update()
+  }
+
+  function removeWrapper(container: HTMLElement) {
+    for (let i = 0; i < container.children.length; i++) {
+      if (container.children[i].id === 'simon-waterfall')
+        return container.removeChild(container.children[i])
+    }
   }
 }

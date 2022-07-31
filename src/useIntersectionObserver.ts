@@ -7,7 +7,6 @@ export function useIntersectionObserver(element: Element | string, callback: (en
   const ob = new IntersectionObserver(callback, options)
   update()
   addEventListener(document, 'DOMContentLoaded', update)
-
   return () => {
     if (isStr(element))
       return stop = true

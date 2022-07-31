@@ -16,7 +16,7 @@ export function useElementBounding(element: Element | string, callback: (rect: D
       return isMounted = true
     if (isStr(element))
       throw new Error(`${element} is not a Element`)
-    callback((element as Element).getBoundingClientRect())
+    callback?.((element as Element).getBoundingClientRect())
     hasMounted = true
   }
 }

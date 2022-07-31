@@ -11,7 +11,7 @@ export function addEventListener(target: Window | Document | Element | string, e
     stopped = true
   function event(e: Event) {
     try {
-      callback.call(e.target, e)
+      callback?.call?.(e.target, e)
     }
     catch (error: any) {
       animationStop?.()
