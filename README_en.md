@@ -22,9 +22,16 @@ At present, I have sorted out <strong>90+</strong> commonly used functions, and 
 - vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
 ## Sponsor me
-![img](/assets/wechat.jpg 'WeChat')
-
-![img](/assets/zfb.jpg 'Alipay')
+<table >
+<tr >
+<td width="500" align="center">
+<img width="300" src="./assets/wechat.jpg" alt="WeChat">
+</td>
+<td width="500" align="center">
+  <img width="300" src="./assets/zfb.jpg" alt="Alipay">
+</td>
+</tr>
+</table>
 
 ## Instructions for use
 ```bash

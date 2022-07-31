@@ -22,9 +22,16 @@
 - vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
 ## 赞助我
-![img](/assets/wechat.jpg 'WeChat')
-
-![img](/assets/zfb.jpg 'Alipay')
+<table>
+<tr>
+<td width="500" align="center">
+<img width="300" src="./assets/wechat.jpg" alt="WeChat">
+</td>
+<td width="500" align="center">
+  <img width="300" src="./assets/zfb.jpg" alt="Alipay">
+</td>
+</tr>
+</table>
 
 ## 使用说明
 ```bash
