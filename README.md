@@ -43,6 +43,69 @@ import {
 
 ```
 
+## treeToArray
+- 讲树结构转换为数组
+- 参数:
+  - tree: {} // 树结构数据
+  - children: 'children' // 子节点字段名
+```js
+const tree = {
+  id: 1,
+  label: '一级',
+  parent_id: 0,
+  children: [
+    {
+      id: 2,
+      label: '二级',
+      parent_id: 1
+    },
+    {
+      id: 3,
+      label: '二级',
+      parent_id: 1
+    }
+  ]
+}
+
+const arr = treeToArray(tree)
+console.log(arr)
+// [
+//   {"id":1,"parent_id":0,"label":"一级"},
+//   {"id":2,"parent_id":1,"label":"二级"},
+//   {"id":3,"parent_id":1,"label":"二级"}
+// ]
+```
+
+## arrayToTree
+- 将数组转换为树结构
+- 参数:
+  - array: 数组
+  - rootId: 根节点id
+  - options: {
+    id: 'id', // id字段名
+    pid: 'pid', // 父id字段名
+    children: 'children' // 子节点字段名
+  }
+```js
+const arr = [
+  { id: 1, parent_id: 0, label: '一级' },
+  { id: 2, parent_id: 1, label: '二级' },
+  { id: 3, parent_id: 1, label: '二级' },
+]
+console.log(arrayToTree(arr, { pid: 'parent_id' }))
+// [
+//   {
+//     id: 1,
+//     parent_id: 0,
+//     label: '一级',
+//     children: [
+//       {id: 2, parent_id: 1, label: '二级', children: []},
+//       {id: 3, parent_id: 1, label: '二级', children: []}
+//     ]
+//   }
+// ]
+```
+
 ## useShare
 - 通过调用本机的共享机制作为 Web Share API 的一部分。如果不支持 Web Share API，则此方法为 undefined。
 - 参数:
@@ -50,6 +113,13 @@ import {
   - text: 要共享的文本  
   - title: 要共享的标题
   - files: 要共享的文件
+```js
+useShare({
+  url: 'https://www.baidu.com',
+  text: '分享文本',
+  title: '分享标题',
+})
+```
 
 ## writeFile
 - 快速修改文件内容,支持多个文件同时修改
@@ -1383,6 +1453,7 @@ console.log(calNum.mul(0.1, 0.2, 0.2)) // 0.004
 - hasCn - 判断是否含有中文
 - isFile - 判断是否是File类型
 - isBlob - 判断是否是Blob类型
+- isUrl - 判断是否是Url类型
 
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)
