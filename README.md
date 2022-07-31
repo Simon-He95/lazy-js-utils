@@ -43,6 +43,14 @@ import {
 
 ```
 
+## useShare
+- 通过调用本机的共享机制作为 Web Share API 的一部分。如果不支持 Web Share API，则此方法为 undefined。
+- 参数:
+  - url: 要共享的 URL  
+  - text: 要共享的文本  
+  - title: 要共享的标题
+  - files: 要共享的文件
+
 ## writeFile
 - 快速修改文件内容,支持多个文件同时修改
 - 参数:

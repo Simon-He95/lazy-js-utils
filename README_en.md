@@ -43,6 +43,14 @@ import {
 
 ```
 
+## useShare
+- By calling the native sharing mechanism as part of the Web Share API. If the Web Share API is not supported, this method is undefined.
+- Parameters:
+  - url: The URL to share  
+  - text: The text to share  
+  - title: The title to share
+  - files: Files to share
+
 ## writeFile
 - Quickly modify file content, support multiple files to modify at the same time
 - params:
