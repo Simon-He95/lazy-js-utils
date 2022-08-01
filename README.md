@@ -43,6 +43,46 @@ import {
 
 ```
 
+## useVideo
+- video的封装
+- 参数:
+  - sources: [] 数组,每个元素是一个对象,对象包含两个属性,一个是type,一个是src
+  - options: {
+      container: dom节点,播放器的容器
+      controls?: true 是否使用原生播放器的controls
+      width?: number 宽度
+      height?: number 高度
+      className?: string 播放器的className
+      style?: string 播放器的style
+    }
+```js
+// play 播放 或 暂停
+// playRest 重新播放
+// playRate 播放速率 2倍速 3倍速 4倍速 5倍速 playTime(n)
+// playTime 设置一个播放时间，如果之前有记录播放时间，则从记录的时间开始播放 platTime(n)
+// playProgress 快进n秒 playProgress(n) 或后退n秒 playProgress(-n)
+const { play, playReset, playRate, playTime, playProgress } = useVideo(
+  [
+    {
+      src:
+        'https://mdn.github.io/learning-area/javascript/apis/video-audio/finished/video/sintel-short.mp4',
+      type: 'video/mp4',
+    },
+    {
+      src:
+        'https://mdn.github.io/learning-area/javascript/apis/video-audio/finished/video/sintel-short.webm',
+      type: 'video/webm',
+    },
+  ],
+  {
+    container: '#main',
+    width: 1000,
+    height: 600,
+    className: 'bg-red',
+  },
+)
+```
+
 ## treeToArray
 - 讲树结构转换为数组
 - 参数:
@@ -1108,17 +1148,36 @@ request.get({ // 取消上一个请求
 ```
 
 ## stringify
-- 参数:
-  - obj: 待转换的对象
+- 将对象序列化为字符串
+- 参数：
+  - obj: 要转换的对象
+  - 选项: 转换选项{
+    sep?: 字符串;分隔符默认“&”
+    eq?: 字符串;等号默认“=”
+    hyp?: 布尔值;是否将驼峰设置为连字符默认 false
+    px?: 布尔值;是否启用数字到 px 默认 false
+  }
 ```javascript
 console.log(stringify({ user: 'simon', age: '18' })) // 'user=simon&age=18'
+console.log(stringify({ width: 100, height: '18px',backgroundColor:'red' },{ sep:';', eq:':', hyp:true, px: true})) // 'width:100px;height:18px;background-color:red'
 ```
 
 ## parse
+- 将字符串转换为对象
 - 参数:
   - str: 待转换的字符串
+  - opts: 转换选项 {
+    sep?: string;  字符串;分隔符默认“&”
+    eq?: string;  字符串;等号默认“=”
+    camel?: boolean; 布尔值;是否将连字符设置为驼峰默认 false
+  }
 ```javascript
 console.log(parse('user=simon&age=18')) // { user: 'simon', age: '18' }
+console.log(parse('width:100px;height:18px;background-color:red', {
+  sep: ";",
+  eq: ":",
+  camel: true,
+})) // {width: '100px', height: '18px', backgroundColor: 'red'}
 ```
 ## jsCookie
 ```javascript

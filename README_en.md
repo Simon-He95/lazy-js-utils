@@ -43,6 +43,46 @@ import {
 
 ```
 
+## useVideo
+- Encapsulation of video
+- Parameters:
+  - sources: [] array, each element is an object, the object contains two properties, one is type and one is src
+  - options: {
+      container: HTMLElement | string /* the container of the player */
+      controls?: true /* Whether to use controls of native players */
+      width?: Number /* width */
+      height?: number /* height */
+      className?: string /* ClassName for string players */
+      style?: String /* player style */
+    }
+```js
+// play Play or Pause
+// PlayRest replays
+// playRate playback rate 2x speed 3x speed 4x speed 5x speed playTime(n)
+// playTime sets a playback time, if there is a previous recorded playback time, then play from the recorded time platTime(n)
+// playProgress fast forward n seconds playProgress(n) or back n seconds playProgress(-n)
+const { play, playReset, playRate, playTime, playProgress } = useVideo(
+  [
+    {
+      src:
+        'https://mdn.github.io/learning-area/javascript/apis/video-audio/finished/video/sintel-short.mp4',
+      type: 'video/mp4',
+    },
+    {
+      src:
+        'https://mdn.github.io/learning-area/javascript/apis/video-audio/finished/video/sintel-short.webm',
+      type: 'video/webm',
+    },
+  ],
+  {
+    container: '#main',
+    width: 1000,
+    height: 600,
+    className: 'bg-red',
+  },
+)
+```
+
 ## treeToArray
 - Speaks of converting tree structures to arrays
 - Parameters:
@@ -1107,16 +1147,35 @@ request.get({ // Cancels the previous request
 
 
 ## stringify
-- params:
+- Serializes an object to a string
+- Parameters:
   - obj: The object to be converted
+  - opts: conversion option {
+    sep?: string; Separator Default '&'
+    eq?: string; Equal sign default '='
+    hyp?: boolean; Whether to turn hump to hyphenate default false
+    px?: boolean; Whether to enable number to px default false
+  }
 ```javascript
 console.log(stringify({ user: 'simon', age: '18' })) // 'user=simon&age=18'
+console.log(stringify({ width: 100, height: '18px',backgroundColor:'red' },{ sep:';', eq:':', hyp:true, px: true})) // 'width:100px;height:18px;background-color:red'
 ```
 ## parse
-- params:
+- Deserializes a string to an object
+- Parameters:
   - str: The string to be converted
+  - opts: conversion option {
+    sep?: string;  String; Delimiter default "&"
+    eq?: string;  String; The equal sign defaults to "="
+    camel?: boolean; Boolean; Whether to set the hyphen to the hump default false
+  }
 ```javascript
 console.log(parse('user=simon&age=18')) // { user: 'simon', age: '18' }
+console.log(parse('width:100px;height:18px;background-color:red', {
+  sep: ";",
+  eq: ":",
+  camel: true,
+})) // {width: '100px', height: '18px', backgroundColor: 'red'}
 ```
 ## jsCookie
 ```javascript
