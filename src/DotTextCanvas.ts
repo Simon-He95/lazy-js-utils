@@ -1,5 +1,6 @@
 import { memorizeFn } from './memorizeFn'
 import { idleCallbackWrapper } from './idleCallbackWrapper'
+import { insertElement } from './insertElement'
 export class DotTextCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
   ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
@@ -105,6 +106,10 @@ export class DotTextCanvas {
 
   clearCanvas() {
     this.ctx?.clearRect(0, 0, this.canvas!.width, this.canvas!.height)
+  }
+
+  append(container: string | HTMLElement) {
+    insertElement(container, this.canvas)
   }
 }
 

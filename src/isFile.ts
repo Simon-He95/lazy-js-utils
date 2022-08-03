@@ -1,9 +1,10 @@
-import { statSync } from 'fs'
+import fs from 'fs'
 import { _toString } from './common'
+import { isStr } from './isStr'
 export function isFile(o: Blob | string): boolean {
-  if (typeof o === 'string') {
+  if (isStr(o)) {
     try {
-      return statSync(o).isFile()
+      return fs.statSync(o as string).isFile()
     }
     catch (error) {
       return false

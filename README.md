@@ -653,25 +653,17 @@ const stop = animationFrameWrapper(() => {
 - 将图片的像素转为点阵图片
 - 参数:
   - src: 图片路径
+  - color: 点阵的颜色 为空则取原像素颜色
   - fontWeight: 点阵的粗细
-  - color: 点阵的颜色 默认为原图片色
+  - bgColor?: 图片背景色 默认为白色
 - 可以await repaint中的dotImage.repaint(xxx)中的dotImage.status判断正确的src被加载完成的时机
 ```javascript
-const dotImage = new DotImageCanvas('./img/1.jpg', 1, '#000')
-document.body.appendChild(dotImage.canvas)
+const dotImage = new DotImageCanvas('./img/1.jpg','red', 1, '#000')
+dotImage.append('#main')
 // 如果有更新,可以调用dotImage.repaint('xxx','xxx',x)更新，url一致回会服用上次的图片，只更新颜色和粗细
 setTimeout(() => {
-  dotImage.repaint('./img/1.jpg', 1, '#000')
+  dotImage.repaint('./img/1.jpg','yellow' 1, '#000')
 }, 1000)
-```
-
-## exportsCode
-- node环境下获取文件内容
-- 如果是json格式的文件,返回的是json对象，否则返回string
-```javascript
-const pkg = await exportsCode('../package.json') // {name: 'simon-js-tool', version: '1.0.0' ...}
-console.log(pkg.name) // 'simon-js-tool'
-console.log(await exportsCide('../.npmrc')) // 'shamefully-hoist=true'
 ```
 
 ## fileSplice
@@ -738,7 +730,7 @@ signature.clear() // 清除签名
 ```javascript
 // 可从dotText.status判断是否加载完成,如果加载完成,可以调用dotText.repaint(xxx)更新文字
 const dotText = DotTextCanvas('hello', 20, '#000', 1)
-document.body.appendChild(dotText.canvas)
+dotText.append('#main') // 将canvas插入到指定元素中
 ```
 
 ## getLru

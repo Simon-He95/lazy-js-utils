@@ -1,6 +1,7 @@
 import { memorizeFn } from './memorizeFn'
 import { idleCallbackWrapper } from './idleCallbackWrapper'
 import { createElement } from './createElement'
+import { insertElement } from './insertElement'
 
 export class DotImageCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
@@ -95,12 +96,12 @@ export class DotImageCanvas {
       tasks.push(() => {
         for (let j = 0; j < w; j++) {
           const color = imagePointSet[i][j]
-          if (color) {
-            this.ctx.beginPath()
-            this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
-            this.ctx.fillStyle = this.color || `${color}`
-            this.ctx.fill()
-          }
+          this.ctx.beginPath()
+          this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
+          this.ctx.fillStyle = color
+            ? this.color || String(color)
+            : this.bgColor || '#fff'
+          this.ctx.fill()
         }
       })
     }
@@ -124,6 +125,10 @@ export class DotImageCanvas {
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+  }
+
+  append(container: string | HTMLElement) {
+    insertElement(container, this.canvas)
   }
 }
 

@@ -649,25 +649,17 @@ const stop = animationFrameWrapper(() => {
 - Converts the pixels of a picture to a dot matrix picture
 - params:
   - src: Picture path
+  - color: If the color of the lattice is empty, the original pixel color is taken
   - fontWeight: The thickness of the dot matrix
-  - color: The color of the dot matrix defaults to the original picture color
+  - bgColor?: Image background color defaults to white
 - The dotImage.status in dotImage.repaint(xxx) in await repaint can be used to determine when the correct src is loaded
 ```javascript
 const dotImage = new DotImageCanvas('./img/1.jpg', 1, '#000')
-document.body.appendChild(dotImage.canvas)
+dotImage.append('#main') // Append the dot matrix picture to the element
 // If there is an update, you can call dotImage.repaint('xxx', 'xxx', x) to update, the url will take the last picture, only update the color and thickness
 setTimeout(() => {
   dotImage.repaint('./img/1.jpg', 1, '#000')
 }, 1000)
-```
-
-## exportsCode
-- Get the file content in the node environment
-- If it is a json-formatted file, the json object is returned, otherwise string is returned
-```javascript
-const pkg = await exportsCode('../package.json') // {name: 'simon-js-tool', version: '1.0.0' ...}
-console.log(pkg.name) // 'simon-js-tool'
-console.log(await exportsCide('../.npmrc')) // 'shamefully-hoist=true'
 ```
 
 ## fileSplice
@@ -735,7 +727,7 @@ signature.clear() // Clear the signature
 ```javascript
 // You can tell from dotText.status whether the loading is complete, and if the loading is complete, you can call dotText.repaint(xxx) to update the text
 const dotText = DotTextCanvas('hello', 20, '#000', 1)
-document.body.appendChild(dotText.canvas)
+dotText.append('#main') // Mount the canvas to the element with id 'main'
 ```
 
 ## getLru
