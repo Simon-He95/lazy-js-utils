@@ -1,6 +1,7 @@
 import { memorizeFn } from './memorizeFn'
 import { idleCallbackWrapper } from './idleCallbackWrapper'
 import { insertElement } from './insertElement'
+import { removeElement } from './removeElement'
 export class DotTextCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
   ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
@@ -91,16 +92,23 @@ export class DotTextCanvas {
   }
 
   repaint(this: any, text: string, fontSize: number, color: string, fontWeight: number): DotTextCanvas {
+    const p = removeElement(this.canvas)
+    if (!p)
+      throw new Error('repaint error not found canvas container or has been removed')
     this.status = 'pending'
     // 如果text相同
-    if (this.originText !== text)
-      return new DotTextCanvas(text, fontSize, color, fontWeight)
+    if (this.originText !== text) {
+      const vm = new DotTextCanvas(text, fontSize, color, fontWeight) as DotTextCanvas
+      vm.append(p as HTMLElement)
+      return vm
+    }
 
     this.fontSize = fontSize
     this.color = color
     this.fontWeight = fontWeight
     this.clearCanvas()
     this.getCanvas()
+    this.append(p)
     return this
   }
 

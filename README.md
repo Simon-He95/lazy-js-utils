@@ -291,7 +291,7 @@ insertElement('#main', div, null) // 插入到最后
 - 参数:
   - element: dom元素
 ```js
-removeElement(element)
+removeElement(element) // 返回element的parentNode
 ```
 ## findElement
 - 查找dom元素

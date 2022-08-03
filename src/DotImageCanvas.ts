@@ -2,6 +2,7 @@ import { memorizeFn } from './memorizeFn'
 import { idleCallbackWrapper } from './idleCallbackWrapper'
 import { createElement } from './createElement'
 import { insertElement } from './insertElement'
+import { removeElement } from './removeElement'
 
 export class DotImageCanvas {
   canvas: HTMLCanvasElement = document.createElement('canvas')
@@ -118,9 +119,14 @@ export class DotImageCanvas {
   }
 
   async repaint(src: string, color: string, fontWeight: number, bgColor = '#fff') {
+    const p = removeElement(this.canvas)
     this.status = 'pending'
     this.initOptions(src, color, fontWeight, bgColor)
-    return this.executor()
+    if (!p)
+      throw new Error('repaint error not found canvas container or has been removed')
+    const vm = await this.executor() as DotImageCanvas
+    vm.append(p as HTMLElement)
+    return vm
   }
 
   clearCanvas() {

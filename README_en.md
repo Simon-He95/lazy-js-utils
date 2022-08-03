@@ -291,7 +291,7 @@ insertElement('#main', div, null) // Insert to the end
 - params:
   - element: dom element
 ```js
-removeElement(element)
+removeElement(element) // Returns the parentNode of element
 ```
 ## findElement
 - Look for the dom element
