@@ -43,6 +43,13 @@ import {
 
 ```
 
+## getResolvedPath
+- 获取绝对路径
+- 参数:
+  - url: string 相对路径
+```js
+const resolvedPath = getResolvedPath('/assets/kt.png') // /mnt/d/GitHub/assets/kt.png
+```
 
 ## getPkg
 - 获取package.json的Object 对象

@@ -43,6 +43,14 @@ import {
 
 ```
 
+## getResolvedPath
+- Gets the absolute path
+- params:
+  - url: string relative path
+```js
+const resolvedPath = getResolvedPath('/assets/kt.png') // /mnt/d/GitHub/assets/kt.png
+```
+
 ## getPkg
 - Get the Object object for package.json
 -You can use relative or absolute paths
