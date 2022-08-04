@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { _toString } from './common'
 import { isStr } from './isStr'
-export function isFile(o: Blob | string): boolean {
+export function isFile(o: Blob | string): o is File {
   if (isStr(o)) {
     try {
       return fs.statSync(o as string).isFile()

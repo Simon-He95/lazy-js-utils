@@ -1,3 +1,3 @@
-export function isArray(o: any): boolean {
+export function isArray(o: any): o is Array<any> {
   return Array.isArray(o)
 }

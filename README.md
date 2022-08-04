@@ -1516,6 +1516,7 @@ console.log(calNum.mul(0.1, 0.2, 0.2)) // 0.004
 - isBlob - 判断是否是Blob类型
 - isUrl - 判断是否是Url类型
 - isAbsolute - 判断是否是绝对路径
+- isElement - 判断是否是HTMLElement
 
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)
