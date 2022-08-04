@@ -12,6 +12,7 @@ export class DotTextCanvas {
   fontWeight: number
   textPointSet: Array<number[]> = []
   status = 'pending'
+  container?: HTMLElement
   constructor(text: string, fontSize: number, color: string, fontWeight: number) {
     this.originText = text
     this.fontSize = fontSize
@@ -97,19 +98,15 @@ export class DotTextCanvas {
       throw new Error('repaint error not found canvas container or has been removed')
     this.status = 'pending'
     // 如果text相同
-    if (this.originText !== text) {
-      const vm = new DotTextCanvas(text, fontSize, color, fontWeight) as DotTextCanvas
-      vm.append(p as HTMLElement)
-      return vm
-    }
+    if (this.originText !== text)
+      return Object.assign(this, new DotTextCanvas(text, fontSize, color, fontWeight) as DotTextCanvas).append(p)
 
     this.fontSize = fontSize
     this.color = color
     this.fontWeight = fontWeight
     this.clearCanvas()
     this.getCanvas()
-    this.append(p)
-    return this
+    return this.append(p)
   }
 
   clearCanvas() {
@@ -118,6 +115,7 @@ export class DotTextCanvas {
 
   append(container: string | HTMLElement) {
     insertElement(container, this.canvas)
+    return this
   }
 }
 

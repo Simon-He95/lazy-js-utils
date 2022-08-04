@@ -124,9 +124,7 @@ export class DotImageCanvas {
     this.initOptions(src, color, fontWeight, bgColor)
     if (!p)
       throw new Error('repaint error not found canvas container or has been removed')
-    const vm = await this.executor() as DotImageCanvas
-    vm.append(p as HTMLElement)
-    return vm
+    return Object.assign(this, await this.executor() as DotImageCanvas).append(p as HTMLElement)
   }
 
   clearCanvas() {
@@ -135,6 +133,7 @@ export class DotImageCanvas {
 
   append(container: string | HTMLElement) {
     insertElement(container, this.canvas)
+    return this
   }
 }
 
