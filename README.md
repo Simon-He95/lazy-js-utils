@@ -43,6 +43,12 @@ import {
 
 ```
 
+## getExportBundle
+- 返回npm打包文件
+```js
+console.log(getExportBundle('vitest')) // 读取node_modules/vitest/package.json的module字段如果没有才会读取main字段, 返回打包文件的内容
+```
+
 # Canvas
 - 快速拿到canvas和ctx
 ```js

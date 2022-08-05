@@ -43,6 +43,12 @@ import {
 
 ```
 
+## getExportBundle
+- Returns the npm packaging file
+```js
+console.log(getExportBundle('vitest')) // Reading the module field of node_modules/vitest/package.json if not will only read the main field, returning the contents of the packaged file
+```
+
 # Canvas
 - Get canvas and ctx quickly
 ```js
