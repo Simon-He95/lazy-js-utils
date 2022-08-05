@@ -43,6 +43,12 @@ import {
 
 ```
 
+# Canvas
+- Get canvas and ctx quickly
+```js
+const { canvas, ctx } = new Canvas()
+```
+
 ## getResolvedPath
 - Gets the absolute path
 - params:

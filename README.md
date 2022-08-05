@@ -43,6 +43,12 @@ import {
 
 ```
 
+# Canvas
+- 快速拿到canvas和ctx
+```js
+const { canvas, ctx } = new Canvas()
+```
+
 ## getResolvedPath
 - 获取绝对路径
 - 参数:

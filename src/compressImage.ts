@@ -1,3 +1,4 @@
+import { Canvas } from './Canvas'
 import { isFile } from './isFile'
 
 type CompressImageOptionsType = 'Blob' | 'base64' | 'blob'
@@ -40,15 +41,14 @@ function fileToDataURL(source: Blob | string, resolve: ((blob: Blob | string) =>
   }
 
   function imageToCanvas(image: HTMLImageElement) {
-    const cvs = document.createElement('canvas')
-    const ctx = cvs.getContext('2d')!
-    cvs.width = image.width
-    cvs.height = image.height
-    ctx.drawImage(image, 0, 0, cvs.width, cvs.height)
+    const { canvas, ctx } = new Canvas()
+    canvas.width = image.width
+    canvas.height = image.height
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
     if (type === 'blob')
-      canvasResizeToFile(cvs)
+      canvasResizeToFile(canvas)
     else
-      canvasResizeToDataURL(cvs)
+      canvasResizeToDataURL(canvas)
   }
 
   function canvasResizeToFile(canvas: HTMLCanvasElement) {
