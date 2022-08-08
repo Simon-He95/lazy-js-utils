@@ -43,6 +43,13 @@ import {
 
 ```
 
+## transformArgv
+- 处理命令行参数
+```js
+// build --minify --mode=production --type=es5
+const args = transformArgv() // {minify: true, mode: 'production', type: 'es5'}
+```
+
 ## getExportBundle
 - 返回npm打包文件
 ```js

@@ -43,6 +43,13 @@ import {
 
 ```
 
+## transformArgv
+- Handle command-line arguments
+```js
+// build --minify --mode=production --type=es5
+const args = transformArgv() // {minify: true, mode: 'production', type: 'es5'}
+```
+
 ## getExportBundle
 - Returns the npm packaging file
 ```js
