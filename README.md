@@ -43,6 +43,13 @@ import {
 
 ```
 
+## isExist
+- 判断文件是否存在
+```js
+isExist('./README.md') // true
+isExist('./a.md') // false
+```
+
 ## transformArgv
 - 处理命令行参数
 ```js

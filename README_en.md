@@ -43,6 +43,13 @@ import {
 
 ```
 
+## isExist
+- Determine if the file exists
+```js
+isExist('./README.md') // true
+isExist('./a.md') // false
+```
+
 ## transformArgv
 - Handle command-line arguments
 ```js
