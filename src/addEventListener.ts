@@ -52,4 +52,3 @@ export function addEventListener(target: Window | Document | Element | string, e
     setTimeout(stop)
   }
 }
-

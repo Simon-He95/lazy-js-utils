@@ -15,4 +15,3 @@ function executor(target: Record<any, any>, index: number, options: Record<strin
     options[key](result, index, target)
   }
 }
-

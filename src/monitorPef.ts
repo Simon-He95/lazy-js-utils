@@ -28,4 +28,3 @@ export function monitorPef() {
     console.log(performance.timing)
   }
 }
-

@@ -38,4 +38,3 @@ export function idleCallbackWrapper(tasks: Function[], timeout: Timeout = 2000, 
   }
   return stop
 }
-

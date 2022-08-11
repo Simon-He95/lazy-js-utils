@@ -88,4 +88,3 @@ function transformProps(props: Record<string, string>) {
     return result
   }, '')
 }
-

@@ -64,4 +64,3 @@ export function dragEvent(target: HTMLElement | string, options: DragEvent = {},
     stop.forEach(cb => cb?.())
   }
 }
-

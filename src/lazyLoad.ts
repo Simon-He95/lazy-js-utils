@@ -25,4 +25,3 @@ export function lazyLoad(imgList: any, root: Element, rootMargin = '0px 0px 200p
     throw new Error(error)
   }
 }
-

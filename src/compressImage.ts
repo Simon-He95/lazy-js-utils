@@ -59,4 +59,3 @@ function fileToDataURL(source: Blob | string, resolve: ((blob: Blob | string) =>
     resolve(canvas.toDataURL('image/jpeg', quality))
   }
 }
-

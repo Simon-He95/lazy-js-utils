@@ -136,4 +136,3 @@ export class DotImageCanvas {
     return this
   }
 }
-

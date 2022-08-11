@@ -33,4 +33,3 @@ export function useMutationObserver(element: Element | string | ParentNode | nul
     stop?.()
   }
 }
-

@@ -21,4 +21,3 @@ export function arrayToTree(array: Record<string, any>[], parentId = 0, options:
       }))
   }
 }
-

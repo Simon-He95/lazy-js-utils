@@ -47,4 +47,3 @@ export async function fileSplice(_file: File, _chunkSize: number = 1024 * 100): 
     })
   }
 }
-

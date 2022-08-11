@@ -14,4 +14,3 @@ export function preload(list: string[] | string, style: string) {
     return image
   }
 }
-

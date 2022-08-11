@@ -17,4 +17,3 @@ export function quickFilter(array: any[], key: string | Array<string>) {
       : /.*/.test(item[key])
   }
 }
-

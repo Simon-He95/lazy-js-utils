@@ -121,4 +121,3 @@ export async function sliderValidation(url: string, container: HTMLElement | str
     animation: head-shake 1s ease-in-out 1;
   }`)
 }
-
