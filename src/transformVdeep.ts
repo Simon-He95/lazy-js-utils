@@ -6,10 +6,12 @@ export function transformVdeep() {
     transform(src: any, id: string) {
       if (id.endsWith('.vue')) {
         const transformData = src.replace(/(?:\/deep\/|>>>)([\w.,\n\s-]+){$/gms, (e: string, r: string) => `:deep(${r}){`)
-        fs.writeFile(id, transformData, (err) => {
-          if (err)
-            console.log(err)
-        })
+        if (transformData !== src) {
+          fs.writeFile(id, transformData, (err) => {
+            if (err)
+              console.log(err)
+          })
+        }
         return transformData
       }
     },
