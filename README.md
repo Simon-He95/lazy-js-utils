@@ -43,6 +43,17 @@ import {
 
 ```
 
+## transformVdeep
+- vite-plugin
+- 将`>>>` 和 `/deep/` 转换成 `:deep()`
+```js
+// vite.config.ts
+// import { transformVdeep } from 'simon-js-tool'
+// plugins: [
+//   transformVdeep(),
+// ]
+```
+
 ## isExist
 - 判断文件是否存在
 ```js

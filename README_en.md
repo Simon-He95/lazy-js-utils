@@ -43,6 +43,17 @@ import {
 
 ```
 
+## transformVdeep
+- vite-plugin
+- Convert `>>>` and `/deep/` to `:deep()`
+```js
+// vite.config.ts
+// import { transformVdeep } from 'simon-js-tool'
+// plugins: [
+//   transformVdeep(),
+// ]
+```
+
 ## isExist
 - Determine if the file exists
 ```js
