@@ -43,6 +43,28 @@ import {
 
 ```
 
+## jsShell
+- The js based on node encapsulation invokes shell commands
+- params:
+  - cmd: shell command
+```js
+const data = jsShell('ls')
+const term1 = data?.split('\n').map(item => item).join(' ')
+jsShell(`gum choose  ${term1}`)
+// It is very simple to implement a pick box selection function, you can also continue to receive the results of the selection, do the next operation
+// > README.md
+//   README_en.md
+//   assets
+//   dist
+//   node_modules
+//   package.json
+//   playground
+//   pnpm-lock.yaml
+//   pnpm-workspace.yaml
+//   src
+```
+
+
 ## transformVdeep
 - vite-plugin
 - Convert `>>>` and `/deep/` to `:deep()`
