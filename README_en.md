@@ -1,7 +1,12 @@
+# simon-js-tool
+
 <p align="center">
-<img height="200" src="./assets/kt.png" alt="simon-js-tool">
+<img height="200" src="./assets/kv.png" alt="simon-js-tool">
 </p>
-<p align="center"><a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/v/simon-js-tool?color=3fb883&amp;label=" alt="NPM version"></a></p>
+<p align="center"><a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/v/simon-js-tool?color=3fb883&amp;label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/dm/simon-js-tool?style=social" alt="NPM version"></a>
+<a href="https://github.com/Simon-He95/simon-js-tool"><img src="https://img.shields.io/github/stars/Simon-He95/simon-js-tool?style=social" alt="NPM version"></a>
+</p>
 <p align="center"><a href="https://www.hejian.club/posts/toolsfunction">Docs</a></p>
 <p align="center"> English | <a href="./README.md">简体中文</a></p>
 
