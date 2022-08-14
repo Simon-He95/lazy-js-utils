@@ -13,6 +13,12 @@ declare global {
     msIndexedDB: IDBFactory
     indexedDB: IDBFactory
   }
+  interface Navigator {
+    webkitGetUserMedia: () => void
+    mozGetUserMedia: () => void
+    msGetUserMedia: () => void
+    getUserMedia: () => void
+  }
 }
 
 export type Redirect = 'follow' | 'error' | 'manual'
