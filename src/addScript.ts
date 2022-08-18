@@ -1,12 +1,14 @@
 import { createElement } from './createElement'
-export function addScript(src: string) {
+export function addScript(src: string): () => void {
   try {
     const t = document.getElementsByTagName('script')[0]
-    t.parentNode?.insertBefore(createElement('script', {
+    const s = createElement('script', {
       type: 'text/javascript',
       src,
       async: '',
-    }), t)
+    })
+    t.parentNode?.insertBefore(s, t)
+    return () => t.parentNode?.removeChild(s)
   }
   catch (error: any) {
     throw new Error(error)
