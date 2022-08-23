@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
+import process from 'process'
 export function vitePluginCopyHtml(template_url: string) {
-  let content = fs.readFileSync(path.resolve(__dirname, template_url), 'utf-8')
+  let content = fs.readFileSync(path.resolve(process.cwd(), template_url), 'utf-8')
   return {
     name: 'vite-plugin-copy-html',
     writeBundle(options: any, data: any) {
