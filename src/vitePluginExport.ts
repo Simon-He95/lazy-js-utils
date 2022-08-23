@@ -1,6 +1,6 @@
-export function ExportPlugin(config: string) {
+export function vitePluginExport(config: string) {
   return {
-    name: 'vite-export-plugin',
+    name: 'vite-plugin-export',
     transform(src: any, id: string) {
       if (id.endsWith(config)) {
         return {

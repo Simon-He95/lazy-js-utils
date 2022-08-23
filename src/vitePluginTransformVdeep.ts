@@ -1,8 +1,8 @@
 import fs from 'fs'
 
-export function transformVdeep() {
+export function vitePluginTransformVdeep() {
   return {
-    name: 'vite-transform-Vdeep',
+    name: 'vite-plugin-transform-Vdeep',
     transform(src: any, id: string) {
       if (id.endsWith('.vue')) {
         const transformData = src.replace(/(?:\/deep\/|>>>)([\w.,\n\s-]+){$/gms, (e: string, r: string) => `:deep(${r}){`)
