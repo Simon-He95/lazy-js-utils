@@ -645,13 +645,6 @@ describe('Test pwdLevel', () => {
   })
 })
 
-// describe('Test exportsCode', () => {
-//   it('exportsCode test', async () => {
-//     const result = await exportsCode('../package.json')
-//     expect(result.version).toMatchInlineSnapshot('"<div :class=\\"myclass\\"></div>"')
-//   })
-// })
-
 describe('Test htmlTransform', () => {
   it('htmlTransform test', async () => {
     const code = await htmlTransform('<div class="_ee">hello</div><view bindtap="xx"></view>', {
