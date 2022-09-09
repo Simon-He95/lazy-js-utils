@@ -1,6 +1,6 @@
 import { createElement } from './createElement'
 import type { FileType } from './types'
-export async function toBase64(o: File | string, type: FileType = 'url'): Promise<string> {
+export async function toBase64(o: File | string | Blob, type: FileType = 'url'): Promise<string> {
   if (type === 'file' || type === 'blob')
     return await fileToBase64(o as File | Blob) as string
   else if (type === 'url')
