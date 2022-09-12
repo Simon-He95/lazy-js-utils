@@ -14,7 +14,7 @@ export function uniqueArray(array: any[]): any[] {
   }, [])
 }
 
-function equals(a: Record<any, any>, b: Record<any, any>): boolean {
+function equals(a: Record<any, any>, b: Record<any, any>): Boolean {
   if (Object.keys(a).length !== Object.keys(b).length)
     return false
   for (const key in a) {
@@ -30,6 +30,6 @@ function equals(a: Record<any, any>, b: Record<any, any>): boolean {
   return true
 }
 
-function isHave(result: any[], item: any) {
+function isHave(result: any[], item: any): Boolean {
   return result.some(i => isType(i, 'o|a') && equals(item, i))
 }

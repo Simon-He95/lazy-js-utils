@@ -1,22 +1,13 @@
-interface ForEachCallback {
-  (value: any, index: number, array: any[]): void
-}
-export function forEach(array: any[], callback: ForEachCallback): void {
-  let result
-  try {
-    array.forEach((...args) => {
-      const res = callback(...args)
-      if (res !== undefined) {
-        result = res
-        throw new Error('forEach break')
-      }
-      return res
-    })
-  }
-  catch (error: any) {
-    if (error.message !== 'forEach break')
-      throw error
-  }
-  return result
-}
+import { isUndef } from './isUndef'
 
+interface ForEachCallback<T> {
+  (value: T, index: number, array: T[]): any
+}
+export function forEach<T>(array: T[], callback: ForEachCallback<T>): any {
+  for (let i = 0; i < array.length; i++) {
+    const res = callback(array[i], i, array)
+    if (!isUndef(res))
+      return res
+  }
+  return undefined
+}

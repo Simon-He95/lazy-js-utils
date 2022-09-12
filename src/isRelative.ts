@@ -1,3 +1,3 @@
-export function isRelative(str: string) {
+export function isRelative(str: string): boolean {
   return /^(\.\.\/|\.\/)/.test(str)
 }
