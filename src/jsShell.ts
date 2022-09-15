@@ -10,8 +10,10 @@ export function jsShell(commander: string | string[], errorExit?: boolean) {
       stdio: ['inherit', 'pipe', 'inherit'],
       encoding: 'utf8',
     })
-    if (status === 130)
+    if (status === 130) {
+      console.log('已取消...')
       process.exit(1)
+    }
     const result = output[1]
     if (status !== 0) {
       console.log(result)
