@@ -41,8 +41,13 @@ export function addEventListener(target: Window | Document | Element | string, e
     if (!isMounted && isStr(target))
       return isMounted = true
     else if (isStr(target))
-      throw new Error(`${target} is not a Element`);
-    (target as Element).addEventListener(eventName, event, useCapture)
+      throw new Error(`${target} is not a Element`)
+    const originCall = (target as unknown as any)?.[eventName]
+    const eventFunction = (e: Event) => {
+      originCall?.(e)
+      event(e)
+    }
+    target.addEventListener(eventName, eventFunction, useCapture)
     stop = () => (target as Element).removeEventListener(eventName, event, useCapture)
     hasMounted = true
   }
