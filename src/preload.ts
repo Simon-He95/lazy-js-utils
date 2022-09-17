@@ -1,7 +1,7 @@
 import { isArray } from './isArray'
 import { createElement } from './createElement'
 
-export function preload(list: string[] | string, style: string) {
+export function preload(list: string[] | string, style?: string) {
   const imageNode = createElement('img') as HTMLImageElement
   if (!isArray(list))
     list = [list as string]
