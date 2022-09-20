@@ -26,17 +26,7 @@
 - numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
 - vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
-## :coffee: 赞助我
-<table>
-<tr>
-<td width="500" align="center">
-<img width="300" src="./assets/wechat.jpg" alt="WeChat">
-</td>
-<td width="500" align="center">
-  <img width="300" src="./assets/zfb.jpg" alt="Alipay">
-</td>
-</tr>
-</table>
+
 
 ## :book: 使用说明
 ```bash
@@ -47,6 +37,9 @@ import {
  } from 'simon-js-tool' # 按需引入
 
 ```
+
+## :coffee: 
+[请我喝一杯咖啡](https://github.com/Simon-He95/sponsor)
 
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)

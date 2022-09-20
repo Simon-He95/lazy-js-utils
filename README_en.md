@@ -26,17 +26,6 @@ At present, I have sorted out <strong>90+</strong> commonly used functions, and 
 - numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
 - vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
-## :coffee: Sponsor me
-<table >
-<tr >
-<td width="500" align="center">
-<img width="300" src="./assets/wechat.jpg" alt="WeChat">
-</td>
-<td width="500" align="center">
-  <img width="300" src="./assets/zfb.jpg" alt="Alipay">
-</td>
-</tr>
-</table>
 
 ## :book: Instructions for use
 ```bash
@@ -47,6 +36,9 @@ import {
  } from 'simon-js-tool' # Ingestion on demand
 
 ```
+
+## :coffee:
+[Sponsor me](https://github.com/Simon-He95/sponsor)
 
 ## GitHub地址
 [Welcome to PR](https://github.com/Simon-He95/simon-js-tool)
