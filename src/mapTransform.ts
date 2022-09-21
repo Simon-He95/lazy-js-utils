@@ -1,10 +1,34 @@
+import { isArray } from './isArray'
+import { isPlainObject } from './isPlainObject'
+
 const arr_reg = /(\w+)\[(\w+)\]/
 
-export function mapTransform(o: Record<string, any>, map: Record<string, string>) {
-  return Object.keys(map).reduce((result, key) => {
+export function mapTransform(o: Record<string, any>, map: Record<string, string>, keepRest: Boolean = false) {
+  const mapResult = Object.keys(map).reduce((result, key) => {
     result[map[key]] = getMapValue(key, o)
     return result
   }, {} as Record<string, any>)
+  if (!keepRest)
+    return mapResult
+
+  const keys = Object.keys(map)
+  const cloneO = JSON.parse(JSON.stringify(o))
+  keys.forEach((key) => {
+    const keyDot = key.split('.') as string[]
+    const len = keyDot.length - 1
+    keyDot.reduce((target, k, i) => {
+      if (len === i)
+        delete target[k]
+      if (arr_reg.test(k)) {
+        let result
+        k.replace(arr_reg, (e: string, r: string, q: string) => result = target[r][q])
+        return result
+      }
+      return target[k]
+    }, cloneO)
+  })
+  const rest = filterEmpty(cloneO)
+  return Object.assign(rest, mapResult)
 }
 
 export function mapTransformBack(o: Record<string, any>, map: Record<string, string>, keepRest: Boolean = false) {
@@ -41,5 +65,24 @@ function generateMapKey(key: string, result: Record<string, any>, value: any) {
     return pre
   }, result)
   return result
+}
+
+function filterEmpty(o: Record<string, any>) {
+  for (const key in o) {
+    const item = o[key]
+    if (isPlainObject(item)) {
+      if (!Object.keys(item).length)
+        delete o[key]
+      else
+        filterEmpty(item)
+    }
+    else if (isArray(item)) {
+      if (!item.length || !Object.keys(item[0]).length)
+        delete o[key]
+      else
+        item.forEach(i => filterEmpty(i))
+    }
+  }
+  return o
 }
 
