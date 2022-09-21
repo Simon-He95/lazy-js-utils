@@ -7,8 +7,16 @@ export function mapTransform(o: Record<string, any>, map: Record<string, string>
   }, {} as Record<string, any>)
 }
 
-export function mapTransformBack(o: Record<string, any>, map: Record<string, string>) {
-  return Object.entries(map).reduce((result, [key, value]) => generateMapKey(key, result, o[value]), {})
+export function mapTransformBack(o: Record<string, any>, map: Record<string, string>, keepRest: Boolean = false) {
+  const mapResult = Object.entries(map).reduce((result, [key, value]) => generateMapKey(key, result, o[value]), {})
+  if (!keepRest)
+    return mapResult
+  const values = Object.values(map)
+  const rest = Object.keys(o).filter(k => !values.includes(k)).reduce((result, key) => {
+    result[key] = o[key]
+    return result
+  }, {} as Record<string, any>)
+  return Object.assign(rest, mapResult)
 }
 
 function getMapValue(key: string, o: Record<string, any>) {
