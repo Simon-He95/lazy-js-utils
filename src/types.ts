@@ -140,3 +140,12 @@ export interface MutationObserverInit {
   characterDataOldValue?: boolean
   attributeFilter?: string[]
 }
+
+export interface ParsedURL {
+  protocol?: string
+  host?: string
+  auth?: string
+  pathname: string
+  hash: string
+  search: string
+}
