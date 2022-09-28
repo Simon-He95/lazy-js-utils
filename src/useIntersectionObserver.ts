@@ -1,7 +1,7 @@
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 
-export function useIntersectionObserver(element: Element | string, callback: (entries: IntersectionObserverEntry[]) => void, options: IntersectionObserverInit): () => void {
+export function useIntersectionObserver(element: Element | string, callback: (entries: IntersectionObserverEntry[]) => void, options?: IntersectionObserverInit): () => void {
   let mounted = false
   let stop = false
   const ob = new IntersectionObserver(callback, options)
