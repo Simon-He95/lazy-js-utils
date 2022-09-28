@@ -7,11 +7,12 @@
 <a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/dm/simon-js-tool?style=social" alt="NPM version"></a>
 <a href="https://github.com/Simon-He95/simon-js-tool"><img src="https://img.shields.io/github/stars/Simon-He95/simon-js-tool?style=social" alt="NPM version"></a>
 </p>
-<p align="center"><a href="http://vitepress.hejian.club/">Docs</a></p>
+<p align="center"><a href="http://vitepress.hejian.club/">文档</a></p>
 <p align="center"> <a href="./README_en.md">English</a> | 简体中文</p>
 
 ## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
-目前整理了<strong>90+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励! :hearts:
+目前整理了<strong>100+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励! :hearts:
+
 
 ## 🔥 亮点
 - 纯js的工具函数,不依赖vue,react,angular
