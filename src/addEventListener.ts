@@ -44,7 +44,13 @@ export function addEventListener(target: Window | Document | Element | string, e
       throw new Error(`${target} is not a Element`)
     const originCall = (target as unknown as any)?.[eventName]
     const eventFunction = (e: Event) => {
-      originCall?.(e)
+      try {
+        if (originCall)
+          originCall?.()
+      }
+      catch (error) {
+        console.error(error)
+      }
       event(e)
     }
     target.addEventListener(eventName, eventFunction, useCapture)
