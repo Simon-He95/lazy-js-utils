@@ -24,7 +24,7 @@ export function sortByOrder(sortArr: any[], order: string[], prop?: string) {
   function getDepthVal(_prop: string[] | undefined, item: any) {
     return _prop
       ? _prop.reduce((result, cur) => {
-        return result[cur]
+        return result?.[cur]
       }, item)
       : item
   }
