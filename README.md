@@ -1,5 +1,3 @@
-# simon-js-tool :tongue:
-
 <p align="center">
 <img height="200" src="./assets/kv.png" alt="simon-js-tool">
 </p>
@@ -10,8 +8,7 @@
 <p align="center"><a href="http://vitepress.hejian.club/">文档</a></p>
 <p align="center"> <a href="./README_en.md">English</a> | 简体中文</p>
 
-## 此文是介绍封装的工具函数的文档[simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
-目前整理了<strong>100+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励! :hearts:
+目前整理了<strong>100+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励 :hearts:
 
 
 ## 🔥 亮点
@@ -38,6 +35,9 @@ import {
  } from 'simon-js-tool' # 按需引入
 
 ```
+
+## 👉 [文档](http://vitepress.hejian.club/)
+
 
 ## :coffee: 
 [请我喝一杯咖啡](https://github.com/Simon-He95/sponsor)

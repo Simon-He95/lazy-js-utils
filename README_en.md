@@ -1,5 +1,3 @@
-# simon-js-tool :tongue:
-
 <p align="center">
 <img height="200" src="./assets/kv.png" alt="simon-js-tool">
 </p>
@@ -10,8 +8,7 @@
 <p align="center"><a href="http://vitepress.hejian.club/">Docs</a></p>
 <p align="center"> English | <a href="./README.md">简体中文</a></p>
 
-## This article is documentation that describes the encapsulated utility functions [simon-js-tool](https://www.npmjs.com/package/simon-js-tool)
-At present, I have sorted out <strong>100+</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me! :hearts:
+At present, I have sorted out <strong>100+</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me :hearts:
 
 ## 🔥 Highlights
 - Pure js tool functions, not dependent on vue, react, angular
@@ -36,6 +33,8 @@ import {
  } from 'simon-js-tool' # Ingestion on demand
 
 ```
+
+## 👉 [Documentation](http://vitepress.hejian.club/)
 
 ## :coffee:
 [Sponsor me](https://github.com/Simon-He95/sponsor)
