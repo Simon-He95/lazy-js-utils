@@ -1,7 +1,5 @@
 import { createElement } from './createElement'
-import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
-import { findElement } from './findElement'
 
 interface Sources {
   src: string
@@ -16,11 +14,9 @@ interface VideoOptions {
   style?: string
 }
 export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
-  let isMounted = false
-  let hasMounted = false
   const video = createElement('video') as HTMLVideoElement
   const { controls = true, width, height, className, style } = videoOptions
-  let container = videoOptions.container
+  const container = videoOptions.container
   video.controls = controls
   if (width)
     video.width = width!
@@ -30,9 +26,9 @@ export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
     video.className = className
   if (style)
     video.style.cssText = style
-  update()
   addEventListener(document, 'DOMContentLoaded', update)
   addEventListener(video, 'timeupdate', () => (video.currentTime >= video.duration) && playReset())
+
   return {
     play() {
       if (video.paused)
@@ -57,14 +53,6 @@ export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
   }
 
   function update() {
-    if (hasMounted)
-      return
-    if (isStr(container))
-      container = findElement(container) || container
-    if (!isMounted && isStr(container))
-      return isMounted = true
-    if (isStr(container))
-      throw new Error(`${container} is not a Element`)
     const source = createElement('source')
     sources.forEach(({ src, type }) => {
       const _source = source.cloneNode() as HTMLSourceElement
@@ -73,6 +61,5 @@ export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
       video.appendChild(_source)
     });
     (container as HTMLElement).appendChild(video)
-    hasMounted = true
   }
 }

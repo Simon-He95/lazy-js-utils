@@ -1,10 +1,6 @@
-import { isStr } from './isStr'
-import { animationFrameWrapper } from './animationFrameWrapper'
-import { findElement } from './findElement'
+import { mount } from './mount'
 
 export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean | AddEventListenerOptions, autoRemove?: boolean): (() => void) {
-  let isMounted = false
-  let hasMounted = false
   let stopped = false
   let stop: () => void
   let animationStop: (() => void)
@@ -21,29 +17,11 @@ export function addEventListener(target: Window | Document | Element | string, e
     if (autoRemove)
       stop()
   }
-  update()
-  window.addEventListener('DOMContentLoaded', () => {
-    update()
-    if (stopped)
-      stop?.()
-  })
 
   window.onunload = () => stop?.()
-  if (eventName === 'DOMContentLoaded')
-    animationStop = animationFrameWrapper(callback, 0, true)
-  else
-    animationFrameWrapper(update, 0, true)
 
-  function update() {
-    if (hasMounted)
-      return
-    if (isStr(target))
-      target = findElement(target) as Element || target
-    if (!isMounted && isStr(target))
-      return isMounted = true
-    else if (isStr(target))
-      throw new Error(`${target} is not a Element`)
-    const originCall = (target as unknown as any)?.[eventName]
+  mount(target, (target) => {
+    const originCall = (target as any)?.[eventName]
     const eventFunction = (e: Event) => {
       try {
         const isRawClick = originCall && originCall.toString() === 'function click() { [native code] }'
@@ -59,10 +37,10 @@ export function addEventListener(target: Window | Document | Element | string, e
     stop = () => (target as Element).removeEventListener(eventName, eventFunction, useCapture)
     if (stopped)
       stop?.()
-    hasMounted = true
-  }
+  })
   return () => {
-    if (!stop) return stopped = true
+    if (!stop)
+      return stopped = true
     stop?.()
   }
 }
