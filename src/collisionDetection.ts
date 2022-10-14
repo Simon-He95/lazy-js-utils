@@ -1,8 +1,9 @@
+import { findElement } from './findElement'
 import { isStr } from './isStr'
 
 export function collisionDetection(o1: string | HTMLElement, o2: string | HTMLElement) {
-  const obj1: HTMLElement = isStr(o1) ? document.querySelector(o1)! : o1
-  const obj2: HTMLElement = isStr(o2) ? document.querySelector(o2)! : o2
+  const obj1: HTMLElement = isStr(o1) ? findElement(o1)! : o1
+  const obj2: HTMLElement = isStr(o2) ? findElement(o2)! : o2
   if (!obj1 || !obj2)
     return
   const left1_start = obj1.offsetLeft

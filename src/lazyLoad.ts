@@ -1,9 +1,10 @@
+import { findElement } from './findElement'
 import { isArray } from './isArray'
 import { isStr } from './isStr'
 export function lazyLoad(imgList: any, root: Element, rootMargin = '0px 0px 200px 0px', threshold: any): void {
   try {
     if (isStr(imgList))
-      imgList = document.querySelectorAll(imgList)
+      imgList = findElement(imgList, true)
     if (imgList.length !== undefined)
       imgList = [...imgList]
     const observer = new IntersectionObserver(

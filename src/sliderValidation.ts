@@ -1,6 +1,7 @@
 import { addStyle } from './addStyle'
 import { createElement } from './createElement'
 import { dragEvent } from './dragEvent'
+import { findElement } from './findElement'
 import { isFn } from './isFn'
 import { isStr } from './isStr'
 import { randomRange } from './randomRange'
@@ -11,7 +12,7 @@ export async function sliderValidation(url: string, container: HTMLElement | str
     l = 42
   }
   if (isStr(container))
-    container = document.querySelector(container as string) as HTMLElement || container
+    container = findElement(container) || container
   if (isStr(container))
     throw new Error(`${container} is not a HTMLElement`)
   const image = new Image()

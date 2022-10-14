@@ -1,9 +1,10 @@
+import { findElement } from './findElement'
 import { isStr } from './isStr'
 
 export function picInPic(video: HTMLVideoElement | string) {
   return async () => {
     if (isStr(video))
-      video = document.querySelector(video as string) as HTMLVideoElement || video
+      video = findElement(video) as HTMLVideoElement || video
     if (isStr(video))
       throw new Error(`${video} is not a HTMLVideoElement`)
     try {

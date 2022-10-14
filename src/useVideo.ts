@@ -1,6 +1,7 @@
 import { createElement } from './createElement'
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
+import { findElement } from './findElement'
 
 interface Sources {
   src: string
@@ -59,7 +60,7 @@ export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
     if (hasMounted)
       return
     if (isStr(container))
-      container = document.querySelector(container as string) as HTMLElement || container
+      container = findElement(container) || container
     if (!isMounted && isStr(container))
       return isMounted = true
     if (isStr(container))

@@ -1,5 +1,5 @@
-export function findElement(selector: string, single?: boolean) {
-  return single
-    ? document.querySelectorAll(selector)
-    : document.querySelector(selector)
+export function findElement(selector: string, all?: boolean) {
+  return (all
+    ? document.querySelectorAll(selector) as NodeListOf<Element> | undefined
+    : document.querySelector(selector)) as HTMLElement | null
 }

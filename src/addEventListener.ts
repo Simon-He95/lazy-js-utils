@@ -1,5 +1,6 @@
 import { isStr } from './isStr'
 import { animationFrameWrapper } from './animationFrameWrapper'
+import { findElement } from './findElement'
 
 export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean | AddEventListenerOptions, autoRemove?: boolean): (() => void) {
   let isMounted = false
@@ -37,7 +38,7 @@ export function addEventListener(target: Window | Document | Element | string, e
     if (hasMounted)
       return
     if (isStr(target))
-      target = document.querySelector(target as string) as Element || target
+      target = findElement(target) as Element || target
     if (!isMounted && isStr(target))
       return isMounted = true
     else if (isStr(target))

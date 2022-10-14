@@ -2,6 +2,7 @@ import { getDevice } from './getDevice'
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 import type { DragEvent } from './types'
+import { findElement } from './findElement'
 
 export function dragEvent(target: HTMLElement | string, options: DragEvent = {}, trigger?: boolean) {
   let isMounted = false
@@ -13,7 +14,7 @@ export function dragEvent(target: HTMLElement | string, options: DragEvent = {},
     if (hasMounted)
       return
     if (isStr(target))
-      target = document.querySelector(target as string) as HTMLElement || target
+      target = findElement(target) || target
     if (!isMounted && isStr(target))
       return isMounted = true
     else if (isStr(target))

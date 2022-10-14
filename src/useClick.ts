@@ -1,5 +1,6 @@
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
+import { findElement } from './findElement'
 
 export function useClick(target: string | HTMLElement, callback: () => void) {
   let isMounted = false
@@ -14,7 +15,7 @@ export function useClick(target: string | HTMLElement, callback: () => void) {
     if (hasMounted)
       return
     if (isStr(target))
-      target = document.querySelector(target as string) as HTMLElement || target
+      target = findElement(target) || target
     if (!isMounted && isStr(target))
       return isMounted = true
     else if (isStr(target))

@@ -1,4 +1,5 @@
 import { addEventListener } from './addEventListener'
+import { findElement } from './findElement'
 import { isStr } from './isStr'
 
 export function useElementBounding(element: Element | string, callback: (rect: DOMRect) => void) {
@@ -11,7 +12,7 @@ export function useElementBounding(element: Element | string, callback: (rect: D
     if (hasMounted)
       return
     if (isStr(element))
-      element = document.querySelector(element as string) as Element || element
+      element = findElement(element) || element
     if (!isMounted && isStr(element))
       return isMounted = true
     if (isStr(element))

@@ -1,4 +1,5 @@
 import { createElement } from './createElement'
+import { findElement } from './findElement'
 import { isStr } from './isStr'
 
 export function shareScreen(container: string | HTMLElement, callback: (msg: string) => void) {
@@ -10,7 +11,7 @@ export function shareScreen(container: string | HTMLElement, callback: (msg: str
       }) as HTMLVideoElement
       video.srcObject = stream
       if (isStr(container))
-        container = document.querySelector(container as string) as HTMLElement || container
+        container = findElement(container) || container
       if (isStr(container))
         reject(new Error(`${container} container is not a HTMLElement`))
       resolve('success')

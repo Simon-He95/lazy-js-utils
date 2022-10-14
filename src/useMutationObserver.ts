@@ -1,6 +1,7 @@
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 import type { MutationObserverInit } from './types'
+import { findElement } from './findElement'
 export function useMutationObserver(element: Element | string | ParentNode | null, callback: MutationCallback, options: MutationObserverInit = {}) {
   if (!element)
     return
@@ -15,7 +16,7 @@ export function useMutationObserver(element: Element | string | ParentNode | nul
     if (hasMounted)
       return
     if (isStr(element))
-      element = document.querySelector(element as string) as Element || element
+      element = findElement(element) || element
     if (!isMounted && isStr(element))
       return isMounted = true
     else if (isStr(element))

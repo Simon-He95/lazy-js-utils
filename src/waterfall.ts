@@ -3,6 +3,7 @@ import { preload } from './preload'
 import { addEventListener } from './addEventListener'
 import { createElement } from './createElement'
 import { isNum } from './isNum'
+import { findElement } from './findElement'
 
 export function waterfall(imageList: string[], container: string | HTMLElement | number, width = 200, space = 20) {
   let mounted = false
@@ -14,7 +15,7 @@ export function waterfall(imageList: string[], container: string | HTMLElement |
   if (!container)
     container = 'body'
   if (isStr(container))
-    container = document.querySelector(container as string) as HTMLElement || container
+    container = findElement(container) || container
   if (isStr(container))
     throw new Error(`${container} is not a HTMLElement`)
   const imagesElement = preload(imageList, `width:${width}px;position:absolute;`)
