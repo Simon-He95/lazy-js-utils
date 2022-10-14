@@ -1,42 +1,25 @@
-import { isStr } from './isStr'
 import { preload } from './preload'
 import { addEventListener } from './addEventListener'
 import { createElement } from './createElement'
 import { isNum } from './isNum'
-import { findElement } from './findElement'
+import { mount } from './mount'
 
-export function waterfall(imageList: string[], container: string | HTMLElement | number, width = 200, space = 20) {
-  let mounted = false
-  let hasMounted = false
-  if (isNum(container)) {
-    width = container as number
-    container = 'body'
+export function waterfall(imageList: string[], target: string | HTMLElement | number, width = 200, space = 20) {
+  if (isNum(target)) {
+    width = target as number
+    target = 'body'
   }
-  if (!container)
-    container = 'body'
-  if (isStr(container))
-    container = findElement(container) || container
-  if (isStr(container))
-    throw new Error(`${container} is not a HTMLElement`)
+  if (!target)
+    target = 'body'
   const imagesElement = preload(imageList, `width:${width}px;position:absolute;`)
   const wrapper = createElement('div', {
     id: 'simon-waterfall',
     style: 'position:relative;width:100%;height:100%;',
   })
 
-  update()
-  addEventListener(window, 'resize', () => {
-    hasMounted = false
-    update()
-  })
-  async function update() {
-    if (hasMounted)
-      return
+  addEventListener(window, 'resize', () => update(target as HTMLElement))
 
-    if (isStr(container) && !mounted)
-      return mounted = true
-    if (isStr(container))
-      throw new Error(`${container} is not a HTMLElement`)
+  async function update(container: Element) {
     const realWidth = width + space
     const n = Math.floor((container as HTMLElement).offsetWidth / realWidth)
     const H = new Array(n).fill(0)
@@ -75,14 +58,13 @@ export function waterfall(imageList: string[], container: string | HTMLElement |
     (await promiseElements()).forEach(image => wrapper.appendChild(image))
     removeWrapper(container as HTMLElement);
     (container as HTMLElement).appendChild(wrapper)
-    hasMounted = true
   }
+  mount(target, container => update(target = container as HTMLElement))
 
   return (imageList: string[]) => {
     const appendElement = preload(imageList, `width:${width}px;position:absolute;`)
     imagesElement.push(...appendElement)
-    hasMounted = false
-    update()
+    update(target as HTMLElement)
   }
 
   function removeWrapper(container: HTMLElement) {

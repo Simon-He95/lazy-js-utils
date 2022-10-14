@@ -9,12 +9,11 @@ export function addStyle(s: string): () => void {
   try {
     const style = createElement('style', {
       type: 'text/css',
-    })
-    if (isNm(s))
-      s = fs.readFileSync(path.resolve(process.cwd(), 'node_modules', s), 'utf8')
-    if (isRelative(s))
-      s = fs.readFileSync(path.resolve(process.cwd(), s), 'utf8')
-    style.innerHTML = s
+    }, isNm(s)
+      ? fs.readFileSync(path.resolve(process.cwd(), 'node_modules', s), 'utf8')
+      : isRelative(s)
+        ? fs.readFileSync(path.resolve(process.cwd(), s), 'utf8')
+        : s)
     document.head.appendChild(style)
     return () => document.head.removeChild(style)
   }

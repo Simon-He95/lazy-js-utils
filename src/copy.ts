@@ -3,8 +3,7 @@ export function copy(s: string): boolean {
   try {
     const textarea: any = createElement('textarea', {
       readonly: 'readonly',
-    })
-    textarea.innerHTML = s
+    }, s)
     document.body.appendChild(textarea)
     textarea.select()
     const res = document.execCommand('copy')
