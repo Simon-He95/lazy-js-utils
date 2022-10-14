@@ -46,7 +46,8 @@ export function addEventListener(target: Window | Document | Element | string, e
     const originCall = (target as unknown as any)?.[eventName]
     const eventFunction = (e: Event) => {
       try {
-        if (originCall)
+        const isRawClick = originCall && originCall.toString() === 'function click() { [native code] }'
+        if (!isRawClick && originCall)
           originCall?.()
       }
       catch (error) {
