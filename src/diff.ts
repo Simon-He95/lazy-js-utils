@@ -1,6 +1,6 @@
 interface Options {
-  compare: 'same' | 'different';
-  result: 'value' | 'index';
+  compare: 'same' | 'different'
+  result: 'value' | 'index'
 }
 
 export function diff(array1: any[], array2: any[], options: Options = { compare: 'same', result: 'value' }) {
@@ -12,7 +12,6 @@ export function diff(array1: any[], array2: any[], options: Options = { compare:
     return result === 'value'
       ? same
       : same.map(item => array1.indexOf(item))
-
   }
   return result === 'value'
     ? diff

@@ -1,4 +1,4 @@
-import { findElement } from "./findElement"
+import { findElement } from './findElement'
 
 export function scrollToView(e: Element | string | null) {
   try {
