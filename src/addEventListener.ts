@@ -56,12 +56,13 @@ export function addEventListener(target: Window | Document | Element | string, e
       event(e)
     }
     target.addEventListener(eventName, eventFunction, useCapture)
-    stop = () => (target as Element).removeEventListener(eventName, event, useCapture)
+    stop = () => (target as Element).removeEventListener(eventName, eventFunction, useCapture)
+    if (stopped)
+      stop?.()
     hasMounted = true
   }
   return () => {
-    if (!stop)
-      return stopped = true
-    setTimeout(stop)
+    if (!stop) return stopped = true
+    stop?.()
   }
 }
