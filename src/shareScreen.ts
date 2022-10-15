@@ -8,7 +8,7 @@ export function shareScreen(container: string | HTMLElement, callback: (msg: str
     function handleSuccess(stream: MediaStream) {
       const video = createElement('video', {
         autoplay: '', playsinline: '', muted: '',
-      }) as HTMLVideoElement
+      })
       video.srcObject = stream
       if (isStr(container))
         container = findElement(container) || container

@@ -10,11 +10,37 @@
 
 At present, I have sorted out <strong>100+</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me :hearts:
 
-## 🔥 Highlights
-- Pure js tool functions, not dependent on vue, react, angular
-- API encapsulation for dom operations, such as those used in vue, does not require onMounted to obtain dom nodes, and can be passed in directly using class or id
-- Side effect functions, which can be destop as a result of function execution, are also automatically stopped when the page is destroyed
-- Api design is simple and practical
+## :100: Highlights
+- Pure JS utility functions, Can be used in any environment where JS can be executed
+- Greatly reduced the use of `ref<HTMLElment>` and `onMounted`, which can be called directly from the script tag
+- All side effect functions can return a stop function, which can stop the execution of the event anywhere, and automatically destroy the event when the page is destroyed
+- API design is simple, practical and type-friendly
+
+## &#x270B; Example
+```js
+import { addEventListener, animationFrameWrapper, insertElement, useMutationObserver } from 'simon-js-tool'
+// To listen for container changes, you don't need const container <HTMLElement>= ref
+useMutationObserver('#container', (mutationsList, observer) => {
+  console.log(mutationsList)
+})
+// requestAnimationFrame
+animationFrameWrapper((timestamp) => {
+  // Each needle is executed 1s apart
+  console.log('animationFrame', timestamp)
+}, 1000, true /* It is destroyed after only one execution */)
+// Register for events
+addEventListener('#container', 'click', () => {
+  console.log('click')
+})
+// Insert an element
+insertElement('#container', '.content')
+// Delete an element
+removeElement('.content')
+```
+```html
+<div id="container"></div>
+<div class="content">hello world</div>
+```
 
 ## :balloon: More
 - Export function [exports-function](https://github.com/SimonHe1995/exportsFunction)

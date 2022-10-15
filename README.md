@@ -11,16 +11,41 @@
 目前整理了<strong>100+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励 :hearts:
 
 
-## 🔥 亮点
-- 纯js的工具函数,不依赖vue,react,angular
-- dom操作的api封装,如在vue中使用是不需要onMounted获取dom节点的,可以直接使用class或者id传入
-- 副作用函数,可以在函数执行的结果去stop,也会在页面销毁时被自动stop
-- api设计简单、实用
+## :100: 亮点
+- 纯js的工具函数,可使用在任何可执行js的环境
+- 大量减少`ref<HTMLElment>` 和 `onMounted`的使用，可以script标签直接调用
+- 所有的副作用函数都能返回一个stop函数，可以在任意地方停止事件的执行，并且在页面销毁时自动销毁事件
+- api设计简单、实用、类型友好
+
+## &#x270B; 例子
+```js
+import { addEventListener, animationFrameWrapper, insertElement, useMutationObserver } from 'simon-js-tool'
+// 监听container的变化, 你不在需要const container = ref<HTMLElement>
+useMutationObserver('#container', (mutationsList, observer) => {
+  console.log(mutationsList)
+})
+// requestAnimationFrame
+animationFrameWrapper((timestamp) => {
+  // 每针相隔1s执行
+  console.log('animationFrame', timestamp)
+}, 1000, true /* 只执行一次后被销毁 */)
+// 注册事件
+addEventListener('#container', 'click', () => {
+  console.log('click')
+})
+// 插入元素
+insertElement('#container', '.content')
+// 删除元素
+removeElement('.content')
+```
+```html
+<div id="container"></div>
+<div class="content">hello world</div>
+```
 
 ## :balloon: 更多
 - 导出函数 [exports-function](https://github.com/SimonHe1995/exportsFunction)
-- threejs [@simon_he/s-three](https://github.com/SimonHe1995/sThree)
-- Echarts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
+- threejs [@simon_he/s-three]Charts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
 - numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
 - vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 

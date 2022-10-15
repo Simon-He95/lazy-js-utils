@@ -1,12 +1,13 @@
 import { mount } from './mount'
+import { unmount } from './unmount'
 
-export function addEventListener(target: Window | Document | Element | string, eventName: string, callback: (e: any) => void, useCapture?: boolean | AddEventListenerOptions, autoRemove?: boolean): (() => void) {
+export function addEventListener<T extends keyof WindowEventMap>(target: Window | Document | Element | string, eventName: T, callback: (e: WindowEventMap[T]) => void, useCapture?: boolean | AddEventListenerOptions, autoRemove?: boolean): (() => void) {
   let stopped = false
   let stop: () => void
   let animationStop: (() => void)
   if (eventName === 'DOMContentLoaded')
     stopped = true
-  function event(e: Event) {
+  function event(e: WindowEventMap[T]) {
     try {
       callback?.call?.(e.target, e)
     }
@@ -17,8 +18,7 @@ export function addEventListener(target: Window | Document | Element | string, e
     if (autoRemove)
       stop()
   }
-
-  window.onunload = () => stop?.()
+  unmount(() => stop?.())
 
   mount(target, (target) => {
     const originCall = (target as any)?.[eventName]
@@ -31,7 +31,7 @@ export function addEventListener(target: Window | Document | Element | string, e
       catch (error) {
         console.error(error)
       }
-      event(e)
+      event(e as WindowEventMap[T])
     }
     target.addEventListener(eventName, eventFunction, useCapture)
     stop = () => (target as Element).removeEventListener(eventName, eventFunction, useCapture)

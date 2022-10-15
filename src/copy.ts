@@ -1,7 +1,7 @@
 import { createElement } from './createElement'
 export function copy(s: string): boolean {
   try {
-    const textarea: any = createElement('textarea', {
+    const textarea = createElement('textarea', {
       readonly: 'readonly',
     }, s)
     document.body.appendChild(textarea)

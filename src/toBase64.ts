@@ -26,12 +26,12 @@ export function fileToBase64(file: File | Blob): Promise<string> {
 export function urlToBase64(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
     try {
-      const canvas: HTMLCanvasElement = document.createElement('canvas')
+      const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
       const img = createElement('img', {
         src: `${url}?timeStamp=${new Date().getTime()}`,
         crossOrigin: 'anonymous',
-      }) as HTMLImageElement
+      })
       img.onload = function () {
         ctx?.drawImage(img, 0, 0, canvas.width = img.width, canvas.height = img.height)
         resolve(canvas.toDataURL('image/png'))

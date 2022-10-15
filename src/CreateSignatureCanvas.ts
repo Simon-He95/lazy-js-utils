@@ -21,21 +21,21 @@ export class CreateSignatureCanvas implements ISignature {
     this.ctx.lineCap = 'round'
     let offsetY = 0
     let offsetX = 0
-    this.stop.push(addEventListener(this.canvas, 'touchstart', (e: TouchEvent) => {
+    this.stop.push(addEventListener(this.canvas, 'touchstart', (e) => {
       offsetY = this.canvas.offsetTop
       offsetX = this.canvas.offsetLeft
       this.ctx.beginPath()
       this.ctx.moveTo(e.changedTouches[0].pageX + 2 - offsetX, e.changedTouches[0].pageY - offsetY)
     }, false))
     let down = false
-    this.stop.push(addEventListener(this.canvas, 'mousedown', (e: MouseEvent) => {
+    this.stop.push(addEventListener(this.canvas, 'mousedown', (e) => {
       offsetY = this.canvas.offsetTop
       offsetX = this.canvas.offsetLeft
       down = true
       this.ctx.beginPath()
       this.ctx.moveTo(e.pageX + 2 - offsetX, e.pageY - offsetY)
     }, false))
-    this.stop.push(addEventListener(this.canvas, 'mousemove', (e: MouseEvent) => {
+    this.stop.push(addEventListener(this.canvas, 'mousemove', (e) => {
       if (!down)
         return
       this.ctx.lineTo(e.pageX + 2 - offsetX, e.pageY - offsetY)
@@ -43,7 +43,7 @@ export class CreateSignatureCanvas implements ISignature {
     }, false))
     this.stop.push(addEventListener(this.canvas, 'mouseup', () => down = false))
     this.stop.push(addEventListener(this.canvas, 'mouseout', () => down = false))
-    this.stop.push(addEventListener(this.canvas, 'touchmove', (e: TouchEvent) => {
+    this.stop.push(addEventListener(this.canvas, 'touchmove', (e) => {
       this.ctx.lineTo(e.changedTouches[0].pageX + 2 - offsetX, e.changedTouches[0].pageY - offsetY)
       this.ctx.stroke()
     }, false))

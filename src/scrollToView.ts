@@ -1,14 +1,11 @@
 import { findElement } from './findElement'
-
-export function scrollToView(e: Element | string | null) {
+export function scrollToView(e: Element | string | null, options?: ScrollIntoViewOptions) {
   try {
     if (typeof e === 'string')
       e = findElement(e) as Element
     if (!e)
       return
-    e.scrollIntoView({
-      behavior: 'smooth',
-    })
+    e.scrollIntoView(Object.assign({ behavior: 'smooth' }, options))
   }
   catch (error: any) {
     throw new Error(error)

@@ -5,8 +5,8 @@ import { insertElement } from './insertElement'
 import { removeElement } from './removeElement'
 
 export class DotImageCanvas {
-  canvas: HTMLCanvasElement = document.createElement('canvas')
-  ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
+  canvas = document.createElement('canvas')
+  ctx = this.canvas.getContext('2d')!
   points: Map<string, Record<string, any>> = new Map()
   originSrc = ''
   color = ''
@@ -62,7 +62,7 @@ export class DotImageCanvas {
     })
     return new Promise((resolve) => {
       img.onload = () => {
-        this.getCanvas(this.createDotImage(img as HTMLImageElement))
+        this.getCanvas(this.createDotImage(img))
         resolve(img)
       }
       img.onerror = () => {
