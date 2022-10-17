@@ -31,7 +31,7 @@ export function addEventListener<T extends keyof (WindowEventMap & DocumentEvent
       catch (error) {
         console.error(error)
       }
-      event(e as WindowEventMap[T])
+      event(e as (WindowEventMap & DocumentEventMap)[T])
     }
     target.addEventListener(eventName, eventFunction, useCapture)
     stop = () => (target as Element).removeEventListener(eventName, eventFunction, useCapture)
