@@ -24,8 +24,8 @@ export function addEventListener<T extends keyof (WindowEventMap & DocumentEvent
     const originCall = (target as any)?.[eventName]
     const eventFunction = (e: Event) => {
       try {
-        const isRawClick = originCall && originCall.toString() === 'function click() { [native code] }'
-        if (!isRawClick && originCall)
+        const isRawEvent = originCall && originCall.toString().includes('() { [native code] }')
+        if (!isRawEvent && originCall)
           originCall?.()
       }
       catch (error) {

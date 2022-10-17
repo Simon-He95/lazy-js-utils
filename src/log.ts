@@ -1,3 +1,13 @@
-export function log(s: string | number, color = '#00f', fontSize = 14): void {
-  console.log(`%c ${s}`, `color: ${color}; font-size: ${fontSize}px`)
+import { isStr } from './isStr'
+import { stringify } from './stringify'
+export function log(s: string | number, styleObj: Record<string, string | number> | string, type: 'warn' | 'error' | 'log' = 'log'): void {
+  console[type]('%c%s', isStr(styleObj)
+    ? styleObj
+    : stringify(styleObj, {
+      sep: ';',
+      eq: ':',
+      hyp: true,
+      px: true,
+      encode: false,
+    }), s)
 }
