@@ -1,9 +1,9 @@
 import { createElement } from './createElement'
-export function download(url: string) {
+export function download(href: string, download = '') {
   try {
     createElement('a', {
-      href: url,
-      download: url.substring(url.lastIndexOf('/') + 1, url.length),
+      href,
+      download,
     }).click()
   }
   catch (error: any) {
