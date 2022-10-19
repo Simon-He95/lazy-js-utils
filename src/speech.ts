@@ -1,4 +1,4 @@
-import { isStr } from 'simon-js-tool'
+import { isStr } from './isStr'
 
 interface SpeechOptions {
   text: string
