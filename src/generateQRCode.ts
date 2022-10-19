@@ -1,5 +1,5 @@
+import QRCode from 'qrcode'
 import { isElement } from './isElement'
-const QRCode = require('qrcode')
 type Options<T, K> = T extends HTMLCanvasElement ? {
   errorCorrectionLevel: 'H'
 } : K extends true ? {
@@ -24,8 +24,8 @@ export function generateQRCode<T extends string | HTMLCanvasElement, K extends b
     else if (base64)
       type = 'toDataURL'
     else
-      type = 'toString'
-    QRCode[type](content, options, (err: any, url: string) => {
+      type = 'toString';
+    (QRCode as any)[type](content, options, (err: any, url: string) => {
       if (err)
         reject(err)
       resolve(url)

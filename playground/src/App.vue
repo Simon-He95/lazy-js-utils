@@ -13,7 +13,7 @@ import {
   tableExportExcel,
   useElementBounding,
   useIntersectionObserver,
-} from 'simon-js-tool'
+} from '../../src'
 const toggle = picInPic('#video')
 </script>
 
