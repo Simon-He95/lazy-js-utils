@@ -11,5 +11,5 @@ export function findElement(selector: string, all: boolean | HTMLElement = false
 
   return (all
     ? currentNode.querySelectorAll(selector) as NodeListOf<Element> | undefined
-    : currentNode.querySelector(selector)) as HTMLElement | null
+    : currentNode.querySelector(selector) as HTMLElement | null)
 }
