@@ -6,7 +6,7 @@ const cancelMap = new Map()
 
 export class VFetch {
   config: IFetchConfig
-  constructor(baseOptions: IFetchOptions) {
+  constructor(baseOptions?: IFetchOptions) {
     const { baseURL = '', headers = {}, timeout = 20 * 1000, interceptors } = baseOptions || {}
     this.config = {
       baseURL,
@@ -173,3 +173,4 @@ function generateKey(config: Record<string, any>) {
   const { url, method, params, data } = config
   return `${url}-${method}-${JSON.stringify(method === 'get' ? params : data)}`
 }
+
