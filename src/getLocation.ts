@@ -1,4 +1,4 @@
-export function getLocation(enableHighAccuracy = false, timeout = 5000, maximumAge = 0): Promise<GeolocationPosition> {
+export function getLocation(enableHighAccuracy = false, timeout = 5000, maximumAge = 0): Promise<GeolocationCoordinates> {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition(resolve), showError(reject), {
