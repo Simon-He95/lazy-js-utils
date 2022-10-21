@@ -149,3 +149,5 @@ export interface ParsedURL {
   hash: string
   search: string
 }
+
+export type PkgTool = 'npm' | 'yarn' | 'pnpm' | 'bun'
