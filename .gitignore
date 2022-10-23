@@ -10,3 +10,6 @@ dist
 logs 
 &-debug.log 
 *-error.log
+.eslintcache
+tmp
+

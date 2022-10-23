@@ -1,7 +1,7 @@
 {
   "name": "simon-js-tool",
   "version": "4.1.12",
-  "packageManager": "pnpm@6.32.3",
+  "packageManager": "pnpm@7.6.0",
   "description": "js-tool",
   "author": "Simon He",
   "license": "MIT",
@@ -36,8 +36,8 @@
     "play": "pnpm run -C playground dev",
     "play:build": "pnpm run -C playground build",
     "serve": "pnpm run -C playground serve",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx,.md,.json --max-warnings 0 --cache",
+    "lint:fix": "pnpm run lint --fix",
     "typecheck": "vue-tsc --noEmit",
     "test": "vitest -u",
     "test:e2e": "cypress open",
@@ -45,26 +45,26 @@
     "release": "bumpp --commit --tag --push && pnpm publish"
   },
   "dependencies": {
-    "@vueuse/core": "^8.1.1",
+    "@vueuse/core": "^8.9.4",
     "htmlparser2": "^8.0.1",
     "qrcode": "^1.5.1",
     "spark-md5": "^3.0.2",
-    "vue": "^3.2.36"
+    "vue": "^3.2.41"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.26.1",
-    "@types/node": "^17.0.38",
+    "@antfu/eslint-config": "^0.26.3",
+    "@types/node": "^17.0.45",
     "@types/qrcode": "^1.5.0",
     "@types/spark-md5": "^3.0.2",
-    "@vitejs/plugin-vue": "^2.2.4",
-    "bumpp": "^7.1.1",
-    "eslint": "^8.16.0",
-    "pkgroll": "^1.3.1",
-    "simon-js-tool": "workspace:^4.1.9",
-    "typescript": "^4.7.2",
-    "vite": "^2.8.6",
+    "@vitejs/plugin-vue": "^2.3.4",
+    "bumpp": "^7.2.0",
+    "eslint": "8.20.0",
+    "pkgroll": "^1.4.0",
+    "simon-js-tool": "workspace:^4.1.12",
+    "typescript": "^4.8.4",
+    "vite": "^2.9.15",
     "vite-plugin-pages": "^0.22.0",
-    "vitest": "^0.7.0"
+    "vitest": "^0.7.13"
   },
   "eslintConfig": {
     "extends": "@antfu"
