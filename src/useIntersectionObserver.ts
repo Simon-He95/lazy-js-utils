@@ -1,18 +1,22 @@
 import { isStr } from './isStr'
 import { addEventListener } from './addEventListener'
 import { findElement } from './findElement'
+import { unmount } from './unmount'
 
 export function useIntersectionObserver(element: Element | string, callback: (entries: IntersectionObserverEntry[]) => void, options?: IntersectionObserverInit): () => void {
   let mounted = false
-  let stop = false
+  let stopped = false
   const ob = new IntersectionObserver(callback, options)
   update()
   addEventListener(document, 'DOMContentLoaded', update)
-  return () => {
+  const stop = () => {
     if (isStr(element))
-      return stop = true
-    ob.unobserve(element as Element)
+      return stopped = true
+    ob.unobserve(element)
   }
+  unmount(() => stop?.())
+
+  return stop
 
   function update() {
     if (isStr(element))
@@ -21,8 +25,8 @@ export function useIntersectionObserver(element: Element | string, callback: (en
       return mounted = true
     if (isStr(element))
       throw new Error(`${element} is not a element`)
-    ob.observe(element as Element)
-    if (stop)
+    ob.observe(element)
+    if (stopped)
       ob.unobserve(element as Element)
   }
 }
