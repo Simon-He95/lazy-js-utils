@@ -6,6 +6,8 @@ interface IVideo {
   height: number
 }
 export function useCamera(video: IVideo = { width: 640, height: 480 }, container: string | HTMLVideoElement = 'video') {
+  if (!navigator)
+    return
   navigator.mediaDevices.getUserMedia({ video }).then((stream) => {
     const video = isStr(container)
       ? findElement(container) as HTMLVideoElement
