@@ -11,10 +11,12 @@ import {
   jsonExportZip,
   picInPic,
   tableExportExcel,
+  useCamera,
   useElementBounding,
   useIntersectionObserver,
 } from '../../src'
 const toggle = picInPic('#video')
+useCamera()
 </script>
 
 <template>
