@@ -1,6 +1,7 @@
 import type { IFetchConfig, IFetchOptions, ResponseType } from './types'
 import { deepMerge } from './deepMerge'
 import { stringify } from './stringify'
+import { isStr } from './isStr'
 
 const cancelMap = new Map()
 
@@ -32,8 +33,8 @@ export class VFetch {
       timeout,
       transformResponse,
       cache = 'default',
-      redirect = 'manual',
-      mode = 'cors',
+      redirect = 'follow',
+      mode = 'no-cors',
     } = options
     this.config = Object.assign(this.config, {
       url: url?.startsWith('http')
@@ -144,26 +145,46 @@ export class VFetch {
       return response?.arrayBuffer()
   }
 
-  get(this: VFetch, options: IFetchConfig): Promise<any> {
-    return new VFetch(this.config).init(Object.assign(options, {
+  get(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
+  get(this: VFetch, options: IFetchConfig): Promise<any>
+  get(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
+    return new VFetch(this.config).init(Object.assign(isStr(url)
+      ? Object.assign(options || {}, { url }) as IFetchConfig
+      : url, {
       method: 'GET',
     }))
   }
 
-  post(this: VFetch, options: IFetchConfig): Promise<any> {
-    return new VFetch(this.config).init(Object.assign(options, {
+  post(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
+  post(this: VFetch, options: IFetchConfig): Promise<any>
+  post(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
+    return new VFetch(this.config).init(Object.assign(isStr(url)
+      ? Object.assign(options || {}, { url }) as IFetchConfig
+      : url, {
       method: 'post',
     }))
   }
 
-  put(this: VFetch, options: IFetchConfig): Promise<any> {
-    return new VFetch(this.config).init(Object.assign(options, {
+  put(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
+  put(this: VFetch, options: IFetchConfig): Promise<any>
+  put(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
+    if (isStr(options))
+      options = { url: options }
+    return new VFetch(this.config).init(Object.assign(isStr(url)
+      ? Object.assign(options || {}, { url }) as IFetchConfig
+      : url, {
       method: 'put',
     }))
   }
 
-  delete(this: VFetch, options: IFetchConfig): Promise<any> {
-    return new VFetch(this.config).init(Object.assign(options, {
+  delete(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
+  delete(this: VFetch, options: IFetchConfig): Promise<any>
+  delete(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
+    if (isStr(options))
+      options = { url: options }
+    return new VFetch(this.config).init(Object.assign(isStr(url)
+      ? Object.assign(options || {}, { url }) as IFetchConfig
+      : url, {
       method: 'delete',
     }))
   }
