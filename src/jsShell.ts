@@ -11,7 +11,6 @@ export function jsShell<T extends string | string[]>(commander: T, errorExit?: b
   function executor(commander: string): IShellMessage {
     const { status, output } = child_process.spawnSync(commander, {
       shell: true,
-      stdio: ['pipe', 'pipe', 'inherit'],
       encoding: 'utf8',
     })
     if (status === 130) {
