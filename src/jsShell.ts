@@ -12,12 +12,13 @@ export function jsShell<T extends string | string[]>(commander: T, errorExit?: b
     const { status, output } = child_process.spawnSync(commander, {
       shell: true,
       encoding: 'utf8',
+      stdio: 'inherit',
     })
     if (status === 130) {
       console.log('已取消...')
       process.exit(1)
     }
-    const result = output[1]
+    const result = output[1]?.trim()
     if (status !== 0) {
       console.log(result)
       errorExit && process.exit(1)
