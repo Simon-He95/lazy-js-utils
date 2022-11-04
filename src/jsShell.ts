@@ -19,7 +19,7 @@ export function jsShell(commander: string | string[], errorExit?: boolean) {
       console.log(result)
       errorExit && process.exit(1)
     }
-    return result
+    return { status, result }
   }
 }
 
