@@ -4,7 +4,9 @@ interface IShellMessage {
   status: number
   result: string
 }
-export function jsShell<T extends string | string[]>(commander: T, errorExit?: boolean) {
+export function jsShell<T extends string | string[]>(commander: T, errorExit?: boolean): T extends string ? IShellMessage : IShellMessage[]
+export function jsShell<T extends string | string[]>(commander: T, stdio: 'inherit' | 'pipe', errorExit?: boolean): T extends string ? IShellMessage : IShellMessage[]
+export function jsShell<T extends string | string[]>(commander: T, stdio: 'inherit' | 'pipe' | boolean = 'inherit', errorExit?: boolean) {
   return (isArray(commander)
     ? commander.map(command => executor(command))
     : executor(commander)) as T extends string ? IShellMessage : IShellMessage[]
@@ -12,7 +14,9 @@ export function jsShell<T extends string | string[]>(commander: T, errorExit?: b
     const { status, output } = child_process.spawnSync(commander, {
       shell: true,
       encoding: 'utf8',
-      stdio: 'inherit',
+      stdio: stdio === 'inherit'
+        ? 'inherit'
+        : ['inherit', 'pipe', 'inherit'],
     })
     if (status === 130) {
       console.log('已取消...')
@@ -23,6 +27,8 @@ export function jsShell<T extends string | string[]>(commander: T, errorExit?: b
       console.log(result)
       errorExit && process.exit(1)
     }
+
     return { status, result } as IShellMessage
   }
 }
+
