@@ -1,32 +1,30 @@
 import { isStr } from './isStr'
-import { addEventListener } from './addEventListener'
 import { findElement } from './findElement'
 import { unmount } from './unmount'
+import { mount } from './mount'
 
-export function useIntersectionObserver(element: Element | string, callback: (entries: IntersectionObserverEntry[]) => void, options?: IntersectionObserverInit): () => void {
-  let mounted = false
+interface IntersectionObserverOptions {
+  root?: Element | Document | string | null
+  rootMargin?: string
+  threshold?: number | number[]
+}
+
+export function useIntersectionObserver(element: Element | string, callback: (entries: IntersectionObserverEntry[]) => void, options?: IntersectionObserverOptions): () => void {
   let stopped = false
-  const ob = new IntersectionObserver(callback, options)
-  update()
-  addEventListener(document, 'DOMContentLoaded', update)
-  const stop = () => {
-    if (isStr(element))
-      return stopped = true
-    ob.unobserve(element)
-  }
+  let stop: () => void
   unmount(() => stop?.())
-
-  return stop
-
-  function update() {
-    if (isStr(element))
-      element = findElement(element) || element
-    if (!mounted && isStr(element))
-      return mounted = true
-    if (isStr(element))
-      throw new Error(`${element} is not a element`)
+  mount(element, (element) => {
+    if (options?.root && isStr(options.root))
+      options.root = findElement(options.root)
+    const ob = new IntersectionObserver(callback, options as IntersectionObserverInit)
     ob.observe(element)
+    stop = () => ob.disconnect()
     if (stopped)
-      ob.unobserve(element as Element)
+      stop()
+  })
+  return () => {
+    if (!stop)
+      return stopped = true
+    stop?.()
   }
 }

@@ -14,8 +14,7 @@
   },
   "keywords": [
     "simon-js-tool",
-    "@simon_he/s-three",
-    "@simon_he/s-charts"
+    "utils"
   ],
   "exports": {
     ".": {

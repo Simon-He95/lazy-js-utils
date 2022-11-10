@@ -1,4 +1,3 @@
-import path from 'path'
 const videoExtension = [
   '3g2',
   '3gp',
@@ -37,6 +36,7 @@ const videoExtension = [
 ]
 
 export function isVideo(filepath: string) {
-  return videoExtension.includes(path.extname(filepath).slice(1).toLowerCase())
+  const last = filepath.lastIndexOf('.') + 1
+  return videoExtension.includes(filepath.slice(last, filepath.length).toLowerCase())
 }
 

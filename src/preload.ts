@@ -1,16 +1,31 @@
 import { isArray } from './isArray'
 import { createElement } from './createElement'
+import { isVideo } from './isVideo'
 
 export function preload(list: string[] | string, style?: string) {
-  const imageNode = createElement('img')
+  let imageNode: HTMLImageElement
+  let videoNode: HTMLVideoElement
   if (!isArray(list))
     list = [list as string]
-  return (list as string[]).map(src => createImage(imageNode, src))
-  function createImage(imageNode: HTMLImageElement, src: string) {
+  return (list as string[]).map(src => isVideo(src)
+    ? createVideo(src)
+    : createImage(src))
+  function createImage(src: string) {
+    if (!imageNode)
+      imageNode = new Image()
     const image = imageNode.cloneNode() as HTMLImageElement
     image.src = src
     if (style)
       image.setAttribute('style', style)
     return image
+  }
+  function createVideo(src: string) {
+    if (!videoNode)
+      videoNode = createElement('video') as HTMLVideoElement
+    const video = videoNode.cloneNode() as HTMLImageElement
+    video.src = src
+    if (style)
+      video.setAttribute('style', style)
+    return video
   }
 }
