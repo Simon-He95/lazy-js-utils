@@ -7,3 +7,7 @@ export function toArray(list: any, start?: number): Array<any> {
 
   return ret
 }
+
+// const arr = [1, 3, 5, 7, 9]
+// const data = toArray(arr, 2) // [5,7,9]
+// console.log(data)
