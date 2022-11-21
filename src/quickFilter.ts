@@ -1,5 +1,5 @@
 export function quickFilter(array: any[], key: string | Array<string>) {
-  const reg = /\/[\w._ $]+\/[gims]{0,}/
+  const reg = /\/[\w._ $]+\/[gims]*/
   return array.filter((item) => {
     if (Array.isArray(key))
       return key.some(k => findItem(item, k))
