@@ -43,9 +43,10 @@ export interface IFetchInterceptors {
 }
 
 export interface IFetchConfig extends IFetchOptions {
-  url: string
+  url?: string
   keepalive?: boolean
   body?: any
+  retry?: number
   integrity?: string
   referrer?: string
   referrerPolicy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'origin' | 'origin-when-cross-origin' | 'unsafe-url' | 'strict-origin' | 'strict-origin-when-cross-origin' | 'same-origin'
@@ -151,3 +152,14 @@ export interface ParsedURL {
 }
 
 export type PkgTool = 'npm' | 'yarn' | 'pnpm' | 'bun'
+
+type Keys<A, B> = keyof A | keyof B
+type Val<key, A, B> = key extends keyof A ?
+  key extends keyof B ?
+    A[key] extends number | string | boolean | symbol | null | undefined
+      ? A[key] | B[key]
+      : Merge<A[key], B[key]> : A[key] :
+  key extends keyof B ? B[key] : never
+
+export type Merge<A, B> = { [key in Keys<A, B>]: Val<key, A, B> }
+

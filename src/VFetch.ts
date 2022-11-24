@@ -148,11 +148,14 @@ export class VFetch {
   get(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
   get(this: VFetch, options: IFetchConfig): Promise<any>
   get(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
-    return new VFetch(this.config).init(Object.assign(isStr(url)
+    const { retry = 0 } = options || {}
+    const call = () => new VFetch(this.config).init(Object.assign(isStr(url)
       ? Object.assign(options || {}, { url }) as IFetchConfig
       : url, {
       method: 'GET',
     }))
+
+    return promiseCall(call, retry)
   }
 
   post(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
@@ -195,3 +198,20 @@ function generateKey(config: Record<string, any>) {
   return `${url}-${method}-${JSON.stringify(method === 'get' ? params : data)}`
 }
 
+function promiseCall(call: () => Promise<any>, retry: number, count = 0, resolve?: any, reject?: any) {
+  return new Promise((_resolve, _reject) => {
+    resolve = resolve || _resolve
+    reject = reject || _reject
+    const p = call()
+    p.then(resolve)
+    p.catch((err) => {
+      if (count < retry) {
+        count++
+        promiseCall(call, retry, count, resolve, reject)
+      }
+      else {
+        reject(err)
+      }
+    })
+  })
+}
