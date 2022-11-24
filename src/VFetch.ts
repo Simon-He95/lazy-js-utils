@@ -96,7 +96,7 @@ export class VFetch {
     cancelMap.set(key, this.config.cancel)
 
     return Promise.race([
-      fetch(url, this.config?.interceptors?.request?.success?.(this.config) || this.config),
+      fetch(url!, this.config?.interceptors?.request?.success?.(this.config) || this.config),
       new Promise((resolve) => {
         setTimeout(() => {
           resolve(new Response('timeout', { status: 504, statusText: 'timeout ' }))
