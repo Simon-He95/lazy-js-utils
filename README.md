@@ -67,5 +67,8 @@ import {
 ## :coffee: 
 [请我喝一杯咖啡](https://github.com/Simon-He95/sponsor)
 
+## License
+[MIT](./license)
+
 ## GitHub地址
 [欢迎PR](https://github.com/Simon-He95/simon-js-tool)
