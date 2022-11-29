@@ -9,7 +9,7 @@ export function useParse(str: string) {
       match.replace(value, `"${value}"`),
     ).replace(commaLackReg, (match, value) =>
       match.replace(value, `${value},`))
-    .replace(commaMoreReg, (match, value) =>
+    .replace(commaMoreReg, match =>
       match.replace(',', ''),
     ))
 }
