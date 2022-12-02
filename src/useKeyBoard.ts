@@ -1,0 +1,25 @@
+import { addEventListener } from './addEventListener'
+export function useKeyBoard(callback: (code: string) => void) {
+  return addEventListener(document, 'keydown', (e: KeyboardEvent) => {
+    let code = ''
+    const key = e.key
+    if (e.shiftKey && key !== 'Shift')
+      code += 'Shift+'
+
+    if (e.ctrlKey && key !== 'Control')
+      code += 'Ctrl+'
+
+    if (e.altKey && key !== 'Alt')
+      code += 'Alt+'
+
+    if (e.metaKey && key !== 'Meta')
+      code += 'Meta+'
+
+    if (e.code === 'Space')
+      code += 'Space'
+
+    code += key
+    callback(code)
+  })
+}
+
