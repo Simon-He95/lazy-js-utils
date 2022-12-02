@@ -1,4 +1,4 @@
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 export function useResizeObserver(callback: (...args: any[]) => void) {
-  return addEventListener(window, 'resize', () => callback?.(document.documentElement.clientWidth || document.body.clientWidth, document.documentElement.clientHeight || document.body.clientHeight))
+  return useEventListener(window, 'resize', () => callback?.(document.documentElement.clientWidth || document.body.clientWidth, document.documentElement.clientHeight || document.body.clientHeight))
 }

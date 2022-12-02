@@ -1,6 +1,6 @@
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 export function useKeyBoard(callback: (code: string) => void) {
-  return addEventListener(document, 'keydown', (e: KeyboardEvent) => {
+  return useEventListener(document, 'keydown', (e: KeyboardEvent) => {
     let code = ''
     const key = e.key
     if (e.shiftKey && key !== 'Shift')

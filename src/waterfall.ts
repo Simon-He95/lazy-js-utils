@@ -1,5 +1,5 @@
 import { preload } from './preload'
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 import { createElement } from './createElement'
 import { isNum } from './isNum'
 import { mount } from './mount'
@@ -17,7 +17,7 @@ export function waterfall(imageList: string[], target: string | HTMLElement | nu
     style: 'position:relative;width:100%;height:100%;',
   })
 
-  addEventListener(window, 'resize', () => update(target as HTMLElement))
+  useEventListener(window, 'resize', () => update(target as HTMLElement))
 
   async function update(container: Element) {
     const realWidth = width + space

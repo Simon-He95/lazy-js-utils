@@ -3,4 +3,4 @@ export function isFileType(file: string, appendix: string): boolean {
   return reg.test(file)
 }
 
-// const isCss = isFileType('./addEventListener.css', 'css') // true
+// const isCss = isFileType('./useEventListener.css', 'css') // true

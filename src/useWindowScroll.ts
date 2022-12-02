@@ -1,4 +1,4 @@
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 export function useWindowScroll(callback: (...args: any[]) => void): (() => void) {
-  return addEventListener(document, 'scroll', () => callback?.(document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft, document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop))
+  return useEventListener(document, 'scroll', () => callback?.(document.documentElement.scrollLeft || window.pageXOffset || document.body.scrollLeft, document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop))
 }

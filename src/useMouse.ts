@@ -1,8 +1,8 @@
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 
 export function useMouse(callback: (e: MouseEvent) => void, delay = 0): () => void {
   let timeStart = Date.now()
-  return addEventListener(window, 'mousemove', (e) => {
+  return useEventListener(window, 'mousemove', (e) => {
     if (Date.now() - timeStart >= delay) {
       timeStart = Date.now()
       callback(e)

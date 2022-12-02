@@ -19,7 +19,7 @@
 
 ## &#x270B; 例子
 ```js
-import { addEventListener, animationFrameWrapper, insertElement, useMutationObserver } from 'simon-js-tool'
+import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'simon-js-tool'
 // 监听container的变化, 你不在需要const container = ref<HTMLElement>
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
@@ -30,7 +30,7 @@ animationFrameWrapper((timestamp) => {
   console.log('animationFrame', timestamp)
 }, 1000, true /* 只执行一次后被销毁 */)
 // 注册事件
-addEventListener('#container', 'click', () => {
+useEventListener('#container', 'click', () => {
   console.log('click')
 })
 // 插入元素

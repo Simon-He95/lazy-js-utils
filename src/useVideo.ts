@@ -1,5 +1,5 @@
 import { createElement } from './createElement'
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 
 interface Sources {
   src: string
@@ -26,8 +26,8 @@ export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
     video.className = className
   if (style)
     video.style.cssText = style
-  addEventListener(document, 'DOMContentLoaded', update)
-  addEventListener(video, 'timeupdate', () => (video.currentTime >= video.duration) && playReset())
+  useEventListener(document, 'DOMContentLoaded', update)
+  useEventListener(video, 'timeupdate', () => (video.currentTime >= video.duration) && playReset())
 
   return {
     play() {

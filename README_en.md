@@ -18,7 +18,7 @@ At present, I have sorted out <strong>100+</strong> commonly used functions, and
 
 ## &#x270B; Example
 ```js
-import { addEventListener, animationFrameWrapper, insertElement, useMutationObserver } from 'simon-js-tool'
+import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'simon-js-tool'
 // To listen for container changes, you don't need const container <HTMLElement>= ref
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
@@ -29,7 +29,7 @@ animationFrameWrapper((timestamp) => {
   console.log('animationFrame', timestamp)
 }, 1000, true /* It is destroyed after only one execution */)
 // Register for events
-addEventListener('#container', 'click', () => {
+useEventListener('#container', 'click', () => {
   console.log('click')
 })
 // Insert an element

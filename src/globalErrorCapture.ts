@@ -1,7 +1,7 @@
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 import { log } from './log'
 export function globalErrorCapture() {
-  addEventListener(window, 'error', (err) => {
+  useEventListener(window, 'error', (err) => {
     const { colno, lineno, error, filename, message } = err
     if (message.toLowerCase().includes('script error'))
       return

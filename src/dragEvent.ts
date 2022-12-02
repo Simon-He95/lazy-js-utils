@@ -1,5 +1,5 @@
 import { getDevice } from './getDevice'
-import { addEventListener } from './addEventListener'
+import { useEventListener } from './useEventListener'
 import type { DragEvent } from './types'
 import { mount } from './mount'
 
@@ -11,28 +11,28 @@ export function dragEvent(target: HTMLElement | string, options: DragEvent = {},
   mount(target, (target) => {
     let down = false
     if (isPhone) {
-      stop.push(addEventListener(target, 'touchstart', (e) => {
+      stop.push(useEventListener(target, 'touchstart', (e) => {
         options.dragStart && options.dragStart(wrapperE(e))
       }, false))
-      options.dragMove && stop.push(addEventListener(target, 'touchmove', (e) => {
+      options.dragMove && stop.push(useEventListener(target, 'touchmove', (e) => {
         if (!trigger || down)
           options.dragMove?.(wrapperE(e))
       }, false))
-      options.dragEnd && stop.push(addEventListener(target, 'touchend', (e) => {
+      options.dragEnd && stop.push(useEventListener(target, 'touchend', (e) => {
         options.dragEnd?.(wrapperE(e))
         down = false
       }, false))
     }
     else {
-      stop.push(addEventListener(target, 'mousedown', (e) => {
+      stop.push(useEventListener(target, 'mousedown', (e) => {
         down = true
         options.dragStart && options.dragStart(e)
       }, false))
-      options.dragMove && stop.push(addEventListener(target, 'mousemove', (e) => {
+      options.dragMove && stop.push(useEventListener(target, 'mousemove', (e) => {
         if (!trigger || down)
           options.dragMove?.(e)
       }, false))
-      options.dragEnd && stop.push(addEventListener(target, 'mouseup', (e) => {
+      options.dragEnd && stop.push(useEventListener(target, 'mouseup', (e) => {
         options.dragEnd?.(e)
         down = false
       }, false))
