@@ -2,7 +2,7 @@ import child_process from 'child_process'
 import { isArray } from './isArray'
 import { isBool } from './isBool'
 import { isStr } from './isStr'
-import { IShellMessage } from './types'
+import type { IShellMessage } from './types'
 export function jsShell<T extends string | string[]>(commander: T, errorExit?: boolean): T extends string ? IShellMessage : IShellMessage[]
 export function jsShell<T extends string | string[]>(commander: T, stdio: 'inherit' | 'pipe', errorExit?: boolean): T extends string ? IShellMessage : IShellMessage[]
 export function jsShell<T extends string | string[]>(commander: T, stdio: 'inherit' | 'pipe', errorExit?: boolean): T extends string ? IShellMessage : IShellMessage[]
