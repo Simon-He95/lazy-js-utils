@@ -151,14 +151,19 @@ export interface ParsedURL {
   search: string
 }
 
+export interface IShellMessage {
+  status: number
+  result: string
+}
+
 export type PkgTool = 'npm' | 'yarn' | 'pnpm' | 'bun'
 
 type Keys<A, B> = keyof A | keyof B
 type Val<key, A, B> = key extends keyof A ?
   key extends keyof B ?
-    A[key] extends number | string | boolean | symbol | null | undefined
-      ? A[key] | B[key]
-      : Merge<A[key], B[key]> : A[key] :
+  A[key] extends number | string | boolean | symbol | null | undefined
+  ? A[key] | B[key]
+  : Merge<A[key], B[key]> : A[key] :
   key extends keyof B ? B[key] : never
 
 export type Merge<A, B> = { [key in Keys<A, B>]: Val<key, A, B> }
