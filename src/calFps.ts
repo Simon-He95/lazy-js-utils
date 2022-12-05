@@ -1,9 +1,9 @@
-import { animationFrameWrapper } from './animationFrameWrapper'
+import { useAnimationFrame } from './useAnimationFrame'
 
 export function calFps() {
   let lastTime: number
   let frame = 0
-  return animationFrameWrapper((timestamp) => {
+  return useAnimationFrame((timestamp) => {
     frame++
     if (!lastTime)
       lastTime = timestamp

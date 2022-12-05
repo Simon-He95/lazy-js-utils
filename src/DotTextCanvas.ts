@@ -1,5 +1,5 @@
 import { memorizeFn } from './memorizeFn'
-import { idleCallbackWrapper } from './idleCallbackWrapper'
+import { useRequestIdleCallback } from './useRequestIdleCallback'
 import { insertElement } from './insertElement'
 import { removeElement } from './removeElement'
 export class DotTextCanvas {
@@ -89,7 +89,7 @@ export class DotTextCanvas {
         }
       })
     }
-    idleCallbackWrapper(tasks, () => this.status = 'success')
+    useRequestIdleCallback(tasks, () => this.status = 'success')
   }
 
   repaint(this: any, text: string, fontSize: number, color: string, fontWeight: number): DotTextCanvas {

@@ -1,5 +1,5 @@
 import { memorizeFn } from './memorizeFn'
-import { idleCallbackWrapper } from './idleCallbackWrapper'
+import { useRequestIdleCallback } from './useRequestIdleCallback'
 import { createElement } from './createElement'
 import { insertElement } from './insertElement'
 import { removeElement } from './removeElement'
@@ -106,7 +106,7 @@ export class DotImageCanvas {
         }
       })
     }
-    idleCallbackWrapper(tasks, () => {
+    useRequestIdleCallback(tasks, () => {
       this.status = 'success'
     })
   }

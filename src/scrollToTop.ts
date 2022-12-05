@@ -1,8 +1,8 @@
-import { animationFrameWrapper } from './animationFrameWrapper'
+import { useAnimationFrame } from './useAnimationFrame'
 export function scrollToTop() {
   try {
     let pre: number
-    const stop = animationFrameWrapper(() => {
+    const stop = useAnimationFrame(() => {
       const t = document.documentElement.scrollTop || document.body.scrollTop
       if (pre === undefined)
         pre = t
