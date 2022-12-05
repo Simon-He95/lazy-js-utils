@@ -2,10 +2,15 @@ import type { ISignature } from './types'
 import { useEventListener } from './useEventListener'
 import { insertElement } from './insertElement'
 import { removeElement } from './removeElement'
+import { useKeyBoard } from './useKeyBoard'
 export class CreateSignatureCanvas implements ISignature {
   canvas: HTMLCanvasElement = document.createElement('canvas')
   ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!
   stop: (() => void)[] = []
+  active = false
+  historyStack: ImageData[] = []
+  resetStack: ImageData[] = []
+
   constructor(w = 400, h = 400) {
     this.createCanvas(w, h)
     window.onunload = () => this.unmount()
@@ -55,7 +60,47 @@ export class CreateSignatureCanvas implements ISignature {
 
   mount(el: HTMLElement | string) {
     insertElement(el, this.canvas, null)
+    this.listen()
     return this
+  }
+
+  listen() {
+    useEventListener(this.canvas, 'mousedown', () => {
+      this.active = true
+    })
+    useEventListener(this.canvas, 'mouseup', () => {
+      this.active = false
+      const { width, height } = this.canvas
+      const imageData = this.ctx.getImageData(0, 0, width, height)
+      this.historyStack.push(imageData)
+    })
+    useEventListener(this.canvas, 'mouseout', () => {
+      this.active = false
+    })
+    useKeyBoard('Ctrl+z', () => this.undo())
+    useKeyBoard('Ctrl+x', () => this.redo())
+  }
+
+  undo() {
+    if (this.historyStack.length === 0)
+      return
+    // 清空画布
+    this.clearCanvas()
+    // 删除当前操作
+    this.resetStack.push(this.historyStack.pop()!)
+    // 逐个执行绘图动作进行重绘
+    this.historyStack.forEach(imageData => this.ctx.putImageData(imageData, 0, 0))
+  }
+
+  redo() {
+    if (this.resetStack.length === 0)
+      return
+    // 清空画布
+    this.clearCanvas()
+    // 删除当前操作
+    this.historyStack.push(this.resetStack.pop()!)
+    // 逐个执行绘图动作进行重绘
+    this.historyStack.forEach(imageData => this.ctx.putImageData(imageData, 0, 0))
   }
 
   unmount() {

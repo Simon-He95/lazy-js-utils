@@ -1,5 +1,5 @@
 import { useEventListener } from './useEventListener'
-export function useKeyBoard(callback: (code: string) => void) {
+export function useKeyBoard(c: string, callback: (code: string) => void) {
   return useEventListener(document, 'keydown', (e: KeyboardEvent) => {
     let code = ''
     const key = e.key
@@ -19,7 +19,8 @@ export function useKeyBoard(callback: (code: string) => void) {
       code += 'Space'
 
     code += key
-    callback(code)
+    if (code === c)
+      callback(code)
   })
 }
 
