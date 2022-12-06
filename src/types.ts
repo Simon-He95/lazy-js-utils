@@ -168,3 +168,4 @@ type Val<key, A, B> = key extends keyof A ?
 
 export type Merge<A, B> = { [key in Keys<A, B>]: Val<key, A, B> }
 
+export interface IsESModule { default: any }
