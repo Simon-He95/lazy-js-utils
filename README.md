@@ -1,14 +1,14 @@
 <p align="center">
-<img height="200" src="./assets/kv.png" alt="simon-js-tool">
+<img height="200" src="./assets/kv.png" alt="lazy-js-utils">
 </p>
-<p align="center"><a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/v/simon-js-tool?color=3fb883&amp;label=" alt="NPM version"></a>
-<a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/dm/simon-js-tool?style=social" alt="NPM version"></a>
-<a href="https://github.com/Simon-He95/simon-js-tool"><img src="https://img.shields.io/github/stars/Simon-He95/simon-js-tool?style=social" alt="NPM version"></a>
+<p align="center"><a href="https://www.npmjs.com/package/lazy-js-utils"><img src="https://img.shields.io/npm/v/lazy-js-utils?color=3fb883&amp;label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/lazy-js-utils"><img src="https://img.shields.io/npm/dm/lazy-js-utils?style=social" alt="NPM version"></a>
+<a href="https://github.com/Simon-He95/lazy-js-utils"><img src="https://img.shields.io/github/stars/Simon-He95/lazy-js-utils?style=social" alt="NPM version"></a>
 </p>
 <p align="center"><a href="http://vitepress.hejian.club/">文档</a></p>
 <p align="center"> <a href="./README_en.md">English</a> | 简体中文</p>
 
-目前整理了<strong>100+</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励 :hearts:
+目前整理了<strong>200左右</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励 :hearts:
 
 
 ## :100: 亮点
@@ -19,7 +19,7 @@
 
 ## &#x270B; 例子
 ```js
-import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'simon-js-tool'
+import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'lazy-js-utils'
 // 监听container的变化, 你不在需要const container = ref<HTMLElement>
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
@@ -53,11 +53,11 @@ removeElement('.content')
 
 ## :book: 使用说明
 ```bash
-npm i simon-js-tool # 安装
+npm i lazy-js-utils # 安装
 
 import { 
   deepCompare
- } from 'simon-js-tool' # 按需引入
+ } from 'lazy-js-utils' # 按需引入
 
 ```
 
@@ -71,4 +71,4 @@ import {
 [MIT](./license)
 
 ## GitHub地址
-[欢迎PR](https://github.com/Simon-He95/simon-js-tool)
+[欢迎PR](https://github.com/Simon-He95/lazy-js-utils)

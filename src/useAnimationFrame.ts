@@ -1,4 +1,4 @@
-export function useAnimationFrame(fn: (timestamp: number) => void, delta = 1000, autoStop = false): (() => void) {
+export function useAnimationFrame(fn: (timestamp: number) => void, delta = 0, autoStop = false): (() => void) {
   let start: number
   let work = true
   const animationFrame = window.requestAnimationFrame

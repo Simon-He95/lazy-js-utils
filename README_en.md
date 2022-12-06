@@ -1,14 +1,14 @@
 <p align="center">
-<img height="200" src="./assets/kv.png" alt="simon-js-tool">
+<img height="200" src="./assets/kv.png" alt="lazy-js-utils">
 </p>
-<p align="center"><a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/v/simon-js-tool?color=3fb883&amp;label=" alt="NPM version"></a>
-<a href="https://www.npmjs.com/package/simon-js-tool"><img src="https://img.shields.io/npm/dm/simon-js-tool?style=social" alt="NPM version"></a>
-<a href="https://github.com/Simon-He95/simon-js-tool"><img src="https://img.shields.io/github/stars/Simon-He95/simon-js-tool?style=social" alt="NPM version"></a>
+<p align="center"><a href="https://www.npmjs.com/package/lazy-js-utils"><img src="https://img.shields.io/npm/v/lazy-js-utils?color=3fb883&amp;label=" alt="NPM version"></a>
+<a href="https://www.npmjs.com/package/lazy-js-utils"><img src="https://img.shields.io/npm/dm/lazy-js-utils?style=social" alt="NPM version"></a>
+<a href="https://github.com/Simon-He95/lazy-js-utils"><img src="https://img.shields.io/github/stars/Simon-He95/lazy-js-utils?style=social" alt="NPM version"></a>
 </p>
 <p align="center"><a href="http://vitepress.hejian.club/">Docs</a></p>
 <p align="center"> English | <a href="./README.md">简体中文</a></p>
 
-At present, I have sorted out <strong>100+</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me :hearts:
+At present, I have sorted out <strong>about 200</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me :hearts:
 
 ## :100: Highlights
 - Pure JS utility functions, Can be used in any environment where JS can be executed
@@ -18,7 +18,7 @@ At present, I have sorted out <strong>100+</strong> commonly used functions, and
 
 ## &#x270B; Example
 ```js
-import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'simon-js-tool'
+import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'lazy-js-utils'
 // To listen for container changes, you don't need const container <HTMLElement>= ref
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
@@ -52,11 +52,11 @@ removeElement('.content')
 
 ## :book: Instructions for use
 ```bash
-npm i simon-js-tool # Installation
+npm i lazy-js-utils # Installation
 
 import { 
   deepCompare
- } from 'simon-js-tool' # Ingestion on demand
+ } from 'lazy-js-utils' # Ingestion on demand
 
 ```
 
@@ -66,4 +66,4 @@ import {
 [Sponsor me](https://github.com/Simon-He95/sponsor)
 
 ## GitHub地址
-[Welcome to PR](https://github.com/Simon-He95/simon-js-tool)
+[Welcome to PR](https://github.com/Simon-He95/lazy-js-utils)
