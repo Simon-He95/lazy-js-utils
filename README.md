@@ -19,13 +19,13 @@
 
 ## &#x270B; 例子
 ```js
-import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'lazy-js-utils'
+import { insertElement, useAnimationFrame, useEventListener, useMutationObserver } from 'lazy-js-utils'
 // 监听container的变化, 你不在需要const container = ref<HTMLElement>
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
 })
 // requestAnimationFrame
-animationFrameWrapper((timestamp) => {
+useAnimationFrame((timestamp) => {
   // 每针相隔1s执行
   console.log('animationFrame', timestamp)
 }, 1000, true /* 只执行一次后被销毁 */)
