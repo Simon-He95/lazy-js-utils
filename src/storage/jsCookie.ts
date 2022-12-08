@@ -15,18 +15,18 @@ export const jsCookie: JSCookie = {
       throw new Error(error)
     }
   },
-  set(cname: string, cvalue: string, exdays?: any) {
+  set(cname: string, value: string, extdays?: any) {
     try {
       const d = new Date()
-      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+      d.setTime(d.getTime() + (extdays * 24 * 60 * 60 * 1000))
       const expires = `expires=${d.toUTCString()}`
-      document.cookie = `${cname}=${cvalue}; ${expires}`
+      document.cookie = `${cname}=${value}; ${expires}`
     }
     catch (error: any) {
       throw new Error(error)
     }
   },
-  remove(this: any, name: string) {
+  delete(this: any, name: string) {
     this.set(name, '', -1)
   },
 }

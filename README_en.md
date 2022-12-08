@@ -5,7 +5,7 @@
 <a href="https://www.npmjs.com/package/lazy-js-utils"><img src="https://img.shields.io/npm/dm/lazy-js-utils?style=social" alt="NPM version"></a>
 <a href="https://github.com/Simon-He95/lazy-js-utils"><img src="https://img.shields.io/github/stars/Simon-He95/lazy-js-utils?style=social" alt="NPM version"></a>
 </p>
-<p align="center"><a href="http://vitepress.hejian.club/">Docs</a></p>
+<p align="center"><a href="https://lazy-js-utils-docs.netlify.app/">Docs</a></p>
 <p align="center"> English | <a href="./README.md">简体中文</a></p>
 
 At present, I have sorted out <strong>about 200</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me :hearts:

@@ -1,7 +1,7 @@
 import { Canvas } from '../canvas/Canvas'
 import { isFile } from '../is/isFile'
 
-type CompressImageOptionsType = 'Blob' | 'base64' | 'blob'
+type CompressImageOptionsType = 'base64' | 'blob'
 interface CompressImageOptions {
   quality: number
   maxWidth: number

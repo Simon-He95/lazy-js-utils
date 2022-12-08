@@ -24,4 +24,4 @@ export function parseCss(str: string) {
 // }
 // </style>
 // `
-// parseCss(str)
+// console.log(parseCss(str))

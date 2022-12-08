@@ -1,9 +1,12 @@
 import { createElement } from '../event/createElement'
-import type { FileType } from '../types'
-export async function toBase64(o: File | string | Blob, type: FileType = 'url'): Promise<Blob | string> {
-  if (type === 'file' || type === 'blob')
+import { isFile } from '../is/isFile'
+import { isBlob } from '../is/isBlob'
+import { isStr } from '../is/isStr'
+
+export async function toBase64(o: File | string | Blob): Promise<Blob | string> {
+  if (isFile(o) || isBlob(o))
     return await fileToBase64(o as File | Blob)
-  else if (type === 'url')
+  else if (isStr(o))
     return await urlToBase64(o as string)
   throw new Error('type must be file or blob or url')
 }

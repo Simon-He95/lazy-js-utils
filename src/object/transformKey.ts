@@ -1,7 +1,10 @@
+import { isObject } from '../is/isObject'
+import { isArray } from '../is/isArray'
+
 export function transformKey(target: Record<string, any> | Record<string, any>[], options: Record<string, string>) {
-  return typeof target !== 'object'
+  return !isObject(target)
     ? target
-    : Array.isArray(target)
+    : isArray(target)
       ? target.map(item => transform(item, options))
       : transform(target, options)
 }
@@ -23,3 +26,13 @@ function transform(target: Record<string, any>, options: Record<string, string>)
   }
   return target
 }
+
+console.log(transformKey({
+  a: {
+    b: {
+      c: 'nihao',
+    },
+  },
+}, {
+  'a.b.c': 'data',
+}))

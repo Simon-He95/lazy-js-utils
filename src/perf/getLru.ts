@@ -22,3 +22,10 @@ export function getLru(max = 50): LRU {
     size() { return this.cache.size },
   }
 }
+
+// const lru = getLru(3)
+// lru.set('a', 1)
+// lru.set('b', 2)
+// lru.set('c', 3)
+// lru.set('d', 4)
+// console.log(lru.cache) // => { c: 3, d: 4 }

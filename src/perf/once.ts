@@ -3,7 +3,7 @@ export function once(fn: Function): Function {
   return function (this: any, ...args: any[]) {
     if (!called) {
       called = true
-      fn.apply(this, args)
+      return fn.apply(this, args)
     }
   }
 }

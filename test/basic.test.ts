@@ -282,7 +282,7 @@ describe('Test quickFilter', () => {
         en: '0',
       },
     ]
-    expect(quickFilter(arr, 'name=/h/')).toMatchInlineSnapshot(`
+    expect(quickFilter(arr, ['name=/h/'])).toMatchInlineSnapshot(`
       [
         {
           "name": "hi",
@@ -492,7 +492,6 @@ describe('Test uniqueArray', () => {
         name: 'simon',
         age: '18',
         hobby: 'basketball',
-
       },
       {
         name: 'simon',
@@ -613,12 +612,8 @@ describe('Test sort', () => {
         age: 4,
       },
     ]
-    expect(sort(arr, 1)).toMatchInlineSnapshot(`
+    expect(sort(arr, '-age')).toMatchInlineSnapshot(`
       [
-        {
-          "age": 4,
-          "name": "simon2",
-        },
         {
           "age": 33,
           "name": "simon2",
@@ -630,6 +625,10 @@ describe('Test sort', () => {
         {
           "age": 11,
           "name": "simon1",
+        },
+        {
+          "age": 4,
+          "name": "simon2",
         },
       ]
     `)

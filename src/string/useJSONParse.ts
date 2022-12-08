@@ -3,7 +3,7 @@ const valueReg = /:\s*(?!['"])([\w_\-\$\.]+)/gm
 const commaLackReg = /:\s*("[\w_\-\$\.]+")\s*(?!,)"/gm
 const commaMoreReg = /:\s*("[\w_\-\$\.]+"\s*,)\s*}/gm
 // 将字符串转为JSON.stringify的格式并parse出结果
-export function useParse(str: string) {
+export function useJSONParse(str: string) {
   return JSON.parse(str.replace(keyReg, (match, key) => match.replace(key, `"${key}"`))
     .replace(valueReg, (match, value) =>
       match.replace(value, `"${value}"`),

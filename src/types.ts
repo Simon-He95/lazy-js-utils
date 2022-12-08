@@ -90,8 +90,8 @@ export type FileType = 'file' | 'blob' | 'url'
 
 export interface JSCookie {
   get: (key: string) => string | undefined
-  set: (key: string, value: string, exdays?: number) => void
-  remove: (key: string) => void
+  set: (key: string, value: string, extdays?: number) => void
+  delete: (key: string) => void
 }
 
 export interface LRU {

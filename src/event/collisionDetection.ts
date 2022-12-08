@@ -1,5 +1,5 @@
-import { findElement } from '../event/findElement'
 import { isStr } from '../is/isStr'
+import { findElement } from './findElement'
 
 export function collisionDetection(o1: string | HTMLElement, o2: string | HTMLElement) {
   const obj1: HTMLElement = isStr(o1) ? findElement(o1)! : o1

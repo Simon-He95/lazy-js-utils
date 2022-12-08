@@ -1,4 +1,4 @@
-import { createElement } from '../event/createElement'
+import { createElement } from './createElement'
 export function download(href: string, download = '') {
   try {
     createElement('a', {

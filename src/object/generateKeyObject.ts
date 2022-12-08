@@ -24,3 +24,14 @@ function generateMapKey(key: string, result: Record<string, any>, value: any) {
   }, result)
   return result
 }
+
+const o = {
+  a: {
+    data: 'nihao',
+    age: '17',
+  },
+}
+
+const result = generateKeyObject(o, 'age.a', 'data')
+
+console.log(result)
