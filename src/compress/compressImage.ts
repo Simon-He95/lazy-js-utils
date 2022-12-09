@@ -9,14 +9,31 @@ interface CompressImageOptions {
   type: CompressImageOptionsType
 }
 
-export function compressImage(source: string | File, options: CompressImageOptions) {
+export function compressImage(
+  source: string | File,
+  options: CompressImageOptions,
+) {
   return new Promise((resolve) => {
     const { quality = 0.1, maxWidth, maxHeight, type = 'base64' } = options
-    fileToDataURL(source, resolve, quality, maxWidth, maxHeight, type as CompressImageOptionsType)
+    fileToDataURL(
+      source,
+      resolve,
+      quality,
+      maxWidth,
+      maxHeight,
+      type as CompressImageOptionsType,
+    )
   })
 }
 
-function fileToDataURL(source: Blob | string, resolve: ((blob: Blob | string) => void), quality: number, maxWidth: number, maxHeight: number, type: CompressImageOptionsType) {
+function fileToDataURL(
+  source: Blob | string,
+  resolve: (blob: Blob | string) => void,
+  quality: number,
+  maxWidth: number,
+  maxHeight: number,
+  type: CompressImageOptionsType,
+) {
   if (isFile(source)) {
     const reader = new FileReader()
     reader.readAsDataURL(source as Blob)
@@ -47,8 +64,7 @@ function fileToDataURL(source: Blob | string, resolve: ((blob: Blob | string) =>
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
     if (type === 'blob')
       canvasResizeToFile(canvas)
-    else
-      canvasResizeToDataURL(canvas)
+    else canvasResizeToDataURL(canvas)
   }
 
   function canvasResizeToFile(canvas: HTMLCanvasElement) {

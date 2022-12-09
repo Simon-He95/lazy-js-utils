@@ -1,10 +1,18 @@
 import { mount } from '../utils/mount'
 import { unmount } from '../utils/unmount'
 
-export function useEventListener<T extends keyof (WindowEventMap & DocumentEventMap)>(target: Window | Document | Element | string, eventName: T, callback: (e: (WindowEventMap & DocumentEventMap)[T]) => void, useCapture?: boolean | AddEventListenerOptions, autoRemove?: boolean): (() => void) {
+export function useEventListener<
+  T extends keyof (WindowEventMap & DocumentEventMap),
+>(
+  target: Window | Document | Element | string,
+  eventName: T,
+  callback: (e: (WindowEventMap & DocumentEventMap)[T]) => void,
+  useCapture?: boolean | AddEventListenerOptions,
+  autoRemove?: boolean,
+): () => void {
   let stopped = false
   let stop: () => void
-  let animationStop: (() => void)
+  let animationStop: () => void
   if (eventName === 'DOMContentLoaded')
     stopped = true
   function event(e: (WindowEventMap & DocumentEventMap)[T]) {
@@ -24,7 +32,8 @@ export function useEventListener<T extends keyof (WindowEventMap & DocumentEvent
     const originCall = (target as any)?.[eventName]
     const eventFunction = (e: Event) => {
       try {
-        const isRawEvent = originCall && originCall.toString().includes('() { [native code] }')
+        const isRawEvent
+          = originCall && originCall.toString().includes('() { [native code] }')
         if (!isRawEvent && originCall)
           originCall?.()
       }
@@ -34,13 +43,18 @@ export function useEventListener<T extends keyof (WindowEventMap & DocumentEvent
       event(e as (WindowEventMap & DocumentEventMap)[T])
     }
     target.addEventListener(eventName, eventFunction, useCapture)
-    stop = () => (target as Element).removeEventListener(eventName, eventFunction, useCapture)
+    stop = () =>
+      (target as Element).removeEventListener(
+        eventName,
+        eventFunction,
+        useCapture,
+      )
     if (stopped)
       stop?.()
   })
   return () => {
     if (!stop)
-      return stopped = true
+      return (stopped = true)
     stop?.()
   }
 }

@@ -11,7 +11,9 @@ interface IPackage {
   files?: string[]
   scripts?: Record<string, string>
 }
-export async function getPkg(url = './package.json'): Promise<IPackage & Record<string, any>> {
+export async function getPkg(
+  url = './package.json',
+): Promise<IPackage & Record<string, any>> {
   const resolvedPath = toAbsolutePath(url)
   if (!isFile(resolvedPath))
     throw new Error(`${resolvedPath} is not a file`)

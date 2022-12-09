@@ -1,7 +1,12 @@
 export const classesReg = /(<.* class=["']([\w\-\_$ ]*)["'_\-\w$=:\/ ]*\>)/gm
-export function getClasses(str: string, callback: (classes: string, block: string, index: number) => string) {
+export function getClasses(
+  str: string,
+  callback: (classes: string, block: string, index: number) => string,
+) {
   let index = 0
-  return str.replace(classesReg, (match, block, classes) => match.replace(classes, callback(classes, block, index++)))
+  return str.replace(classesReg, (match, block, classes) =>
+    match.replace(classes, callback(classes, block, index++)),
+  )
 }
 
 // const str = `

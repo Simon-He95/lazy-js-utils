@@ -5,7 +5,11 @@ export function quickFind(array: any[], id: string | number) {
 }
 
 class QuickFind {
-  constructor(public array: any[], public indexMap: Map<any, number>, public id: string | number) {
+  constructor(
+    public array: any[],
+    public indexMap: Map<any, number>,
+    public id: string | number,
+  ) {
     this.array = array
     this.indexMap = indexMap
     this.id = id
@@ -53,7 +57,9 @@ class QuickFind {
       value = key
       key = undefined
     }
-    if (index !== undefined) { return this._update(id, key, value) }
+    if (index !== undefined) {
+      return this._update(id, key, value)
+    }
     else {
       if (value[this.id] === undefined)
         throw new Error('新增的数据必须包含唯一id')

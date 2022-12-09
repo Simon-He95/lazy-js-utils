@@ -14,7 +14,7 @@ export function removeRoundSpace(data: number[][]) {
           y[j] = 0
         y[j]++
       }
-      if ((i === row - 1) && y[j] === row)
+      if (i === row - 1 && y[j] === row)
         spliceCols.push(j)
       if (j === col - 1 && x === col)
         spliceRows.push(i)
@@ -27,16 +27,14 @@ export function removeRoundSpace(data: number[][]) {
     const cur = spliceRows[i]
     if (cur === start)
       start++
-    else
-      break
+    else break
   }
   let end = spliceRows[spliceRows.length - 1]
   for (let i = spliceRows.length; i > start; i--) {
     const cur = spliceRows[i - 1]
     if (cur === end)
       end--
-    else
-      break
+    else break
   }
   if (end > start)
     data.splice(end, spliceRows[spliceRows.length - 1])
@@ -62,4 +60,3 @@ export function removeRoundSpace(data: number[][]) {
   }
   return data
 }
-

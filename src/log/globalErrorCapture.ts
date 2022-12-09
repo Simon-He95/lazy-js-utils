@@ -12,13 +12,16 @@ export function globalErrorCapture() {
       `Column: ${colno}\n`,
       `Error object: ${JSON.stringify(error)}`,
     ].join('-')
-    log(msg, {
-      color: '#337ecc',
-      padding: '2px 10px',
-      fontSize: 14,
-      fontWeight: 'bold',
-    }, 'error')
+    log(
+      msg,
+      {
+        color: '#337ecc',
+        padding: '2px 10px',
+        fontSize: 14,
+        fontWeight: 'bold',
+      },
+      'error',
+    )
     return false
   })
 }
-

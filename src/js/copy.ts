@@ -1,9 +1,13 @@
 import { createElement } from '../event/createElement'
 export function copy(s: string): boolean {
   try {
-    const textarea = createElement('textarea', {
-      readonly: 'readonly',
-    }, s)
+    const textarea = createElement(
+      'textarea',
+      {
+        readonly: 'readonly',
+      },
+      s,
+    )
     document.body.appendChild(textarea)
     textarea.select()
     const res = document.execCommand('copy')

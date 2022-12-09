@@ -37,6 +37,7 @@ const videoExtension = [
 
 export function isVideo(filepath: string) {
   const last = filepath.lastIndexOf('.') + 1
-  return videoExtension.includes(filepath.slice(last, filepath.length).toLowerCase())
+  return videoExtension.includes(
+    filepath.slice(last, filepath.length).toLowerCase(),
+  )
 }
-

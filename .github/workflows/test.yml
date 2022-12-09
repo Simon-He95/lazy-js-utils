@@ -44,4 +44,3 @@ jobs:
 
       - name: Lint
         run: pnpm run lint
-

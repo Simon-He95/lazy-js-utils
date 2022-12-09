@@ -23,4 +23,3 @@ export function useKeyBoard(c: string, callback: (code: string) => void) {
       callback(code)
   })
 }
-

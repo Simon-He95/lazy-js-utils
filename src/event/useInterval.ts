@@ -1,6 +1,6 @@
 import { isFn } from '../is/isFn'
 
-type UseIntervalReturn<T> = T extends Function ? (() => void) : undefined
+type UseIntervalReturn<T> = T extends Function ? () => void : undefined
 
 export function useInterval<T>(fn: T, duration: number): UseIntervalReturn<T> {
   if (!isFn(fn))
@@ -8,4 +8,3 @@ export function useInterval<T>(fn: T, duration: number): UseIntervalReturn<T> {
   const timer = setInterval(fn, duration)
   return (() => clearInterval(timer)) as any
 }
-

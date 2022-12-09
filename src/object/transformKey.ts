@@ -1,7 +1,10 @@
 import { isObject } from '../is/isObject'
 import { isArray } from '../is/isArray'
 
-export function transformKey(target: Record<string, any> | Record<string, any>[], options: Record<string, string>) {
+export function transformKey(
+  target: Record<string, any> | Record<string, any>[],
+  options: Record<string, string>,
+) {
   return !isObject(target)
     ? target
     : isArray(target)
@@ -9,7 +12,10 @@ export function transformKey(target: Record<string, any> | Record<string, any>[]
       : transform(target, options)
 }
 
-function transform(target: Record<string, any>, options: Record<string, string>) {
+function transform(
+  target: Record<string, any>,
+  options: Record<string, string>,
+) {
   for (const key in options) {
     let targetKey = ''
     let targetItem: any = null
@@ -27,12 +33,17 @@ function transform(target: Record<string, any>, options: Record<string, string>)
   return target
 }
 
-console.log(transformKey({
-  a: {
-    b: {
-      c: 'nihao',
+console.log(
+  transformKey(
+    {
+      a: {
+        b: {
+          c: 'nihao',
+        },
+      },
     },
-  },
-}, {
-  'a.b.c': 'data',
-}))
+    {
+      'a.b.c': 'data',
+    },
+  ),
+)

@@ -31,4 +31,3 @@ export function isEqual(o1: any, o2: any): boolean {
   }
   return false
 }
-

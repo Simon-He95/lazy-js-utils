@@ -11,5 +11,6 @@ export function useNodeWorker(url: string, data: any) {
 export function useProcressNodeWorker(callback: (data: any) => any) {
   const { parentPort } = worker_threads
   parentPort!.on('message', async data =>
-    parentPort?.postMessage(await callback?.(data) || (() => '')))
+    parentPort?.postMessage((await callback?.(data)) || (() => '')),
+  )
 }

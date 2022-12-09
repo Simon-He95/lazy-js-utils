@@ -27,14 +27,17 @@ export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
   if (style)
     video.style.cssText = style
   useEventListener(document, 'DOMContentLoaded', update)
-  useEventListener(video, 'timeupdate', () => (video.currentTime >= video.duration) && playReset())
+  useEventListener(
+    video,
+    'timeupdate',
+    () => video.currentTime >= video.duration && playReset(),
+  )
 
   return {
     play() {
       if (video.paused)
         video.play()
-      else
-        video.pause()
+      else video.pause()
     },
     playReset,
     playRate(rate = 1) {
@@ -59,7 +62,7 @@ export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
       _source.setAttribute('src', src)
       _source.setAttribute('type', type)
       video.appendChild(_source)
-    });
-    (container as HTMLElement).appendChild(video)
+    })
+    ;(container as HTMLElement).appendChild(video)
   }
 }

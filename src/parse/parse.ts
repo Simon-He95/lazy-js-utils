@@ -11,8 +11,7 @@ export function parse(str: string, options: ParseOptions = {}) {
     const [key, value] = cur.split(eq)
     if (camel)
       pre[camelize(key)] = value
-    else
-      pre[key] = value
+    else pre[key] = value
     return pre
   }, {} as Record<string, string>)
 }

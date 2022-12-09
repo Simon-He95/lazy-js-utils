@@ -2,7 +2,31 @@
  * @vitest-environment jsdom
  */
 import { describe, expect, it } from 'vitest'
-import { asyncPool, curry, debounce, deepClone, deepCompare, deepMerge, escapeHtml, getDateList, getLru, htmlTransform, isType, memorizeFn, pwdLevel, quickFilter, quickFind, sleep, sort, sortByOrder, throttle, transformKey, traverse, unescapeHtml, uniqueArray } from '../src'
+import {
+  asyncPool,
+  curry,
+  debounce,
+  deepClone,
+  deepCompare,
+  deepMerge,
+  escapeHtml,
+  getDateList,
+  getLru,
+  htmlTransform,
+  isType,
+  memorizeFn,
+  pwdLevel,
+  quickFilter,
+  quickFind,
+  sleep,
+  sort,
+  sortByOrder,
+  throttle,
+  transformKey,
+  traverse,
+  unescapeHtml,
+  uniqueArray,
+} from '../src'
 
 describe('Test deepMerge', () => {
   it('deepMerge test', () => {
@@ -113,14 +137,14 @@ describe('Test deepCompare', () => {
 describe('Test asyncPool', () => {
   it('asyncPool test', async () => {
     function delay(interval: number) {
-      return () => new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (interval > 1000)
-            reject(interval)
-          else
-            resolve(interval)
-        }, interval)
-      })
+      return () =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (interval > 1000)
+              reject(interval)
+            else resolve(interval)
+          }, interval)
+        })
     }
 
     const tasks = [
@@ -303,7 +327,7 @@ describe('Test deepClone', () => {
       name: 'simon5',
       age: 49,
       id: 3,
-      fn() { },
+      fn() {},
       reg: /\test/,
       date: Date,
       null: null,
@@ -356,7 +380,8 @@ describe('Test traverse9', () => {
             bro: 'simonPeopleBro',
           },
         },
-      }, {
+      },
+      {
         name: 'kitty',
         family: {
           bro: 'kittyBro',
@@ -369,18 +394,20 @@ describe('Test traverse9', () => {
         },
       },
     ]
-    expect(traverse(arr, {
-      'family.bro': function (target: any, index: number) {
-        console.log('traverse~', target, index)
-      },
-      people(target: any, index: number) {
-        target.name = 'haha'
-        console.log('traverse~', target, index)
-      },
-      'people.family': function (target: any, index: number, item: any) {
-        console.log('traverse~', target, index, item)
-      },
-    })).toMatchInlineSnapshot(`
+    expect(
+      traverse(arr, {
+        'family.bro': function (target: any, index: number) {
+          console.log('traverse~', target, index)
+        },
+        people(target: any, index: number) {
+          target.name = 'haha'
+          console.log('traverse~', target, index)
+        },
+        'people.family': function (target: any, index: number, item: any) {
+          console.log('traverse~', target, index, item)
+        },
+      }),
+    ).toMatchInlineSnapshot(`
       [
         {
           "family": {
@@ -427,10 +454,12 @@ describe('Test transformKey', () => {
         },
       },
     ]
-    expect(transformKey(arr, {
-      'family.bro': 'name',
-      'people.family.bro': 'familyName',
-    })).toMatchInlineSnapshot(`
+    expect(
+      transformKey(arr, {
+        'family.bro': 'name',
+        'people.family.bro': 'familyName',
+      }),
+    ).toMatchInlineSnapshot(`
       [
         {
           "family": {
@@ -511,7 +540,6 @@ describe('Test uniqueArray', () => {
         name: 'simon',
         age: '19',
       },
-
     ]
     expect(uniqueArray(array)).toMatchInlineSnapshot(`
       [
@@ -571,13 +599,17 @@ describe('Test getDateList', () => {
 
 describe('Test escapeHtml', () => {
   it('escapeHtml test', () => {
-    expect(escapeHtml('< a href=" ">xx</ a>')).toBe('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')
+    expect(escapeHtml('< a href=" ">xx</ a>')).toBe(
+      '&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;',
+    )
   })
 })
 
 describe('Test unescapeHtml', () => {
   it('unescapeHtml test', async () => {
-    expect(unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')).toBe('< a href=" ">xx</ a>')
+    expect(unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')).toBe(
+      '< a href=" ">xx</ a>',
+    )
   })
 })
 
@@ -646,48 +678,56 @@ describe('Test pwdLevel', () => {
 
 describe('Test htmlTransform', () => {
   it('htmlTransform test', async () => {
-    const code = await htmlTransform('<div class="_ee">hello</div><view bindtap="xx"></view>', {
-      div(node, { setAttribs, beforeInsert, afterInsert }) {
-        node.name = 'p'
-        setAttribs('age', '19')
-        beforeInsert('<span>hi</span>')
-        afterInsert('<span>你好</span>')
+    const code = await htmlTransform(
+      '<div class="_ee">hello</div><view bindtap="xx"></view>',
+      {
+        div(node, { setAttribs, beforeInsert, afterInsert }) {
+          node.name = 'p'
+          setAttribs('age', '19')
+          beforeInsert('<span>hi</span>')
+          afterInsert('<span>你好</span>')
+        },
+        '*': function (node) {
+          // 所有的节点都会进入这里
+          console.log(node)
+        },
+        '$attr$_ee': function (node) {
+          // $attr开头会匹配存在_ee属性的节点
+          console.log(node)
+        },
+        '$attr$bindtap': function (node, { renameAttribs }) {
+          renameAttribs('bindtap', 'onTap')
+        },
       },
-      '*': function (node) {
-        // 所有的节点都会进入这里
-        console.log(node)
-      },
-      '$attr$_ee': function (node) {
-        // $attr开头会匹配存在_ee属性的节点
-        console.log(node)
-      },
-      '$attr$bindtap': function (node, { renameAttribs }) {
-        renameAttribs('bindtap', 'onTap')
-      },
-    })
+    )
     expect(code).toMatchSnapshot()
   })
 })
 
 describe('Test sortByOrder', () => {
   const order = ['name', '*', 'weight']
-  const arr = [{
-    props: {
-      key: 'weight',
+  const arr = [
+    {
+      props: {
+        key: 'weight',
+      },
     },
-  }, {
-    props: {
-      key: 'name',
+    {
+      props: {
+        key: 'name',
+      },
     },
-  }, {
-    props: {
-      key: 'width',
+    {
+      props: {
+        key: 'width',
+      },
     },
-  }, {
-    props: {
-      key: 'age',
+    {
+      props: {
+        key: 'age',
+      },
     },
-  }]
+  ]
 
   it('sortByOrder test', () => {
     expect(sortByOrder(arr, order, 'props.key')).toMatchInlineSnapshot(`

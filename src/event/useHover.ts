@@ -1,7 +1,10 @@
 import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
-export function useHover(target: string | HTMLElement, callback: (isHover: boolean, e: MouseEvent) => void): () => void {
+export function useHover(
+  target: string | HTMLElement,
+  callback: (isHover: boolean, e: MouseEvent) => void,
+): () => void {
   let stopped = false
   const stop: (() => void)[] = []
   mount(target, (target) => {
@@ -12,7 +15,7 @@ export function useHover(target: string | HTMLElement, callback: (isHover: boole
   })
   return () => {
     if (!stop.length)
-      return stopped = true
+      return (stopped = true)
     stop.forEach(fn => fn())
   }
 }

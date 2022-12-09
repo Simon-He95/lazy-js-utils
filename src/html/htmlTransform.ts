@@ -7,15 +7,20 @@ interface Update {
   afterInsert: (s: string) => void
   renameAttribs: (key: string, value: string) => void
 }
-type HtmlTransformOptions = Record<string, (node: Element, update: Update) => void>
+type HtmlTransformOptions = Record<
+  string,
+  (node: Element, update: Update) => void
+>
 
-export function htmlTransform(s = '', options: HtmlTransformOptions = {}): Promise<string> {
+export function htmlTransform(
+  s = '',
+  options: HtmlTransformOptions = {},
+): Promise<string> {
   return new Promise((resolve, reject) => {
     const handler = new DomHandler((error: any, dom) => {
       if (error)
         reject(new Error(error))
-      else
-        resolve(astToCode(dom as unknown as Element[], options))
+      else resolve(astToCode(dom as unknown as Element[], options))
     })
     const parser = new Parser(handler, {
       recognizeSelfClosing: true,
@@ -45,7 +50,12 @@ function astToCode(ast: any[], options: HtmlTransformOptions) {
           break
         }
       }
-      result += node.tagName ? `<${node.tagName}${transformProps(node.attribs)}>${astToCode(node.children, options)}</${node.tagName}>` : ''
+      result += node.tagName
+        ? `<${node.tagName}${transformProps(node.attribs)}>${astToCode(
+            node.children,
+            options,
+          )}</${node.tagName}>`
+        : ''
       afterAppend.forEach(fn => fn())
     }
     if ((node as any).type === 'text')
@@ -72,7 +82,7 @@ function astToCode(ast: any[], options: HtmlTransformOptions) {
       result += str
     }
     function afterInsert(s: string) {
-      afterAppend.push(() => result += s)
+      afterAppend.push(() => (result += s))
     }
   }, '')
 }

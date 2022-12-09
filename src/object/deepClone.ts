@@ -9,13 +9,15 @@ export function deepClone(target: any) {
     return new target.constructor(target)
   if (typeof target !== 'object')
     return target
-  const cloneObj = Object.create(Object.getPrototypeOf(target), Object.getOwnPropertyDescriptors(target))
+  const cloneObj = Object.create(
+    Object.getPrototypeOf(target),
+    Object.getOwnPropertyDescriptors(target),
+  )
   targetMap.set(target, cloneObj)
   for (const key of Reflect.ownKeys(target)) {
     if (typeof target[key] === 'object')
       cloneObj[key] = deepClone(target[key])
-    else
-      cloneObj[key] = target[key]
+    else cloneObj[key] = target[key]
   }
   return cloneObj
 }

@@ -9,8 +9,7 @@ app.all('*', (req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'DELETE,PUT,POST,GET,OPTIONS')
   if (req.method.toLowerCase() === 'options')
     res.send(200) // 让options尝试请求快速结束
-  else
-    next()
+  else next()
 })
 
 app.get('/test', (req, res) => {

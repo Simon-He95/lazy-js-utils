@@ -13,7 +13,12 @@ export class DotTextCanvas {
   textPointSet: Array<number[]> = []
   status = 'pending'
   container?: HTMLElement
-  constructor(text: string, fontSize: number, color: string, fontWeight: number) {
+  constructor(
+    text: string,
+    fontSize: number,
+    color: string,
+    fontWeight: number,
+  ) {
     this.originText = text
     this.fontSize = fontSize
     this.color = color
@@ -29,13 +34,17 @@ export class DotTextCanvas {
     canvas.width = canvas.height = size
     ctx.font = `${size}px SimSun`
     ctx.fillText(text, 0, 14 * pRatio)
-    const { data: imageData, width, height } = ctx.getImageData(0, 0, size, size)
+    const {
+      data: imageData,
+      width,
+      height,
+    } = ctx.getImageData(0, 0, size, size)
     const textPointSet = []
     for (let i = 0; i < height; i++) {
       const temp: number[] = []
       textPointSet.push(temp)
       for (let j = 0; j < width; j++) {
-        const pxStartIndex = (i * width * 4 + j * 4)
+        const pxStartIndex = i * width * 4 + j * 4
         temp.push(imageData[pxStartIndex + 3] ? 1 : 0)
       }
     }
@@ -73,7 +82,7 @@ export class DotTextCanvas {
     const oneTempLength = this.fontSize / h
     const tasks: Function[] = []
     const getPoint = memorizeFn((i: number) => oneTempLength * (i + 0.5))
-    const size = oneTempLength * this.fontWeight / h
+    const size = (oneTempLength * this.fontWeight) / h
     this.canvas.height = this.fontSize
     this.canvas.width = this.fontSize * this.originText.length
 
@@ -89,17 +98,30 @@ export class DotTextCanvas {
         }
       })
     }
-    useRequestIdleCallback(tasks, () => this.status = 'success')
+    useRequestIdleCallback(tasks, () => (this.status = 'success'))
   }
 
-  repaint(this: any, text: string, fontSize: number, color: string, fontWeight: number): DotTextCanvas {
+  repaint(
+    this: any,
+    text: string,
+    fontSize: number,
+    color: string,
+    fontWeight: number,
+  ): DotTextCanvas {
     const p = removeElement(this.canvas)
-    if (!p)
-      throw new Error('repaint error not found canvas container or has been removed')
+    if (!p) {
+      throw new Error(
+        'repaint error not found canvas container or has been removed',
+      )
+    }
     this.status = 'pending'
     // 如果text相同
-    if (this.originText !== text)
-      return Object.assign(this, new DotTextCanvas(text, fontSize, color, fontWeight) as DotTextCanvas).append(p)
+    if (this.originText !== text) {
+      return Object.assign(
+        this,
+        new DotTextCanvas(text, fontSize, color, fontWeight) as DotTextCanvas,
+      ).append(p)
+    }
 
     this.fontSize = fontSize
     this.color = color

@@ -1,4 +1,7 @@
-export function traverse(target: Record<any, any> | any[], options: Record<string, Function> = {}) {
+export function traverse(
+  target: Record<any, any> | any[],
+  options: Record<string, Function> = {},
+) {
   if (typeof target !== 'object')
     return target
   Array.isArray(target)
@@ -7,7 +10,11 @@ export function traverse(target: Record<any, any> | any[], options: Record<strin
   return target
 }
 
-function executor(target: Record<any, any>, index: number, options: Record<string, Function> = {}) {
+function executor(
+  target: Record<any, any>,
+  index: number,
+  options: Record<string, Function> = {},
+) {
   for (const key in options) {
     const result = key.split('.').reduce((pre, cur) => {
       return pre[cur]

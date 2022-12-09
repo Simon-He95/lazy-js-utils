@@ -1,5 +1,9 @@
-export const stylesReg = /(<.* style=['"]([ \w$\-\_:;\n]*)['"][\/ "'$\-_\w]*>)/gm
-export function getStyles(str: string, callback: (style: string, block: string, index: number) => string) {
+export const stylesReg
+  = /(<.* style=['"]([ \w$\-\_:;\n]*)['"][\/ "'$\-_\w]*>)/gm
+export function getStyles(
+  str: string,
+  callback: (style: string, block: string, index: number) => string,
+) {
   let index = 0
   return str.replace(stylesReg, (match, block, style) =>
     match.replace(style, callback(style, block, index++)),

@@ -1,6 +1,9 @@
 import { isType } from '../is/isType'
 
-export function sort(array: any[], match: Array<string | number> | number | string): any[] {
+export function sort(
+  array: any[],
+  match: Array<string | number> | number | string,
+): any[] {
   if (isType(match, 's|n'))
     match = [`${match}`] as string[]
 
@@ -11,7 +14,7 @@ export function sort(array: any[], match: Array<string | number> | number | stri
       cur = cur.slice(1)
     }
     return result.sort((a, b) => {
-      if (cur !== '1' && (b[cur] === a[cur]))
+      if (cur !== '1' && b[cur] === a[cur])
         return 0
       if (flag) {
         if (cur === '1')

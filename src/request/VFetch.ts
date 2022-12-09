@@ -8,7 +8,12 @@ const cancelMap = new Map()
 export class VFetch {
   config: IFetchConfig
   constructor(baseOptions?: IFetchOptions) {
-    const { baseURL = '', headers = {}, timeout = 20 * 1000, interceptors } = baseOptions || {}
+    const {
+      baseURL = '',
+      headers = {},
+      timeout = 20 * 1000,
+      interceptors,
+    } = baseOptions || {}
     this.config = {
       baseURL,
       headers,
@@ -54,10 +59,13 @@ export class VFetch {
       integrity,
       referrerPolicy,
       referrer,
-      headers: Object.assign({
-        'Content-Type': 'application/json',
-
-      }, this.config.headers, headers),
+      headers: Object.assign(
+        {
+          'Content-Type': 'application/json',
+        },
+        this.config.headers,
+        headers,
+      ),
     })
 
     if (this.config.method === 'GET') {
@@ -73,14 +81,26 @@ export class VFetch {
     const signal = controller.signal
     this.config.signal = signal
     this.config.cancel = () => controller.abort()
-    const { body, method, bodyType, url, timeout, responseType, transformResponse } = this.config
+    const {
+      body,
+      method,
+      bodyType,
+      url,
+      timeout,
+      responseType,
+      transformResponse,
+    } = this.config
     if (body && method !== 'GET') {
       if (bodyType === 'form') {
-        deepMerge(this.config.headers!, { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' })
+        deepMerge(this.config.headers!, {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        })
         this.config.body = stringify(body)
       }
       else if (bodyType === 'file') {
-        deepMerge(this.config.headers!, { 'Content-Type': 'multipart/form-data' })
+        deepMerge(this.config.headers!, {
+          'Content-Type': 'multipart/form-data',
+        })
         this.config.body = Object.keys(body).reduce((result, key) => {
           result.append(key, body[key])
           return result
@@ -96,40 +116,54 @@ export class VFetch {
     cancelMap.set(key, this.config.cancel)
 
     return Promise.race([
-      fetch(url!, this.config?.interceptors?.request?.success?.(this.config) || this.config),
+      fetch(
+        url!,
+        this.config?.interceptors?.request?.success?.(this.config)
+          || this.config,
+      ),
       new Promise((resolve) => {
         setTimeout(() => {
-          resolve(new Response('timeout', { status: 504, statusText: 'timeout ' }))
+          resolve(
+            new Response('timeout', { status: 504, statusText: 'timeout ' }),
+          )
           controller.abort()
         }, timeout || 20 * 1000)
       }),
-    ]).then(
-      (response: any) => {
-        if (response.status === 200) {
-          return transformResponse
-            ? transformResponse(response)
-            : response
-        }
-        return this.config?.interceptors?.response?.error?.(response) || Promise.reject(response)
-      },
-      (err) => {
-        return this.config?.interceptors?.request?.error?.(err) || Promise.reject(err)
-      },
-    ).then(
-      async (response: Response) => {
+    ])
+      .then(
+        (response: any) => {
+          if (response.status === 200)
+            return transformResponse ? transformResponse(response) : response
+
+          return (
+            this.config?.interceptors?.response?.error?.(response)
+            || Promise.reject(response)
+          )
+        },
+        (err) => {
+          return (
+            this.config?.interceptors?.request?.error?.(err)
+            || Promise.reject(err)
+          )
+        },
+      )
+      .then(async (response: Response) => {
         try {
           const data = this.getResponseData(response, responseType)
           const result = await data
           cancelMap.delete(generateKey(this.config))
-          return this.config?.interceptors?.response?.success?.(result) || result
+          return (
+            this.config?.interceptors?.response?.success?.(result) || result
+          )
         }
         catch (error) {
           cancelMap.delete(generateKey(this.config))
-          return this.config?.interceptors?.response?.error?.(error)
+          return (
+            this.config?.interceptors?.response?.error?.(error)
             || Promise.reject(error)
+          )
         }
-      },
-    )
+      })
   }
 
   getResponseData(response: Response, responseType?: ResponseType) {
@@ -147,49 +181,86 @@ export class VFetch {
 
   get(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
   get(this: VFetch, options: IFetchConfig): Promise<any>
-  get(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
+  get(
+    this: VFetch,
+    url: string | IFetchConfig,
+    options?: IFetchConfig,
+  ): Promise<any> {
     const { retry = 0 } = options || {}
-    const call = () => new VFetch(this.config).init(Object.assign(isStr(url)
-      ? Object.assign(options || {}, { url }) as IFetchConfig
-      : url, {
-      method: 'GET',
-    }))
+    const call = () =>
+      new VFetch(this.config).init(
+        Object.assign(
+          isStr(url)
+            ? (Object.assign(options || {}, { url }) as IFetchConfig)
+            : url,
+          {
+            method: 'GET',
+          },
+        ),
+      )
 
     return promiseCall(call, retry)
   }
 
   post(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
   post(this: VFetch, options: IFetchConfig): Promise<any>
-  post(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
-    return new VFetch(this.config).init(Object.assign(isStr(url)
-      ? Object.assign(options || {}, { url }) as IFetchConfig
-      : url, {
-      method: 'post',
-    }))
+  post(
+    this: VFetch,
+    url: string | IFetchConfig,
+    options?: IFetchConfig,
+  ): Promise<any> {
+    return new VFetch(this.config).init(
+      Object.assign(
+        isStr(url)
+          ? (Object.assign(options || {}, { url }) as IFetchConfig)
+          : url,
+        {
+          method: 'post',
+        },
+      ),
+    )
   }
 
   put(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
   put(this: VFetch, options: IFetchConfig): Promise<any>
-  put(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
+  put(
+    this: VFetch,
+    url: string | IFetchConfig,
+    options?: IFetchConfig,
+  ): Promise<any> {
     if (isStr(options))
       options = { url: options }
-    return new VFetch(this.config).init(Object.assign(isStr(url)
-      ? Object.assign(options || {}, { url }) as IFetchConfig
-      : url, {
-      method: 'put',
-    }))
+    return new VFetch(this.config).init(
+      Object.assign(
+        isStr(url)
+          ? (Object.assign(options || {}, { url }) as IFetchConfig)
+          : url,
+        {
+          method: 'put',
+        },
+      ),
+    )
   }
 
   delete(this: VFetch, url: string, options?: IFetchConfig): Promise<any>
   delete(this: VFetch, options: IFetchConfig): Promise<any>
-  delete(this: VFetch, url: string | IFetchConfig, options?: IFetchConfig): Promise<any> {
+  delete(
+    this: VFetch,
+    url: string | IFetchConfig,
+    options?: IFetchConfig,
+  ): Promise<any> {
     if (isStr(options))
       options = { url: options }
-    return new VFetch(this.config).init(Object.assign(isStr(url)
-      ? Object.assign(options || {}, { url }) as IFetchConfig
-      : url, {
-      method: 'delete',
-    }))
+    return new VFetch(this.config).init(
+      Object.assign(
+        isStr(url)
+          ? (Object.assign(options || {}, { url }) as IFetchConfig)
+          : url,
+        {
+          method: 'delete',
+        },
+      ),
+    )
   }
 }
 
@@ -198,7 +269,13 @@ function generateKey(config: Record<string, any>) {
   return `${url}-${method}-${JSON.stringify(method === 'get' ? params : data)}`
 }
 
-function promiseCall(call: () => Promise<any>, retry: number, count = 0, resolve?: any, reject?: any) {
+function promiseCall(
+  call: () => Promise<any>,
+  retry: number,
+  count = 0,
+  resolve?: any,
+  reject?: any,
+) {
   return new Promise((_resolve, _reject) => {
     resolve = resolve || _resolve
     reject = reject || _reject

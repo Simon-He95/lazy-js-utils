@@ -3,7 +3,9 @@ import { isFile } from '../is/isFile'
 import { isBlob } from '../is/isBlob'
 import { isStr } from '../is/isStr'
 
-export async function toBase64(o: File | string | Blob): Promise<Blob | string> {
+export async function toBase64(
+  o: File | string | Blob,
+): Promise<Blob | string> {
   if (isFile(o) || isBlob(o))
     return await fileToBase64(o as File | Blob)
   else if (isStr(o))
@@ -36,7 +38,13 @@ export function urlToBase64(url: string): Promise<string> {
         crossOrigin: 'anonymous',
       })
       img.onload = function () {
-        ctx?.drawImage(img, 0, 0, canvas.width = img.width, canvas.height = img.height)
+        ctx?.drawImage(
+          img,
+          0,
+          0,
+          (canvas.width = img.width),
+          (canvas.height = img.height),
+        )
         resolve(canvas.toDataURL('image/png'))
       }
     }

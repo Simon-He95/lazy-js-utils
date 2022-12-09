@@ -1,8 +1,6 @@
 import { formateDate } from './formateDate'
 export function getDateList(start: string, day = 0): string[] {
-  const tag = start.includes('-')
-    ? '-'
-    : '/'
+  const tag = start.includes('-') ? '-' : '/'
   const [startY, startM, startD] = start.split(tag)
   const startTime = new Date(+startY, +startM - 1, +startD).getTime()
   const dateList: string[] = []

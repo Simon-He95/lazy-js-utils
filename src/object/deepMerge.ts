@@ -1,6 +1,9 @@
 import { isPlainObject } from '../is/isPlainObject'
 
-export function deepMerge(target: Record<any, any>, ...sources: Record<any, any>[]) {
+export function deepMerge(
+  target: Record<any, any>,
+  ...sources: Record<any, any>[]
+) {
   if (!isPlainObject(target))
     return target
 
@@ -19,8 +22,7 @@ export function deepMerge(target: Record<any, any>, ...sources: Record<any, any>
           && isPlainObject(source[key])
         )
           deepMerge(target[key], source[key])
-        else
-          target[key] = source[key]
+        else target[key] = source[key]
       }
     }
   })

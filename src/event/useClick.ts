@@ -1,7 +1,10 @@
 import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
-export function useClick(target: string | HTMLElement, callback: (e: MouseEvent) => void) {
+export function useClick(
+  target: string | HTMLElement,
+  callback: (e: MouseEvent) => void,
+) {
   let stop: () => void
   let stopped = false
   mount(target, (target) => {
@@ -11,7 +14,7 @@ export function useClick(target: string | HTMLElement, callback: (e: MouseEvent)
   })
   return () => {
     if (!stop)
-      return stopped = true
+      return (stopped = true)
     stop?.()
   }
 }

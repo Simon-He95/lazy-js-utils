@@ -1,6 +1,10 @@
 export function dbStorage() {
   return new Promise((resolve, reject) => {
-    const indexDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB
+    const indexDB
+      = window.indexedDB
+      || window.webkitIndexedDB
+      || window.mozIndexedDB
+      || window.msIndexedDB
     if (!indexDB)
       reject(new Error('浏览器不支持indexedDB'))
 
@@ -11,7 +15,9 @@ export function dbStorage() {
     let objectStore: any
     request.onsuccess = function (event: any) {
       const db = event?.target?.result
-      objectStore = db.transaction(['simonDb'], 'readwrite').objectStore('simonDb')
+      objectStore = db
+        .transaction(['simonDb'], 'readwrite')
+        .objectStore('simonDb')
       function read(key: any) {
         return new Promise((resolve, reject) => {
           const request = objectStore.get(key)
@@ -23,7 +29,11 @@ export function dbStorage() {
           }
         })
       }
-      function update(data: Record<string, any>, resolve: (msg: string) => void, reject: (error: Error) => void) {
+      function update(
+        data: Record<string, any>,
+        resolve: (msg: string) => void,
+        reject: (error: Error) => void,
+      ) {
         const request = objectStore.put(data)
 
         request.onsuccess = function () {

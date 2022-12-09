@@ -1,5 +1,5 @@
 import { isFn } from '../is/isFn'
-type UseTimeoutReturn<T> = T extends Function ? (() => void) : undefined
+type UseTimeoutReturn<T> = T extends Function ? () => void : undefined
 
 export function useTimeout<T>(fn: T, duration: number): UseTimeoutReturn<T> {
   if (!isFn(fn))
@@ -7,4 +7,3 @@ export function useTimeout<T>(fn: T, duration: number): UseTimeoutReturn<T> {
   const timer = setTimeout(fn, duration)
   return (() => clearTimeout(timer)) as any
 }
-

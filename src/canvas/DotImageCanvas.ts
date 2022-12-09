@@ -13,7 +13,12 @@ export class DotImageCanvas {
   fontWeight = 1
   status = 'pending'
   bgColor?: string
-  constructor(src: string, color: string, fontWeight: number, bgColor = '#fff') {
+  constructor(
+    src: string,
+    color: string,
+    fontWeight: number,
+    bgColor = '#fff',
+  ) {
     this.initOptions(src, color, fontWeight, bgColor)
     this.executor()
   }
@@ -22,13 +27,17 @@ export class DotImageCanvas {
     this.canvas.width = img.width
     this.canvas.height = img.height
     this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
-    const { data: imageData, width, height } = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
+    const {
+      data: imageData,
+      width,
+      height,
+    } = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height)
     const imagePointSet: number[][] = []
     for (let i = 0; i < height; i++) {
       const temp: any[] = []
       imagePointSet.push(temp)
       for (let j = 0; j < width; j++) {
-        const pxStartIndex = (i * width * 4 + j * 4)
+        const pxStartIndex = i * width * 4 + j * 4
         const pxData = {
           r: imageData[pxStartIndex],
           g: imageData[pxStartIndex + 1],
@@ -38,18 +47,23 @@ export class DotImageCanvas {
         const color = `rgba(${pxData.r},${pxData.g},${pxData.b},${pxData.a})`
         if (pxData.r > 230 && pxData.g > 230 && pxData.b > 230)
           temp.push(this.color ? 0 : this.bgColor)
-        else
-          temp.push(pxData.a ? color : 0)
+        else temp.push(pxData.a ? color : 0)
       }
     }
 
-    this.points.set(this.originSrc, { width: this.canvas.width, imagePointSet, height: this.canvas.height })
+    this.points.set(this.originSrc, {
+      width: this.canvas.width,
+      imagePointSet,
+      height: this.canvas.height,
+    })
     return imagePointSet
   }
 
   createImage() {
     if (this.hasImage()) {
-      const { imagePointSet, width, height } = this.points.get(this.originSrc) as Record<string, any>
+      const { imagePointSet, width, height } = this.points.get(
+        this.originSrc,
+      ) as Record<string, any>
       const pRatio = window.devicePixelRatio || 1
       this.canvas.width = width * pRatio
       this.canvas.height = height * pRatio
@@ -80,8 +94,7 @@ export class DotImageCanvas {
     try {
       this.createImage()
     }
-    catch (error) {
-    }
+    catch (error) {}
     return this
   }
 
@@ -89,8 +102,8 @@ export class DotImageCanvas {
     this.clearCanvas()
     const h = imagePointSet.length
     const w = imagePointSet[0]?.length
-    const oneTempLength = this.canvas.width * 1 / h
-    const size = this.fontWeight * 50 / this.canvas.width
+    const oneTempLength = (this.canvas.width * 1) / h
+    const size = (this.fontWeight * 50) / this.canvas.width
     const getPoint = memorizeFn((i: number) => oneTempLength * (i + 0.5))
     const tasks: Function[] = []
     for (let i = 0; i < h; i++) {
@@ -118,13 +131,24 @@ export class DotImageCanvas {
     this.bgColor = bgColor
   }
 
-  async repaint(src: string, color: string, fontWeight: number, bgColor = '#fff') {
+  async repaint(
+    src: string,
+    color: string,
+    fontWeight: number,
+    bgColor = '#fff',
+  ) {
     const p = removeElement(this.canvas)
     this.status = 'pending'
     this.initOptions(src, color, fontWeight, bgColor)
-    if (!p)
-      throw new Error('repaint error not found canvas container or has been removed')
-    return Object.assign(this, await this.executor() as DotImageCanvas).append(p as HTMLElement)
+    if (!p) {
+      throw new Error(
+        'repaint error not found canvas container or has been removed',
+      )
+    }
+    return Object.assign(
+      this,
+      (await this.executor()) as DotImageCanvas,
+    ).append(p as HTMLElement)
   }
 
   clearCanvas() {

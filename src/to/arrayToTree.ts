@@ -5,7 +5,11 @@ interface ArrayToTreeOptions {
   pid?: number | string
   children?: string
 }
-export function arrayToTree(array: Record<string, any>[], parentId = 0, options: ArrayToTreeOptions = {}): Record<string, any> {
+export function arrayToTree(
+  array: Record<string, any>[],
+  parentId = 0,
+  options: ArrayToTreeOptions = {},
+): Record<string, any> {
   if (isPlainObject(parentId)) {
     options = parentId as ArrayToTreeOptions
     parentId = 0

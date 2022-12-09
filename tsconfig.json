@@ -12,9 +12,5 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true
   },
-  "exclude": [
-    "dist",
-    "playground",
-    "cypress"
-  ]
+  "exclude": ["dist", "playground", "cypress"]
 }

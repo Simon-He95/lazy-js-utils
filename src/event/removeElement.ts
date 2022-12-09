@@ -1,7 +1,9 @@
 import { isStr } from '../is/isStr'
 import { findElement } from './findElement'
 
-export function removeElement(el: HTMLElement | ChildNode | string): HTMLElement | null {
+export function removeElement(
+  el: HTMLElement | ChildNode | string,
+): HTMLElement | null {
   if (isStr(el))
     el = findElement(el) || el
   if (isStr(el))

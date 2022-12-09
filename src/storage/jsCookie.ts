@@ -18,7 +18,7 @@ export const jsCookie: JSCookie = {
   set(cname: string, value: string, extdays?: any) {
     try {
       const d = new Date()
-      d.setTime(d.getTime() + (extdays * 24 * 60 * 60 * 1000))
+      d.setTime(d.getTime() + extdays * 24 * 60 * 60 * 1000)
       const expires = `expires=${d.toUTCString()}`
       document.cookie = `${cname}=${value}; ${expires}`
     }

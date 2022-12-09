@@ -6,8 +6,7 @@ export function quickFilter(array: any[], key: string | Array<string>) {
   return array.filter((item) => {
     if (isArray(key))
       return key.some(k => findItem(item, k))
-    else
-      return findItem(item, key)
+    else return findItem(item, key)
   })
   function findItem(item: Record<any, any>, key: string): boolean {
     const [_key, _value] = key.split('=')

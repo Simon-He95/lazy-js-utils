@@ -26,4 +26,3 @@ export function getImageData(src: string): Promise<ImageData> {
     }
   })
 }
-

@@ -11,23 +11,34 @@
 At present, I have sorted out <strong>about 200</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me :hearts:
 
 ## :100: Highlights
+
 - Pure JS utility functions, Can be used in any environment where JS can be executed
 - Greatly reduced the use of `ref<HTMLElment>` and `onMounted`, which can be called directly from the script tag
 - All side effect functions can return a stop function, which can stop the execution of the event anywhere, and automatically destroy the event when the page is destroyed
 - API design is simple, practical and type-friendly
 
 ## &#x270B; Example
+
 ```js
-import { animationFrameWrapper, insertElement, useEventListener, useMutationObserver } from 'lazy-js-utils'
+import {
+  animationFrameWrapper,
+  insertElement,
+  useEventListener,
+  useMutationObserver,
+} from 'lazy-js-utils'
 // To listen for container changes, you don't need const container <HTMLElement>= ref
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
 })
 // requestAnimationFrame
-animationFrameWrapper((timestamp) => {
-  // Each needle is executed 1s apart
-  console.log('animationFrame', timestamp)
-}, 1000, true /* It is destroyed after only one execution */)
+animationFrameWrapper(
+  (timestamp) => {
+    // Each needle is executed 1s apart
+    console.log('animationFrame', timestamp)
+  },
+  1000,
+  true /* It is destroyed after only one execution */,
+)
 // Register for events
 useEventListener('#container', 'click', () => {
   console.log('click')
@@ -37,24 +48,26 @@ insertElement('#container', '.content')
 // Delete an element
 removeElement('.content')
 ```
+
 ```html
 <div id="container"></div>
 <div class="content">hello world</div>
 ```
 
 ## :balloon: More
+
 - Export function [exports-function](https://github.com/SimonHe1995/exportsFunction)
 - threejs [@simon_he/s-three](https://github.com/SimonHe1995/sThree)
 - Echarts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
 - numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
 - vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
-
 ## :book: Instructions for use
+
 ```bash
 npm i lazy-js-utils # Installation
 
-import { 
+import {
   deepCompare
  } from 'lazy-js-utils' # Ingestion on demand
 
@@ -63,7 +76,9 @@ import {
 ## 👉 [Documentation](http://vitepress.hejian.club/)
 
 ## :coffee:
+
 [Sponsor me](https://github.com/Simon-He95/sponsor)
 
-## GitHub地址
+## GitHub 地址
+
 [Welcome to PR](https://github.com/Simon-He95/lazy-js-utils)

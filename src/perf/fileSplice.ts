@@ -1,7 +1,10 @@
 import SparkMD5 from 'spark-md5'
 import type { FileChunk, FileMD5 } from '../types'
 
-export async function fileSplice(_file: File, _chunkSize: number = 1024 * 100): Promise<FileChunk[]> {
+export async function fileSplice(
+  _file: File,
+  _chunkSize: number = 1024 * 100,
+): Promise<FileChunk[]> {
   const { HASH, suffix } = await getMD5()
   const chunks: FileChunk[] = []
   // 实现切片处理 [固定切片大小 & 数量]
@@ -9,7 +12,8 @@ export async function fileSplice(_file: File, _chunkSize: number = 1024 * 100): 
   let count = Math.ceil(_file.size / max)
   let index = 0
 
-  if (count > 100) { // 如果切片的数量大于100,可以固定切片的数量为100,来调整每一个切片的大小
+  if (count > 100) {
+    // 如果切片的数量大于100,可以固定切片的数量为100,来调整每一个切片的大小
     count = 100
     max = _file.size / count
   }
@@ -27,7 +31,8 @@ export async function fileSplice(_file: File, _chunkSize: number = 1024 * 100): 
     return new Promise((resolve, reject) => {
       try {
         fileReader.onload = function (e: any) {
-          const buffer = e?.target.result; const // buffer编码
+          const buffer = e?.target.result
+          const // buffer编码
             spark = new SparkMD5.ArrayBuffer()
           spark.append(buffer)
           const HASH = spark.end()

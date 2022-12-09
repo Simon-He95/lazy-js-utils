@@ -22,32 +22,44 @@ export function arrayToExcel(options: IArrayToExcel) {
   if (!data)
     return
   const arrData = typeof data != 'object' ? JSON.parse(data) : data
-  let excel = `<table><tr>${title
-    ? title.map(item => `<th align='center'>${item}</th>`).join('')
-    : Object.keys(arrData[0]).map((key) => {
-      if (filter && filter.includes(key))
-        return ''
-      return `<th align='center'>${key}</th>`
-    }).join('')}</tr>`
+  let excel = `<table><tr>${
+    title
+      ? title.map(item => `<th align='center'>${item}</th>`).join('')
+      : Object.keys(arrData[0])
+          .map((key) => {
+            if (filter && filter.includes(key))
+return ''
+            return `<th align='center'>${key}</th>`
+          })
+          .join('')
+  }</tr>`
   for (let i = 0; i < arrData.length; i++) {
     let row = '<tr>'
     for (const index in arrData[i]) {
       if (filter) {
         if (!filter.includes(index)) {
           const target = arrData[i][index] == null ? '' : arrData[i][index]
-          if (isStr(target)) { row += `<td>${target}</td>` }
+          if (isStr(target)) {
+            row += `<td>${target}</td>`
+          }
           else {
             const { value, width, colspan = 0, rowspan = 0 } = target
-            row += `<td width=${width} colspan=${colspan} rowspan=${rowspan} style="${generateStyle(target)}">${value}</td>`
+            row += `<td width=${width} colspan=${colspan} rowspan=${rowspan} style="${generateStyle(
+              target,
+            )}">${value}</td>`
           }
         }
       }
       else {
         const target = arrData[i][index] == null ? '' : arrData[i][index]
-        if (isStr(target)) { row += `<td align='center'>${target}</td>` }
+        if (isStr(target)) {
+          row += `<td align='center'>${target}</td>`
+        }
         else {
           const { value, width, colspan = 0, rowspan = 0 } = target
-          row += `<td align='center' width=${width} colspan=${colspan} rowspan=${rowspan} style="${generateStyle(target)}">${value}</td>`
+          row += `<td align='center' width=${width} colspan=${colspan} rowspan=${rowspan} style="${generateStyle(
+            target,
+          )}">${value}</td>`
         }
       }
     }
@@ -55,7 +67,13 @@ export function arrayToExcel(options: IArrayToExcel) {
     excel += `${row}</tr>`
   }
   excel += '</table>'
-  createElement('a', { href: `data:application/vnd.ms-excel;charset=utf-8,${encodeURIComponent(generateHtml(excel))}`, style: 'visibility:hidden', download: `${filename}.xls` }).click()
+  createElement('a', {
+    href: `data:application/vnd.ms-excel;charset=utf-8,${encodeURIComponent(
+      generateHtml(excel),
+    )}`,
+    style: 'visibility:hidden',
+    download: `${filename}.xls`,
+  }).click()
 }
 
 function generateStyle(target: Target) {
@@ -65,7 +83,7 @@ function generateStyle(target: Target) {
     result += `background:${background};`
   if (color)
     result += `color:${color};`
-  return result += style
+  return (result += style)
 }
 
 function generateHtml(excel: string) {

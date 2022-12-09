@@ -3,13 +3,23 @@ import { isPlainObject } from '../is/isPlainObject'
 import { isReg } from '../is/isReg'
 
 // 深比较
-export function deepCompare(comp1: any, comp2: any, ignoreKeys?: string[] | RegExp, error: string[] = [], errorMsg: string[] = [], name?: string, index?: string) {
+export function deepCompare(
+  comp1: any,
+  comp2: any,
+  ignoreKeys?: string[] | RegExp,
+  error: string[] = [],
+  errorMsg: string[] = [],
+  name?: string,
+  index?: string,
+) {
   if (isPlainObject(comp1) && isPlainObject(comp2)) {
-    const longer = Object.keys(comp1).length >= Object.keys(comp2).length
-      ? comp1
-      : comp2
+    const longer
+      = Object.keys(comp1).length >= Object.keys(comp2).length ? comp1 : comp2
     for (const key in longer) {
-      if ((isArray(ignoreKeys) && (ignoreKeys as string[]).includes(key)) || (isReg(ignoreKeys) && (ignoreKeys as RegExp).test(key)))
+      if (
+        (isArray(ignoreKeys) && (ignoreKeys as string[]).includes(key))
+        || (isReg(ignoreKeys) && (ignoreKeys as RegExp).test(key))
+      )
         continue
 
       const value1 = comp1[key]
@@ -19,9 +29,7 @@ export function deepCompare(comp1: any, comp2: any, ignoreKeys?: string[] | RegE
     }
   }
   else if (Array.isArray(comp1) && Array.isArray(comp2)) {
-    const longer = comp1.length >= comp2.length
-      ? comp1
-      : comp2
+    const longer = comp1.length >= comp2.length ? comp1 : comp2
     for (const key in longer) {
       const value1 = comp1[key]
       const value2 = comp2[key]

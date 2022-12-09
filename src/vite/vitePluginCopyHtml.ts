@@ -2,7 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import process from 'process'
 export function vitePluginCopyHtml(template_url: string) {
-  let content = fs.readFileSync(path.resolve(process.cwd(), template_url), 'utf-8')
+  let content = fs.readFileSync(
+    path.resolve(process.cwd(), template_url),
+    'utf-8',
+  )
   return {
     name: 'vite-plugin-copy-html',
     writeBundle(options: any, data: any) {
@@ -16,12 +19,20 @@ export function vitePluginCopyHtml(template_url: string) {
           scripts.push(key)
       }
       if (links.length) {
-        content = content.replace(/<\/head>/, () => (`</head>
-      ${links.map(link => `<link rel="stylesheet" href="/${link}">`)}`))
+        content = content.replace(
+          /<\/head>/,
+          () => `</head>
+      ${links.map(link => `<link rel="stylesheet" href="/${link}">`)}`,
+        )
       }
       if (scripts.length) {
-        content = content.replace(/<\/body>/, () => `   ${scripts.map(script => `<script src="/${script}" type="module"></script>`)}
-  </body>`)
+        content = content.replace(
+          /<\/body>/,
+          () => `   ${scripts.map(
+            script => `<script src="/${script}" type="module"></script>`,
+          )}
+  </body>`,
+        )
       }
       fs.writeFileSync(path.resolve(outDir), content, 'utf-8')
     },

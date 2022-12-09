@@ -1,5 +1,8 @@
 import { findElement } from '../event/findElement'
-export function scrollToView(e: Element | string | null, options?: ScrollIntoViewOptions) {
+export function scrollToView(
+  e: Element | string | null,
+  options?: ScrollIntoViewOptions,
+) {
   try {
     if (typeof e === 'string')
       e = findElement(e) as Element

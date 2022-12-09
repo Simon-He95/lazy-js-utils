@@ -21,8 +21,7 @@ const _bem = (
 export const useNamespace = (defaultNamespace: string) => (block: string) => {
   const namespace = defaultNamespace
   // -xx
-  const b = (blockSuffix = '') =>
-    _bem(namespace, block, blockSuffix, '', '')
+  const b = (blockSuffix = '') => _bem(namespace, block, blockSuffix, '', '')
   // __xx
   const e = (element?: string) =>
     element ? _bem(namespace, block, '', element, '') : ''
@@ -36,9 +35,7 @@ export const useNamespace = (defaultNamespace: string) => (block: string) => {
       : ''
   // _xx--yy
   const em = (element?: string, modifier?: string) =>
-    element && modifier
-      ? _bem(namespace, block, '', element, modifier)
-      : ''
+    element && modifier ? _bem(namespace, block, '', element, modifier) : ''
   // -xx--yy
   const bm = (blockSuffix?: string, modifier?: string) =>
     blockSuffix && modifier
@@ -66,6 +63,7 @@ export const useNamespace = (defaultNamespace: string) => (block: string) => {
       if (object[key])
         styles[`--${namespace}-${key}`] = object[key]
     }
+
     return styles
   }
   // with block
@@ -75,12 +73,12 @@ export const useNamespace = (defaultNamespace: string) => (block: string) => {
       if (object[key])
         styles[`--${namespace}-${block}-${key}`] = object[key]
     }
+
     return styles
   }
 
   const cssVarName = (name: string) => `--${namespace}-${name}`
-  const cssVarBlockName = (name: string) =>
-    `--${namespace}-${block}-${name}`
+  const cssVarBlockName = (name: string) => `--${namespace}-${block}-${name}`
 
   return {
     namespace,

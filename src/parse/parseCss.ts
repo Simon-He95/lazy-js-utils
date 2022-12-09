@@ -1,5 +1,6 @@
 export function parseCss(str: string) {
-  const getClasses = /[\n\s]*([.#][\w\-_ .#\>\+\&]+){[\n\s]*([ :;\w\-\n]*)+}[\n\s]*/gm
+  const getClasses
+    = /[\n\s]*([.#][\w\-_ .#\>\+\&]+){[\n\s]*([ :;\w\-\n]*)+}[\n\s]*/gm
   const moreSpace = /\s{2,}/g
   const classMap: Record<string, string> = {}
   str.replace(getClasses, (match, p1, p2) => {

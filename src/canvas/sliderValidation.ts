@@ -6,7 +6,12 @@ import { isFn } from '../is/isFn'
 import { isStr } from '../is/isStr'
 import { randomRange } from '../random/randomRange'
 
-export async function sliderValidation(url: string, container: HTMLElement | string, l: number | (() => void) = 42, callback: () => void) {
+export async function sliderValidation(
+  url: string,
+  container: HTMLElement | string,
+  l: number | (() => void) = 42,
+  callback: () => void,
+) {
   if (isFn(l)) {
     callback = l as () => void
     l = 42
@@ -95,8 +100,8 @@ export async function sliderValidation(url: string, container: HTMLElement | str
     moveCanvas.style.position = 'absolute'
     moveCanvas.style.top = '0px'
     fragment.appendChild(canvas)
-    fragment.appendChild(moveCanvas);
-    (container as HTMLElement).appendChild(fragment)
+    fragment.appendChild(moveCanvas)
+    ;(container as HTMLElement).appendChild(fragment)
   }
   addStyle(`@keyframes head-shake {
     0% {

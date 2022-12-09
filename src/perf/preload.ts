@@ -7,9 +7,9 @@ export function preload(list: string[] | string, style?: string) {
   let videoNode: HTMLVideoElement
   if (!isArray(list))
     list = [list as string]
-  return (list as string[]).map(src => isVideo(src)
-    ? createVideo(src)
-    : createImage(src))
+  return (list as string[]).map(src =>
+    isVideo(src) ? createVideo(src) : createImage(src),
+  )
   function createImage(src: string) {
     if (!imageNode)
       imageNode = new Image()
