@@ -5,7 +5,7 @@
 <a href="https://www.npmjs.com/package/lazy-js-utils"><img src="https://img.shields.io/npm/dm/lazy-js-utils?style=social" alt="NPM version"></a>
 <a href="https://github.com/Simon-He95/lazy-js-utils"><img src="https://img.shields.io/github/stars/Simon-He95/lazy-js-utils?style=social" alt="NPM version"></a>
 </p>
-<p align="center"><a href="https://lazy-js-utils-docs.netlify.app/">Docs</a></p>
+<p align="center"><a href="https://lazy-js-utils-docs.netlify.app/">🖥 Docs</a></p>
 <p align="center"> English | <a href="./README.md">简体中文</a></p>
 
 At present, I have sorted out <strong>about 200</strong> commonly used functions, and I am still updating..., and your recognition is the biggest encouragement to me :hearts:
@@ -53,14 +53,6 @@ removeElement('.content')
 <div id="container"></div>
 <div class="content">hello world</div>
 ```
-
-## :balloon: More
-
-- Export function [exports-function](https://github.com/SimonHe1995/exportsFunction)
-- threejs [@simon_he/s-three](https://github.com/SimonHe1995/sThree)
-- Echarts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
-- numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
-- vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
 ## :book: Instructions for use
 

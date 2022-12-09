@@ -5,7 +5,7 @@
 <a href="https://www.npmjs.com/package/lazy-js-utils"><img src="https://img.shields.io/npm/dm/lazy-js-utils?style=social" alt="NPM version"></a>
 <a href="https://github.com/Simon-He95/lazy-js-utils"><img src="https://img.shields.io/github/stars/Simon-He95/lazy-js-utils?style=social" alt="NPM version"></a>
 </p>
-<p align="center"><a href="https://lazy-js-utils-docs.netlify.app/">文档</a></p>
+<p align="center"><a href="https://lazy-js-utils-docs.netlify.app/">🖥 文档</a></p>
 <p align="center"> <a href="./README_en.md">English</a> | 简体中文</p>
 
 目前整理了<strong>200 左右</strong>的常用函数,还在持续更新中...,你的认可是对我最大的鼓励 :hearts:
@@ -53,13 +53,6 @@ removeElement('.content')
 <div id="container"></div>
 <div class="content">hello world</div>
 ```
-
-## :balloon: 更多
-
-- 导出函数 [exports-function](https://github.com/SimonHe1995/exportsFunction)
-- threejs [@simon_he/s-three]Charts [@simon_he/s-chart](https://github.com/SimonHe1995/sCharts)
-- numsWheel [@simon_he/nums-wheel](https://github.com/SimonHe1995/numsWheel)
-- vAxios [@simon_he/v-axios](https://github.com/SimonHe1995/vAxios)
 
 ## :book: 使用说明
 
