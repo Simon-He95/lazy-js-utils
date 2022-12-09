@@ -33,17 +33,17 @@ function transform(
   return target
 }
 
-console.log(
-  transformKey(
-    {
-      a: {
-        b: {
-          c: 'nihao',
-        },
-      },
-    },
-    {
-      'a.b.c': 'data',
-    },
-  ),
-)
+// console.log(
+//   transformKey(
+//     {
+//       a: {
+//         b: {
+//           c: 'nihao',
+//         },
+//       },
+//     },
+//     {
+//       'a.b.c': 'data',
+//     },
+//   ),
+// )

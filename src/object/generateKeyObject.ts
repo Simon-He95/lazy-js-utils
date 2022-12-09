@@ -33,13 +33,13 @@ function generateMapKey(key: string, result: Record<string, any>, value: any) {
   return result
 }
 
-const o = {
-  a: {
-    data: 'nihao',
-    age: '17',
-  },
-}
+// const o = {
+//   a: {
+//     data: 'nihao',
+//     age: '17',
+//   },
+// }
 
-const result = generateKeyObject(o, 'age.a', 'data')
+// const result = generateKeyObject(o, 'age.a', 'data')
 
-console.log(result)
+// console.log(result)

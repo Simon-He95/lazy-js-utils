@@ -12,7 +12,7 @@ export function vitePluginTransformVdeep() {
         if (transformData !== src) {
           fs.writeFile(id, transformData, (err) => {
             if (err)
-              console.log(err)
+              throw err
           })
         }
         return transformData

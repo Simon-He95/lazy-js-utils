@@ -110,10 +110,10 @@ function filterEmpty(o: Record<string, any>) {
   return o
 }
 
-const o = {
-  a: {
-    data: 'nihao',
-    age: '17',
-  },
-}
-console.log(mapTransform(o, { 'a.data': 'data', 'a.age': 'age' }))
+// const o = {
+//   a: {
+//     data: 'nihao',
+//     age: '17',
+//   },
+// }
+// console.log(mapTransform(o, { 'a.data': 'data', 'a.age': 'age' }))
