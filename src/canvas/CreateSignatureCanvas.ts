@@ -10,19 +10,25 @@ export class CreateSignatureCanvas implements ISignature {
   active = false
   historyStack: ImageData[] = []
   resetStack: ImageData[] = []
-
-  constructor(w = 400, h = 400) {
-    this.createCanvas(w, h)
+  color = '#000000'
+  constructor(
+    lineWidth = 2,
+    w = 400,
+    h = 400,
+    color = '#000000',
+  ) {
+    this.color = color
+    this.createCanvas(lineWidth, w, h)
     window.onunload = () => this.unmount()
   }
 
-  createCanvas(w = 400, h = 400) {
+  createCanvas(lineWidth = 2, w = 400, h = 400) {
     this.canvas.width = w
     this.canvas.height = h
     this.ctx.fillStyle = 'rgba(255, 255, 255, 0)'
     this.ctx.fillRect(0, 0, w, h)
-    this.ctx.strokeStyle = '#000000'
-    this.ctx.lineWidth = 2
+    this.ctx.strokeStyle = this.color
+    this.ctx.lineWidth = lineWidth
     this.ctx.lineCap = 'round'
     let offsetY = 0
     let offsetX = 0
@@ -102,6 +108,16 @@ export class CreateSignatureCanvas implements ISignature {
     return this
   }
 
+  setColor(color: string) {
+    this.color = color
+    this.ctx.strokeStyle = color
+  }
+
+  unmount() {
+    removeElement(this.canvas)
+    this.stop.forEach(s => s())
+  }
+
   listen() {
     useEventListener(this.canvas, 'mousedown', () => {
       this.active = true
@@ -145,9 +161,15 @@ export class CreateSignatureCanvas implements ISignature {
     )
   }
 
-  unmount() {
-    removeElement(this.canvas)
-    this.stop.forEach(s => s())
+  erase(lineWidth = 2) {
+    this.ctx.lineWidth = lineWidth
+    this.ctx.strokeStyle = 'rgba(255, 255, 255, 1)'
+    this.ctx.globalCompositeOperation = 'destination-out'
+  }
+
+  unerased() {
+    this.ctx.strokeStyle = this.color
+    this.ctx.globalCompositeOperation = 'source-over'
   }
 
   save() {
