@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { copy, monitorPef } from '../../src'
+import { monitorPef } from '../../src'
 import App from './App.vue'
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
@@ -17,9 +17,9 @@ app.mount('#app')
 
 // console.log(randomDate())
 monitorPef()
-window.onclick = () => {
-  copy('hello')
-}
+// window.onclick = () => {
+//   copy('hello')
+// }
 // timeCost(() => {
 //   for (let i = 0; i < 1000; i++)
 //     log(i)

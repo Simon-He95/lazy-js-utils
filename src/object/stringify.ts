@@ -1,8 +1,8 @@
 import { hyphenate } from '../string/hyphenate'
 import { isNum } from '../is/isNum'
 interface StringifyOptions {
-  sep?: string
-  eq?: string
+  sep?: string // Separator character 分割字符
+  eq?: string // =
   hyp?: boolean
   px?: boolean
   encode?: boolean
@@ -36,3 +36,13 @@ function getString(
     : o[k].toString()
   return encode ? encodeURI(str) : str
 }
+
+// console.log(stringify({
+//   width: '&@30px',
+//   height: '20',
+//   'minHeight': '20'
+// }, {
+//   sep: ';',
+//   eq: ':',
+//   hyp: true
+// }))

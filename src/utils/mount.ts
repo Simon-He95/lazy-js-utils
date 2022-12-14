@@ -3,7 +3,7 @@ import { isStr } from '../is/isStr'
 
 type MountArgs = [
   ...Array<string | Element | Window | Document | ParentNode>,
-  (...elements: Element[]) => void,
+  (...elements: HTMLElement[]) => void,
 ]
 export function mount(...args: MountArgs): void {
   const len = args.length
