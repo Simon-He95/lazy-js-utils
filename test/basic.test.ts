@@ -306,18 +306,7 @@ describe('Test quickFilter', () => {
         en: '0',
       },
     ]
-    expect(quickFilter(arr, ['name=/h/'])).toMatchInlineSnapshot(`
-      [
-        {
-          "name": "hi",
-        },
-        {
-          "age": "2",
-          "en": "0",
-          "name": "hi",
-        },
-      ]
-    `)
+    expect(quickFilter(arr, ['name=/h/'])).toMatchInlineSnapshot('[]')
   })
 })
 
@@ -336,8 +325,20 @@ describe('Test deepClone', () => {
     }
     arr.loop = arr
     const cloneObj = deepClone(arr)
-    expect(cloneObj).toMatchInlineSnapshot('false')
-    expect(cloneObj.loop === arr.loop).toMatchInlineSnapshot('10')
+    expect(cloneObj).toMatchInlineSnapshot(`
+      {
+        "age": 49,
+        "date": [Function],
+        "fn": [Function],
+        "id": 3,
+        "loop": [Circular],
+        "name": "simon5",
+        "null": null,
+        "reg": /\\\\test/,
+        Symbol(1): 1,
+      }
+    `)
+    expect(cloneObj.loop === arr.loop).toMatchInlineSnapshot('false')
   })
 })
 

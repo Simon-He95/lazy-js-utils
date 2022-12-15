@@ -190,3 +190,8 @@ export type Merge<A, B> = { [key in Keys<A, B>]: Val<key, A, B> }
 export interface IsESModule {
   default: any
 }
+
+export interface NodeWorkerPayload {
+  params: string | string[]
+  stdio?: 'inherit' | 'pipe'
+}
