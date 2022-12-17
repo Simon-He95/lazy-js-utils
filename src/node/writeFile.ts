@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fsp from 'fs/promises'
 import { isStr } from '../is/isStr'
 
 export function writeFile(
@@ -9,11 +9,10 @@ export function writeFile(
   if (isStr(paths))
     paths = [paths as string]
   ;(paths as string[]).forEach(async (relativepath, i) => {
-    const content = await fs.readFileSync(relativepath, encoding)
+    const content = await fsp.readFile(relativepath, encoding)
     const result = callback?.(content, i) || content
-    fs.writeFile(relativepath, result, (err) => {
-      if (err)
-        throw err
+    fsp.writeFile(relativepath, result).catch((err) => {
+      throw err
     })
   })
 }

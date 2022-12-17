@@ -1,13 +1,17 @@
+import { isFn } from '../is/isFn'
+import { isNull } from '../is/isNull'
+import { isObject } from '../is/isObject'
+
 const types = [Set, Map, WeakMap, WeakSet, RegExp, Date]
 const targetMap = new WeakMap()
 export function deepClone(target: any) {
   if (targetMap.has(target))
     return targetMap.get(target)
-  if (typeof target === 'function' || target === null)
+  if (isFn(target) || isNull(target))
     return target
   if (types.includes(target.constructor))
     return new target.constructor(target)
-  if (typeof target !== 'object')
+  if (!isObject(target))
     return target
   const cloneObj = Object.create(
     Object.getPrototypeOf(target),
@@ -15,7 +19,7 @@ export function deepClone(target: any) {
   )
   targetMap.set(target, cloneObj)
   for (const key of Reflect.ownKeys(target)) {
-    if (typeof target[key] === 'object')
+    if (isObject(target[key]))
       cloneObj[key] = deepClone(target[key])
     else cloneObj[key] = target[key]
   }

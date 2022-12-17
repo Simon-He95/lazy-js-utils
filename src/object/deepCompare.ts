@@ -28,7 +28,7 @@ export function deepCompare(
       deepCompare(value1, value2, ignoreKeys, error, errorMsg, _key)
     }
   }
-  else if (Array.isArray(comp1) && Array.isArray(comp2)) {
+  else if (isArray(comp1) && isArray(comp2)) {
     const longer = comp1.length >= comp2.length ? comp1 : comp2
     for (const key in longer) {
       const value1 = comp1[key]

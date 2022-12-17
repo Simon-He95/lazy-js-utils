@@ -1,3 +1,6 @@
+import { isDef } from '../is/isDef'
+import { isUndef } from '../is/isUndef'
+
 export function quickFind(array: any[], id: string | number) {
   const indexMap = new Map()
   array.forEach((item, i) => indexMap.set(item[id], i))
@@ -17,15 +20,15 @@ class QuickFind {
 
   find(id: any) {
     const index = this.indexMap.get(id)
-    if (index === undefined)
+    if (isUndef(index))
       return undefined
     return this.array[index]
   }
 
   _update(id: any, key: any, value: any) {
-    if (key === undefined) {
+    if (isUndef(key)) {
       const index = this.indexMap.get(id)
-      if (index === undefined)
+      if (isUndef(index))
         throw new Error('当前id不存在')
       if (value[this.id] !== id)
         throw new Error('不可修改唯一id')
@@ -33,7 +36,7 @@ class QuickFind {
     }
     else {
       const target = this.find(id)
-      if (target === undefined)
+      if (isUndef(target))
         return
       target[key] = value
     }
@@ -42,7 +45,7 @@ class QuickFind {
 
   delete(id: any) {
     const index = this.indexMap.get(id)
-    if (index === undefined)
+    if (isUndef(index))
       return
     this.array.splice(index, 1)
     this.indexMap.delete(id)
@@ -51,17 +54,17 @@ class QuickFind {
 
   set(id: any, key: any, value?: any) {
     const index = this.indexMap.get(id)
-    if (value === undefined) {
-      if (key === undefined)
+    if (isUndef(value)) {
+      if (isUndef(key))
         return
       value = key
       key = undefined
     }
-    if (index !== undefined) {
+    if (isDef(index)) {
       return this._update(id, key, value)
     }
     else {
-      if (value[this.id] === undefined)
+      if (isUndef(value[this.id]))
         throw new Error('新增的数据必须包含唯一id')
       if (value[this.id] !== id)
         throw new Error('新增的数据id必须与当前id一致')

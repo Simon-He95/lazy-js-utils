@@ -1,8 +1,8 @@
-import fs from 'fs'
+import fsp from 'fs/promises'
 import path from 'path'
 import process from 'process'
-export function vitePluginCopyHtml(template_url: string) {
-  let content = fs.readFileSync(
+export async function vitePluginCopyHtml(template_url: string) {
+  let content = await fsp.readFile(
     path.resolve(process.cwd(), template_url),
     'utf-8',
   )
@@ -34,7 +34,7 @@ export function vitePluginCopyHtml(template_url: string) {
   </body>`,
         )
       }
-      fs.writeFileSync(path.resolve(outDir), content, 'utf-8')
+      fsp.writeFile(path.resolve(outDir), content, 'utf-8')
     },
   }
 }

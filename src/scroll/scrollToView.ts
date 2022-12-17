@@ -1,10 +1,11 @@
 import { findElement } from '../event/findElement'
+import { isStr } from '../is/isStr'
 export function scrollToView(
   e: Element | string | null,
   options?: ScrollIntoViewOptions,
 ) {
   try {
-    if (typeof e === 'string')
+    if (isStr(e))
       e = findElement(e) as Element
     if (!e)
       return

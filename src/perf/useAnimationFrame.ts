@@ -1,3 +1,5 @@
+import { isUndef } from '../is/isUndef'
+
 export function useAnimationFrame(
   fn: (timestamp: number) => void,
   delta = 0,
@@ -23,7 +25,7 @@ export function useAnimationFrame(
   ) {
     if (!work)
       return
-    if (start === undefined) {
+    if (isUndef(start)) {
       start = timestamp
     }
     else if (timestamp - start > delta) {

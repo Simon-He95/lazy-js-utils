@@ -1,3 +1,5 @@
+import { isDef } from '../is/isDef'
+
 export function sortByOrder(sortArr: any[], order: string[], prop?: string) {
   if (!order)
     return sortArr
@@ -13,7 +15,7 @@ export function sortByOrder(sortArr: any[], order: string[], prop?: string) {
       sortArr.splice(index, 1)
     }
   })
-  if (insertIndex !== undefined)
+  if (isDef(insertIndex))
     result.splice(insertIndex, 0, ...sortArr)
   else result.concat(sortArr)
   return result

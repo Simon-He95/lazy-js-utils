@@ -1,11 +1,13 @@
-import fs from 'fs'
+import fsp from 'fs/promises'
 import path from 'path'
 import process from 'process'
 import { isNm } from '../is/isNm'
 import { isRelative } from '../is/isRelative'
 import { createElement } from '../event/createElement'
+import { removeElement } from '../event/removeElement'
+import { insertElement } from '../event/insertElement'
 
-export function addStyle(s: string): () => void {
+export async function addStyle(s: string): Promise<() => void> {
   try {
     const style = createElement(
       'style',
@@ -13,16 +15,16 @@ export function addStyle(s: string): () => void {
         type: 'text/css',
       },
       isNm(s)
-        ? fs.readFileSync(
+        ? await fsp.readFile(
           path.resolve(process.cwd(), 'node_modules', s),
           'utf8',
         )
         : isRelative(s)
-          ? fs.readFileSync(path.resolve(process.cwd(), s), 'utf8')
+          ? await fsp.readFile(path.resolve(process.cwd(), s), 'utf8')
           : s,
     )
-    document.head.appendChild(style)
-    return () => document.head.removeChild(style)
+    insertElement(document.head, style, null)
+    return () => removeElement(style)
   }
   catch (error: any) {
     throw new Error(error)

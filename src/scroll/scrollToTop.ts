@@ -1,10 +1,11 @@
+import { isUndef } from '../is/isUndef'
 import { useAnimationFrame } from '../perf/useAnimationFrame'
 export function scrollToTop() {
   try {
     let pre: number
     const stop = useAnimationFrame(() => {
       const t = document.documentElement.scrollTop || document.body.scrollTop
-      if (pre === undefined)
+      if (isUndef(pre))
         pre = t
       if ((pre < t && (pre * 8) / 7 !== t) || t === 0)
         stop()
