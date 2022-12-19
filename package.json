@@ -1,5 +1,6 @@
 {
   "name": "lazy-js-utils",
+  "type": "module",
   "version": "0.0.10",
   "packageManager": "pnpm@7.6.0",
   "description": "js-tool",
@@ -53,7 +54,7 @@
     "@vitejs/plugin-vue": "^2.3.4",
     "bumpp": "^8.2.1",
     "eslint": "8.20.0",
-    "lazy-js-utils": "workspace:^0.0.7",
+    "lazy-js-utils": "workspace:^0.0.10",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "simple-git-hooks": "^2.8.1",
