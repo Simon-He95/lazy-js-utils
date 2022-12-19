@@ -3,7 +3,7 @@ import { createElement } from './createElement'
 import { createFragment } from './createFragment'
 
 export interface IMeta {
-  name: string
+  name: 'description' | 'viewport' | 'keywords' | 'robots' | string
   content: string
 }
 export interface IScript {
