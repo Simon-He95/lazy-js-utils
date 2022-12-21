@@ -5,6 +5,7 @@
     "no-console": "off",
     "no-prototype-builtins": "off",
     "no-eval": "off",
-    "@typescript-eslint/no-var-requires": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-this-alias": "off"
   }
 }
