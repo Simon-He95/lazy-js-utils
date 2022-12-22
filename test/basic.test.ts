@@ -306,7 +306,18 @@ describe('Test quickFilter', () => {
         en: '0',
       },
     ]
-    expect(quickFilter(arr, ['name=/h/'])).toMatchInlineSnapshot('[]')
+    expect(quickFilter(arr, ['name=/h/'])).toMatchInlineSnapshot(`
+      [
+        {
+          "name": "hi",
+        },
+        {
+          "age": "2",
+          "en": "0",
+          "name": "hi",
+        },
+      ]
+    `)
   })
 })
 

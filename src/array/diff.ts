@@ -1,6 +1,6 @@
 interface Options {
-  compare: 'same' | 'different'
-  result: 'value' | 'index'
+  compare?: 'same' | 'different'
+  result?: 'value' | 'index'
 }
 
 export function diff(
@@ -12,7 +12,7 @@ export function diff(
   const diff = array1
     .filter(item => !array2.includes(item))
     .concat(array2.filter(item => !array1.includes(item)))
-  const { compare, result } = options
+  const { compare = 'same', result = 'value' } = options
   if (compare === 'same')
     return result === 'value' ? same : same.map(item => array1.indexOf(item))
 
