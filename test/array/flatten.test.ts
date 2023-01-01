@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { flatten } from '../../src/array/flatten'
+import { flatten } from '../../src/array'
 
 describe('diff test', () => {
   it('test same', () => {
