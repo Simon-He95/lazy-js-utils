@@ -3,15 +3,15 @@ import { isFile } from '../is/isFile'
 
 type CompressImageOptionsType = 'base64' | 'blob'
 interface CompressImageOptions {
-  quality: number
-  maxWidth: number
-  maxHeight: number
-  type: CompressImageOptionsType
+  quality?: number
+  maxWidth?: number
+  maxHeight?: number
+  type?: CompressImageOptionsType
 }
 
 export function compressImage(
   source: string | File,
-  options: CompressImageOptions,
+  options: CompressImageOptions = {},
 ) {
   return new Promise((resolve) => {
     const { quality = 0.1, maxWidth, maxHeight, type = 'base64' } = options
@@ -19,9 +19,9 @@ export function compressImage(
       source,
       resolve,
       quality,
+      type as CompressImageOptionsType,
       maxWidth,
       maxHeight,
-      type as CompressImageOptionsType,
     )
   })
 }
@@ -30,9 +30,9 @@ function fileToDataURL(
   source: Blob | string,
   resolve: (blob: Blob | string) => void,
   quality: number,
-  maxWidth: number,
-  maxHeight: number,
   type: CompressImageOptionsType,
+  maxWidth?: number,
+  maxHeight?: number,
 ) {
   if (isFile(source)) {
     const reader = new FileReader()
