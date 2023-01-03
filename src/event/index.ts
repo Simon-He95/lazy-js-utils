@@ -1,4 +1,5 @@
 export * from './createElement'
+export * from './createFragment'
 export * from './dragEvent'
 export * from './findElement'
 export * from './insertElement'

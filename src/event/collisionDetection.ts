@@ -7,8 +7,9 @@ export function collisionDetection(
 ) {
   const obj1: HTMLElement = isStr(o1) ? findElement(o1)! : o1
   const obj2: HTMLElement = isStr(o2) ? findElement(o2)! : o2
+
   if (!obj1 || !obj2)
-    return
+    return false
   const left1_start = obj1.offsetLeft
   const left1_end = obj1.offsetLeft + obj1.offsetWidth
   const left2_start = obj2.offsetLeft
