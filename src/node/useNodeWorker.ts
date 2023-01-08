@@ -15,7 +15,7 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   url?: string,
 ): Promise<NodeWorkReturn<T>> {
   // const dev = './useNodeWorkerThread.ts'
-  const prd = './node/useNodeWorkerThread.cjs'
+  const prd = '../node_modules/lazy-js-utils/dist/node/useNodeWorkerThread.cjs'
   url = url || path.resolve(__dirname, prd)
 
   const { params, stdio } = isStr(payload)
