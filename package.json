@@ -44,6 +44,7 @@
     "htmlparser2": "^8.0.1",
     "qrcode": "^1.5.1",
     "spark-md5": "^3.0.2",
+    "tsup": "^6.5.0",
     "vue": "^3.2.41"
   },
   "devDependencies": {
@@ -55,11 +56,10 @@
     "bumpp": "^8.2.1",
     "eslint": "8.20.0",
     "happy-dom": "^8.1.1",
-    "lazy-js-utils": "workspace:^0.0.11",
+    "lazy-js-utils": "workspace:^0.0.12",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "simple-git-hooks": "^2.8.1",
-    "tsup": "^6.5.0",
     "tsx": "^3.12.1",
     "typescript": "^4.8.4",
     "vite": "^2.9.15",
