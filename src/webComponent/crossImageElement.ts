@@ -1,17 +1,17 @@
-import { createElement } from '../event'
+import { createElement } from '../event/createElement'
 
 const nameReg = /\w+-\w+/
-export function crossVideoElement(name = 'video-cors') {
+export function crossImageElement(name = 'img-cors') {
   if (!nameReg.test(name)) {
     return console.error(
       'crossImageElement: The naming must follow this format “xxx-xxx” ',
     )
   }
 
-  window.customElements.define(name, VideoElement)
+  window.customElements.define(name, ImageElement)
 }
 
-class VideoElement extends HTMLElement {
+class ImageElement extends HTMLElement {
   shadow: ShadowRoot
   width: any
   height: any
@@ -22,26 +22,23 @@ class VideoElement extends HTMLElement {
       src: 'about:blank',
       frameborder: '0',
     })
-    iframe.onload = () => this.onIfrLoad(iframe, this.shadow.host.innerHTML)
+    iframe.onload = () => this.onIfrLoad(iframe)
     this.shadow.appendChild(iframe)
   }
 
-  onIfrLoad(ifr: any, children: string) {
+  onIfrLoad(ifr: any) {
     const me = this
     const doc = ifr.contentWindow.document
     doc.body.setAttribute('style', 'margin:0;')
-    const attributes = ['width', 'height', 'style', 'class', 'src', 'controls']
-    const single = ['controls']
+    const attributes = ['width', 'height', 'style', 'class', 'alt', 'src']
     const attrs = attributes.reduce((result, attribute) => {
       const attr = me.getAttribute(attribute)
-      if (single.includes(attribute))
-        return (result += `${attribute} `)
       if (!attr)
         return result
-      return (result += `${attribute}="${attr}"`)
+      return (result += `${attribute}="${attr}" `)
     }, '')
-    doc.body.innerHTML = `<video ${attrs}>${children}</video>`
-    doc.body.querySelector('video').onload = function () {
+    doc.body.innerHTML = `<img ${attrs}>`
+    doc.body.querySelector('img').onload = function () {
       me.width = ifr.width = this.width
       me.height = ifr.height = this.height
     }

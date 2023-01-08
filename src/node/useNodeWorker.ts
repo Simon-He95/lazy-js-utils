@@ -1,5 +1,6 @@
 import worker_threads from 'worker_threads'
 import path from 'path'
+import process from 'process'
 import { isArray } from '../is/isArray'
 import { isStr } from '../is/isStr'
 import { parallel } from '../js/parallel'
@@ -16,6 +17,7 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   // const dev = './useNodeWorkerThread.ts'
   const prd = './node/useNodeWorkerThread.cjs'
   url = url || path.resolve(__dirname, prd)
+
   const { params, stdio } = isStr(payload)
     ? { params: payload, stdio: 'pipe' }
     : payload

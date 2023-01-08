@@ -11,7 +11,7 @@ export function writeFile(
   ;(paths as string[]).forEach(async (relativepath, i) => {
     const content = await fsp.readFile(relativepath, encoding)
     const result = callback?.(content, i) || content
-    fsp.writeFile(relativepath, result).catch((err) => {
+    fsp.writeFile(relativepath, result).catch((err: any) => {
       throw err
     })
   })
