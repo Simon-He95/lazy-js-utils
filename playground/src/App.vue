@@ -16,7 +16,7 @@ import {
   useIntersectionObserver,
 } from '../../src'
 const toggle = picInPic('#video')
-useCamera()
+const play = useCamera(true)
 </script>
 
 <template>
