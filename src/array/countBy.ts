@@ -1,3 +1,9 @@
+/**
+ *
+ * @param {any[]}array 数组
+ * @param {Function} iterator 迭代数组函数
+ * @returns 结果的个数
+ */
 export function countBy(
   array: any[],
   iterator: (item: Record<string, any>) => any,

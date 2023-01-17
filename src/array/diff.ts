@@ -2,6 +2,15 @@ interface Options {
   compare?: 'same' | 'different'
   result?: 'value' | 'index'
 }
+/**
+ *
+ * @param {any[]} array1 数组1
+ * @param {any[]} array2 数组2
+ * @param { Options } [options] {}
+ * @param { 'same' | 'different' } [options.compare] 'same' | 'different'
+ * @param { 'value' | 'index' } [options.compresultare] 'value' | 'index'
+ * @returns 返回相同项或不同项的索引或值
+ */
 
 export function diff(
   array1: any[],
