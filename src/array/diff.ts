@@ -4,8 +4,8 @@ interface Options {
 }
 /**
  *
- * @param {any[]} array1 数组1
- * @param {any[]} array2 数组2
+ * @param { any[] } array1 数组1
+ * @param { any[] } array2 数组2
  * @param { Options } [options] {}
  * @param { 'same' | 'different' } [options.compare] 'same' | 'different'
  * @param { 'value' | 'index' } [options.compresultare] 'value' | 'index'

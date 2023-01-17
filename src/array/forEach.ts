@@ -5,8 +5,8 @@ interface ForEachCallback<T> {
 }
 /**
  *
- * @param {any[]} array 数组
- * @param {Function}callback ForEachCallback
+ * @param { any[] } array 数组
+ * @param { Function } callback ForEachCallback
  * @returns
  */
 export function forEach<T>(array: T[], callback: ForEachCallback<T>): any {

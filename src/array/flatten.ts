@@ -2,9 +2,9 @@ import { isArray } from '../is/isArray'
 
 /**
  *
- * @param { Record<string, any> | Record<string, any>[]} o 对象或者数组
- * @param {string}flattenProps 展开的属性默认为children
- * @param {boolean}onlyLastNode  只保留最后一层级的数据
+ * @param { Record<string, any> | Record<string, any>[] } o 对象或者数组
+ * @param { string }flattenProps 展开的属性默认为children
+ * @param { boolean }onlyLastNode  只保留最后一层级的数据
  * @returns 一层的数组
  */
 export function flatten(
