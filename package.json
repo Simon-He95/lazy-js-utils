@@ -18,6 +18,7 @@
     "utils"
   ],
   "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -56,6 +57,7 @@
     "bumpp": "^8.2.1",
     "eslint": "8.20.0",
     "happy-dom": "^8.1.1",
+    "lazy-js-utils": "workspace:^0.0.19",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "simple-git-hooks": "^2.8.1",
