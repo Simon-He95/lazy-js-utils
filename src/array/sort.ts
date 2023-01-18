@@ -1,5 +1,11 @@
 import { isType } from '../is/isType'
 
+/**
+ *
+ * @param { any[] } array 数组
+ * @param { Array<string | number> | number | string } match 匹配条件
+ * @returns
+ */
 export function sort(
   array: any[],
   match: Array<string | number> | number | string,

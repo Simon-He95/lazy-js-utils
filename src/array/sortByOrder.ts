@@ -1,5 +1,12 @@
 import { isDef } from '../is/isDef'
 
+/**
+ *
+ * @param { any[] } sortArr 数组
+ * @param { string[] } order 顺序
+ * @param { string } prop 按照哪个属性
+ * @returns
+ */
 export function sortByOrder(sortArr: any[], order: string[], prop?: string) {
   if (!order)
     return sortArr

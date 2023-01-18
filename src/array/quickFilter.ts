@@ -1,6 +1,13 @@
 import { isArray } from '../is/isArray'
 import { isUndef } from '../is/isUndef'
 import { isDef } from '../is/isDef'
+
+/**
+ *
+ * @param { any[] } array 数组
+ * @param { string | Array<string> } key 过滤条件
+ * @returns
+ */
 export function quickFilter(array: any[], key: string | Array<string>) {
   const reg = /\/[\w._ $]+\/[gims]*/
   return array.filter((item) => {
@@ -10,7 +17,7 @@ export function quickFilter(array: any[], key: string | Array<string>) {
   })
   function findItem(item: Record<any, any>, key: string): boolean {
     const [_key, _value] = key.split('=')
-    if (isUndef(item[_key] === undefined))
+    if (isUndef(item[_key]))
       return false
     return isDef(_value)
       ? reg.test(_value)

@@ -1,6 +1,12 @@
 import { isDef } from '../is/isDef'
 import { isUndef } from '../is/isUndef'
 
+/**
+ *
+ * @param { any[] } array 数组
+ * @param { string | number } id 主键
+ * @returns
+ */
 export function quickFind(array: any[], id: string | number) {
   const indexMap = new Map()
   array.forEach((item, i) => indexMap.set(item[id], i))
