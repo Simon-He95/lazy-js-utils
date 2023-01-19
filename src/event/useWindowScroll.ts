@@ -1,4 +1,10 @@
 import { useEventListener } from './useEventListener'
+
+/**
+ *
+ * @param { Function } callback 坚挺浏览器滚动条位置变化回调
+ * @returns 停止
+ */
 export function useWindowScroll(
   callback: (left: number, top: number) => void,
 ): () => void {

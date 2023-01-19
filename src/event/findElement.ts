@@ -2,6 +2,12 @@ import { isArray } from '../is/isArray'
 import { isBool } from '../is/isBool'
 import { isNull } from '../is/isNull'
 
+/**
+ *
+ * @param { string | string[] } selector 选择器
+ * @param { boolean } [all] 是否获取所有节点
+ * @param { HTMLElement | Document } [currentNode] 在哪个节点下查找
+ */
 export function findElement(selector: string | string[]): HTMLElement | null
 export function findElement<T extends boolean | HTMLElement>(
   selector: string | string[],

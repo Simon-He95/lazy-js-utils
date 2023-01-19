@@ -1,6 +1,12 @@
 import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
+/**
+ *
+ * @param { string | HTMLElement } target 元素
+ * @param { (e: MouseEvent) => void } callback 点击回调
+ * @returns 停止
+ */
 export function useClick(
   target: string | HTMLElement,
   callback: (e: MouseEvent) => void,

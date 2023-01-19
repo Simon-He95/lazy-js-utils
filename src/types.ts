@@ -195,3 +195,5 @@ export interface NodeWorkerPayload {
   params: string | string[]
   stdio?: 'inherit' | 'pipe'
 }
+
+export type UseTimeoutReturn<T> = T extends Function ? () => void : undefined

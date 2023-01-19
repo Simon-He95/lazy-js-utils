@@ -9,6 +9,16 @@ interface IntersectionObserverOptions {
   threshold?: number | number[]
 }
 
+/**
+ *
+ * @param { Element | string } element 元素
+ * @param { (entries: IntersectionObserverEntry[]) => void } callback 元素可见回调
+ * @param { IntersectionObserverOptions } options {}
+ * @param { Element | Document | string | null } options.root 相对容器节点
+ * @param { string } options.rootMargin 相对容器节点位置"10px 20px 30px 40px"
+ * @param { number | number[] } options.threshold 相对容器节点百分比 [0, 0.25, 0.5, 0.75, 1]
+ * @returns
+ */
 export function useIntersectionObserver(
   element: Element | string,
   callback: (entries: IntersectionObserverEntry[]) => void,

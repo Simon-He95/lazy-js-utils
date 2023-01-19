@@ -1,5 +1,11 @@
 import { useEventListener } from './useEventListener'
 
+/**
+ *
+ * @param { Function } callback 坚挺鼠标移动回调
+ * @param { number } delay 间隔多久触发
+ * @returns 停止
+ */
 export function useMouse(
   callback: (e: MouseEvent) => void,
   delay = 0,

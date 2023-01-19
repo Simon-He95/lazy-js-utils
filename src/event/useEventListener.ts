@@ -1,6 +1,15 @@
 import { mount } from '../utils/mount'
 import { unmount } from '../utils/unmount'
 
+/**
+ *
+ * @param { Window | Document | Element | string } target 元素
+ * @param { T } eventName 事件名
+ * @param { (e: (WindowEventMap & DocumentEventMap)[T]) => void } callback 回调
+ * @param { boolean | AddEventListenerOptions } useCapture 捕获
+ * @param { boolean } autoRemove 是否自动被移除
+ * @returns 停止
+ */
 export function useEventListener<
   T extends keyof (WindowEventMap & DocumentEventMap),
 >(

@@ -2,6 +2,13 @@ import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 import { useTimeout } from './useTimeout'
 
+/**
+ *
+ * @param { string | HTMLElement } el 元素
+ * @param { number } ms 时长
+ * @param { Function } callback 回调
+ * @returns 停止
+ */
 export function useLongPress(
   el: string | HTMLElement,
   ms: number,

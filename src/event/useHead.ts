@@ -21,6 +21,14 @@ export interface HeadOptions {
   link?: ILink[]
 }
 
+/**
+ *
+ * @param { HeadOptions } options
+ * @param { string | (() => string) } options.title 返回一个title字符串
+ * @param { IMeta[] } options.meta 'description' | 'viewport' | 'keywords' | 'robots' | string
+ * @param { IScript[] } options.script 'async' | 'module' | 'nomodule' | 'defer'
+ * @param { ILink[] } options.link 'stylesheet' | 'preload' | 'icon' | 'prefetch' | string
+ */
 export function useHead(options: HeadOptions) {
   const { title, meta, script, link } = options
   const fragment = createFragment()

@@ -1,5 +1,12 @@
 import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
+
+/**
+ *
+ * @param { Element | string } element 元素
+ * @param { (rect: DOMRect) => void } callback 位置变化回调函数
+ * @returns 停止
+ */
 export function useElementBounding(
   element: Element | string,
   callback: (rect: DOMRect) => void,

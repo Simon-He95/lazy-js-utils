@@ -3,6 +3,16 @@ import { useEventListener } from '../event/useEventListener'
 import type { DragEvent } from '../types'
 import { mount } from '../utils/mount'
 
+/**
+ *
+ * @param { HTMLElement | string } target 元素
+ * @param { DragEvent } options {}
+ * @param { (e: any) => void } options.dragStart 开始拖拽callback
+ * @param { (e: any) => void } options.dragMove 拖拽过程callback
+ * @param { (e: any) => void } options.dragEnd 拖拽结束callback
+ * @param trigger
+ * @returns
+ */
 export function dragEvent(
   target: HTMLElement | string,
   options: DragEvent = {},
