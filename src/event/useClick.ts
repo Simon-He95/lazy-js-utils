@@ -8,7 +8,7 @@ import { useEventListener } from './useEventListener'
  * @returns 停止
  */
 export function useClick(
-  target: string | HTMLElement,
+  target: string | HTMLElement | Document,
   callback: (e: MouseEvent) => void,
 ) {
   let stop: () => void
