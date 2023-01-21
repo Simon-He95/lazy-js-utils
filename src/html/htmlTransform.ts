@@ -12,6 +12,16 @@ type HtmlTransformOptions = Record<
   (node: Element, update: Update) => void
 >
 
+/**
+ *
+ * @param { string } s 字符串
+ * @param options {}
+ * @param { (key: string, value?: string) => void } options.setAttribs 设置属性
+ * @param { (str: string) => void } options.beforeInsert 插入前
+ * @param { (s: string) => void } options.afterInsert 插入后
+ * @param { (key: string, value?: string) => void } options.renameAttribs 重命名
+ * @returns
+ */
 export function htmlTransform(
   s = '',
   options: HtmlTransformOptions = {},

@@ -1,5 +1,13 @@
 export const stylesReg
   = /(<.* style=['"]([ \w$\-\_:;\n]*)['"][\/ "'$\-_\w]*>)/gm
+
+/**
+ *
+ * @param { string } str 字符串模板
+ * @param { Function } callback 读取style时的回调
+ * @returns
+ */
+
 export function getStyles(
   str: string,
   callback: (style: string, block: string, index: number) => string,
