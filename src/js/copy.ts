@@ -1,4 +1,10 @@
 import { createElement } from '../event/createElement'
+
+/**
+ *
+ * @param { string } s 内容
+ * @returns
+ */
 export function copy(s: string): boolean {
   try {
     const textarea = createElement(

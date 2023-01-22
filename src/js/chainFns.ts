@@ -1,5 +1,10 @@
 import { noop } from './noop'
 
+/**
+ *
+ * @param { Function[] } fns 函数数组
+ * @returns
+ */
 export function chainFns(...fns: Function[]): Function {
   if (fns.length === 0)
     return noop
