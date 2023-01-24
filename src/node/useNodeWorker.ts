@@ -20,9 +20,9 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   // const dev = './useNodeWorkerThread.ts'
   const prd1 = '../node_modules/lazy-js-utils/dist/node/useNodeWorkerThread.cjs'
   const prd2 = './node/useNodeWorkerThread.cjs'
-  url
-    = url
-    || path.resolve(__dirname, __dirname.indexOf('node_modules') ? prd2 : prd1)
+  url = url || path.resolve(__dirname, prd2)
+  if (!url.indexOf('node_modules'))
+    url = path.resolve(__dirname, prd1)
 
   const { params, stdio } = isStr(payload)
     ? { params: payload, stdio: 'pipe' }
