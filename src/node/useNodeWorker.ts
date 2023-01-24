@@ -6,7 +6,10 @@ import { isStr } from '../is/isStr'
 import { parallel } from '../js/parallel'
 import type { IShellMessage, NodeWorkerPayload } from '../types'
 
-type NodeWorkReturn<T> = T extends NodeWorkerPayload
+type NodeWorkReturn<T> = T extends {
+  params: string[]
+  stdio?: 'inherit' | 'pipe'
+}
   ? IShellMessage[]
   : IShellMessage
 
