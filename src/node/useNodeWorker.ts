@@ -21,7 +21,7 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   const prd1 = '../node_modules/lazy-js-utils/dist/node/useNodeWorkerThread.cjs'
   const prd2 = './node/useNodeWorkerThread.cjs'
   url = url || path.resolve(__dirname, prd2)
-  if (!url.indexOf('node_modules'))
+  if (!url.includes('node_modules'))
     url = path.resolve(__dirname, prd1)
 
   const { params, stdio } = isStr(payload)
@@ -56,5 +56,5 @@ export function useProcressNodeWorker(callback: (data: any) => any) {
 
 // useNodeWorker({
 //   params: 'echo "hi" && echo "hello"',
-//   stdio: 'inherit'
+//   stdio: 'inherit',
 // })
