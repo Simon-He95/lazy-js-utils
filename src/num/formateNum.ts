@@ -1,3 +1,10 @@
+/**
+ *
+ * @param { number } number 数字
+ * @param { number } decimals 小数位
+ * @param { 'floor' | 'ceil' } integer 向上截取 ｜ 向下截取 默认 'ceil'
+ * @returns
+ */
 export function formateNum(
   number: number | string,
   decimals = 2,

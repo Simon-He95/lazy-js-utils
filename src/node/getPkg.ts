@@ -11,6 +11,11 @@ interface IPackage {
   files?: string[]
   scripts?: Record<string, string>
 }
+/**
+ *
+ * @param { string } url 路径 默认 ./package.json
+ * @returns 返回json格式package.json
+ */
 export async function getPkg(
   url = './package.json',
 ): Promise<IPackage & Record<string, any>> {

@@ -1,3 +1,8 @@
+/**
+ *
+ * @param { number } n 数字
+ * @returns 返回大写数字
+ */
 export function uppercaseNum(n: number) {
   const fraction = ['角', '分']
   const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']

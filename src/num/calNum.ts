@@ -1,3 +1,9 @@
+/**
+ * add 数字求和
+ * sub 数字求差
+ * mul 数字相乘
+ * div 数字相除
+ */
 export const calNum = {
   add(...args: (number | string)[]): number {
     return args.reduce((total, num) => accAdd(+total, +num)) as number
