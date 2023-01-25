@@ -23,6 +23,14 @@ export function jsShell<T extends string | string[]>(
   stdio?: 'inherit' | 'pipe',
   errorExit?: boolean,
 ): T extends string ? IShellMessage : IShellMessage[]
+/**
+ *
+ * @param { string | string[] } commander 指令
+ * @param { string } stdio 'inherit' | 'pipe'
+ * @param { boolean } errorExit 错误时是否结束进程
+ * @returns
+ */
+
 export function jsShell<T extends string | string[]>(
   commander: T,
   args: string[] | boolean | 'inherit' | 'pipe' = [],

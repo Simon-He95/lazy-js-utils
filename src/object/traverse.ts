@@ -1,9 +1,15 @@
 import { isObject } from '../is/isObject'
 import { isArray } from '../is/isArray'
 
-export function traverse(
-  target: Record<any, any> | any[],
-  options: Record<string, Function> = {},
+/**
+ * 通过函数的方式获取对象中指定的数据
+ * @param { Record<any, any> | any[] } target 对象或数组
+ * @param { Record<string, Function> } options {}
+ * @returns
+ */
+export function traverse<T extends Record<any, any> | any[]>(
+  target: T,
+  options: Record<string, (res: any, i: number, target: T) => void> = {},
 ) {
   if (!isObject(target))
     return target
@@ -19,9 +25,18 @@ function executor(
   options: Record<string, Function> = {},
 ) {
   for (const key in options) {
-    const result = key.split('.').reduce((pre, cur) => {
-      return pre[cur]
-    }, target)
+    const result = key.split('.').reduce((pre, cur) => pre[cur], target)
     options[key](result, index, target)
   }
 }
+
+// const o = {
+//   name: 'simon',
+//   age: 28,
+// }
+
+// traverse(o, {
+//   name(...res) {
+//     console.log(res)
+//   },
+// })

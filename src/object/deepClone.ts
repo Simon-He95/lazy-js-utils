@@ -4,6 +4,11 @@ import { isObject } from '../is/isObject'
 
 const types = [Set, Map, WeakMap, WeakSet, RegExp, Date]
 const targetMap = new WeakMap()
+/**
+ *
+ * @param { any } target 克隆的目标
+ * @returns
+ */
 export function deepClone(target: any) {
   if (targetMap.has(target))
     return targetMap.get(target)

@@ -1,5 +1,11 @@
 import { isPlainObject } from '../is/isPlainObject'
 
+/**
+ * 深合并
+ * @param target 对象
+ * @param sources 其他对象
+ * @returns
+ */
 export function deepMerge(
   target: Record<any, any>,
   ...sources: Record<any, any>[]

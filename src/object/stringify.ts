@@ -7,6 +7,17 @@ interface StringifyOptions {
   px?: boolean
   encode?: boolean
 }
+/**
+ *
+ * @param { Record<string, string | number> } o {}
+ * @param { StringifyOptions } options {}
+ * @param { string } [options.sep] 分割字符 默认 &
+ * @param { string } [options.eq] 连接字符 默认 =
+ * @param { boolean } [options.hyp] aBb属性名转为a-bb
+ * @param { boolean } [options.px] 自动给数字添加px
+ * @param { boolean } [options.encode] 将结果encode
+ * @returns
+ */
 export function stringify(
   o: Record<string, string | number>,
   options: StringifyOptions = {},
@@ -37,12 +48,17 @@ function getString(
   return encode ? encodeURI(str) : str
 }
 
-// console.log(stringify({
-//   width: '&@30px',
-//   height: '20',
-//   'minHeight': '20'
-// }, {
-//   sep: ';',
-//   eq: ':',
-//   hyp: true
-// }))
+console.log(
+  stringify(
+    {
+      width: '&@30px',
+      height: '20',
+      minHeight: '20',
+    },
+    {
+      sep: ';',
+      eq: ':',
+      hyp: true,
+    },
+  ),
+)

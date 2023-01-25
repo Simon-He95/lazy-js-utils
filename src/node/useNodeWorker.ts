@@ -13,6 +13,15 @@ type NodeWorkReturn<T> = T extends {
   ? IShellMessage[]
   : IShellMessage
 
+/**
+   *
+   * @param { string | NodeWorkerPayload } payload 字符串 ｜ {
+  params: string[]
+  stdio?: 'inherit' | 'pipe'
+}
+   * @param { string } [url] 自定义worker路径
+   * @returns
+   */
 export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   payload: T,
   url?: string,
