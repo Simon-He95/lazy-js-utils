@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { crossImageElement } from '../../src/domain'
+import { crossImageElement } from '../../src/webComponent'
 
 describe('crossImageElement test', () => {
   it('test', () => {

@@ -58,6 +58,15 @@ describe('uniqueArray test', () => {
         },
         {
           "age": "19",
+          "hobby": [
+            "1",
+            "2",
+            "3",
+          ],
+          "name": "simon",
+        },
+        {
+          "age": "19",
           "name": "simon",
         },
       ]
