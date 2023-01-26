@@ -1,13 +1,14 @@
+import type { MaybeElement } from '../types'
 import { mount } from '../utils/mount'
 import { useClick } from './useClick'
 
 /**
  *
- * @param { string | HTMLElement } el 元素
+ * @param { MaybeElement } el 元素
  * @param { Function } callback 失去焦点时的回调
  * @returns 停止
  */
-export function useBlur(el: string | HTMLElement, callback: () => void) {
+export function useBlur(el: MaybeElement, callback: () => void) {
   let isFocus = false
   const effects: Function[] = []
   let isStopped = false

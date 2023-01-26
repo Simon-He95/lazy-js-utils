@@ -1,4 +1,4 @@
-import type { ISignature } from '../types'
+import type { ISignature, MaybeElement } from '../types'
 import { insertElement } from '../event/insertElement'
 import { removeElement } from '../event/removeElement'
 import { useEventListener } from '../event/useEventListener'
@@ -11,12 +11,7 @@ export class CreateSignatureCanvas implements ISignature {
   historyStack: ImageData[] = []
   resetStack: ImageData[] = []
   color = '#000000'
-  constructor(
-    lineWidth = 2,
-    w = 400,
-    h = 400,
-    color = '#000000',
-  ) {
+  constructor(lineWidth = 2, w = 400, h = 400, color = '#000000') {
     this.color = color
     this.createCanvas(lineWidth, w, h)
     window.onunload = () => this.unmount()
@@ -102,7 +97,7 @@ export class CreateSignatureCanvas implements ISignature {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
   }
 
-  mount(el: HTMLElement | string) {
+  mount(el: MaybeElement) {
     insertElement(el, this.canvas, null)
     this.listen()
     return this

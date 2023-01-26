@@ -1,9 +1,10 @@
 import { createElement } from '../event/createElement'
 import { findElement } from '../event/findElement'
 import { isStr } from '../is/isStr'
+import type { MaybeElement } from '../types'
 
 export function shareScreen(
-  container: string | HTMLElement,
+  container: MaybeElement,
   callback: (msg: string) => void,
 ) {
   return new Promise((resolve, reject) => {

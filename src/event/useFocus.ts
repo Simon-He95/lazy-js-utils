@@ -1,11 +1,12 @@
+import type { MaybeElement } from '../types'
 import { mount } from '../utils/mount'
 import { findElement } from './findElement'
 
 /**
  *
- * @param { string | HTMLElement } target 元素
+ * @param { MaybeElement } target 元素
  */
-export function useFocus(target: string | HTMLElement) {
+export function useFocus(target: MaybeElement) {
   mount(target, target =>
     findElement('input', target.parentElement!)?.focus(),
   )

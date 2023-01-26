@@ -1,6 +1,12 @@
 import SparkMD5 from 'spark-md5'
 import type { FileChunk, FileMD5 } from '../types'
 
+/**
+ *
+ * @param { File } _file 文件
+ * @param { number } _chunkSize 切分大小 默认 1024 * 100
+ * @returns
+ */
 export async function fileSplice(
   _file: File,
   _chunkSize: number = 1024 * 100,

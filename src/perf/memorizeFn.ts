@@ -1,3 +1,8 @@
+/**
+ *
+ * @param { Function } fn 函数
+ * @returns
+ */
 export function memorizeFn(
   fn: Function,
   cache: Map<string, string> = new Map(),

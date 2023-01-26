@@ -3,6 +3,7 @@ import { useRequestIdleCallback } from '../perf/useRequestIdleCallback'
 import { createElement } from '../event/createElement'
 import { insertElement } from '../event/insertElement'
 import { removeElement } from '../event/removeElement'
+import type { MaybeElement } from '../types'
 
 export class DotImageCanvas {
   canvas = document.createElement('canvas')
@@ -155,7 +156,7 @@ export class DotImageCanvas {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
   }
 
-  append(container: string | HTMLElement) {
+  append(container: MaybeElement) {
     insertElement(container, this.canvas)
     return this
   }

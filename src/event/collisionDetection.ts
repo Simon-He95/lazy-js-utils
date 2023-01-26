@@ -1,10 +1,8 @@
 import { isStr } from '../is/isStr'
+import type { MaybeElement } from '../types'
 import { findElement } from './findElement'
 
-export function collisionDetection(
-  o1: string | HTMLElement,
-  o2: string | HTMLElement,
-) {
+export function collisionDetection(o1: MaybeElement, o2: MaybeElement) {
   const obj1: HTMLElement = isStr(o1) ? findElement(o1)! : o1
   const obj2: HTMLElement = isStr(o2) ? findElement(o2)! : o2
 

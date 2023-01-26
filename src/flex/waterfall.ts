@@ -3,10 +3,11 @@ import { createElement } from '../event/createElement'
 import { useEventListener } from '../event/useEventListener'
 import { isNum } from '../is/isNum'
 import { mount } from '../utils/mount'
+import type { MaybeElement } from '../types'
 
 export function waterfall(
   imageList: string[],
-  target: string | HTMLElement | number,
+  target: MaybeElement | number,
   width = 200,
   space = 20,
 ) {

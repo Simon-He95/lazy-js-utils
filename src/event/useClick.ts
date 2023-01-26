@@ -1,14 +1,15 @@
+import type { MaybeElement } from '../types'
 import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
 /**
  *
- * @param { string | HTMLElement } target 元素
+ * @param { MaybeElement } target 元素
  * @param { (e: MouseEvent) => void } callback 点击回调
  * @returns 停止
  */
 export function useClick(
-  target: string | HTMLElement | Document,
+  target: MaybeElement | Document,
   callback: (e: MouseEvent) => void,
 ) {
   let stop: () => void

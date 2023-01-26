@@ -2,6 +2,12 @@ import { isArray } from '../is/isArray'
 import { isVideo } from '../is/isVideo'
 import { createElement } from '../event/createElement'
 
+/**
+ *
+ * @param { string[] } list 图片数组
+ * @param { string } style 设置样式
+ * @returns
+ */
 export function preload(list: string[] | string, style?: string) {
   let imageNode: HTMLImageElement
   let videoNode: HTMLVideoElement

@@ -197,3 +197,5 @@ export interface NodeWorkerPayload {
 }
 
 export type UseTimeoutReturn<T> = T extends Function ? () => void : undefined
+
+export type MaybeElement = string | HTMLElement

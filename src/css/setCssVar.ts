@@ -1,7 +1,8 @@
+import type { MaybeElement } from '../types'
 import { mount } from '../utils/mount'
 
 export function setCssVar(
-  element: string | HTMLElement,
+  element: MaybeElement,
   styleObj: Record<string, string>,
 ) {
   return mount(

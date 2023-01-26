@@ -3,6 +3,13 @@ import { isFn } from '../is/isFn'
 
 type Timeout = number | (() => void)
 
+/**
+ *
+ * @param { Function[] } tasks 函数队列
+ * @param { number } timeout 超时时间
+ * @param { Function } callback 回调
+ * @returns
+ */
 export function useRequestIdleCallback(
   tasks: Function[],
   timeout: Timeout = 2000,

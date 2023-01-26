@@ -1,14 +1,15 @@
+import type { MaybeElement } from '../types'
 import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
 /**
  *
- * @param { string | HTMLElement } target 元素
+ * @param { MaybeElement } target 元素
  * @param { (isHover: boolean, e: MouseEvent) => void } callback hover回调
  * @returns
  */
 export function useHover(
-  target: string | HTMLElement,
+  target: MaybeElement,
   callback: (isHover: boolean, e: MouseEvent) => void,
 ): () => void {
   let stopped = false

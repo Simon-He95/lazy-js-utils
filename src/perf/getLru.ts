@@ -1,4 +1,10 @@
 import type { LRU } from '../types'
+
+/**
+ *
+ * @param max 最大存储量 默认 50
+ * @returns
+ */
 export function getLru(max = 50): LRU {
   return {
     set(key: string, value: any) {

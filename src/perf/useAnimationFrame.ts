@@ -1,5 +1,12 @@
 import { isUndef } from '../is/isUndef'
 
+/**
+ *
+ * @param { Function } fn 函数
+ * @param { number } delta 间隔时间
+ * @param { boolean } autoStop 自动销毁
+ * @returns
+ */
 export function useAnimationFrame(
   fn: (timestamp: number) => void,
   delta = 0,
