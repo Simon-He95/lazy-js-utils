@@ -3,19 +3,15 @@ import { chunk } from '../../src/array'
 
 describe('chunk test', () => {
   it('test', () => {
-    expect(chunk(chunk([1, 3, 5, 7], 2))).toMatchInlineSnapshot(`
+    expect(chunk([1, 3, 5, 7], 2)).toMatchInlineSnapshot(`
       [
         [
-          [
-            1,
-            3,
-          ],
+          1,
+          3,
         ],
         [
-          [
-            5,
-            7,
-          ],
+          5,
+          7,
         ],
       ]
     `)
