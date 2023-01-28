@@ -1,5 +1,11 @@
 import { findElement } from '../event/findElement'
 import { isStr } from '../is/isStr'
+/**
+ * 滚动到可视区域
+ * @param {  Element | string | null } e 元素
+ * @param options
+ * @returns
+ */
 export function scrollToView(
   e: Element | string | null,
   options?: ScrollIntoViewOptions,

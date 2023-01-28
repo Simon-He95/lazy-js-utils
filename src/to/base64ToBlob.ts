@@ -1,3 +1,8 @@
+/**
+ *
+ * @param { string } s base64
+ * @returns Blob
+ */
 export function base64ToBlob(s: string): Blob {
   const arr = s.split(',')
   const mime = arr[0]?.match(/:(.*?);/)?.[1]

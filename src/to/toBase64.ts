@@ -3,6 +3,11 @@ import { isFile } from '../is/isFile'
 import { isBlob } from '../is/isBlob'
 import { isStr } from '../is/isStr'
 
+/**
+ *
+ * @param { File | string | Blob } o 传入类型 File | string | Blob
+ * @returns
+ */
 export async function toBase64(
   o: File | string | Blob,
 ): Promise<Blob | string> {

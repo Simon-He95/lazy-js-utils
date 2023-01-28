@@ -1,5 +1,11 @@
 import { isPlainObject } from '../is/isPlainObject'
 
+/**
+ * 将数组中指定的元素转换为对象
+ * @param { Array<any> } arr 数组
+ * @param { string[] } filter 指定数组
+ * @returns
+ */
 export function toObject(arr: Array<any>, filter?: string[]): object {
   return arr.reduce(
     (result, item) =>

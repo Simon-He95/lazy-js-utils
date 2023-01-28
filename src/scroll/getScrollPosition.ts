@@ -1,4 +1,9 @@
 import type { Position } from '../types'
+/**
+ * 获取滚动条位置
+ * @param el 默认window
+ * @returns
+ */
 export function getScrollPosition(el: Window = window): Position {
   return {
     x: el.scrollX,

@@ -7,6 +7,11 @@ import { createElement } from '../event/createElement'
 import { removeElement } from '../event/removeElement'
 import { insertElement } from '../event/insertElement'
 
+/**
+ * 将style添加到head
+ * @param { string } s style
+ * @returns
+ */
 export async function addStyle(s: string): Promise<() => void> {
   try {
     const style = createElement(

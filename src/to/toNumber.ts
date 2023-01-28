@@ -1,6 +1,11 @@
 import { isBool } from '../is/isBool'
 import { isStr } from '../is/isStr'
 
+/**
+ * 转换成数字
+ * @param {  number | string | boolean | undefined | null } val
+ * @returns 数字
+ */
 export const toNumber = (
   val: number | string | boolean | undefined | null,
 ): number => {

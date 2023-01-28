@@ -5,6 +5,11 @@ import { isVh } from '../is/isVh'
 import { isVw } from '../is/isVw'
 import { toNumber } from './toNumber'
 
+/**
+ * 将长度单位转换为数字
+ * @param value
+ * @returns
+ */
 export const toPxNum = (value: unknown): number => {
   if (isNum(value))
     return value

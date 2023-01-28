@@ -1,3 +1,9 @@
+/**
+ *
+ * @param { string } s base64
+ * @param { string } filename 文件名
+ * @returns
+ */
 export function base64ToFile(s: string, filename: string): File {
   const arr = s.split(',')
   const mime = arr[0]?.match(/:(.*?);/)?.[1]

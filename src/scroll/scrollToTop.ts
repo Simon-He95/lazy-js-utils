@@ -1,5 +1,8 @@
 import { isUndef } from '../is/isUndef'
 import { useAnimationFrame } from '../perf/useAnimationFrame'
+/**
+ * 滚动到顶部
+ */
 export function scrollToTop() {
   try {
     let pre: number

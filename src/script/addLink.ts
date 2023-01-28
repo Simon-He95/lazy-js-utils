@@ -1,8 +1,13 @@
 import { createElement } from '../event/createElement'
-export function addLink(str: string): () => void {
+/**
+ * head添加link标签
+ * @param { string } href css路径
+ * @returns
+ */
+export function addLink(href: string): () => void {
   const l = createElement('link', {
     rel: 'stylesheet',
-    href: str,
+    href,
     type: 'text/css',
   })
   document.head.appendChild(l)
