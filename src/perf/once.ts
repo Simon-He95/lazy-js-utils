@@ -1,5 +1,5 @@
 /**
- *
+ * 只执行一次函数
  * @param { Function } fn 函数
  * @returns
  */

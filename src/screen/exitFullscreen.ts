@@ -1,3 +1,7 @@
+/**
+ * 退出全屏模式
+ * @returns
+ */
 export function exitFullscreen() {
   try {
     const el: any = (parent as any).documentElement

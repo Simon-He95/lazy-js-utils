@@ -1,3 +1,7 @@
+/**
+ * 全屏模式
+ * @returns
+ */
 export function fullScreen() {
   try {
     const el: any = document.documentElement

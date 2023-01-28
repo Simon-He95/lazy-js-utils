@@ -1,4 +1,10 @@
 import { isNum } from '../is/isNum'
+/**
+ * 生成uuid
+ * @param { number } len 长度
+ * @param {  number | 'hex' } radix  number | 'hex'
+ * @returns
+ */
 export function uuid(len?: number, radix?: number | 'hex') {
   const chars
     = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')

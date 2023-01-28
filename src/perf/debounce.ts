@@ -1,7 +1,7 @@
 import { isNull } from '../is/isNull'
 
 /**
- *
+ * 防抖函数
  * @param { Function } fn 函数
  * @param { number } time 时间
  * @returns

@@ -3,6 +3,12 @@ import { findElement } from '../event/findElement'
 import { isStr } from '../is/isStr'
 import type { MaybeElement } from '../types'
 
+/**
+ * 分享屏幕
+ * @param { MaybeElement } container 容器
+ * @param { Function } callback 停止回调
+ * @returns
+ */
 export function shareScreen(
   container: MaybeElement,
   callback: (msg: string) => void,

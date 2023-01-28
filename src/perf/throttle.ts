@@ -1,5 +1,5 @@
 /**
- *
+ * 截流函数
  * @param { Function } fn 函数
  * @param { number } stop 时间
  * @returns

@@ -1,5 +1,5 @@
 /**
- *
+ * 函数缓存结果
  * @param { Function } fn 函数
  * @returns
  */

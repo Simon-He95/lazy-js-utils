@@ -1,6 +1,11 @@
 import { findElement } from '../event/findElement'
 import { isStr } from '../is/isStr'
 
+/**
+ * 画中画模式
+ * @param {  HTMLVideoElement | string } video video元素
+ * @returns
+ */
 export function picInPic(video: HTMLVideoElement | string) {
   return async () => {
     if (isStr(video))

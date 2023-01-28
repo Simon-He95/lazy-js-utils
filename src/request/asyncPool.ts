@@ -1,3 +1,9 @@
+/**
+ * 并行执行任务
+ * @param { number } limit 并行数量 默认 4
+ * @param { Function[] } tasks 任务队列
+ * @returns
+ */
 export function asyncPool(limit = 4, tasks: Function[]) {
   const maxLength = tasks.length
   const results: any[] = []

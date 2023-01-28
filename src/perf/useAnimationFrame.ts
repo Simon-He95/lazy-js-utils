@@ -1,7 +1,7 @@
 import { isUndef } from '../is/isUndef'
 
 /**
- *
+ * 浏览器在下次重绘之前调用指定的回调函数更新动画
  * @param { Function } fn 函数
  * @param { number } delta 间隔时间
  * @param { boolean } autoStop 自动销毁

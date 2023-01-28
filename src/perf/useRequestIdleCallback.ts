@@ -4,7 +4,7 @@ import { isFn } from '../is/isFn'
 type Timeout = number | (() => void)
 
 /**
- *
+ * 浏览器空闲时期被调用
  * @param { Function[] } tasks 函数队列
  * @param { number } timeout 超时时间
  * @param { Function } callback 回调

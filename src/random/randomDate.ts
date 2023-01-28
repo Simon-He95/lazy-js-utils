@@ -1,3 +1,9 @@
+/**
+ * 随机日期函数
+ * @param { string } start 开始日期 默认 '1999/01/1
+ * @param { string } [end] 截止日期
+ * @returns
+ */
 export function randomDate(start = '1999/01/1', end?: string) {
   const date = new Date()
   const splitTag = start.includes('/') ? '/' : '-'
