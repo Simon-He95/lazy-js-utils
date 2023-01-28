@@ -2,7 +2,7 @@ import fsp from 'fs/promises'
 import { isStr } from '../is/isStr'
 
 /**
- *
+ * 重写文件
  * @param { string } paths 路径
  * @param { (content: string, index: number) => string } callback 回调接收文件字符串将返回的内容重新写入该文件
  * @param { string } [encoding] 默认 'utf-8'

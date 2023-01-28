@@ -1,5 +1,5 @@
 /**
- *
+ * 大写数字
  * @param { number } n 数字
  * @returns 返回大写数字
  */

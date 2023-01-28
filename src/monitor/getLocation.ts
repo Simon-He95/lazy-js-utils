@@ -1,3 +1,10 @@
+/**
+ *
+ * @param { boolean } [enableHighAccuracy] 开启高精度模式 默认 false
+ * @param { number } [timeout] 超时时间 默认 5000
+ * @param { number } [maximumAge] 最大缓存位置时间 默认 0
+ * @returns
+ */
 export function getLocation(
   enableHighAccuracy = false,
   timeout = 5000,

@@ -1,9 +1,9 @@
 import path from 'path'
 import { jsShell } from './jsShell'
 /**
- *
+ * 判断是否存在package.json
  * @param { string } rootPath 绝对路径
- * @returns 是否存在package.json
+ * @returns boolean
  */
 export function hasPkg(rootPath: string) {
   const url = path.resolve(rootPath, 'package.json')

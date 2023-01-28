@@ -1,4 +1,9 @@
 import type { DeviceType } from '../types'
+
+/**
+ * 获取当前环境设备信息 os 手机设备 dev 浏览器环境
+ * @returns
+ */
 export function getDevice(): DeviceType {
   const u = navigator.userAgent
   const getBrowser = () => {

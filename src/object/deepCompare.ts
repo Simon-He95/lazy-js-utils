@@ -2,9 +2,8 @@ import { isArray } from '../is/isArray'
 import { isPlainObject } from '../is/isPlainObject'
 import { isReg } from '../is/isReg'
 
-// 深比较
 /**
- *
+ * 深比较
  * @param { any } comp1 对象1
  * @param { any } comp2 对象2
  * @param { string[] | RegExp } ignoreKeys 忽律某项属性的比较

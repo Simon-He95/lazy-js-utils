@@ -3,7 +3,11 @@ import { uuid } from '../random/uuid'
 
 const union = '@simon_he/storage'
 
-// 跨标签页通信通过storage事件实现
+/**
+ *  跨标签页通信通过storage事件实现
+ * @param { (type: string, newValue: any, oldValue: any) => void } callback storage数据更新回调
+ * @returns
+ */
 export function useStorageListen(
   callback: (type: string, newValue: any, oldValue: any) => void,
 ) {

@@ -1,5 +1,5 @@
 /**
- *
+ * 数字格式化
  * @param { number } number 数字
  * @param { number } decimals 小数位
  * @param { 'floor' | 'ceil' } integer 向上截取 ｜ 向下截取 默认 'ceil'

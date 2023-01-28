@@ -12,7 +12,7 @@ interface IPackage {
   scripts?: Record<string, string>
 }
 /**
- *
+ * 获取当前package.json 对象
  * @param { string } url 路径 默认 ./package.json
  * @returns 返回json格式package.json
  */

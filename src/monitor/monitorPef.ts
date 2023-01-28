@@ -1,3 +1,7 @@
+/**
+ * 检测性能指标
+ * @returns
+ */
 export function monitorPef() {
   const timingObj: Record<string, number> = {}
   try {

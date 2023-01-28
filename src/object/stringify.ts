@@ -8,7 +8,7 @@ interface StringifyOptions {
   encode?: boolean
 }
 /**
- *
+ * 对象序列化
  * @param { Record<string, string | number> } o {}
  * @param { StringifyOptions } options {}
  * @param { string } [options.sep] 分割字符 默认 &

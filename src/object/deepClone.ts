@@ -5,7 +5,7 @@ import { isObject } from '../is/isObject'
 const types = [Set, Map, WeakMap, WeakSet, RegExp, Date]
 const targetMap = new WeakMap()
 /**
- *
+ * 神拷贝
  * @param { any } target 克隆的目标
  * @returns
  */

@@ -1,5 +1,11 @@
 import { isSocketUrl } from '../is/isSocketUrl'
 
+/**
+ *
+ * @param { string } url 要连接的 URL；这应该是 WebSocket 服务器将响应的 URL。
+ * @param { string | string[] } [protocols] 一个协议字符串或者一个包含协议字符串的数组。
+ * @returns
+ */
 export function useSocket(url: string, protocols?: string | string[]) {
   url = isSocketUrl(url) ? url : `ws://${url.replace(/^http[s:\/\/]/, '')}`
   const socket = new WebSocket(url, protocols)
