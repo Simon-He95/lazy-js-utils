@@ -35,6 +35,9 @@ const videoExtension = [
   'yuv',
 ]
 
+/**
+ * 判断是否是video
+ */
 export function isVideo(filepath: string) {
   const last = filepath.lastIndexOf('.') + 1
   return videoExtension.includes(

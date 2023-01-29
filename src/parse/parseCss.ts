@@ -1,3 +1,8 @@
+/**
+ * 解析css转换为对象
+ * @param { string } str
+ * @returns
+ */
 export function parseCss(str: string) {
   const getClasses
     = /[\n\s]*([.#][\w\-_ .#\>\+\&]+){[\n\s]*([ :;\w\-\n]*)+}[\n\s]*/gm

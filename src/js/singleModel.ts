@@ -1,10 +1,12 @@
+/**
+ * 单例模式
+ */
 export function singleModel(className: any) {
   let ins: any
   return new Proxy(className, {
     construct(Target, args) {
       if (!ins)
         ins = new Target(...args)
-
       return ins
     },
   })

@@ -12,6 +12,12 @@ export function hasProtocol(
   )
 }
 
+/**
+ * 解析URL
+ * @param { string } input 链接
+ * @param defaultProto
+ * @returns
+ */
 export function parseURL(input = '', defaultProto?: string): ParsedURL {
   if (!hasProtocol(input, true))
     return defaultProto ? parseURL(defaultProto + input) : parsePath(input)

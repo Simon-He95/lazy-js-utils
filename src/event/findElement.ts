@@ -3,7 +3,7 @@ import { isBool } from '../is/isBool'
 import { isNull } from '../is/isNull'
 
 /**
- *
+ * 查找元素
  * @param { string | string[] } selector 选择器
  * @param { boolean } [all] 是否获取所有节点
  * @param { HTMLElement | Document } [currentNode] 在哪个节点下查找

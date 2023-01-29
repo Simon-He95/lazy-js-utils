@@ -1,6 +1,12 @@
 import { isArray } from './isArray'
 import { isPlainObject } from './isPlainObject'
 
+/**
+ * 判断2个对象是否相等
+ * @param { any } o1 对象1
+ * @param { any } o2 对象2
+ * @returns
+ */
 export function isEqual(o1: any, o2: any): boolean {
   if (o1 === o2)
     return true

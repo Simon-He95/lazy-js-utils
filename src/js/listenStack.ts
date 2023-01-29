@@ -1,6 +1,6 @@
 import { useMutationObserver } from '../event/useMutationObserver'
 /**
- *
+ * 监听目标元素的子元素变化的栈
  * @param { string | Element } target 元素
  * @returns
  */

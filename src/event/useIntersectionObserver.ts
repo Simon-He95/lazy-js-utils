@@ -10,7 +10,7 @@ interface IntersectionObserverOptions {
 }
 
 /**
- *
+ * 检测物体可见
  * @param { Element | string } element 元素
  * @param { (entries: IntersectionObserverEntry[]) => void } callback 元素可见回调
  * @param { IntersectionObserverOptions } options {}

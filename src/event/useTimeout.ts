@@ -2,7 +2,7 @@ import { isFn } from '../is/isFn'
 import type { UseTimeoutReturn } from '../types'
 
 /**
- *
+ * setTimeout
  * @param { Function } fn 函数
  * @param { number } duration 间隔时长
  * @returns 停止

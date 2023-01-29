@@ -1,4 +1,8 @@
 import type { JSCookie } from '../types'
+
+/**
+ * 快速操作cookie
+ */
 export const jsCookie: JSCookie = {
   get(cname: string) {
     try {

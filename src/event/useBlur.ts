@@ -3,7 +3,7 @@ import { mount } from '../utils/mount'
 import { useClick } from './useClick'
 
 /**
- *
+ * 失去焦点
  * @param { MaybeElement } el 元素
  * @param { Function } callback 失去焦点时的回调
  * @returns 停止

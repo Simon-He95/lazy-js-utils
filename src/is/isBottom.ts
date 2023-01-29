@@ -1,3 +1,8 @@
+/**
+ * 判断滚动条到达窗口底部
+ * @param distance
+ * @returns
+ */
 export function isBottom(distance = 0): boolean {
   try {
     return (

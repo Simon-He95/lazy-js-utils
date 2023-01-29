@@ -1,6 +1,10 @@
 import { isArray } from '../is/isArray'
 import { isPlainObject } from '../is/isPlainObject'
 
+/**
+ * 快速操纵localstorage
+ * @returns get set delete clear
+ */
 export function jsLocal() {
   return {
     set(key: string | Record<string, string>, value?: string) {

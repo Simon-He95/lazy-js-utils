@@ -1,5 +1,5 @@
 /**
- *
+ * 柯里化
  * @param { Function } f 函数
  * @returns 函数
  */

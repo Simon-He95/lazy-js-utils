@@ -1,7 +1,7 @@
 import { useEventListener } from './useEventListener'
 
 /**
- *
+ * 检测浏览器滚动
  * @param { Function } callback 坚挺浏览器滚动条位置变化回调
  * @returns 停止
  */

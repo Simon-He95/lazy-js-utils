@@ -1,4 +1,8 @@
 import type { EventBus } from '../types'
+
+/**
+ * eventbus
+ */
 export function createEventBus(): EventBus {
   return {
     data: Object.create(null),

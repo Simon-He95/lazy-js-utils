@@ -15,6 +15,10 @@ import { isPromise } from './isPromise'
 import { isDate } from './isDate'
 import { isWeakMap } from './isWeakMap'
 import { isWeakSet } from './isWeakSet'
+
+/**
+ * 判断对象类型
+ */
 export function isType<T>(s: T, type: string): boolean {
   type = type.toLocaleLowerCase()
   if (!type)

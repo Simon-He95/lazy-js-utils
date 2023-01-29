@@ -1,6 +1,6 @@
 import { createElement } from './createElement'
 /**
- *
+ * 下载
  * @param { string } href 链接
  * @param { string } download 名字
  */

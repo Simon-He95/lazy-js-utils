@@ -13,7 +13,7 @@ type HtmlTransformOptions = Record<
 >
 
 /**
- *
+ * htmlparser
  * @param { string } s 字符串
  * @param options {}
  * @param { (key: string, value?: string) => void } options.setAttribs 设置属性

@@ -1,6 +1,12 @@
 import fs from 'fs'
 import { _toString } from '../utils/common'
 import { isStr } from './isStr'
+
+/**
+ * 判断是否是文件
+ * @param o
+ * @returns
+ */
 export function isFile(o: Blob | string): o is File {
   if (isStr(o)) {
     try {

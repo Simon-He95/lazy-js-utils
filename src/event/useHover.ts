@@ -3,7 +3,7 @@ import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
 /**
- *
+ * 元素hover事件
  * @param { MaybeElement } target 元素
  * @param { (isHover: boolean, e: MouseEvent) => void } callback hover回调
  * @returns

@@ -4,7 +4,7 @@ import type { DragEvent } from '../types'
 import { mount } from '../utils/mount'
 
 /**
- *
+ * 拖砖
  * @param { HTMLElement | string } target 元素
  * @param { DragEvent } options {}
  * @param { (e: any) => void } options.dragStart 开始拖拽callback

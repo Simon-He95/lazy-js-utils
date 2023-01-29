@@ -3,7 +3,7 @@ import { unmount } from '../utils/unmount'
 import type { MutationObserverInit } from '../types'
 
 /**
- *
+ * 检测元素变化
  * @param { Element | string | ParentNode | null } element 元素
  * @param { MutationCallback } callback 默认 { childList: true }
  * @param { boolean } [callback.childList] 是否监听孩子元素

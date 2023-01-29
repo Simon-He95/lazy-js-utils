@@ -3,7 +3,7 @@ import { mount } from '../utils/mount'
 import { findElement } from './findElement'
 
 /**
- *
+ * input聚焦
  * @param { MaybeElement } target 元素
  */
 export function useFocus(target: MaybeElement) {

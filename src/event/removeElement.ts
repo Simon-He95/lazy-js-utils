@@ -2,7 +2,7 @@ import { isStr } from '../is/isStr'
 import { findElement } from './findElement'
 
 /**
- *
+ * 删除元素
  * @param {  HTMLElement | ChildNode | string } el 待被删除的节点
  * @returns 父节点
  */

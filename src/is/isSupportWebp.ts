@@ -1,3 +1,6 @@
+/**
+ * 判断是否支持webp格式
+ */
 export function isSupportWebp(): boolean {
   try {
     return (

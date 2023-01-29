@@ -1,7 +1,7 @@
 import { promiseFinally } from './promiseFinally'
 
 /**
- *
+ * 超时函数
  * @param { Function } fn 函数
  * @param { number } ms 时间
  * @param { string } msg 错误消息

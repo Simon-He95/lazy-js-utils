@@ -2,7 +2,7 @@ import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
 /**
- *
+ * getBoundingClientRect
  * @param { Element | string } element 元素
  * @param { (rect: DOMRect) => void } callback 位置变化回调函数
  * @returns 停止

@@ -1,6 +1,9 @@
 import { useEventListener } from '../event/useEventListener'
 import { log } from './log'
 
+/**
+ * 全局错误捕获
+ */
 export function globalErrorCapture() {
   return useEventListener(window, 'error', (err) => {
     const { colno, lineno, error, filename, message } = err

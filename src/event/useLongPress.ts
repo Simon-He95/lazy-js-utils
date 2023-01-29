@@ -4,7 +4,7 @@ import { useEventListener } from './useEventListener'
 import { useTimeout } from './useTimeout'
 
 /**
- *
+ * 检测元素鼠标长按
  * @param { MaybeElement } el 元素
  * @param { number } ms 时长
  * @param { Function } callback 回调

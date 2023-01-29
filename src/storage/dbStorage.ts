@@ -1,3 +1,7 @@
+/**
+ * 快速操作indexedDB
+ * @returns get set remove
+ */
 export function dbStorage() {
   return new Promise((resolve, reject) => {
     const indexDB
@@ -61,7 +65,7 @@ export function dbStorage() {
             }
           })
         },
-        read,
+        get: read,
         remove(key: any) {
           return new Promise((resolve, reject) => {
             const request = objectStore.delete(key)

@@ -1,5 +1,5 @@
 /**
- *
+ * 反转义html
  * @param { string } s 字符串
  * @returns
  */

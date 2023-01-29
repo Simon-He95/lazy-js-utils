@@ -1,7 +1,7 @@
 import { useEventListener } from './useEventListener'
 
 /**
- *
+ * 检测视口变化
  * @param { Function } callback 浏览器尺寸变化回调
  * @returns
  */

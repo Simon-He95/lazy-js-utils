@@ -1,7 +1,7 @@
 import { createElement } from '../event/createElement'
 
 /**
- *
+ * 获取电脑粘贴板的内容
  * @param { string } s 内容
  * @returns
  */

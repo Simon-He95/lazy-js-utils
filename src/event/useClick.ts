@@ -3,7 +3,7 @@ import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
 /**
- *
+ * 点击事件
  * @param { MaybeElement } target 元素
  * @param { (e: MouseEvent) => void } callback 点击回调
  * @returns 停止

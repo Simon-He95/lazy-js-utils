@@ -3,7 +3,7 @@ import { isFn } from '../is/isFn'
 type UseIntervalReturn<T> = T extends Function ? () => void : undefined
 
 /**
- *
+ * setInterval
  * @param { Function } fn 函数
  * @param { number } duration 间隔时间
  * @returns 停止

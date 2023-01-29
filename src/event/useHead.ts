@@ -22,7 +22,7 @@ export interface HeadOptions {
 }
 
 /**
- *
+ * 创建head相关标签
  * @param { HeadOptions } options
  * @param { string | (() => string) } options.title 返回一个title字符串
  * @param { IMeta[] } options.meta 'description' | 'viewport' | 'keywords' | 'robots' | string

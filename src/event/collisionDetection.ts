@@ -2,6 +2,12 @@ import { isStr } from '../is/isStr'
 import type { MaybeElement } from '../types'
 import { findElement } from './findElement'
 
+/**
+ * 检测2个物体是否碰撞
+ * @param { MaybeElement } o1 元素1
+ * @param { MaybeElement } o2 元素2
+ * @returns
+ */
 export function collisionDetection(o1: MaybeElement, o2: MaybeElement) {
   const obj1: HTMLElement = isStr(o1) ? findElement(o1)! : o1
   const obj2: HTMLElement = isStr(o2) ? findElement(o2)! : o2

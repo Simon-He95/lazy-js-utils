@@ -1,7 +1,7 @@
 import { isStr } from '../is/isStr'
 
 /**
- *
+ * webWorker
  * @param { string } [url] url自定义worker文件路径
  * @param { Function } [workerFunc] worker函数
  */

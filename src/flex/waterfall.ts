@@ -5,6 +5,14 @@ import { isNum } from '../is/isNum'
 import { mount } from '../utils/mount'
 import type { MaybeElement } from '../types'
 
+/**
+ * 创建图片瀑布流
+ * @param { string[] } imageList 图片列表
+ * @param { string } target mount元素 默认 body
+ * @param { number } width 图片宽度 默认 200
+ * @param { number } space 图片间距 默认 20
+ * @returns
+ */
 export function waterfall(
   imageList: string[],
   target: MaybeElement | number,

@@ -2,7 +2,7 @@ import { mount } from '../utils/mount'
 import { unmount } from '../utils/unmount'
 
 /**
- *
+ * 事件监听
  * @param { Window | Document | Element | string } target 元素
  * @param { T } eventName 事件名
  * @param { (e: (WindowEventMap & DocumentEventMap)[T]) => void } callback 回调

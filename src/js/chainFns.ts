@@ -1,7 +1,7 @@
 import { noop } from './noop'
 
 /**
- *
+ * 链式调用
  * @param { Function[] } fns 函数数组
  * @returns
  */

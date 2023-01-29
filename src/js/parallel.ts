@@ -1,5 +1,5 @@
 /**
- *
+ * 并行执行
  * @param { any[] } tasks 数组
  * @param { (...args: any[]) => any } fn 函数
  * @returns
