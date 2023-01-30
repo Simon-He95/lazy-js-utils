@@ -1,14 +1,14 @@
 import { isStr } from '../is/isStr'
+import { fnToUrl } from './fnToUrl'
 
 /**
  * webWorker
- * @param { string } [url] url自定义worker文件路径
- * @param { Function } [workerFunc] worker函数
+ * @param { string } [url] url自定义worker文件路径 或者 worker函数
  */
 export function useWebWorker(url: string): any
 export function useWebWorker(useWebWorkerThread: () => void): any
 export function useWebWorker(url: string | (() => void)) {
-  const worker = new Worker(isStr(url) ? url : fn2workerURL(url))
+  const worker = new Worker(isStr(url) ? url : fnToUrl(url))
   let onMessage: any
   let errorMessage: any
   const on = (callback: (data: any) => void) => (onMessage = callback)
@@ -20,11 +20,6 @@ export function useWebWorker(url: string | (() => void)) {
     on,
     error,
   }
-}
-
-function fn2workerURL(fn: Function) {
-  const blob = new Blob([`(${fn.toString()})()`], { type: 'text/javascript' })
-  return URL.createObjectURL(blob)
 }
 
 // const { emit, on, error } = useWebWorker(() => {
