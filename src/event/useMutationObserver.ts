@@ -16,7 +16,7 @@ import type { MutationObserverInit } from '../types'
  * @returns
  */
 export function useMutationObserver(
-  element: Element | string | ParentNode | null,
+  element: Element | string | ParentNode | Text | null,
   callback: MutationCallback,
   options: MutationObserverInit = { childList: true },
 ) {

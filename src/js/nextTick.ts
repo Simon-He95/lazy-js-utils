@@ -1,8 +1,20 @@
+import { useMutationObserver } from '../event/useMutationObserver'
+import { createTextNode } from '../event/createTextNode'
 /**
  *
- * @param { Function } fn 函数
+ * @param { () => any } flushCallbacks 函数
  * @returns
  */
-export function nextTick(fn: Function) {
-  return new Promise(resolve => setTimeout(() => resolve(fn()), 0))
+export function nextTick(flushCallbacks: () => any): void {
+  if (typeof Promise !== undefined) {
+    Promise.resolve().then(flushCallbacks)
+  }
+  else if (typeof MutationObserver !== undefined) {
+    const textNode = createTextNode('0')
+    useMutationObserver(textNode, flushCallbacks, { characterData: true })
+    textNode.data = '1'
+  }
+  else {
+    setTimeout(flushCallbacks)
+  }
 }
