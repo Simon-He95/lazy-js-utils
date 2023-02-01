@@ -12,6 +12,8 @@ declare global {
     mozIndexedDB: IDBFactory
     msIndexedDB: IDBFactory
     indexedDB: IDBFactory
+    SpeechRecognition: any
+    webkitSpeechRecognition: any
   }
   interface Navigator {
     webkitGetUserMedia: () => void

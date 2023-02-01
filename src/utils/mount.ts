@@ -2,7 +2,7 @@ import { findElement } from '../event/findElement'
 import { isStr } from '../is/isStr'
 
 type MountArgs = [
-  ...Array<string | Element | Window | Document | ParentNode>,
+  ...Array<string | Element | Window | Document | ParentNode | Text>,
   (...elements: HTMLElement[]) => void,
 ]
 export function mount(...args: MountArgs): void {

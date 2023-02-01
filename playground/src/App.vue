@@ -21,6 +21,7 @@ const play = useCamera(true)
 
 <template>
   <main p=" y-10" text="center gray-700 dark:gray-200">
+    <img src="favicon.svg" alt="">
     <div h-200>
       <div id="main" font-mono text-2xl />
     </div>
