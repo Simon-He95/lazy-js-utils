@@ -1,22 +1,14 @@
 import { isStr } from '../is/isStr'
-
-interface SpeechOptions {
+import type { Lang } from '../types'
+export interface SpeechOptions {
   text: string
   voice?: SpeechSynthesisVoice | null
   rate?: number
   pitch?: number
   volume?: number
-  lang?:
-  | 'zh-CN'
-  | 'en-US'
-  | 'ja-JP'
-  | 'ko-KR'
-  | 'zh-TW'
-  | 'zh-HK'
-  | 'zh-MO'
-  | 'zh-SG'
+  lang?: Lang
 }
-interface SpeechResult {
+export interface SpeechResult {
   cancel: () => void
   pause: () => void
   resume: () => void

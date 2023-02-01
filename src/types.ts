@@ -199,3 +199,13 @@ export interface NodeWorkerPayload {
 export type UseTimeoutReturn<T> = T extends Function ? () => void : undefined
 
 export type MaybeElement = string | HTMLElement
+
+export type Lang =
+  | 'zh-CN'
+  | 'en-US'
+  | 'ja-JP'
+  | 'ko-KR'
+  | 'zh-TW'
+  | 'zh-HK'
+  | 'zh-MO'
+  | 'zh-SG'
