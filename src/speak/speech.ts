@@ -28,13 +28,35 @@ const defaultOptions = {
 export function speech(text?: string): SpeechResult
 export function speech(options?: SpeechOptions): SpeechResult
 export function speech(options?: SpeechOptions | string): SpeechResult {
-  const preText = getSpeechInstance(options)
+  let preText = getSpeechInstance(options)
+  let isCanceled = true
+  const cancel = () => speechSynthesis.cancel()
   return {
-    cancel: () => speechSynthesis.cancel(),
+    cancel,
     pause: () => speechSynthesis.pause(),
     resume: () => speechSynthesis.resume(),
     speak: (options?: string | SpeechOptions) => {
+      if (isStr(options)) {
+        if (options === preText) {
+          isCanceled = !isCanceled
+          if (!isCanceled)
+            return cancel()
+        }
+        preText = options
+      }
+      else if (options) {
+        const { text } = options
+        if (text === preText) {
+          isCanceled = !isCanceled
+          if (!isCanceled)
+            return cancel()
+        }
+        preText = text
+      }
+
       options = options || preText
+      if (!options)
+        return
       getSpeechInstance(options)
       speechSynthesis.speak(speechInstance)
     },
