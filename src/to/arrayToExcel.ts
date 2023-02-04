@@ -17,6 +17,16 @@ interface IArrayToExcel {
   filter?: string[]
 }
 
+/**
+ * 数组转换为excel
+ * @param { IArrayToExcel } options {
+  data: Record<string, any>[]
+  filename?: string
+  title?: string[]
+  filter?: string[]
+}
+ * @returns
+ */
 export function arrayToExcel(options: IArrayToExcel) {
   const { data, filename = uuid(), title, filter } = options
   if (!data)

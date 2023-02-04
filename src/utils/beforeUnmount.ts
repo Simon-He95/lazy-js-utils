@@ -1,3 +1,8 @@
+/**
+ * 浏览器关闭前
+ * @param callback 回调
+ * @returns
+ */
 export function beforeUnmount(callback: (ev: Event) => void) {
   const fn = window.onbeforeunload || function () {}
   window.onbeforeunload = function (ev: Event) {

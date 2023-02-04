@@ -19,7 +19,7 @@ type Options<T, K> = T extends HTMLCanvasElement
         type?: 'terminal' | 'utf8' | 'svg'
       }
 /**
- * 生产二维码
+ * 生成二维码
  * @param { string | HTMLCanvasElement } content 元素
  * @param { boolean } base64 生成base64格式
  * @param options

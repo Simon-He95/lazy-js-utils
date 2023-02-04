@@ -14,7 +14,7 @@ const defaultSpeechOptions: SpeechToTextOptions = {
   maxAlternatives: 1,
 }
 /**
- *
+ * 语音转文字
  * @param { SpeechOptions } options {
   continuous: boolean // 每次识别都返回连续结果
   interimResults: boolean // 返回临时结果的设置

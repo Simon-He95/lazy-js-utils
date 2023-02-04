@@ -1,3 +1,9 @@
+/**
+ * 将数转换为数组
+ * @param { Record<string, any> } tree 树
+ * @param { string } children 字节点 默认 'children'
+ * @returns
+ */
 export function treeToArray(
   tree: Record<string, any> = {},
   children = 'children',

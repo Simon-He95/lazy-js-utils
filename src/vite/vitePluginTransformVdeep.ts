@@ -2,6 +2,10 @@ import fs from 'fs'
 import type { Plugin } from 'vite'
 import { isVue } from '../is/isVue'
 
+/**
+ * 将style中:deep和>>>转换为:deep()
+ * @returns
+ */
 export function vitePluginTransformVdeep() {
   return {
     name: 'vite-plugin-transform-Vdeep',

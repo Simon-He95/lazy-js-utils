@@ -1,6 +1,12 @@
 import fsp from 'fs/promises'
 import path from 'path'
 import process from 'process'
+
+/**
+ * 将模板html内容拷贝到最终结果
+ * @param { string } template_url html url
+ * @returns
+ */
 export async function vitePluginCopyHtml(template_url: string) {
   let content = await fsp.readFile(
     path.resolve(process.cwd(), template_url),

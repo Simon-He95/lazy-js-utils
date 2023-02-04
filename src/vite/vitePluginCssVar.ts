@@ -2,6 +2,11 @@ import type { Plugin } from 'vite'
 import { parse } from 'vue/compiler-sfc'
 import { isVue } from '../is/isVue'
 
+/**
+ * 识别vue中prefix的cssvar变量处理成var(--xxx)
+ * @param { string } prefix 默认 $
+ * @returns
+ */
 export function vitePluginCssVar(prefix = '$') {
   const reg = new RegExp(`\\${prefix}(\\w+)`, 'g')
   const cache = new Set()

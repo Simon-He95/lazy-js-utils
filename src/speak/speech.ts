@@ -28,6 +28,18 @@ const defaultOptions = {
 }
 export function speech(text?: string): SpeechResult
 export function speech(options?: SpeechOptions): SpeechResult
+/**
+ * 文字转语音
+ * @param { SpeechOptions | string } options {
+  text: string
+  voice?: SpeechSynthesisVoice | null
+  rate?: number
+  pitch?: number
+  volume?: number
+  lang?: Lang
+}
+ * @returns
+ */
 export function speech(options?: SpeechOptions | string): SpeechResult {
   let preText = getSpeechInstance(options)
   let isCanceled = true

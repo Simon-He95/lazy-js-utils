@@ -5,6 +5,18 @@ interface ArrayToTreeOptions {
   pid?: number | string
   children?: string
 }
+
+/**
+ * 将数组转为树
+ * @param { Record<string, any>[] } array 数组
+ * @param { number } parentId 父节点的id 默认 0
+ * @param { ArrayToTreeOptions } options {
+  id?: number | string 默认 'id'
+  pid?: number | string 默认 'pid'
+  children?: string 默认 'children'
+}
+ * @returns
+ */
 export function arrayToTree(
   array: Record<string, any>[],
   parentId = 0,
