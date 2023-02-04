@@ -2,6 +2,7 @@ import fsp from 'fs/promises'
 import path from 'path'
 import fs from 'fs'
 import { parse } from 'vue/compiler-sfc'
+import type { Plugin } from 'vite'
 
 //  [@vue/compiler-sfc] type argument passed to defineProps() must be a literal type, or a reference to an interface or literal type
 // 插件支持setup中动态导入类型
@@ -9,6 +10,7 @@ export function vitePluginExportType() {
   const TYPEREG = /\w+\s*<(\w+)>\s*\(/gm
   const EXPORTINTERFACE = /export\s+interface\s+([\w]+)\s*({[\w\s:,;]+})/gm
   const EXPORTTYPE = /export\s+type\s+([\w]+)\s*=\s*({[\w\s:,;]+})/gm
+  const cache = new Set()
   return {
     name: 'vite-plugin-export-type',
     enforce: 'pre',
@@ -28,6 +30,7 @@ export function vitePluginExportType() {
 
       return await new Promise(resolve =>
         source.replace(TYPEREG, (_: string, type: string) => {
+          cache.add(id)
           index++
           const source = imports[type]
           const removeImport = new RegExp(
@@ -70,7 +73,18 @@ export function vitePluginExportType() {
         }),
       )
     },
-  }
+    handleHotUpdate({ file, server }) {
+      if (cache.has(file)) {
+        console.log('reloading vue file...')
+        server.ws.send({
+          type: 'full-reload',
+          path: '*',
+        })
+      }
+
+      return []
+    },
+  } as Plugin
 }
 
 function getTypeImports(s: string) {
