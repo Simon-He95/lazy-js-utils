@@ -1,6 +1,8 @@
 import { isStr } from '../is/isStr'
 import { createElement } from './createElement'
 import { createFragment } from './createFragment'
+import { insertElement } from './insertElement'
+import { removeElement } from './removeElement'
 
 export interface IMeta {
   name: 'description' | 'viewport' | 'keywords' | 'robots' | string
@@ -28,6 +30,7 @@ export interface HeadOptions {
  * @param { IMeta[] } options.meta 'description' | 'viewport' | 'keywords' | 'robots' | string
  * @param { IScript[] } options.script 'async' | 'module' | 'nomodule' | 'defer'
  * @param { ILink[] } options.link 'stylesheet' | 'preload' | 'icon' | 'prefetch' | string
+ * @returns 移除函数
  */
 export function useHead(options: HeadOptions) {
   const { title, meta, script, link } = options
@@ -44,7 +47,8 @@ export function useHead(options: HeadOptions) {
   if (link && link.length)
     appendLink(fragment, link)
 
-  document.head.appendChild(fragment)
+  insertElement(document.head, fragment)
+  return removeElement(fragment)
 }
 
 function appendLink(fragment: DocumentFragment, link: ILink[]) {

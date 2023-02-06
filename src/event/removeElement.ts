@@ -3,11 +3,11 @@ import { findElement } from './findElement'
 
 /**
  * 删除元素
- * @param {  HTMLElement | ChildNode | string } el 待被删除的节点
+ * @param {  HTMLElement | ChildNode | DocumentFragment | string } el 待被删除的节点
  * @returns 父节点
  */
 export function removeElement(
-  el: HTMLElement | ChildNode | string,
+  el: HTMLElement | ChildNode | DocumentFragment | string,
 ): HTMLElement | null {
   if (isStr(el))
     el = findElement(el) || el
