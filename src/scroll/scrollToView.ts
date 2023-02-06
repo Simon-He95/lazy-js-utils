@@ -3,7 +3,10 @@ import { isStr } from '../is/isStr'
 /**
  * 滚动到可视区域
  * @param {  Element | string | null } e 元素
- * @param options
+ * @param { ScrollIntoViewOptions } options {
+    block?: ScrollLogicalPosition;
+    inline?: ScrollLogicalPosition;
+}
  * @returns
  */
 export function scrollToView(
