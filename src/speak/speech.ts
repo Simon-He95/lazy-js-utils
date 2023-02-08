@@ -81,7 +81,9 @@ export function speech(options?: SpeechOptions | string): SpeechResult {
 function getSpeechInstance(options?: string | SpeechOptions): string {
   speechInstance = Object.assign(
     speechInstance || new SpeechSynthesisUtterance(),
-    isStr(options) ? Object.assign(defaultOptions, { text: options }) : options,
+    isStr(options)
+      ? { ...defaultOptions, text: options }
+      : { ...defaultOptions, ...options },
   )
   return speechInstance.text
 }

@@ -14,7 +14,7 @@ importers:
       eslint: 8.20.0
       happy-dom: ^8.1.1
       htmlparser2: ^8.0.1
-      lazy-js-utils: workspace:^0.0.26
+      lazy-js-utils: workspace:^0.0.27
       lint-staged: ^13.1.0
       p-limit: ^4.0.0
       prettier: ^2.8.1
