@@ -48,17 +48,17 @@ function getString(
   return encode ? encodeURI(str) : str
 }
 
-console.log(
-  stringify(
-    {
-      width: '&@30px',
-      height: '20',
-      minHeight: '20',
-    },
-    {
-      sep: ';',
-      eq: ':',
-      hyp: true,
-    },
-  ),
-)
+// console.log(
+//   stringify(
+//     {
+//       width: '&@30px',
+//       height: '20',
+//       minHeight: '20',
+//     },
+//     {
+//       sep: ';',
+//       eq: ':',
+//       hyp: true,
+//     },
+//   ),
+// )
