@@ -10,7 +10,11 @@ interface UseVideoSubtitle {
   content: string
 }
 
-// 生成弹幕内容
+/**
+ * 生成弹幕内容
+ * @param options
+ * @param name
+ */
 export function useVideoSubtitle(options: UseVideoSubtitle[], name = 'zh') {
   const result = toArray(options).map(getTitle).join('\n')
   generateVtt(result, name)

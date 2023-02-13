@@ -6,6 +6,13 @@ interface IVideo {
   width: number
   height: number
 }
+/**
+ * 录像功能
+ * @param video 容器大小 默认{ width: 640, height: 480 }
+ * @param container 容器
+ * @param autoplay 是否自动播放
+ * @returns
+ */
 export function useCamera(
   video: IVideo | boolean = { width: 640, height: 480 },
   container: string | HTMLVideoElement = 'video',

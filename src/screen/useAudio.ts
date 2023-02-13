@@ -2,6 +2,11 @@ import { download } from '../event/download'
 import { findElement } from '../event/findElement'
 import { isStr } from '../is/isStr'
 
+/**
+ * 录音功能
+ * @param { string | HTMLAudioElement } container 容器
+ * @returns
+ */
 export function useAudio(container: string | HTMLAudioElement) {
   if (!navigator)
     return console.error('Not support navigator')

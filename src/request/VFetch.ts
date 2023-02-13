@@ -5,6 +5,9 @@ import { isStr } from '../is/isStr'
 
 const cancelMap = new Map()
 
+/**
+ * Class fetch请求封装
+ */
 export class VFetch {
   config: IFetchConfig
   constructor(baseOptions?: IFetchOptions) {

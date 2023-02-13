@@ -1,6 +1,10 @@
 import { download } from '../event/download'
 
-// 录制功能
+/**
+ * 录制功能
+ * @param fileName
+ * @returns
+ */
 export async function useRecorder(fileName = String(new Date().getTime())) {
   const videoStream = await navigator.mediaDevices.getDisplayMedia({
     video: true,

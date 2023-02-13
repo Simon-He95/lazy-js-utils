@@ -1,6 +1,6 @@
 /**
  * 浏览器关闭前
- * @param callback 回调
+ * @param { (ev: Event) => void } callback 回调
  * @returns
  */
 export function beforeUnmount(callback: (ev: Event) => void) {

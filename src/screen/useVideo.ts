@@ -13,6 +13,23 @@ interface VideoOptions {
   className?: string
   style?: string
 }
+
+/**
+ * 操作video
+ * @param sources {
+  src: string
+  type: string
+}
+ * @param videoOptions {
+  container: HTMLElement | string
+  controls?: boolean
+  width?: number
+  height?: number
+  className?: string
+  style?: string
+}
+ * @returns
+ */
 export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
   const video = createElement('video') as HTMLVideoElement
   const { controls = true, width, height, className, style } = videoOptions
