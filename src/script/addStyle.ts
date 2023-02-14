@@ -11,10 +11,7 @@ import { addStyleScoped } from './addStyleScoped'
  * @returns
  */
 type StyleObject = Record<string, Record<string, string | number>>
-export async function addStyle(
-  s: string | StyleObject,
-  scoped?: string,
-): Promise<() => void> {
+export function addStyle(s: string | StyleObject, scoped?: string) {
   const style = !isStr(s)
     ? Object.keys(s).reduce((result, key) => {
       const obj = s[key]
