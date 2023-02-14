@@ -30,7 +30,7 @@ export function addStyle(s: string | StyleObject, scoped?: string) {
     scoped ? addStyleScoped(style, scoped) : style,
   )
   insertElement(document.head, styleEl, null)
-  return () => removeElement(style)
+  return () => removeElement(styleEl)
 }
 
 // addStyle({
