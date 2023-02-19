@@ -1,5 +1,6 @@
 import fsp from 'fs/promises'
 import { isFile } from '../is/isFile'
+import { ensureSuffix } from '../string/ensureSuffix'
 import { toAbsolutePath } from '../to/toAbsolutePath'
 interface IPackage {
   name: string
@@ -19,7 +20,7 @@ interface IPackage {
 export async function getPkg(
   url = './package.json',
 ): Promise<IPackage & Record<string, any>> {
-  const resolvedPath = toAbsolutePath(url)
+  const resolvedPath = toAbsolutePath(ensureSuffix(url, '/package.json'))
   if (!isFile(resolvedPath))
     throw new Error(`${resolvedPath} is not a file`)
   return JSON.parse(await fsp.readFile(resolvedPath, 'utf-8'))
