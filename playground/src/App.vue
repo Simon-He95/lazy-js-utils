@@ -13,10 +13,14 @@ import {
   tableExportExcel,
   useCamera,
   useElementBounding,
+  useFrequency,
   useIntersectionObserver,
-} from 'lazy-js-utils'
+} from '../../src'
 const toggle = picInPic('#video')
-const play = useCamera(true)
+// const play = useCamera(true)
+useFrequency({
+  audio: 'audio',
+})
 </script>
 
 <template>
@@ -24,13 +28,14 @@ const play = useCamera(true)
     <div h-200>
       <div id="main" font-mono text-2xl />
     </div>
-    <video
+    <audio controls src="../public/aini.mp3" />
+    <!-- <video
       id="video"
       width="500"
       height="500"
       src="https://static.newcger.com/uploads/preview/ae/2022/07/51629.mp4"
       controls
-    />
+    /> -->
     <table class="table">
       <tr>
         <th>column1</th>

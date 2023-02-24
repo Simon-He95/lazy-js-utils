@@ -29,7 +29,7 @@ export function useCamera(
     el = isStr(container)
       ? (findElement(container) as HTMLVideoElement)
       : container
-    if (!video)
+    if (!el)
       return console.error('video element not found')
     el.srcObject = stream
     if (autoplay)
