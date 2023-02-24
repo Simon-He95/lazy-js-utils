@@ -14,6 +14,16 @@ export default defineConfig({
     __DEV__: 'false',
   },
   bundle: true,
-  external: ['vite', 'webpack', 'rollup', 'esbuild'],
+  external: [
+    'vite',
+    'webpack',
+    'rollup',
+    'esbuild',
+    'tsup',
+    'spark-md5',
+    'qrcode',
+    'htmlparser2',
+    '@vueuse/core',
+  ],
   platform: 'node',
 })
