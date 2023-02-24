@@ -7,6 +7,12 @@ interface FrequencyOptions {
   fftSize?: number
 }
 
+/**
+ * 处理audio获取频域数组
+ * @param { FrequencyOptions } options { audio: 目标元素, fftSize: 分析细粒度 2^n 默认 512 }
+ * @param { ( dataArray: Uint8Array, audioCtx: AudioContext, analyser: AnalyserNode ) => void } callback 回调
+ */
+
 export function useFrequency(
   options: FrequencyOptions,
   callback: (
