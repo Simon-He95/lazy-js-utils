@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from 'virtual:generated-pages'
-import { monitorPef } from '../../src'
+import { monitorPef } from 'lazy-js-utils'
 import App from './App.vue'
 // import Footer from './components/Footer.vue'
 import '@unocss/reset/tailwind.css'

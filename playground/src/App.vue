@@ -14,7 +14,7 @@ import {
   useCamera,
   useElementBounding,
   useIntersectionObserver,
-} from '../../src'
+} from 'lazy-js-utils'
 const toggle = picInPic('#video')
 const play = useCamera(true)
 </script>
