@@ -6,8 +6,9 @@ import { findElement } from './findElement'
  * input聚焦
  * @param { MaybeElement } target 元素
  */
-export function useFocus(target: MaybeElement) {
-  mount(target, target =>
-    findElement('input', target.parentElement!)?.focus(),
-  )
+export function useFocus(target: MaybeElement = 'body') {
+  const isBody = target === 'body'
+  mount(target, (target) => {
+    findElement('input', isBody ? target : target.parentElement!)?.focus()
+  })
 }
