@@ -18,8 +18,8 @@ export class CreateSignatureCanvas implements ISignature {
   }
 
   createCanvas(lineWidth = 2, w = 400, h = 400) {
-    this.canvas.width = w
-    this.canvas.height = h
+    this.canvas.width = w * devicePixelRatio
+    this.canvas.height = h * devicePixelRatio
     this.ctx.fillStyle = 'rgba(255, 255, 255, 0)'
     this.ctx.fillRect(0, 0, w, h)
     this.ctx.strokeStyle = this.color

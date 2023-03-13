@@ -25,8 +25,8 @@ export class DotImageCanvas {
   }
 
   createDotImage(img: HTMLImageElement) {
-    this.canvas.width = img.width
-    this.canvas.height = img.height
+    this.canvas.width = img.width * devicePixelRatio
+    this.canvas.height = img.height * devicePixelRatio
     this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height)
     const {
       data: imageData,
