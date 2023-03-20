@@ -57,11 +57,11 @@ removeElement('.content')
 ## :book: Instructions for use
 
 ```bash
-npm i lazy-js-utils # Installation
+npm i lazy-js-utils // Installation
 
 import {
   deepCompare
- } from 'lazy-js-utils' # Ingestion on demand
+ } from 'lazy-js-utils' // Ingestion on demand
 
 ```
 
@@ -69,7 +69,7 @@ import {
 
 ## :coffee:
 
-[Sponsor me](https://github.com/Simon-He95/sponsor)
+[Buy me a cup of coffee](https://github.com/Simon-He95/sponsor)
 
 ## GitHub 地址
 

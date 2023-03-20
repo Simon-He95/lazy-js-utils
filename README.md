@@ -19,7 +19,7 @@
 
 ## &#x270B; 例子
 
-```js
+```ts
 import {
   insertElement,
   useAnimationFrame,
@@ -57,11 +57,11 @@ removeElement('.content')
 ## :book: 使用说明
 
 ```bash
-npm i lazy-js-utils # 安装
+npm i lazy-js-utils // 安装
 
 import {
   deepCompare
- } from 'lazy-js-utils' # 按需引入
+ } from 'lazy-js-utils' // 按需引入
 
 ```
 
