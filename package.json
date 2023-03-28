@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "htmlparser2": "^8.0.1",
-    "lazy-js-utils": "workspace:^0.0.37",
+    "lazy-js-utils": "^0.0.37",
     "qrcode": "^1.5.1",
     "spark-md5": "^3.0.2"
   },
@@ -59,6 +59,7 @@
     "eslint": "8.20.0",
     "happy-dom": "^8.1.1",
     "lint-staged": "^13.1.0",
+    "make-github-contributor-svg": "^1.0.1",
     "p-limit": "^4.0.0",
     "prettier": "^2.8.1",
     "simple-git-hooks": "^2.8.1",
