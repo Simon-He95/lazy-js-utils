@@ -6,12 +6,14 @@ type Timeout = number | (() => void)
 /**
  * 浏览器空闲时期被调用
  * @param { Function[] } tasks 函数队列
+ * @param { number } timeRemaining 剩余时间大于多少才继续执行
  * @param { number } timeout 超时时间
  * @param { Function } callback 回调
  * @returns
  */
 export function useRequestIdleCallback(
   tasks: Function[],
+  timeRemaining = 0,
   timeout: Timeout = 2000,
   callback?: () => void,
 ): () => void {
@@ -41,7 +43,7 @@ export function useRequestIdleCallback(
       if (!work)
         return
       if (
-        (deadline.timeRemaining() > 0 || deadline.didTimeout)
+        (deadline.timeRemaining() > timeRemaining || deadline.didTimeout)
         && tasks.length > 0
       )
         tasks.shift()?.()

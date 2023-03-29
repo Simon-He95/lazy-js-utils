@@ -1,26 +1,6 @@
 <script setup lang="ts">
-import {
-  compressImage,
-  dbStorage,
-  dragEvent,
-  exportExcel,
-  exportPdf,
-  fileSplice,
-  insertUnocssInclude,
-  jsonExportExcel,
-  jsonExportZip,
-  picInPic,
-  tableExportExcel,
-  useCamera,
-  useElementBounding,
-  useFrequency,
-  useIntersectionObserver,
-} from '../../src'
+import { picInPic } from '../../src'
 const toggle = picInPic('#video')
-// const play = useCamera(true)
-useFrequency({
-  audio: 'audio',
-})
 </script>
 
 <template>
@@ -29,13 +9,13 @@ useFrequency({
       <div id="main" font-mono text-2xl />
     </div>
     <audio controls src="../public/aini.mp3" />
-    <!-- <video
+    <video
       id="video"
       width="500"
       height="500"
       src="https://static.newcger.com/uploads/preview/ae/2022/07/51629.mp4"
       controls
-    /> -->
+    />
     <table class="table">
       <tr>
         <th>column1</th>
@@ -49,7 +29,7 @@ useFrequency({
       </tr>
     </table>
     <button @click="toggle()">
-      toggle
+      picinpic
     </button>
     <Footer />
   </main>
