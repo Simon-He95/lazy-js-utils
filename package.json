@@ -1,7 +1,7 @@
 {
   "name": "lazy-js-utils",
   "type": "module",
-  "version": "0.0.39",
+  "version": "0.0.40",
   "packageManager": "pnpm@7.6.0",
   "description": "js-tool",
   "author": "Simon He",
