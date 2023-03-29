@@ -13,11 +13,15 @@ type Timeout = number | (() => void)
  */
 export function useRequestIdleCallback(
   tasks: Function[],
-  timeRemaining = 0,
+  timeRemaining: Timeout = 0,
   timeout: Timeout = 2000,
   callback?: () => void,
 ): () => void {
-  if (isFn(timeout)) {
+  if (isFn(timeRemaining)) {
+    callback = timeRemaining as unknown as () => void
+    timeout = 2000
+  }
+  else if (isFn(timeout)) {
     callback = timeout as unknown as () => void
     timeout = 2000
   }
