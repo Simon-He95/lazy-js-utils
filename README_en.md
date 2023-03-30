@@ -76,7 +76,7 @@ import {
 [Welcome to PR](https://github.com/Simon-He95/lazy-js-utils)
 
 <p align="center">
-  <a href=".github-contributors/Simon-He95_lazy-js-utils.svg">
-    <img src=".github-contributors/Simon-He95_lazy-js-utils.svg" />
+  <a href="https://cdn.jsdelivr.net/gh/Simon-He95/lazy-js-utils@master/.github-contributors/Simon-He95_lazy-js-utils.svg">
+    <img src="https://cdn.jsdelivr.net/gh/Simon-He95/lazy-js-utils@master/.github-contributors/Simon-He95_lazy-js-utils.svg" />
   </a>
 </p>
