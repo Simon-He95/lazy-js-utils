@@ -16,6 +16,7 @@ export default defineConfig({
   bundle: true,
   external: [
     'vite',
+    'vue',
     'webpack',
     'rollup',
     'esbuild',
