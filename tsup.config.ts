@@ -17,6 +17,7 @@ export default defineConfig({
   external: [
     'vite',
     'vue',
+    'vue/compiler-sfc',
     'webpack',
     'rollup',
     'esbuild',
