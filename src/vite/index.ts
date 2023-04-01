@@ -1,5 +1,5 @@
 export * from './vitePluginCopyHtml'
 export * from './vitePluginExport'
 export * from './vitePluginTransformVdeep'
-export * from './vitePluginExportType'
-export * from './vitePluginCssVar'
+// export * from './vitePluginExportType'
+// export * from './vitePluginCssVar'
