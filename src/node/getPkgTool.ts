@@ -12,12 +12,12 @@ export async function getPkgTool(): Promise<PkgTool> {
   if (temp)
     return temp
   switch (true) {
-    case isFile(toAbsolutePath('./yarn.lock')):
-    case isFile(toAbsolutePath('./lerna.json')):
-      return 'yarn'
     case isFile(toAbsolutePath('./pnpm-lock.yaml')):
     case isFile(toAbsolutePath('./pnpm-workspace.yaml')):
       return 'pnpm'
+    case isFile(toAbsolutePath('./yarn.lock')):
+    case isFile(toAbsolutePath('./lerna.json')):
+      return 'yarn'
     case isFile(toAbsolutePath('./bun.lockb')):
       return 'bun'
     default:
