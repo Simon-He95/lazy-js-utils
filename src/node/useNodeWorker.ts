@@ -35,7 +35,6 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
     prd2 = prd2.replaceAll('/', '\\')
   }
   url = url || path.resolve(__dirname, prd2)
-  console.log({ __dirname, url })
 
   if (!url.includes('node_modules'))
     url = path.resolve(__dirname, prd1)
