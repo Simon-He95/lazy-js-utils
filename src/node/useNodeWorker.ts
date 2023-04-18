@@ -5,6 +5,7 @@ import { isArray } from '../is/isArray'
 import { isStr } from '../is/isStr'
 import { parallel } from '../js/parallel'
 import type { IShellMessage, NodeWorkerPayload } from '../types'
+import { isWin } from '../is'
 
 type NodeWorkReturn<T> = T extends {
   params: string[]
@@ -27,9 +28,15 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   url?: string,
 ): Promise<NodeWorkReturn<T>> {
   // const dev = './useNodeWorkerThread.ts'
-  const prd1 = '../node_modules/lazy-js-utils/dist/node/useNodeWorkerThread.cjs'
-  const prd2 = './node/useNodeWorkerThread.cjs'
+  let prd1 = '../node_modules/lazy-js-utils/dist/node/useNodeWorkerThread.cjs'
+  let prd2 = './node/useNodeWorkerThread.cjs'
+  if (isWin()) {
+    prd1 = prd1.replaceAll('/', '\\')
+    prd2 = prd2.replaceAll('/', '\\')
+  }
   url = url || path.resolve(__dirname, prd2)
+  console.log({ __dirname, url })
+
   if (!url.includes('node_modules'))
     url = path.resolve(__dirname, prd1)
 
