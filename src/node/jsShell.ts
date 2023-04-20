@@ -66,12 +66,13 @@ export function jsShell<T extends string | string[]>(
         stdio: stdio === 'inherit' ? 'inherit' : ['inherit', 'pipe', 'inherit'],
       },
     )
+    const result = output[1]?.trim()
+
     if (status === 130) {
       if (isLog)
         console.log('已取消...')
-      process.exit(1)
+      return { status, result } as IShellMessage
     }
-    const result = output[1]?.trim()
     if (status !== 0) {
       if (isLog)
         console.log(result)
