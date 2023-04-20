@@ -6,22 +6,26 @@ import type { IShellMessage } from '../types'
 export function jsShell<T extends string | string[]>(
   commander: T,
   errorExit?: boolean,
+  isLog?: boolean,
 ): T extends string ? IShellMessage : IShellMessage[]
 export function jsShell<T extends string | string[]>(
   commander: T,
   stdio: 'inherit' | 'pipe',
   errorExit?: boolean,
+  isLog?: boolean,
 ): T extends string ? IShellMessage : IShellMessage[]
 export function jsShell<T extends string | string[]>(
   commander: T,
   stdio: 'inherit' | 'pipe',
   errorExit?: boolean,
+  isLog?: boolean,
 ): T extends string ? IShellMessage : IShellMessage[]
 export function jsShell<T extends string | string[]>(
   commander: T,
   args: string[],
   stdio?: 'inherit' | 'pipe',
   errorExit?: boolean,
+  isLog?: boolean,
 ): T extends string ? IShellMessage : IShellMessage[]
 /**
  *
@@ -36,6 +40,7 @@ export function jsShell<T extends string | string[]>(
   args: string[] | boolean | 'inherit' | 'pipe' = [],
   stdio: 'inherit' | 'pipe' | boolean = 'inherit',
   errorExit?: boolean,
+  isLog?: boolean,
 ) {
   if (isBool(args)) {
     errorExit = args as boolean
@@ -62,13 +67,16 @@ export function jsShell<T extends string | string[]>(
       },
     )
     if (status === 130) {
-      console.log('已取消...')
+      if (isLog)
+        console.log('已取消...')
       process.exit(1)
     }
     const result = output[1]?.trim()
     if (status !== 0) {
-      console.log(result)
-      errorExit && process.exit(1)
+      if (isLog)
+        console.log(result)
+      if (errorExit)
+        process.exit(1)
     }
 
     return { status, result } as IShellMessage

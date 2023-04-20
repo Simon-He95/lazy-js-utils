@@ -196,6 +196,8 @@ export interface IsESModule {
 export interface NodeWorkerPayload {
   params: string | string[]
   stdio?: 'inherit' | 'pipe'
+  errorExit?: boolean
+  isLog?: boolean
 }
 
 export type UseTimeoutReturn<T> = T extends Function ? () => void : undefined
