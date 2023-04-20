@@ -35,19 +35,17 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
     prd2 = prd2.replaceAll('/', '\\')
   }
   url = url || path.resolve(__dirname, prd2)
-
   if (!url.includes('node_modules'))
     url = path.resolve(__dirname, prd1)
 
-  const { params, stdio } = isStr(payload)
-    ? { params: payload, stdio: 'pipe' }
-    : payload
+  const { params } = isStr(payload) ? { params: payload } : payload
   const commands = isArray(params) ? params : params.split('&&')
   const result = await parallel(commands, params =>
-    createWorker({
-      params,
-      stdio: stdio as 'pipe' | 'inherit',
-    }),
+    createWorker(
+      Object.assign(payload, {
+        params,
+      }),
+    ),
   )
   setTimeout(process.exit) // 结束子进程
   return (result.length === 1 ? result[0] : result) as NodeWorkReturn<T>
@@ -72,4 +70,7 @@ export function useProcressNodeWorker(callback: (data: any) => any) {
 // useNodeWorker({
 //   params: 'echo "hi" && echo "hello"',
 //   stdio: 'inherit',
-// })
+//   errorExit: true,
+// },
+// './src/node/useNodeWorkerThread.ts',
+// )
