@@ -1,23 +1,23 @@
 export async function catchAwait<T, U = Error>(
-  promise: Promise<T>,
+  promise: Promise<T> | any,
   errorExt?: Object,
 ): Promise<[U, undefined] | [undefined, T]> {
-  return promise
-    .then<[undefined, T]>(res => [undefined, res])
-    .catch<[U, undefined]>(err =>
-      errorExt
-        ? [Object.assign({}, err, errorExt), undefined]
-        : [err, undefined],
-    )
+  try {
+    return [undefined, await promise]
+  }
+  catch (err: any) {
+    return errorExt
+      ? [Object.assign({}, err, errorExt), undefined]
+      : [err, undefined]
+  }
 }
 
 // async function test() {
-//   const p = () => new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       reject('asdas')
-//     }, 1000)
+//   const p = () => new Promise((resolve) => {
+//     setTimeout(() => resolve('2'))
 //   })
 //   const [err, res] = await catchAwait(p())
+//   console.log({ err, res })
 //   if (err)
 //     return
 //   console.log({ res })
