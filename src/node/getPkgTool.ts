@@ -7,10 +7,15 @@ import { getPkg } from './getPkg'
  * @returns 返回当前package环境 ‘yarn’ | 'pnpm' | 'bun' | 'npm'
  */
 export async function getPkgTool(): Promise<PkgTool> {
-  const packageManager = (await getPkg())?.packageManager || ''
-  const temp: PkgTool = packageManager.split('@')[0]
-  if (temp)
-    return temp
+  const pkg = (await getPkg()) || {}
+  const { workspaces, packageManager } = pkg
+  if (packageManager) {
+    const manager: PkgTool = packageManager.split('@')[0]
+    if (packageManager)
+      return manager
+  }
+  if (workspaces)
+    return 'yarn'
   switch (true) {
     case isFile(toAbsolutePath('./pnpm-lock.yaml')):
     case isFile(toAbsolutePath('./pnpm-workspace.yaml')):
