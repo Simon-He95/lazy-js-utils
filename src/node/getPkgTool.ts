@@ -8,14 +8,13 @@ import { getPkg } from './getPkg'
  */
 export async function getPkgTool(): Promise<PkgTool> {
   const pkg = (await getPkg()) || {}
-  const { workspaces, packageManager } = pkg
+  const { packageManager } = pkg
   if (packageManager) {
     const manager: PkgTool = packageManager.split('@')[0]
     if (packageManager)
       return manager
   }
-  if (workspaces)
-    return 'yarn'
+
   switch (true) {
     case isFile(toAbsolutePath('./pnpm-lock.yaml')):
     case isFile(toAbsolutePath('./pnpm-workspace.yaml')):
