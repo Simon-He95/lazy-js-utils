@@ -13,7 +13,7 @@ import { unmount } from '../utils/unmount'
 export function useEventListener<
   T extends keyof (WindowEventMap & DocumentEventMap),
 >(
-  target: Window | Document | Element | string,
+  target: Window | Document | Element | MediaQueryList | string,
   eventName: T,
   callback: (e: (WindowEventMap & DocumentEventMap)[T]) => void,
   useCapture?: boolean | AddEventListenerOptions,
