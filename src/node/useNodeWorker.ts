@@ -38,7 +38,9 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   if (!url.includes('node_modules'))
     url = path.resolve(__dirname, prd1)
 
-  const { params } = isStr(payload) ? { params: payload } : payload
+  const { params } = isStr(payload)
+    ? (payload = { params: payload } as any)
+    : payload
   const commands = isArray(params) ? params : params.split('&&')
   const result = await parallel(commands, params =>
     createWorker(
@@ -73,4 +75,8 @@ export function useProcressNodeWorker(callback: (data: any) => any) {
 //   errorExit: true,
 // },
 // './src/node/useNodeWorkerThread.ts',
+// )
+
+// useNodeWorker('gum choose "1" "2"',
+//   './src/node/useNodeWorkerThread.ts',
 // )
