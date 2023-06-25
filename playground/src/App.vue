@@ -13,6 +13,7 @@ const toggle = picInPic('#video')
       id="video"
       width="500"
       height="500"
+      max
       src="https://static.newcger.com/uploads/preview/ae/2022/07/51629.mp4"
       controls
     />
