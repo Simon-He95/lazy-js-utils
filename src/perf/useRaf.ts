@@ -14,6 +14,8 @@ export function useRaf(
 ): () => void {
   let start: number
   const disposesId: number[] = []
+  let isStop = false
+
   const animationFrame
     = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
@@ -27,8 +29,15 @@ export function useRaf(
     || window.oCancelAnimationFrame
     || window.msCancelAnimationFrame
     || clearTimeout
+  const stop = () => {
+    isStop = true
+    disposesId.forEach(id => cancelAnimation(id))
+    disposesId.length = 0
+  }
   disposesId.push(
-    animationFrame(function myFrame(timestamp: number = Date.now()) {
+    animationFrame(function myFrame(timestamp: number) {
+      if (isStop)
+        return
       if (isUndef(start)) {
         start = timestamp
       }
@@ -41,8 +50,6 @@ export function useRaf(
       disposesId.push(animationFrame(myFrame))
     }),
   )
-  return () => {
-    disposesId.forEach(id => cancelAnimation(id))
-    disposesId.length = 0
-  }
+
+  return stop
 }
