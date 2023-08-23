@@ -7,13 +7,13 @@ import { isUndef } from '../is/isUndef'
  * @param { boolean } autoStop 自动销毁
  * @returns
  */
-export function useAnimationFrame(
+export function useRaf(
   fn: (timestamp: number) => void,
   delta = 0,
   autoStop = false,
 ): () => void {
   let start: number
-  let work = true
+  const disposesId: number[] = []
   const animationFrame
     = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
@@ -27,25 +27,22 @@ export function useAnimationFrame(
     || window.oCancelAnimationFrame
     || window.msCancelAnimationFrame
     || clearTimeout
-  const animationId = animationFrame(function myFrame(
-    timestamp: number = Date.now(),
-  ) {
-    if (!work)
-      return
-    if (isUndef(start)) {
-      start = timestamp
-    }
-    else if (timestamp - start > delta) {
-      fn?.(timestamp)
-      start = timestamp
-      if (autoStop)
-        stop()
-    }
-    animationFrame(myFrame)
-  })
-  function stop() {
-    work = false
-    cancelAnimation(animationId)
+  disposesId.push(
+    animationFrame(function myFrame(timestamp: number = Date.now()) {
+      if (isUndef(start)) {
+        start = timestamp
+      }
+      else if (timestamp - start > delta) {
+        fn?.(timestamp)
+        start = timestamp
+        if (autoStop)
+          stop()
+      }
+      disposesId.push(animationFrame(myFrame))
+    }),
+  )
+  return () => {
+    disposesId.forEach(id => cancelAnimation(id))
+    disposesId.length = 0
   }
-  return stop
 }

@@ -4,7 +4,7 @@ const toggle = picInPic('#video')
 </script>
 
 <template>
-  <main p=" y-10" text="center gray-700 dark:gray-200">
+  <main p=" y-10" text="center gray-700 dark:gray-200" style="width: 100px">
     <div h-200>
       <div id="main" font-mono text-2xl />
     </div>

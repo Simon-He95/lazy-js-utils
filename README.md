@@ -22,16 +22,16 @@
 ```ts
 import {
   insertElement,
-  useAnimationFrame,
   useEventListener,
   useMutationObserver,
+  useRaf,
 } from 'lazy-js-utils'
 // 监听container的变化, 你不在需要const container = ref<HTMLElement>
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
 })
 // requestAnimationFrame
-useAnimationFrame(
+useRaf(
   (timestamp) => {
     // 每针相隔1s执行
     console.log('animationFrame', timestamp)

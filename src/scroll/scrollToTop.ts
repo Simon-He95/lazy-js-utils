@@ -1,5 +1,5 @@
 import { isUndef } from '../is/isUndef'
-import { useAnimationFrame } from '../perf/useAnimationFrame'
+import { useAnimationFrame } from '../perf/useRaf'
 /**
  * 滚动到顶部
  */
