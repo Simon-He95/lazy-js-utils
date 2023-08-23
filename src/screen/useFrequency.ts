@@ -1,4 +1,4 @@
-import { useAnimationFrame } from '../perf'
+import { useRaf } from '../perf'
 import { mount } from '../utils'
 import type { MaybeElement } from './../types'
 
@@ -37,7 +37,7 @@ export function useFrequency(
       source.connect(analyser)
       analyser.connect(audioCtx.destination)
 
-      useAnimationFrame(() => {
+      useRaf(() => {
         analyser.getByteFrequencyData(dataArray)
         callback?.(dataArray, audioCtx, analyser)
       })

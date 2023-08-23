@@ -1,9 +1,9 @@
-import { useAnimationFrame } from '../perf'
+import { useRaf } from '../perf'
 
 export function calFps() {
   let lastTime: number
   let frame = 0
-  return useAnimationFrame((timestamp) => {
+  return useRaf((timestamp) => {
     frame++
     if (!lastTime)
       lastTime = timestamp

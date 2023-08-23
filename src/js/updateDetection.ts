@@ -3,7 +3,7 @@
  */
 
 import { isEqual } from '../is'
-import { useAnimationFrame } from '../perf'
+import { useRaf } from '../perf'
 
 const SCRIPTSRC = /<script .*src=["']([\w?=.\/@]+)["']><\/script>/gm
 let lastSrcs: string[]
@@ -14,7 +14,7 @@ let lastSrcs: string[]
  * @returns
  */
 export function updateDetection(s = 2000, callback: () => void) {
-  return useAnimationFrame(async () => {
+  return useRaf(async () => {
     const willUpdate = await needsUpdate()
     if (willUpdate) {
       console.log('页面有更新')

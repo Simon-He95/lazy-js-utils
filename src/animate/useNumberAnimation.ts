@@ -1,4 +1,4 @@
-import { useAnimationFrame } from '../perf'
+import { useRaf } from '../perf'
 
 /**
  * 贝塞尔曲线变化数字
@@ -18,7 +18,7 @@ export function useNumberAnimation(
   let value = from
   onProgress(value)
   const timeInterval = 50
-  const stop = useAnimationFrame(() => {
+  const stop = useRaf(() => {
     const now = Date.now()
     const time = now - start
     const t = time / duration

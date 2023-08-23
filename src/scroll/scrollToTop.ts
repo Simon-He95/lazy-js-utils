@@ -1,12 +1,12 @@
 import { isUndef } from '../is/isUndef'
-import { useAnimationFrame } from '../perf/useRaf'
+import { useRaf } from '../perf/useRaf'
 /**
  * 滚动到顶部
  */
 export function scrollToTop() {
   try {
     let pre: number
-    const stop = useAnimationFrame(() => {
+    const stop = useRaf(() => {
       const t = document.documentElement.scrollTop || document.body.scrollTop
       if (isUndef(pre))
         pre = t
