@@ -47,7 +47,6 @@ export function useRaf(
         return
       }
     }
-    cancelAnimation(rafId)
     rafId = animationFrame(myFrame)
   })
 
