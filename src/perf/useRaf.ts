@@ -13,8 +13,8 @@ export function useRaf(
   autoStop = false,
 ): () => void {
   let start: number
-  const disposesId: number[] = []
-  let isStop = false
+  let isStopped = false
+  let rafId: number
 
   const animationFrame
     = window.requestAnimationFrame
@@ -30,26 +30,27 @@ export function useRaf(
     || window.msCancelAnimationFrame
     || clearTimeout
   const stop = () => {
-    isStop = true
-    disposesId.forEach(id => cancelAnimation(id))
-    disposesId.length = 0
+    isStopped = true
+    cancelAnimation(rafId)
   }
-  disposesId.push(
-    animationFrame(function myFrame(timestamp: number) {
-      if (isStop)
+  rafId = animationFrame(function myFrame(timestamp: number) {
+    console.log('@@')
+    if (isStopped)
+      return
+    if (isUndef(start)) {
+      start = timestamp
+    }
+    else if (timestamp - start > delta) {
+      fn?.(timestamp)
+      start = timestamp
+      if (autoStop) {
+        stop()
         return
-      if (isUndef(start)) {
-        start = timestamp
       }
-      else if (timestamp - start > delta) {
-        fn?.(timestamp)
-        start = timestamp
-        if (autoStop)
-          stop()
-      }
-      disposesId.push(animationFrame(myFrame))
-    }),
-  )
+    }
+    cancelAnimation(rafId)
+    rafId = animationFrame(myFrame)
+  })
 
   return stop
 }
