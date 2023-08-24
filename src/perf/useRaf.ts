@@ -34,7 +34,6 @@ export function useRaf(
     cancelAnimation(rafId)
   }
   rafId = animationFrame(function myFrame(timestamp: number) {
-    console.log('@@')
     if (isStopped)
       return
     if (isUndef(start)) {
