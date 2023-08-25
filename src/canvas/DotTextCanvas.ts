@@ -1,5 +1,5 @@
 import { memorizeFn } from '../perf/memorizeFn'
-import { useRequestIdleCallback } from '../perf/useRequestIdleCallback'
+import { useRic } from '../perf/useRic'
 import { insertElement } from '../event/insertElement'
 import { removeElement } from '../event/removeElement'
 import type { MaybeElement } from '../types'
@@ -99,7 +99,9 @@ export class DotTextCanvas {
         }
       })
     }
-    useRequestIdleCallback(tasks, () => (this.status = 'success'))
+    useRic(tasks, {
+      callback: () => (this.status = 'success'),
+    })
   }
 
   repaint(

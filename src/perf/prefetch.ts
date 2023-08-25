@@ -1,6 +1,6 @@
 import { isVideo } from '../is/isVideo'
 import { createElement } from '../event/createElement'
-import { useRequestIdleCallback } from './useRequestIdleCallback'
+import { useRic } from './useRic'
 
 /**
  * 借助浏览器空闲时间去加载一些图片资源
@@ -11,7 +11,7 @@ import { useRequestIdleCallback } from './useRequestIdleCallback'
 export function prefetch(list: string[], timeRemaining = 0) {
   const imageNode = new Image()
   const videoNode = createElement('video')
-  return useRequestIdleCallback(
+  return useRic(
     list.map((src) => {
       if (isVideo(src)) {
         return () => {

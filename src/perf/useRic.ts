@@ -1,8 +1,10 @@
 import type { Deadline } from '../types'
-import { isFn } from '../is/isFn'
 
-type Timeout = number | (() => void)
-
+interface Options {
+  timeRemaining?: number
+  timeout?: number
+  callback?: (taskArr: any[]) => void
+}
 /**
  * 浏览器空闲时期被调用
  * @param { Function[] } tasks 函数队列
@@ -11,20 +13,8 @@ type Timeout = number | (() => void)
  * @param { Function } callback 回调
  * @returns
  */
-export function useRequestIdleCallback(
-  tasks: Function[],
-  timeRemaining: Timeout = 0,
-  timeout: Timeout = 2000,
-  callback?: () => void,
-): () => void {
-  if (isFn(timeRemaining)) {
-    callback = timeRemaining as unknown as () => void
-    timeout = 2000
-  }
-  else if (isFn(timeout)) {
-    callback = timeout as unknown as () => void
-    timeout = 2000
-  }
+export function useRic(tasks: Function[], options?: Options): () => void {
+  const { timeRemaining = 0, timeout = 2000, callback } = options || {}
   let work = true
   const idleCallback
     = window.requestIdleCallback
@@ -41,21 +31,22 @@ export function useRequestIdleCallback(
         1,
       )
     }
+  const taskResult: any[] = []
   const idleCancel = window.cancelIdleCallback || clearTimeout
   const animationId = idleCallback(
     async function animationCallback(deadline: Deadline) {
       if (!work)
         return
       if (
-        (deadline.timeRemaining() > timeRemaining || deadline.didTimeout)
+        (deadline.timeRemaining() > +timeRemaining || deadline.didTimeout)
         && tasks.length > 0
       )
-        tasks.shift()?.()
+        taskResult.push(tasks.shift()?.())
       if (tasks.length > 0) {
         idleCallback(animationCallback)
       }
       else {
-        callback?.()
+        callback?.(taskResult)
         stop()
       }
     },

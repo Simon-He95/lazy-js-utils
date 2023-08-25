@@ -1,5 +1,5 @@
 import { memorizeFn } from '../perf/memorizeFn'
-import { useRequestIdleCallback } from '../perf/useRequestIdleCallback'
+import { useRic } from '../perf/useRic'
 import { createElement } from '../event/createElement'
 import { insertElement } from '../event/insertElement'
 import { removeElement } from '../event/removeElement'
@@ -120,8 +120,10 @@ export class DotImageCanvas {
         }
       })
     }
-    useRequestIdleCallback(tasks, () => {
-      this.status = 'success'
+    useRic(tasks, {
+      callback: () => {
+        this.status = 'success'
+      },
     })
   }
 
