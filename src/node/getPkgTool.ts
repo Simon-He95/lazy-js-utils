@@ -10,7 +10,7 @@ export async function getPkgTool(): Promise<PkgTool> {
   const pkg = (await getPkg()) || {}
   const { packageManager } = pkg
   if (packageManager) {
-    const manager: PkgTool = packageManager.split('@')[0]
+    const manager: PkgTool = packageManager.split('@')[0].replace(/[\~\^]/, '')
     if (packageManager)
       return manager
   }

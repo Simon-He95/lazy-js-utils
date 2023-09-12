@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.1.1",
+    "vant": "^4.6.8",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },
