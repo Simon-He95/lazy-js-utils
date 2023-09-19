@@ -24,7 +24,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup ./src/*.ts ./src/node/useNodeWorkerThread.ts --clean",
+    "build": "tsup ./src/*.ts ./src/worker/*.ts --clean",
     "build-fast": "npm run build -- --no-dts",
     "dev": "npm run build-fast -- --watch",
     "play": "pnpm run -C playground dev",

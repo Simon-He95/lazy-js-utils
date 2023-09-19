@@ -139,6 +139,26 @@ export interface FileChunk {
   filename: string
 }
 
+export type ChunkDetail = ChunkInfo & {
+  isDone: boolean
+  remaning: number
+  type: string
+  size: number
+  lastModified: number
+}
+
+export interface ChunkInfo {
+  start: number
+  end: number
+  index: number
+  hash: string
+}
+
+export interface FileSpliceOptions {
+  file: File
+  chunkSize: number
+  callback: (chunk: ChunkDetail) => void
+}
 export interface Deadline {
   timeRemaining: () => number
   didTimeout: boolean

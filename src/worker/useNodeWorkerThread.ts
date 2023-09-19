@@ -1,6 +1,6 @@
 import type { NodeWorkerPayload } from '../types'
-import { useProcressNodeWorker } from './useNodeWorker'
-import { jsShell } from './jsShell'
+import { useProcressNodeWorker } from '../node/useNodeWorker'
+import { jsShell } from '../node/jsShell'
 
 useProcressNodeWorker(
   ({ params, stdio = 'pipe', errorExit, isLog }: NodeWorkerPayload) =>

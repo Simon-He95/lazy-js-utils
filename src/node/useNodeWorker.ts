@@ -28,8 +28,8 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   url?: string,
 ): Promise<NodeWorkReturn<T>> {
   // const dev = './useNodeWorkerThread.ts'
-  let prd1 = '../node_modules/lazy-js-utils/dist/node/useNodeWorkerThread.cjs'
-  let prd2 = './node/useNodeWorkerThread.cjs'
+  let prd1 = '../node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.cjs'
+  let prd2 = './worker/useNodeWorkerThread.cjs'
   if (isWin()) {
     prd1 = prd1.replaceAll('/', '\\')
     prd2 = prd2.replaceAll('/', '\\')
