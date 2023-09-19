@@ -10,7 +10,7 @@ export async function fileSplice(
   options: FileSpliceOptions,
 ): Promise<ChunkDetail[]> {
   return new Promise((resolve) => {
-    const { file, chunkSize, callback } = options || {}
+    const { file, chunkSize = 5 * 1024 * 1024, callback } = options || {}
     const THREAD_COUNT = navigator.hardwareConcurrency || 4
     const result: ChunkDetail[] = []
 
