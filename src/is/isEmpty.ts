@@ -5,8 +5,11 @@ import { isArray } from './isArray'
  * @param val
  * @returns
  */
-export const isEmpty = (val: unknown) =>
-  val === undefined
-  || val === null
-  || val === ''
-  || (isArray(val) && !val.length)
+export function isEmpty(val: unknown) {
+  return (
+    val === undefined ||
+    val === null ||
+    val === '' ||
+    (isArray(val) && !val.length)
+  )
+}

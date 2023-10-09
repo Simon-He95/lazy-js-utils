@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { compressCss } from '../../src/compress'
 
-describe('Canvas test', () => {
+describe('canvas test', () => {
   it('test', () => {
     const css = `
     div {

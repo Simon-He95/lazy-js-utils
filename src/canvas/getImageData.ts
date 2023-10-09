@@ -1,4 +1,5 @@
 import { Canvas } from './Canvas'
+
 interface ImageData {
   width: number
   height: number
@@ -20,8 +21,7 @@ export function getImageData(src: string): Promise<ImageData> {
         })
       }
       image.onerror = reject
-    }
-    catch (error) {
+    } catch (error) {
       reject(error)
     }
   })

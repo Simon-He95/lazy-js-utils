@@ -20,14 +20,12 @@ export function mount(...args: MountArgs): void {
   document.addEventListener('DOMContentLoaded', update)
   setTimeout(() => document.removeEventListener('DOMContentLoaded', update))
   function update() {
-    if (hasMounted)
-      return
+    if (hasMounted) return
     elements.forEach(
       (element, index) =>
         isStr(element) && (elements[index] = findElement(element) || element),
     )
-    if (!isMounted && elements.some(isStr))
-      return (isMounted = true)
+    if (!isMounted && elements.some(isStr)) return (isMounted = true)
     if (elements.some(isStr)) {
       throw new Error(
         `${elements.filter(isStr).join(', ')} is not a HTMLElement`,

@@ -22,7 +22,7 @@ export function formateNum(
 
   if ((s[1] || '').length < prec) {
     s[1] = s[1] || ''
-    s[1] += new Array(prec - s[1].length + 1).join('0')
+    s[1] += Array.from({ length: prec - s[1].length + 1 }).join('0')
   }
   return s.join(dec)
 

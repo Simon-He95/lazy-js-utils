@@ -1,4 +1,5 @@
 import { bounceOut } from './bounceOut'
+
 export function bounceInOut(t: number) {
   return t < 0.5
     ? 0.5 * (1.0 - bounceOut(1.0 - t * 2.0))

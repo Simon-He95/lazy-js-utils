@@ -1,5 +1,6 @@
-import path from 'path'
+import path from 'node:path'
 import { jsShell } from './jsShell'
+
 /**
  * 判断是否存在package.json
  * @param { string } rootPath 绝对路径

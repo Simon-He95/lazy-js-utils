@@ -1,4 +1,5 @@
 import { createElement } from './createElement'
+
 /**
  * 下载
  * @param { string } href 链接
@@ -10,8 +11,7 @@ export function download(href: string, download = '') {
       href,
       download,
     }).click()
-  }
-  catch (error: any) {
+  } catch (error: any) {
     throw new Error(error)
   }
 }

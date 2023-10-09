@@ -26,6 +26,7 @@ import {
   useEventListener,
   useMutationObserver,
 } from 'lazy-js-utils'
+
 // To listen for container changes, you don't need const container <HTMLElement>= ref
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)

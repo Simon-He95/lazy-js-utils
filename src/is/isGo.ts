@@ -1,5 +1,6 @@
-import path from 'path'
+import path from 'node:path'
 import { jsShell } from '../node/jsShell'
+
 /**
  * 判断是否是在go环境
  * @returns

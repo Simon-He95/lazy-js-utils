@@ -12,13 +12,11 @@ export function toObject(arr: Array<any>, filter?: string[]): object {
       !isPlainObject(item)
         ? result
         : Object.keys(item).reduce((result, key) => {
-          if (filter && !filter.includes(key))
+            if (filter && !filter.includes(key)) return result
+            if (!result[key]) result[key] = []
+            result[key].push(item[key])
             return result
-          if (!result[key])
-            result[key] = []
-          result[key].push(item[key])
-          return result
-        }, result),
+          }, result),
     {} as Record<string, any>,
   )
 }

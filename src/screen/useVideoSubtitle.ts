@@ -1,4 +1,4 @@
-import fsp from 'fs/promises'
+import fsp from 'node:fs/promises'
 import { toArray } from '../to/toArray'
 
 interface UseVideoSubtitle {
@@ -39,8 +39,7 @@ function getTime(t: number) {
 }
 
 function addZero(n: number, len: number) {
-  if (String(n).length === len)
-    return n
+  if (String(n).length === len) return n
   const l = len - String(n).length
   return '0'.repeat(l) + n
 }

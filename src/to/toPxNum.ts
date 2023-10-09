@@ -10,12 +10,10 @@ import { toNumber } from './toNumber'
  * @param value
  * @returns
  */
-export const toPxNum = (value: unknown): number => {
-  if (isNum(value))
-    return value
+export function toPxNum(value: unknown): number {
+  if (isNum(value)) return value
 
-  if (isPx(value))
-    return +(value as string).replace('px', '')
+  if (isPx(value)) return +(value as string).replace('px', '')
 
   if (isVw(value))
     return (+(value as string).replace('vw', '') * window.innerWidth) / 100
@@ -29,11 +27,10 @@ export const toPxNum = (value: unknown): number => {
       document.documentElement,
     ).fontSize
 
-    return num * parseFloat(rootFontSize)
+    return num * Number.parseFloat(rootFontSize)
   }
 
-  if (isStr(value))
-    return toNumber(value)
+  if (isStr(value)) return toNumber(value)
 
   // % and other
   return 0

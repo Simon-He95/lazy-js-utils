@@ -1,4 +1,5 @@
 import { parseTime } from './parseTime'
+
 /**
  * 解析歌词字符串
  * 得到一个歌词对象的数组

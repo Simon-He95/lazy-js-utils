@@ -1,4 +1,5 @@
-import process from 'process'
+import process from 'node:process'
+
 /**
  *
  * @returns 处理argv --flag如果未设置值默认为true

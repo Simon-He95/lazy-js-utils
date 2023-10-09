@@ -1,8 +1,8 @@
 import type { Options } from 'tsup'
 import { deepMerge } from '../object'
 
-export const unConfig = (options: Options = {}) =>
-  deepMerge(
+export function unConfig(options: Options = {}) {
+  return deepMerge(
     {
       name: 'tsup',
       target: 'node14',
@@ -16,3 +16,4 @@ export const unConfig = (options: Options = {}) =>
     },
     options,
   )
+}

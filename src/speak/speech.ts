@@ -1,6 +1,7 @@
 import { isStr } from '../is/isStr'
 import type { Lang } from '../types'
 import { beforeUnmount } from '../utils'
+
 export interface SpeechOptions {
   text: string
   voice?: SpeechSynthesisVoice | null
@@ -53,24 +54,20 @@ export function speech(options?: SpeechOptions | string): SpeechResult {
       if (isStr(options)) {
         if (options === preText) {
           isCanceled = !isCanceled
-          if (!isCanceled)
-            return cancel()
+          if (!isCanceled) return cancel()
         }
         preText = options
-      }
-      else if (options) {
+      } else if (options) {
         const { text } = options
         if (text === preText) {
           isCanceled = !isCanceled
-          if (!isCanceled)
-            return cancel()
+          if (!isCanceled) return cancel()
         }
         preText = text
       }
 
       options = options || preText
-      if (!options)
-        return
+      if (!options) return
       getSpeechInstance(options)
       speechSynthesis.speak(speechInstance)
     },

@@ -3,6 +3,7 @@ import { useRic } from '../perf/useRic'
 import { insertElement } from '../event/insertElement'
 import { removeElement } from '../event/removeElement'
 import type { MaybeElement } from '../types'
+
 export class DotTextCanvas {
   canvas = document.createElement('canvas')
   ctx = this.canvas.getContext('2d')!
@@ -54,7 +55,7 @@ export class DotTextCanvas {
   }
 
   executor() {
-    this.originText.split('').forEach(text => this.getText(text))
+    this.originText.split('').forEach((text) => this.getText(text))
     this.textPointSet = this.combineText()
     this.getCanvas()
   }
@@ -70,7 +71,7 @@ export class DotTextCanvas {
     const len = this.originText.length
 
     for (let i = 0; i < len; i++) {
-      (this.points.get(this.originText[i]) || []).forEach((item, index) => {
+      ;(this.points.get(this.originText[i]) || []).forEach((item, index) => {
         result[index] = (result[index] || []).concat(item)
       })
     }

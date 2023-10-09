@@ -1,4 +1,5 @@
 import { isNum } from '../is/isNum'
+
 /**
  * 生成uuid
  * @param { number } len 长度
@@ -6,15 +7,14 @@ import { isNum } from '../is/isNum'
  * @returns
  */
 export function uuid(len?: number, radix?: number | 'hex') {
-  const chars
-    = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
+  const chars =
+    '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
   const uuid = []
   radix = radix || chars.length
   if (len) {
     const num = isNum(radix) ? (radix as number) : 36
     for (let i = 0; i < len; i++) uuid[i] = chars[0 | (Math.random() * num)]
-  }
-  else {
+  } else {
     if (len) {
       for (let i = 0; i < len; i++)
         uuid[i] = chars[0 | (Math.random() * (chars.length as number))]

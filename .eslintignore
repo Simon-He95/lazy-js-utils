@@ -3,3 +3,5 @@ dist
 pnpm-lock.yaml
 !.*
 .history
+src
+shims.d.ts

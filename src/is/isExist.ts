@@ -1,5 +1,6 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import { toAbsolutePath } from '../to/toAbsolutePath'
+
 /**
  * 判断文件是否存在
  * @param url
@@ -9,8 +10,7 @@ export function isExist(url: string): boolean {
   try {
     fs.accessSync(toAbsolutePath(url))
     return true
-  }
-  catch (error) {
+  } catch (error) {
     return false
   }
 }

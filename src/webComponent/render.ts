@@ -1,5 +1,6 @@
 import { useMutationObserver } from '../event/useMutationObserver'
 import { isArray } from './../is/isArray'
+
 export interface DomTreeItemInterface {
   tag: string
   class?: string
@@ -9,25 +10,22 @@ export interface DomTreeItemInterface {
 
 export type DomTreeType = readonly DomTreeItemInterface[]
 
-export const render = (
+export function render(
   arr: DomTreeType | DomTreeItemInterface,
   node: ShadowRoot | HTMLElement,
-): void => {
+): void {
   arr = isArray(arr) ? arr : [arr]
   arr.forEach((item: DomTreeItemInterface) => {
     const el: HTMLElement = document.createElement(item.tag)
 
-    if (item.class)
-      el.className = item.class
+    if (item.class) el.className = item.class
 
-    if (item.name)
-      el.setAttribute('name', item.name)
+    if (item.name) el.setAttribute('name', item.name)
 
     if (typeof item.children === 'string') {
       const text: Text = document.createTextNode(item.children)
       el.appendChild(text)
-    }
-    else if (item.children) {
+    } else if (item.children) {
       render(item.children, el)
     }
 

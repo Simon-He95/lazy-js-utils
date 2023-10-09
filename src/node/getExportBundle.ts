@@ -1,6 +1,6 @@
-import fsp from 'fs/promises'
-import path from 'path'
-import process from 'process'
+import fsp from 'node:fs/promises'
+import path from 'node:path'
+import process from 'node:process'
 
 /**
  * 获取npm包导出的文件内容
@@ -8,8 +8,7 @@ import process from 'process'
  * @returns
  */
 export async function getExportBundle(url: string) {
-  if (/[./]/.test(url))
-    throw new Error('module must be a npm module')
+  if (/[./]/.test(url)) throw new Error('module must be a npm module')
   const pkg = path.resolve(process.cwd(), 'node_modules', url, 'package.json')
   const { module, main } = JSON.parse(await fsp.readFile(pkg, 'utf-8'))
   const modulePath = path.resolve(`./node_modules/${url}`, module || main)

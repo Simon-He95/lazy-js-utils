@@ -8,29 +8,28 @@ import { isType } from '../is/isType'
 export function uniqueArray(array: any[]): any[] {
   return array.reduce((result, item) => {
     if (
-      (isType(item, 'o|a') && !isHave(result, item))
-      || !result.includes(item)
+      (isType(item, 'o|a') && !isHave(result, item)) ||
+      !result.includes(item)
     )
       result.push(item)
     return result
   }, [])
 }
 
-function equals(a: Record<any, any>, b: Record<any, any>): Boolean {
-  if (Object.keys(a).length !== Object.keys(b).length)
-    return false
+function equals(a: Record<any, any>, b: Record<any, any>): boolean {
+  if (Object.keys(a).length !== Object.keys(b).length) return false
   for (const key in a) {
     if (
-      (isType(a[key], 'o|a')
-        && isType(b[key], 'o|a')
-        && !equals(a[key], b[key]))
-      || a[key] !== b[key]
+      (isType(a[key], 'o|a') &&
+        isType(b[key], 'o|a') &&
+        !equals(a[key], b[key])) ||
+      a[key] !== b[key]
     )
       return false
   }
   return true
 }
 
-function isHave(result: any[], item: any): Boolean {
-  return result.some(i => isType(i, 'o|a') && equals(item, i))
+function isHave(result: any[], item: any): boolean {
+  return result.some((i) => isType(i, 'o|a') && equals(item, i))
 }

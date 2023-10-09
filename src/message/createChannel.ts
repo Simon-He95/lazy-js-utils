@@ -16,11 +16,9 @@ export function createChannel(name: string) {
     if (e.data.msg === 'open') {
       sendMsg('response', channel)
       channel.listeners.add(e.data.id)
-    }
-    else if (e.data.msg === 'response') {
+    } else if (e.data.msg === 'response') {
       channel.listeners.add(e.data.id)
-    }
-    else if (e.data.msg === 'close') {
+    } else if (e.data.msg === 'close') {
       channel.listeners.delete(e.data.id)
     }
   })

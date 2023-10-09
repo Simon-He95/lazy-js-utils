@@ -1,5 +1,6 @@
 import { isFn } from '../is'
 import type { Lang } from '../types'
+
 export interface SpeechToTextOptions {
   continuous: boolean // 每次识别都返回连续结果
   interimResults: boolean // 返回临时结果的设置
@@ -34,8 +35,8 @@ export function speechToText(
     callback = options
     options = defaultSpeechOptions
   }
-  const SpeechRecognition
-    = window.SpeechRecognition || window.webkitSpeechRecognition
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition
   const recognition = new SpeechRecognition()
 
   Object.assign(recognition, options)
@@ -45,8 +46,7 @@ export function speechToText(
 
   return {
     toggle: () => {
-      if (isStart)
-        recognition.stop()
+      if (isStart) recognition.stop()
       else recognition.start()
       isStart = !isStart
     },

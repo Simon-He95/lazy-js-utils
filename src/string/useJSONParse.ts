@@ -16,7 +16,7 @@ export function useJSONParse(str: string) {
       .replace(commaLackReg, (match, value) =>
         match.replace(value, `${value},`),
       )
-      .replace(commaMoreReg, match => match.replace(',', ''))
+      .replace(commaMoreReg, (match) => match.replace(',', ''))
       .replace(moreCommaReg, (_, v) => v),
   )
 }

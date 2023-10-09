@@ -1,5 +1,5 @@
-export const stylesReg
-  = /(<.* style=['"]([ \w$\-\_:;\n]*)['"][\/ "'$\-_\w]*>)/gm
+export const stylesReg =
+  /(<.* style=['"]([ \w$\-\_:;\n]*)['"][\/ "'$\-_\w]*>)/gm
 
 /**
  *

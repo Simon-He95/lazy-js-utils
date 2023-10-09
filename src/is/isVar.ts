@@ -3,5 +3,6 @@ import { isStr } from './isStr'
 /**
  * 判断是否是cssvar
  */
-export const isVar = (value: unknown): value is string =>
-  isStr(value) && value.startsWith('var(')
+export function isVar(value: unknown): value is string {
+  return isStr(value) && value.startsWith('var(')
+}

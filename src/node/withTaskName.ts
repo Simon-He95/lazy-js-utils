@@ -5,5 +5,6 @@
  * @param fn 任务函数
  * @returns
  */
-export const withTaskName = <T extends Function>(name: string, fn: T) =>
-  Object.assign(fn, { displayName: name })
+export function withTaskName<T extends Function>(name: string, fn: T) {
+  return Object.assign(fn, { displayName: name })
+}

@@ -10,12 +10,12 @@ export function useWindowScroll(
 ): () => void {
   return useEventListener(document, 'scroll', () =>
     callback?.(
-      document.documentElement.scrollLeft
-        || window.pageXOffset
-        || document.body.scrollLeft,
-      document.documentElement.scrollTop
-        || window.pageYOffset
-        || document.body.scrollTop,
+      document.documentElement.scrollLeft ||
+        window.pageXOffset ||
+        document.body.scrollLeft,
+      document.documentElement.scrollTop ||
+        window.pageYOffset ||
+        document.body.scrollTop,
     ),
   )
 }

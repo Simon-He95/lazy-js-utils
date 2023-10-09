@@ -1,5 +1,6 @@
 import { hyphenate } from '../string/hyphenate'
 import { isNum } from '../is/isNum'
+
 interface StringifyOptions {
   sep?: string // Separator character 分割字符
   eq?: string // =
@@ -30,7 +31,7 @@ export function stringify(
     encode = true,
   } = options
   return Object.keys(o)
-    .map(k => `${hyp ? hyphenate(k) : k}${eq}${getString(encode, px, o, k)}`)
+    .map((k) => `${hyp ? hyphenate(k) : k}${eq}${getString(encode, px, o, k)}`)
     .join(sep)
 }
 

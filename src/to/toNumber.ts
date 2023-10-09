@@ -6,20 +6,18 @@ import { isStr } from '../is/isStr'
  * @param {  number | string | boolean | undefined | null } val
  * @returns 数字
  */
-export const toNumber = (
+export function toNumber(
   val: number | string | boolean | undefined | null,
-): number => {
-  if (val == null)
-    return 0
+): number {
+  if (val == null) return 0
 
   if (isStr(val)) {
-    val = parseFloat(val)
+    val = Number.parseFloat(val)
     val = Number.isNaN(val) ? 0 : val
     return val
   }
 
-  if (isBool(val))
-    return Number(val)
+  if (isBool(val)) return Number(val)
 
   return val
 }

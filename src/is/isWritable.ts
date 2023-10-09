@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'node:fs'
 
 /**
  * 同步地测试用户对 path 指定的文件或目录的权限
@@ -9,8 +9,7 @@ export function isWritable(filename: string): boolean {
   try {
     fs.accessSync(filename, fs.constants.W_OK)
     return true
-  }
-  catch {
+  } catch {
     return false
   }
 }

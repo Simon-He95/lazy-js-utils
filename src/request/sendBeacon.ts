@@ -1,4 +1,5 @@
 import { useEventListener } from '../event/useEventListener'
+
 /**
  * 将分析数据发送到 Web 服务器
  * @param { string } url 接收数据的 URL
@@ -13,7 +14,7 @@ export function sendBeacon(
     document,
     'visibilitychange',
     () =>
-      document.visibilityState === 'hidden'
-      && navigator.sendBeacon(url, analyticsData),
+      document.visibilityState === 'hidden' &&
+      navigator.sendBeacon(url, analyticsData),
   )
 }

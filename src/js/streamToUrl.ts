@@ -1,4 +1,5 @@
 import { toBase64 } from '../to/toBase64'
+
 /**
  * 将流文件转为base64
  * @param { ArrayBuffer } stream 流

@@ -4,9 +4,8 @@ export function rgbToHex(style: string) {
   const reg = /rgb\(([\w\s,]+)\)/
 
   const matcher = style.match(reg)
-  if (!matcher)
-    return
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  if (!matcher) return
+
   const [_, color] = matcher
   const [r, g, b] = trim(color, 'all').split(',')
 

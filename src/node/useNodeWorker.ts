@@ -1,6 +1,6 @@
-import worker_threads from 'worker_threads'
-import path from 'path'
-import process from 'process'
+import worker_threads from 'node:worker_threads'
+import path from 'node:path'
+import process from 'node:process'
 import { isArray } from '../is/isArray'
 import { isStr } from '../is/isStr'
 import { parallel } from '../js/parallel'
@@ -15,14 +15,14 @@ type NodeWorkReturn<T> = T extends {
   : IShellMessage
 
 /**
-   *
-   * @param { string | NodeWorkerPayload } payload 字符串 ｜ {
+ *
+ * @param { string | NodeWorkerPayload } payload 字符串 ｜ {
   params: string[]
   stdio?: 'inherit' | 'pipe'
 }
-   * @param { string } [url] 自定义worker路径
-   * @returns
-   */
+ * @param { string } [url] 自定义worker路径
+ * @returns
+ */
 export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   payload: T,
   url?: string,
@@ -35,14 +35,13 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
     prd2 = prd2.replaceAll('/', '\\')
   }
   url = url || path.resolve(__dirname, prd2)
-  if (!url.includes('node_modules'))
-    url = path.resolve(__dirname, prd1)
+  if (!url.includes('node_modules')) url = path.resolve(__dirname, prd1)
 
   const { params } = isStr(payload)
     ? (payload = { params: payload } as any)
     : payload
   const commands = isArray(params) ? params : params.split('&&')
-  const result = await parallel(commands, params =>
+  const result = await parallel(commands, (params) =>
     createWorker(
       Object.assign(payload, {
         params,
@@ -64,7 +63,7 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
 
 export function useProcressNodeWorker(callback: (data: any) => any) {
   const { parentPort } = worker_threads
-  parentPort!.on('message', async data =>
+  parentPort!.on('message', async (data) =>
     parentPort?.postMessage((await callback?.(data)) || (() => '')),
   )
 }

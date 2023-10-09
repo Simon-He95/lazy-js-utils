@@ -5,5 +5,6 @@ import { isStr } from './isStr'
  * @param value
  * @returns
  */
-export const isCalc = (value: unknown): value is string =>
-  isStr(value) && value.startsWith('calc(')
+export function isCalc(value: unknown): value is string {
+  return isStr(value) && value.startsWith('calc(')
+}

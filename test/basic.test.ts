@@ -28,7 +28,7 @@ import {
   uniqueArray,
 } from '../src'
 
-describe('Test deepMerge', () => {
+describe('test deepMerge', () => {
   it('deepMerge test', () => {
     const b = {
       people: {
@@ -76,7 +76,7 @@ describe('Test deepMerge', () => {
   })
 })
 
-describe('Test deepCompare', () => {
+describe('test deepCompare', () => {
   it('deepCompare test', () => {
     const b = {
       people: {
@@ -134,7 +134,7 @@ describe('Test deepCompare', () => {
   })
 })
 
-describe('Test asyncPool', () => {
+describe('test asyncPool', () => {
   it('asyncPool test', async () => {
     function delay(interval: number) {
       return () =>
@@ -172,7 +172,7 @@ describe('Test asyncPool', () => {
   })
 })
 
-describe('Test quickFind', () => {
+describe('test quickFind', () => {
   it('quickFind test', () => {
     const arr = [
       {
@@ -263,7 +263,7 @@ describe('Test quickFind', () => {
   })
 })
 
-describe('Test quickFilter', () => {
+describe('test quickFilter', () => {
   it('quickFilter test', () => {
     const arr = [
       {
@@ -321,7 +321,7 @@ describe('Test quickFilter', () => {
   })
 })
 
-describe('Test deepClone', () => {
+describe('test deepClone', () => {
   it('deepClone test', () => {
     const arr: any = {
       name: 'simon5',
@@ -353,7 +353,7 @@ describe('Test deepClone', () => {
   })
 })
 
-describe('Test curry', () => {
+describe('test curry', () => {
   it('curry test', () => {
     function __add(a: number, b: number, c: number, d: number) {
       return a + b + c + d
@@ -363,7 +363,7 @@ describe('Test curry', () => {
   })
 })
 
-describe('Test memorizeFn8', () => {
+describe('test memorizeFn8', () => {
   it('memorizeFn test', () => {
     let count = 0
     function hello(name: string) {
@@ -378,7 +378,7 @@ describe('Test memorizeFn8', () => {
   })
 })
 
-describe('Test traverse9', () => {
+describe('test traverse9', () => {
   it('traverse test', async () => {
     const arr = [
       {
@@ -450,7 +450,7 @@ describe('Test traverse9', () => {
   })
 })
 
-describe('Test transformKey', () => {
+describe('test transformKey', () => {
   it('transformKey test', async () => {
     const arr = [
       {
@@ -490,7 +490,7 @@ describe('Test transformKey', () => {
   })
 })
 
-describe('Test debounce', () => {
+describe('test debounce', () => {
   it('debounce test', async () => {
     let count = 0
     function add() {
@@ -507,7 +507,7 @@ describe('Test debounce', () => {
   })
 })
 
-describe('Test throttle', () => {
+describe('test throttle', () => {
   it('throttle test', async () => {
     let count = 0
     function add() {
@@ -522,7 +522,7 @@ describe('Test throttle', () => {
   })
 })
 
-describe('Test uniqueArray', () => {
+describe('test uniqueArray', () => {
   it('uniqueArray test', () => {
     const array = [
       {
@@ -595,13 +595,13 @@ describe('Test uniqueArray', () => {
   })
 })
 
-describe('Test isType', () => {
+describe('test isType', () => {
   it('isType test', async () => {
     expect(isType([], 'A')).toBe(true)
   })
 })
 
-describe('Test getDateList', () => {
+describe('test getDateList', () => {
   it('getDateList test', () => {
     expect(getDateList('1991/3/02', 7)).toMatchInlineSnapshot(`
       [
@@ -618,7 +618,7 @@ describe('Test getDateList', () => {
   })
 })
 
-describe('Test escapeHtml', () => {
+describe('test escapeHtml', () => {
   it('escapeHtml test', () => {
     expect(escapeHtml('< a href=" ">xx</ a>')).toBe(
       '&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;',
@@ -626,7 +626,7 @@ describe('Test escapeHtml', () => {
   })
 })
 
-describe('Test unescapeHtml', () => {
+describe('test unescapeHtml', () => {
   it('unescapeHtml test', async () => {
     expect(unescapeHtml('&lt; a href=&quot; &quot;&gt;xx&lt;/ a&gt;')).toBe(
       '< a href=" ">xx</ a>',
@@ -634,7 +634,7 @@ describe('Test unescapeHtml', () => {
   })
 })
 
-describe('Test getLru', () => {
+describe('test getLru', () => {
   it('getLru test', async () => {
     const lru = getLru(2)
     lru.set('a', 10)
@@ -645,7 +645,7 @@ describe('Test getLru', () => {
   })
 })
 
-describe('Test sort', () => {
+describe('test sort', () => {
   it('sort test', () => {
     const arr = [
       {
@@ -688,7 +688,7 @@ describe('Test sort', () => {
   })
 })
 
-describe('Test pwdLevel', () => {
+describe('test pwdLevel', () => {
   it('pwdLevel test', async () => {
     let pwd = '!dasdasdqq12QQ3456'
     expect(pwdLevel(pwd)).toBe(4)
@@ -697,7 +697,7 @@ describe('Test pwdLevel', () => {
   })
 })
 
-describe('Test htmlTransform', () => {
+describe('test htmlTransform', () => {
   it('htmlTransform test', async () => {
     const code = await htmlTransform(
       '<div class="_ee">hello</div><view bindtap="xx"></view>',
@@ -725,7 +725,7 @@ describe('Test htmlTransform', () => {
   })
 })
 
-describe('Test sortByOrder', () => {
+describe('test sortByOrder', () => {
   const order = ['name', '*', 'weight']
   const arr = [
     {

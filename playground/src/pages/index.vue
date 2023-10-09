@@ -2,7 +2,7 @@
 const name = $ref('')
 
 const router = useRouter()
-const go = () => {
+function go() {
   if (name)
     router.push(`/hi/${encodeURIComponent(name)}`)
 }
