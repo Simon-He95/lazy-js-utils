@@ -1,5 +1,5 @@
 const keyReg = /\s+(?!['"])([\w_\-\$\.]+):/gm
-const valueReg = /:\s*(?!['"])([\w_\-\$\.]+)/gm
+const valueReg = /:\s*'([^']*)'/g
 const commaLackReg = /:\s*("[\w_\-\$\.]+")\s*(?!,)"/gm
 const commaMoreReg = /:\s*("[\w_\-\$\.]+"\s*,)\s*}/gm
 const moreCommaReg = /,(\s*})/gm
@@ -12,7 +12,7 @@ export function useJSONParse(str: string) {
   return JSON.parse(
     str
       .replace(keyReg, (match, key) => match.replace(key, `"${key}"`))
-      .replace(valueReg, (match, value) => match.replace(value, `"${value}"`))
+      .replace(valueReg, ': "$1"')
       .replace(commaLackReg, (match, value) =>
         match.replace(value, `${value},`),
       )
