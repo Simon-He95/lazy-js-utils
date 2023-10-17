@@ -16,7 +16,9 @@ interface UseVideoSubtitle {
  * @param name
  */
 export function useVideoSubtitle(options: UseVideoSubtitle[], name = 'zh') {
-  const result = toArray(options).map(getTitle).join('\n')
+  const result = toArray(options)
+    .map((option) => getTitle(option as UseVideoSubtitle))
+    .join('\n')
   generateVtt(result, name)
 }
 
