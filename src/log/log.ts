@@ -12,7 +12,7 @@ export function log(
   options?: {
     type?: 'warn' | 'error' | 'log'
     style?: Record<string, string | number> | string
-    args: any[]
+    args?: any[]
   },
 ): void {
   const { type = 'log', style = '', args = [] } = options || {}

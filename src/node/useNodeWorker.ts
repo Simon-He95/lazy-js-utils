@@ -23,19 +23,17 @@ type NodeWorkReturn<T> = T extends {
  * @param { string } [url] 自定义worker路径
  * @returns
  */
+const root = process.cwd()
 export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   payload: T,
   url?: string,
 ): Promise<NodeWorkReturn<T>> {
   // const dev = './useNodeWorkerThread.ts'
-  let prd1 = '../node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.cjs'
-  let prd2 = './worker/useNodeWorkerThread.cjs'
+  let prd = './node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.cjs'
   if (isWin()) {
-    prd1 = prd1.replaceAll('/', '\\')
-    prd2 = prd2.replaceAll('/', '\\')
+    prd = prd.replaceAll('/', '\\')
   }
-  url = url || path.resolve(__dirname, prd2)
-  if (!url.includes('node_modules')) url = path.resolve(__dirname, prd1)
+  url = url || path.resolve(root, prd)
 
   const { params } = isStr(payload)
     ? (payload = { params: payload } as any)
