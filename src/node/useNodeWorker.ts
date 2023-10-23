@@ -15,7 +15,7 @@ type NodeWorkReturn<T> = T extends {
   : IShellMessage
 
 /**
- *
+ * 这个api需要 dependencies 中安装lazy-js-utils
  * @param { string | NodeWorkerPayload } payload 字符串 ｜ {
   params: string[]
   stdio?: 'inherit' | 'pipe'
@@ -23,17 +23,19 @@ type NodeWorkReturn<T> = T extends {
  * @param { string } [url] 自定义worker路径
  * @returns
  */
-const root = process.cwd()
 export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   payload: T,
   url?: string,
 ): Promise<NodeWorkReturn<T>> {
   // const dev = './useNodeWorkerThread.ts'
-  let prd = './node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.cjs'
+  let prd1 = '../node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.cjs'
+  let prd2 = './worker/useNodeWorkerThread.cjs'
   if (isWin()) {
-    prd = prd.replaceAll('/', '\\')
+    prd1 = prd1.replaceAll('/', '\\')
+    prd2 = prd2.replaceAll('/', '\\')
   }
-  url = url || path.resolve(root, prd)
+  url = url || path.resolve(__dirname, prd2)
+  if (!url.includes('node_modules')) url = path.resolve(__dirname, prd1)
 
   const { params } = isStr(payload)
     ? (payload = { params: payload } as any)
