@@ -9,20 +9,24 @@ import { stringify } from '../object/stringify'
  */
 export function log(
   s: string | number,
-  styleObj: Record<string, string | number> | string = {},
-  type: 'warn' | 'error' | 'log' = 'log',
+  options?: {
+    type?: 'warn' | 'error' | 'log'
+    style?: Record<string, string | number> | string
+    args: any[]
+  },
 ): void {
+  const { type = 'log', style = '', args = [] } = options || {}
   console[type](
-    '%c%s',
-    isStr(styleObj)
-      ? styleObj
-      : stringify(styleObj, {
-        sep: ';',
-        eq: ':',
-        hyp: true,
-        px: true,
-        encode: false,
-      }),
-    s,
+    `%c${s}`,
+    isStr(style)
+      ? style
+      : stringify(style, {
+          sep: ';',
+          eq: ':',
+          hyp: true,
+          px: true,
+          encode: false,
+        }),
+    ...args,
   )
 }
