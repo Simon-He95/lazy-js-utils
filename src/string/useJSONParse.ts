@@ -23,26 +23,20 @@ export function useJSONParse(str: string) {
   } catch (_) {
     return str
       .trim()
+      .slice(1, -1)
       .replace(/\n+/g, '\n')
       .split('\n')
       .reduce((result, item: string) => {
+        item = item.trim()
+        if (!item) return result
         const [key, val] = item.split(':') as string[]
-        result[key.trim()] = val.trim()
+        let newVal = val.trim()
+        result[key.trim()] = newVal.endsWith(',') ? newVal.slice(0, -1) : newVal
         return result
       }, {} as any)
   }
 }
 
-// const data = `{
-//   "compilerOptions": {
-//     "baseUrl": "./",
-//     "lib": ["esnext", "DOM"],
-//     "paths": {
-//         "@/*": ["src/*"],
-//         "~/*": ["/"],
-//     }
-//   },
-//   "exclude": ["node_modules", "dist"]
-// }
-// `
+// const data = "{\n    sider: propTypes.bool.def(true),\n    theme: propTypes.oneOf(['light', 'dark']),\n  }"
+
 // console.log(useJSONParse(data)) // { name: 'simon', age: '14' }

@@ -8,5 +8,5 @@
   "files.associations": {
     "*.css": "postcss"
   },
-  "unocss.root": "playground"
+  "unocss.root": ["playground"]
 }
