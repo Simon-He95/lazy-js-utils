@@ -25,18 +25,22 @@ export function useJSONParse(str: string) {
       .trim()
       .slice(1, -1)
       .replace(/\n+/g, '\n')
-      .split('\n')
+      .replace(/\:\s*{([^\}]*)}/g, (_, v) => {
+        return _.replace(v, v.replace(/\n/g, ''))
+      })
+      .split(',\n')
       .reduce((result, item: string) => {
         item = item.trim()
         if (!item) return result
-        const [key, val] = item.split(':') as string[]
-        let newVal = val.trim()
+        const items = item.split(':') as string[]
+        const [key, val] = [items[0], items.slice(1).join(':')]
+        const newVal = val.replace(/\n/g, '').replace(/\s+/g, ' ').trim()
         result[key.trim()] = newVal.endsWith(',') ? newVal.slice(0, -1) : newVal
         return result
       }, {} as any)
   }
 }
 
-// const data = "{\n    sider: propTypes.bool.def(true),\n    theme: propTypes.oneOf(['light', 'dark']),\n  }"
+// const data = "{\n    config: {\n      type: Object,\n      default: () => {\n        return {\n          menuconfg: {\n            father: {}\n          }\n        }\n      }\n    },\n    type: {\n      type: String,\n      default: 'add'\n    }\n  }"
 
-// console.log(useJSONParse(data)) // { name: 'simon', age: '14' }
+// console.log(useJSONParse(data).config) // { name: 'simon', age: '14' }
