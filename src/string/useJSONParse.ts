@@ -25,6 +25,8 @@ export function useJSONParse(str: string) {
       .trim()
       .slice(1, -1)
       .replace(/\n+/g, '\n')
+      .replaceAll('\t', '')
+      .replaceAll('\r', '')
       .replace(/\:\s*{([^\}]*)}/g, (_, v) => {
         return _.replace(v, v.replace(/\n/g, ''))
       })
@@ -41,6 +43,6 @@ export function useJSONParse(str: string) {
   }
 }
 
-// const data = "{\n    config: {\n      type: Object,\n      default: () => {\n        return {\n          menuconfg: {\n            father: {}\n          }\n        }\n      }\n    },\n    type: {\n      type: String,\n      default: 'add'\n    }\n  }"
+// const data = "{\r\n    message: {\r\n      type: Object,\r\n      required: true\r\n    },\r\n    notifyList: {\r\n      type: Array,\r\n      required: true\r\n    }\r\n  }"
 
-// console.log(useJSONParse(data).config) // { name: 'simon', age: '14' }
+// console.log(useJSONParse(data)) // { name: 'simon', age: '14' }
