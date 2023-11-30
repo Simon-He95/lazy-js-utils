@@ -21,8 +21,9 @@ export function useJSONParse(str: string) {
         .replace(moreCommaReg, (_, v) => v),
     )
   } catch (_) {
+    str = str.trim().replace(/(\/\*[\s\S]*?\*\/|\/\/.*)/g, '')
+    if (str.endsWith(';')) str = str.slice(0, -1)
     return str
-      .trim()
       .slice(1, -1)
       .replace(/\n+/g, '\n')
       .replaceAll('\t', '')
@@ -43,6 +44,67 @@ export function useJSONParse(str: string) {
   }
 }
 
-// const data = "{\r\n    message: {\r\n      type: Object,\r\n      required: true\r\n    },\r\n    notifyList: {\r\n      type: Array,\r\n      required: true\r\n    }\r\n  }"
+const data = `{
+  defaultFullscreen: { type: Boolean },
+  // Can it be full screen
+  canFullscreen: { type: Boolean, default: true },
+  // After enabling the wrapper, the bottom can be increased in height
+  wrapperFooterOffset: { type: Number, default: 0 },
+  // Warm reminder message
+  helpMessage: [String, Array] as PropType<string | string[]>,
+  // Whether to setting wrapper
+  useWrapper: { type: Boolean, default: true },
+  loading: { type: Boolean },
+  loadingTip: { type: String },
+  /**
+   * @description: Show close button
+   */
+  showCancelBtn: { type: Boolean, default: true },
+  /**
+   * @description: Show confirmation button
+   */
+  showOkBtn: { type: Boolean, default: true },
 
-// console.log(useJSONParse(data)) // { name: 'simon', age: '14' }
+  wrapperProps: Object as PropType<Partial<ModalWrapperProps>>,
+
+  afterClose: Function as PropType<() => Promise<VueNode>>,
+
+  bodyStyle: Object as PropType<CSSProperties>,
+
+  closable: { type: Boolean, default: true },
+
+  closeIcon: Object as PropType<VueNode>,
+
+  confirmLoading: { type: Boolean },
+
+  destroyOnClose: { type: Boolean },
+
+  footer: Object as PropType<VueNode>,
+
+  getContainer: Function as PropType<() => any>,
+
+  mask: { type: Boolean, default: true },
+
+  maskClosable: { type: Boolean, default: true },
+  keyboard: { type: Boolean, default: true },
+
+  maskStyle: Object as PropType<CSSProperties>,
+
+  okType: { type: String, default: 'primary' },
+
+  okButtonProps: Object as PropType<ButtonProps>,
+
+  cancelButtonProps: Object as PropType<ButtonProps>,
+
+  title: { type: String },
+
+  open: { type: Boolean },
+
+  width: [String, Number] as PropType<string | number>,
+
+  wrapClassName: { type: String },
+
+  zIndex: { type: Number },
+};`
+
+console.log(useJSONParse(data)) // { name: 'simon', age: '14' }
