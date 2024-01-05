@@ -1,6 +1,6 @@
-import simon from '@simon_he/eslint-config'
+const simon = require('@simon_he/eslint-config').default
 
-export default simon({
+module.exports = simon({
   rules: {
     'no-console': 'off',
     'ts/ban-types': 'off',

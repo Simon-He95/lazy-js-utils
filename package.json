@@ -1,6 +1,5 @@
 {
   "name": "lazy-js-utils",
-  "type": "module",
   "version": "0.0.81",
   "packageManager": "pnpm@7.6.0",
   "description": "js-tool",
@@ -17,8 +16,8 @@
     "lazy-js-utils",
     "utils"
   ],
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
