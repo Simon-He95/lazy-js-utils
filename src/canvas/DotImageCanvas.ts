@@ -14,6 +14,7 @@ export class DotImageCanvas {
   fontWeight = 1
   status = 'pending'
   bgColor?: string
+  stop: () => void = () => {}
   constructor(
     src: string,
     color: string,
@@ -94,8 +95,7 @@ export class DotImageCanvas {
   async executor() {
     try {
       this.createImage()
-    }
-    catch (error) {}
+    } catch (error) {}
     return this
   }
 
@@ -120,7 +120,7 @@ export class DotImageCanvas {
         }
       })
     }
-    useRic(tasks, {
+    this.stop = useRic(tasks, {
       callback: () => {
         this.status = 'success'
       },
@@ -140,6 +140,7 @@ export class DotImageCanvas {
     fontWeight: number,
     bgColor = '#fff',
   ) {
+    this.stop()
     const p = removeElement(this.canvas)
     this.status = 'pending'
     this.initOptions(src, color, fontWeight, bgColor)
@@ -155,11 +156,16 @@ export class DotImageCanvas {
   }
 
   clearCanvas() {
+    this.stop()
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
   }
 
   append(container: MaybeElement) {
     insertElement(container, this.canvas)
     return this
+  }
+  destory() {
+    this.stop()
+    removeElement(this.canvas)
   }
 }
