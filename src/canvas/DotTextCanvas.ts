@@ -15,6 +15,8 @@ export class DotTextCanvas {
   textPointSet: Array<number[]> = []
   status = 'pending'
   container?: HTMLElement
+  stop: () => void = () => {}
+
   constructor(
     text: string,
     fontSize: number,
@@ -100,7 +102,7 @@ export class DotTextCanvas {
         }
       })
     }
-    useRic(tasks, {
+    this.stop = useRic(tasks, {
       callback: () => (this.status = 'success'),
     })
   }
@@ -112,6 +114,7 @@ export class DotTextCanvas {
     color: string,
     fontWeight: number,
   ): DotTextCanvas {
+    this.stop()
     const p = removeElement(this.canvas)
     if (!p) {
       throw new Error(
@@ -136,11 +139,16 @@ export class DotTextCanvas {
   }
 
   clearCanvas() {
+    this.stop()
     this.ctx?.clearRect(0, 0, this.canvas!.width, this.canvas!.height)
   }
 
   append(container: MaybeElement) {
     insertElement(container, this.canvas)
     return this
+  }
+  destory() {
+    this.stop()
+    removeElement(this.canvas)
   }
 }
