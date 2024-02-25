@@ -1,33 +1,7 @@
 import child_process from 'node:child_process'
 import { isArray } from '../is/isArray'
-import { isBool } from '../is/isBool'
-import { isStr } from '../is/isStr'
 import type { IShellMessage } from '../types'
 
-export function jsShell<T extends string | string[]>(
-  commander: T,
-  errorExit?: boolean,
-  isLog?: boolean,
-): T extends string ? IShellMessage : IShellMessage[]
-export function jsShell<T extends string | string[]>(
-  commander: T,
-  stdio: 'inherit' | 'pipe',
-  errorExit?: boolean,
-  isLog?: boolean,
-): T extends string ? IShellMessage : IShellMessage[]
-export function jsShell<T extends string | string[]>(
-  commander: T,
-  stdio: 'inherit' | 'pipe',
-  errorExit?: boolean,
-  isLog?: boolean,
-): T extends string ? IShellMessage : IShellMessage[]
-export function jsShell<T extends string | string[]>(
-  commander: T,
-  args: string[],
-  stdio?: 'inherit' | 'pipe',
-  errorExit?: boolean,
-  isLog?: boolean,
-): T extends string ? IShellMessage : IShellMessage[]
 /**
  *
  * @param { string | string[] } commander 指令
@@ -36,21 +10,19 @@ export function jsShell<T extends string | string[]>(
  * @returns
  */
 
+interface Options {
+  args?: string[]
+  stdio?: 'inherit' | 'pipe'
+  errorExit?: boolean
+  isLog?: boolean
+  cwd?: string
+}
 export function jsShell<T extends string | string[]>(
   commander: T,
-  args: string[] | boolean | 'inherit' | 'pipe' = [],
-  stdio: 'inherit' | 'pipe' | boolean = 'inherit',
-  errorExit?: boolean,
-  isLog?: boolean,
+  options: Options = {},
 ) {
-  if (isBool(args)) {
-    errorExit = args as boolean
-    args = []
-    stdio = 'inherit'
-  } else if (isStr(args)) {
-    stdio = args as 'inherit' | 'pipe'
-    args = []
-  }
+  const { args = [], stdio = 'inherit', errorExit, isLog, cwd } = options
+
   return (
     isArray(commander)
       ? commander.map((command) => executor(command))
@@ -64,10 +36,10 @@ export function jsShell<T extends string | string[]>(
         shell: true,
         encoding: 'utf8',
         stdio: stdio === 'inherit' ? 'inherit' : ['inherit', 'pipe', 'inherit'],
+        cwd,
       },
     )
     const result = output[1]?.trim()
-
     if (status === 130) {
       if (isLog) console.log('已取消...')
       return { status, result } as IShellMessage
