@@ -4,5 +4,5 @@ import { jsShell } from '../node/jsShell'
 
 useProcressNodeWorker(
   ({ params, stdio = 'pipe', errorExit, isLog }: NodeWorkerPayload) =>
-    jsShell(`${params}`, stdio, errorExit, isLog),
+    jsShell(`${params}`, { stdio, errorExit, isLog }),
 )

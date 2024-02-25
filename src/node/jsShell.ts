@@ -19,9 +19,22 @@ interface Options {
 }
 export function jsShell<T extends string | string[]>(
   commander: T,
-  options: Options = {},
+  options: Options | 'inherit' | 'pipe' = 'inherit',
 ) {
-  const { args = [], stdio = 'inherit', errorExit, isLog, cwd } = options
+  let args: string[] = []
+  let stdio: 'inherit' | 'pipe' = 'inherit'
+  let errorExit: boolean = true
+  let isLog: boolean = false
+  let cwd: string | undefined
+  if (typeof options === 'string') {
+    stdio = options
+  } else {
+    args = options.args || []
+    stdio = options.stdio || 'inherit'
+    errorExit = options.errorExit || true
+    isLog = options.isLog || false
+    cwd = options.cwd
+  }
 
   return (
     isArray(commander)
