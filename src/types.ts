@@ -1,28 +1,3 @@
-declare global {
-  interface Window {
-    webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number
-    mozRequestAnimationFrame: (callback: FrameRequestCallback) => number
-    msRequestAnimationFrame: (callback: FrameRequestCallback) => number
-    oRequestAnimationFrame: (callback: FrameRequestCallback) => number
-    webkitCancelAnimationFrame: (handle: number) => void
-    mozCancelAnimationFrame: (handle: number) => void
-    oCancelAnimationFrame: (handle: number) => void
-    msCancelAnimationFrame: (handle: number) => void
-    webkitIndexedDB: IDBFactory
-    mozIndexedDB: IDBFactory
-    msIndexedDB: IDBFactory
-    indexedDB: IDBFactory
-    SpeechRecognition: any
-    webkitSpeechRecognition: any
-  }
-  interface Navigator {
-    webkitGetUserMedia: () => void
-    mozGetUserMedia: () => void
-    msGetUserMedia: () => void
-    getUserMedia: () => void
-  }
-}
-
 export type Redirect = 'follow' | 'error' | 'manual'
 export type Cache =
   | 'default'
@@ -57,14 +32,14 @@ export interface IFetchConfig extends IFetchOptions {
   integrity?: string
   referrer?: string
   referrerPolicy?:
-  | 'no-referrer'
-  | 'no-referrer-when-downgrade'
-  | 'origin'
-  | 'origin-when-cross-origin'
-  | 'unsafe-url'
-  | 'strict-origin'
-  | 'strict-origin-when-cross-origin'
-  | 'same-origin'
+    | 'no-referrer'
+    | 'no-referrer-when-downgrade'
+    | 'origin'
+    | 'origin-when-cross-origin'
+    | 'unsafe-url'
+    | 'strict-origin'
+    | 'strict-origin-when-cross-origin'
+    | 'same-origin'
   method?: Method
   credentials?: Credentials
   params?: Record<string, string>
@@ -204,8 +179,8 @@ type Val<key, A, B> = key extends keyof A
       : Merge<A[key], B[key]>
     : A[key]
   : key extends keyof B
-    ? B[key]
-    : never
+  ? B[key]
+  : never
 
 export type Merge<A, B> = { [key in Keys<A, B>]: Val<key, A, B> }
 

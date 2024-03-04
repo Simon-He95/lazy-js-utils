@@ -9,5 +9,5 @@
     "*.css": "postcss"
   },
   "unocss.root": ["playground"],
-  "editor.inlineSuggest.showToolbar": "onHover"
+  "editor.inlineSuggest.showToolbar": "always"
 }

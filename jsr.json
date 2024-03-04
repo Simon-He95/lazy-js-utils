@@ -1,0 +1,19 @@
+{
+  "name": "@simon/utils",
+  "version": "0.0.0",
+  "exports": "./src/index.ts",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/Simon-He95",
+  "homepage": "https://github.com/Simon-He95/vitesse-jsr#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Simon-He95/vitesse-jsr.git"
+  },
+  "bugs": "https://github.com/Simon-He95/vitesse-jsr/issues",
+  "exclude": [
+    "tsup.config.ts",
+    "eslint.config.js",
+    "pnpm-lock.yaml",
+    "tests/**"
+  ]
+}
