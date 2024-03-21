@@ -5,7 +5,7 @@ import { isArray } from '../is/isArray'
 import { isStr } from '../is/isStr'
 import { parallel } from '../js/parallel'
 import type { IShellMessage, NodeWorkerPayload } from '../types'
-import { existsSync } from 'node:fs'
+import fs from 'node:fs'
 
 type NodeWorkReturn<T> = T extends {
   params: string[]
@@ -33,7 +33,7 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
       __dirname,
       '../node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.mjs',
     )
-    if (!existsSync(url)) {
+    if (!fs.existsSync(url)) {
       url = path.resolve(__dirname, './worker/useNodeWorkerThread.mjs')
     }
   }

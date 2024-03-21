@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "htmlparser2": "^8.0.1",
-    "lazy-js-utils": "^0.0.37",
+    "lazy-js-utils": "workspace:^",
     "qrcode": "^1.5.1",
     "spark-md5": "^3.0.2"
   },

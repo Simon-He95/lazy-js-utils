@@ -12,8 +12,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       lazy-js-utils:
-        specifier: ^0.0.37
-        version: 0.0.37(vue@3.2.41)
+        specifier: workspace:^
+        version: 'link:'
       qrcode:
         specifier: ^1.5.1
         version: 1.5.1
@@ -4874,14 +4874,6 @@ packages:
   /kolorist@1.5.1:
     resolution: {integrity: sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==}
     dev: true
-
-  /lazy-js-utils@0.0.37(vue@3.2.41):
-    resolution: {integrity: sha512-kr6ehqgZmUDkBFUdFaOby43wZ/fdUODJVDRY4v0ZlGoTKTXZ/huea8Mu9LA2ThSt11URObpE+DMWS+IHBtKW2w==}
-    peerDependencies:
-      vue: ^3.2.41
-    dependencies:
-      vue: 3.2.41
-    dev: false
 
   /levn@0.3.0:
     resolution: {integrity: sha512-0OO4y2iOHix2W6ujICbKIaEQXvFQHue65vUG3pb5EUomzPI90z9hsA1VsO/dbIIpC53J8gxM9Q4Oho0jrCM/yA==}
