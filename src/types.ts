@@ -232,3 +232,9 @@ export type Lang =
   | 'zh-HK'
   | 'zh-MO'
   | 'zh-SG'
+
+export type Direction =
+  | 'horizontal'
+  | 'vertical'
+  | 'horizontal-reverse'
+  | 'vertical-reverse'

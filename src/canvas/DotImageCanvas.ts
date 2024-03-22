@@ -3,7 +3,7 @@ import { useRic } from '../perf/useRic'
 import { createElement } from '../event/createElement'
 import { insertElement } from '../event/insertElement'
 import { removeElement } from '../event/removeElement'
-import type { MaybeElement } from '../types'
+import type { Direction, MaybeElement } from '../types'
 
 export class DotImageCanvas {
   canvas = document.createElement('canvas')
@@ -15,13 +15,15 @@ export class DotImageCanvas {
   status = 'pending'
   bgColor?: string
   stop: () => void = () => {}
+  direction: Direction = 'horizontal'
   constructor(
     src: string,
     color: string,
     fontWeight: number,
     bgColor = '#fff',
+    direction?: Direction,
   ) {
-    this.initOptions(src, color, fontWeight, bgColor)
+    this.initOptions(src, color, fontWeight, bgColor, direction)
     this.executor()
   }
 
@@ -107,18 +109,62 @@ export class DotImageCanvas {
     const size = (this.fontWeight * 50) / this.canvas.width
     const getPoint = memorizeFn((i: number) => oneTempLength * (i + 0.5))
     const tasks: Function[] = []
-    for (let i = 0; i < h; i++) {
-      tasks.push(() => {
-        for (let j = 0; j < w; j++) {
-          const color = imagePointSet[i][j]
-          this.ctx.beginPath()
-          this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
-          this.ctx.fillStyle = color
-            ? this.color || String(color)
-            : this.bgColor || '#fff'
-          this.ctx.fill()
-        }
-      })
+    if (this.direction === 'horizontal-reverse') {
+      for (let i = h - 1; i >= 0; i--) {
+        tasks.push(() => {
+          for (let j = w - 1; j >= 0; j--) {
+            const color = imagePointSet[i][j]
+            if (color) {
+              this.ctx.beginPath()
+              this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
+              this.ctx.fillStyle = this.color || `${color}`
+              this.ctx.fill()
+            }
+          }
+        })
+      }
+    } else if (this.direction === 'horizontal') {
+      for (let i = 0; i < h; i++) {
+        tasks.push(() => {
+          for (let j = 0; j < w; j++) {
+            const color = imagePointSet[i][j]
+            if (color) {
+              this.ctx.beginPath()
+              this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
+              this.ctx.fillStyle = this.color || `${color}`
+              this.ctx.fill()
+            }
+          }
+        })
+      }
+    } else if (this.direction === 'vertical') {
+      for (let j = 0; j < w; j++) {
+        tasks.push(() => {
+          for (let i = 0; i < h; i++) {
+            const color = imagePointSet[i][j]
+            if (color) {
+              this.ctx.beginPath()
+              this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
+              this.ctx.fillStyle = this.color || `${color}`
+              this.ctx.fill()
+            }
+          }
+        })
+      }
+    } else if (this.direction === 'vertical-reverse') {
+      for (let j = w - 1; j >= 0; j--) {
+        tasks.push(() => {
+          for (let i = h - 1; i >= 0; i--) {
+            const color = imagePointSet[i][j]
+            if (color) {
+              this.ctx.beginPath()
+              this.ctx.arc(getPoint(j), getPoint(i), size, 0, Math.PI * 2)
+              this.ctx.fillStyle = this.color || `${color}`
+              this.ctx.fill()
+            }
+          }
+        })
+      }
     }
     this.stop = useRic(tasks, {
       callback: () => {
@@ -127,11 +173,18 @@ export class DotImageCanvas {
     })
   }
 
-  initOptions(src: string, color: string, fontWeight: number, bgColor: string) {
+  initOptions(
+    src: string,
+    color: string,
+    fontWeight: number,
+    bgColor: string,
+    direction: Direction = 'horizontal',
+  ) {
     this.originSrc = src
     this.color = color
     this.fontWeight = fontWeight
     this.bgColor = bgColor
+    this.direction = direction
   }
 
   async repaint(
@@ -139,11 +192,12 @@ export class DotImageCanvas {
     color: string,
     fontWeight: number,
     bgColor = '#fff',
+    direction?: Direction,
   ) {
     this.stop()
     const p = removeElement(this.canvas)
     this.status = 'pending'
-    this.initOptions(src, color, fontWeight, bgColor)
+    this.initOptions(src, color, fontWeight, bgColor, direction)
     if (!p) {
       throw new Error(
         'repaint error not found canvas container or has been removed',
