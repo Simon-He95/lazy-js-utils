@@ -1,3 +1,5 @@
+import process from 'node:process'
+
 /**
  * 判断是windows电脑
  */

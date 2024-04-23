@@ -64,7 +64,8 @@ export class CreateSignatureCanvas implements ISignature {
         this.canvas,
         'mousemove',
         (e) => {
-          if (!down) return
+          if (!down)
+            return
           this.ctx.lineTo(e.pageX + 2 - offsetX, e.pageY - offsetY)
           this.ctx.stroke()
         },
@@ -110,7 +111,7 @@ export class CreateSignatureCanvas implements ISignature {
 
   unmount() {
     removeElement(this.canvas)
-    this.stop.forEach((s) => s())
+    this.stop.forEach(s => s())
   }
 
   listen() {
@@ -131,25 +132,27 @@ export class CreateSignatureCanvas implements ISignature {
   }
 
   undo() {
-    if (this.historyStack.length === 0) return
+    if (this.historyStack.length === 0)
+      return
     // 清空画布
     this.clearCanvas()
     // 删除当前操作
     this.resetStack.push(this.historyStack.pop()!)
     // 逐个执行绘图动作进行重绘
-    this.historyStack.forEach((imageData) =>
+    this.historyStack.forEach(imageData =>
       this.ctx.putImageData(imageData, 0, 0),
     )
   }
 
   redo() {
-    if (this.resetStack.length === 0) return
+    if (this.resetStack.length === 0)
+      return
     // 清空画布
     this.clearCanvas()
     // 删除当前操作
     this.historyStack.push(this.resetStack.pop()!)
     // 逐个执行绘图动作进行重绘
-    this.historyStack.forEach((imageData) =>
+    this.historyStack.forEach(imageData =>
       this.ctx.putImageData(imageData, 0, 0),
     )
   }

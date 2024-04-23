@@ -112,8 +112,8 @@ export interface JSCookie {
 }
 
 export interface LRU {
-  set(key: string, value: any): void
-  get(key: string): any
+  set: (key: string, value: any) => void
+  get: (key: string) => any
   cache: Map<string, any>
   max: number
   size: () => number
@@ -122,8 +122,8 @@ export interface LRU {
 export interface ISignature {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
-  createCanvas(w: number, h: number): void
-  clearCanvas(): void
+  createCanvas: (w: number, h: number) => void
+  clearCanvas: () => void
 }
 
 export interface FileMD5 {
@@ -140,7 +140,7 @@ export interface FileChunk {
 
 export type ChunkDetail = ChunkInfo & {
   isDone: boolean
-  remaning: number
+  remaining: number
   type: string
   size: number
   lastModified: number
@@ -203,8 +203,8 @@ type Val<key, A, B> = key extends keyof A
       : Merge<A[key], B[key]>
     : A[key]
   : key extends keyof B
-  ? B[key]
-  : never
+    ? B[key]
+    : never
 
 export type Merge<A, B> = { [key in Keys<A, B>]: Val<key, A, B> }
 

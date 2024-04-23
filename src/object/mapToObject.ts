@@ -2,9 +2,9 @@ import { isObject } from '../is'
 
 export function mapToObject(map: Map<any, any>) {
   return Array.from(map).reduce((result, [key, value]) => {
-    if (isObject(key)) {
+    if (isObject(key))
       key = JSON.stringify(key)
-    }
+
     result[key] = value
     return result
   }, {} as Record<string, any>)

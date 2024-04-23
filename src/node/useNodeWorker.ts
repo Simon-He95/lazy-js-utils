@@ -1,11 +1,11 @@
 import worker_threads from 'node:worker_threads'
 import path from 'node:path'
 import process from 'node:process'
+import fs from 'node:fs'
 import { isArray } from '../is/isArray'
 import { isStr } from '../is/isStr'
 import { parallel } from '../js/parallel'
 import type { IShellMessage, NodeWorkerPayload } from '../types'
-import fs from 'node:fs'
 
 type NodeWorkReturn<T> = T extends {
   params: string[]
@@ -33,21 +33,19 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
       __dirname,
       '../node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.mjs',
     )
-    if (!fs.existsSync(url)) {
+    if (!fs.existsSync(url))
       url = path.resolve(__dirname, './worker/useNodeWorkerThread.mjs')
-    }
   }
   const { params } = isStr(payload)
     ? (payload = { params: payload } as any)
     : payload
   const commands = isArray(params) ? params : params.split('&&')
-  const result = await parallel(commands, (params) =>
+  const result = await parallel(commands, params =>
     createWorker(
       Object.assign(payload, {
         params,
       }),
-    ),
-  )
+    ))
   setTimeout(process.exit) // 结束子进程
   return (result.length === 1 ? result[0] : result) as NodeWorkReturn<T>
 
@@ -63,9 +61,8 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
 
 export function useProcressNodeWorker(callback: (data: any) => any) {
   const { parentPort } = worker_threads
-  parentPort!.on('message', async (data) =>
-    parentPort?.postMessage((await callback?.(data)) || (() => '')),
-  )
+  parentPort!.on('message', async data =>
+    parentPort?.postMessage((await callback?.(data)) || (() => '')))
 }
 
 // useNodeWorker({

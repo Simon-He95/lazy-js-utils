@@ -9,13 +9,18 @@ export function scrollToTop() {
     let pre: number
     const stop = useRaf(() => {
       const t = document.documentElement.scrollTop || document.body.scrollTop
-      if (isUndef(pre)) pre = t
+      if (isUndef(pre))
+        pre = t
       if ((pre < t && (pre * 8) / 7 !== t) || t === 0) {
         stop()
         window.scrollTo(0, 0)
-      } else window.scrollTo(0, (pre = (7 * t) / 8))
+      }
+      else {
+        window.scrollTo(0, (pre = (7 * t) / 8))
+      }
     }, 0)
-  } catch (error: any) {
+  }
+  catch (error: any) {
     throw new Error(error)
   }
 }

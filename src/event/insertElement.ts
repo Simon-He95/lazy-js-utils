@@ -17,6 +17,5 @@ export function insertElement(
     (parent as HTMLElement).insertBefore(
       element as HTMLElement,
       isNull(target) ? null : target || (parent as HTMLElement).firstChild,
-    ),
-  )
+    ))
 }

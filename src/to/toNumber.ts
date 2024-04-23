@@ -9,7 +9,8 @@ import { isStr } from '../is/isStr'
 export function toNumber(
   val: number | string | boolean | undefined | null,
 ): number {
-  if (val == null) return 0
+  if (val == null)
+    return 0
 
   if (isStr(val)) {
     val = Number.parseFloat(val)
@@ -17,7 +18,8 @@ export function toNumber(
     return val
   }
 
-  if (isBool(val)) return Number(val)
+  if (isBool(val))
+    return Number(val)
 
   return val
 }

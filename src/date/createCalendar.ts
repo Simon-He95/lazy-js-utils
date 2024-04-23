@@ -19,12 +19,14 @@ export function createCanlendar(currentMonth: number) {
     const weekList = Array.from({ length: 7 })
     if (i === 0) {
       for (let j = 0; j < weekList.length; j++) {
-        weekList[j] =
-          j < currentDay ? preMonthDays - currentDay + j + 1 : ++count
+        weekList[j]
+          = j < currentDay ? preMonthDays - currentDay + j + 1 : ++count
       }
-    } else {
+    }
+    else {
       for (let j = 0; j < weekList.length; j++) {
-        if (count >= getDaysOfMonth(currentMonth)) count = 0
+        if (count >= getDaysOfMonth(currentMonth))
+          count = 0
         weekList[j] = ++count
       }
     }

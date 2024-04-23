@@ -6,7 +6,7 @@ import { isStr } from '../is/isStr'
 /**
  * 转为base64格式
  * @param { File | string | Blob } o 传入类型 File | string | Blob
- * @returns
+ * @returns { Promise<string> }
  */
 export async function toBase64(o: File | string | Blob): Promise<string> {
   if (isFile(o) || isBlob(o))

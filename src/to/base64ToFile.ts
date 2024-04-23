@@ -2,7 +2,7 @@
  *
  * @param { string } s base64
  * @param { string } filename 文件名
- * @returns
+ * @returns File
  */
 export function base64ToFile(s: string, filename: string): File {
   const arr = s.split(',')

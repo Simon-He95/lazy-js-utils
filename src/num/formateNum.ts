@@ -11,8 +11,8 @@ export function formateNum(
   integer: 'floor' | 'ceil' = 'ceil',
 ) {
   number = `${number}`.replace(/[^0-9+-Ee.]/g, '')
-  const n = !isFinite(+number) ? 0 : +number
-  const prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
+  const n = !Number.isFinite(+number) ? 0 : +number
+  const prec = !Number.isFinite(+decimals) ? 0 : Math.abs(decimals)
   const sep = ','
   const dec = '.'
   const s = (prec ? toFixedFix(n, prec) : `${Math.round(n)}`).split('.')

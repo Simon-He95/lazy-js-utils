@@ -10,7 +10,8 @@ export function isExist(url: string): boolean {
   try {
     fs.accessSync(toAbsolutePath(url))
     return true
-  } catch (error) {
+  }
+  catch (error) {
     return false
   }
 }

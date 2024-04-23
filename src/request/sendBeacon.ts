@@ -14,7 +14,7 @@ export function sendBeacon(
     document,
     'visibilitychange',
     () =>
-      document.visibilityState === 'hidden' &&
-      navigator.sendBeacon(url, analyticsData),
+      document.visibilityState === 'hidden'
+      && navigator.sendBeacon(url, analyticsData),
   )
 }

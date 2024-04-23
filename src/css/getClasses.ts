@@ -5,8 +5,7 @@ export function getClasses(
 ) {
   let index = 0
   return str.replace(classesReg, (match, block, classes) =>
-    match.replace(classes, callback(classes, block, index++)),
-  )
+    match.replace(classes, callback(classes, block, index++)))
 }
 
 // const str = `

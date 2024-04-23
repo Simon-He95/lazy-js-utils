@@ -12,6 +12,5 @@ export function useResizeObserver(
     callback?.(
       document.documentElement.clientWidth || document.body.clientWidth,
       document.documentElement.clientHeight || document.body.clientHeight,
-    ),
-  )
+    ))
 }

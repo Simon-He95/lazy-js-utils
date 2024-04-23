@@ -25,7 +25,7 @@ interface IArrayToExcel {
   title?: string[]
   filter?: string[]
 }
- * @returns
+ * @returns { void }
  */
 export function arrayToExcel(options: IArrayToExcel) {
   const { data, filename = uuid(), title, filter } = options

@@ -31,7 +31,7 @@ export function stringify(
     encode = true,
   } = options
   return Object.keys(o)
-    .map((k) => `${hyp ? hyphenate(k) : k}${eq}${getString(encode, px, o, k)}`)
+    .map(k => `${hyp ? hyphenate(k) : k}${eq}${getString(encode, px, o, k)}`)
     .join(sep)
 }
 

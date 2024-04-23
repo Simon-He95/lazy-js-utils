@@ -1,5 +1,5 @@
-export const stylesReg =
-  /(<.* style=['"]([ \w$\-\_:;\n]*)['"][\/ "'$\-_\w]*>)/gm
+export const stylesReg
+  = /(<.* style=['"]([ \w$\-\_:;\n]*)['"][\/ "'$\-_\w]*>)/gm
 
 /**
  *
@@ -14,8 +14,7 @@ export function getStyles(
 ) {
   let index = 0
   return str.replace(stylesReg, (match, block, style) =>
-    match.replace(style, callback(style, block, index++)),
-  )
+    match.replace(style, callback(style, block, index++)))
 }
 
 // const str = `

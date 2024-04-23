@@ -35,7 +35,7 @@ export async function fileSplice(
           size: file.size,
           lastModified: file.lastModified,
           isDone: finishCount === THREAD_COUNT,
-          remaning: THREAD_COUNT - finishCount,
+          remaining: THREAD_COUNT - finishCount,
         }
         result.push(params)
         callback && callback(params)

@@ -41,7 +41,7 @@ export function findElement(
 
   return all
     ? (currentNode.querySelectorAll(selector) as
-        | NodeListOf<Element>
-        | undefined)
+    | NodeListOf<Element>
+    | undefined)
     : (currentNode.querySelector(selector) as HTMLElement | null)
 }

@@ -11,7 +11,8 @@ export function isFile(o: Blob | string): o is File {
   if (isStr(o)) {
     try {
       return fs.statSync(o as string).isFile()
-    } catch (error) {
+    }
+    catch (error) {
       return false
     }
   }

@@ -1,7 +1,0 @@
-node_modules
-dist
-pnpm-lock.yaml
-!.*
-.history
-src
-shims.d.ts

@@ -57,7 +57,7 @@ export class DotTextCanvas {
   }
 
   executor() {
-    this.originText.split('').forEach((text) => this.getText(text))
+    this.originText.split('').forEach(text => this.getText(text))
     this.textPointSet = this.combineText()
     this.getCanvas()
   }
@@ -147,6 +147,7 @@ export class DotTextCanvas {
     insertElement(container, this.canvas)
     return this
   }
+
   destory() {
     this.stop()
     removeElement(this.canvas)

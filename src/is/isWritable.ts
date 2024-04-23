@@ -9,7 +9,8 @@ export function isWritable(filename: string): boolean {
   try {
     fs.accessSync(filename, fs.constants.W_OK)
     return true
-  } catch {
+  }
+  catch {
     return false
   }
 }

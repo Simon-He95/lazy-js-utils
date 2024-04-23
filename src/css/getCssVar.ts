@@ -6,7 +6,6 @@ export function getCssVar(
   style: string,
   callback: (css: string) => void,
 ) {
-  return mount(element, (el) =>
-    callback?.(getComputedStyle(el).getPropertyValue(style)),
-  )
+  return mount(element, el =>
+    callback?.(getComputedStyle(el).getPropertyValue(style)))
 }

@@ -1,5 +1,6 @@
 /**
  * 将数转换为数组
+ * @description 将数转换为数组
  * @param { Record<string, any> } tree 树
  * @param { string } children 字节点 默认 'children'
  * @returns

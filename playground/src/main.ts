@@ -79,3 +79,5 @@ app.mount('#app')
 // }).then((res: any) => {
 //   console.log(res)
 // })
+
+// test

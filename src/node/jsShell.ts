@@ -1,4 +1,5 @@
 import child_process from 'node:child_process'
+import process from 'node:process'
 import { isArray } from '../is/isArray'
 import type { IShellMessage } from '../types'
 
@@ -28,7 +29,8 @@ export function jsShell<T extends string | string[]>(
   let cwd: string | undefined
   if (typeof options === 'string') {
     stdio = options
-  } else {
+  }
+  else {
     args = options.args || []
     stdio = options.stdio || 'inherit'
     errorExit = options.errorExit || true
@@ -38,7 +40,7 @@ export function jsShell<T extends string | string[]>(
 
   return (
     isArray(commander)
-      ? commander.map((command) => executor(command))
+      ? commander.map(command => executor(command))
       : executor(commander)
   ) as T extends string ? IShellMessage : IShellMessage[]
   function executor(commander: string): IShellMessage {
@@ -54,12 +56,15 @@ export function jsShell<T extends string | string[]>(
     )
     const result = output[1]?.trim()
     if (status === 130) {
-      if (isLog) console.log('已取消...')
+      if (isLog)
+        console.log('已取消...')
       return { status, result } as IShellMessage
     }
     if (status !== 0) {
-      if (isLog) console.log(result)
-      if (errorExit) process.exit(1)
+      if (isLog)
+        console.log(result)
+      if (errorExit)
+        process.exit(1)
     }
 
     return { status, result } as IShellMessage

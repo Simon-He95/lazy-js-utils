@@ -18,14 +18,17 @@ export function render(
   arr.forEach((item: DomTreeItemInterface) => {
     const el: HTMLElement = document.createElement(item.tag)
 
-    if (item.class) el.className = item.class
+    if (item.class)
+      el.className = item.class
 
-    if (item.name) el.setAttribute('name', item.name)
+    if (item.name)
+      el.setAttribute('name', item.name)
 
     if (typeof item.children === 'string') {
       const text: Text = document.createTextNode(item.children)
       el.appendChild(text)
-    } else if (item.children) {
+    }
+    else if (item.children) {
       render(item.children, el)
     }
 

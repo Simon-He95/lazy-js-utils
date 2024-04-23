@@ -23,7 +23,7 @@ const defaultSpeechOptions: SpeechToTextOptions = {
   maxAlternatives: number
 }
  * @param { (result: any) => any } callback 结果回调函数
- * @returns
+ * @returns { { toggle: () => void, abort: () => void } }
  */
 export function speechToText(
   options: SpeechToTextOptions | ((result: any) => any) = defaultSpeechOptions,
@@ -35,8 +35,8 @@ export function speechToText(
     callback = options
     options = defaultSpeechOptions
   }
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition
+  const SpeechRecognition
+    = window.SpeechRecognition || window.webkitSpeechRecognition
   const recognition = new SpeechRecognition()
 
   Object.assign(recognition, options)
@@ -46,7 +46,8 @@ export function speechToText(
 
   return {
     toggle: () => {
-      if (isStart) recognition.stop()
+      if (isStart)
+        recognition.stop()
       else recognition.start()
       isStart = !isStart
     },

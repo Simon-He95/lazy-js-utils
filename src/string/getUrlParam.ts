@@ -1,7 +1,7 @@
 /**
  * 获取url中的参数
  * @param { string } s url地址
- * @returns
+ * @returns Record<string, string> | undefined
  */
 export function getUrlParam(s?: string): Record<string, string> | undefined {
   s = (s || window.location.search).split('?')[1]

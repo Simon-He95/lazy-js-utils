@@ -7,7 +7,8 @@ import { log } from './log'
 export function globalErrorCapture() {
   return useEventListener(window, 'error', (err) => {
     const { colno, lineno, error, filename, message } = err
-    if (message.toLowerCase().includes('script error')) return
+    if (message.toLowerCase().includes('script error'))
+      return
     const msg = [
       `Message: ${message}\n`,
       `URL: ${filename}:${lineno}:${colno}\n`,

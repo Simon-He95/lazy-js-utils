@@ -6,11 +6,14 @@ function _bem(
   modifier: string,
 ) {
   let cls = `${namespace}-${block}`
-  if (blockSuffix) cls += `-${blockSuffix}`
+  if (blockSuffix)
+    cls += `-${blockSuffix}`
 
-  if (element) cls += `__${element}`
+  if (element)
+    cls += `__${element}`
 
-  if (modifier) cls += `--${modifier}`
+  if (modifier)
+    cls += `--${modifier}`
 
   return cls
 }
@@ -58,7 +61,8 @@ export function useNamespace(defaultNamespace: string) {
     const cssVar = (object: Record<string, string>) => {
       const styles: Record<string, string> = {}
       for (const key in object) {
-        if (object[key]) styles[`--${namespace}-${key}`] = object[key]
+        if (object[key])
+          styles[`--${namespace}-${key}`] = object[key]
       }
 
       return styles
@@ -67,7 +71,8 @@ export function useNamespace(defaultNamespace: string) {
     const cssVarBlock = (object: Record<string, string>) => {
       const styles: Record<string, string> = {}
       for (const key in object) {
-        if (object[key]) styles[`--${namespace}-${block}-${key}`] = object[key]
+        if (object[key])
+          styles[`--${namespace}-${block}-${key}`] = object[key]
       }
 
       return styles

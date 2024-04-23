@@ -4,7 +4,7 @@
  * @param domains 域名数组
  */
 export function retryScript(domains: string[]) {
-  const retryInfo: Record<string, { times: number; nextIndex: number }> = {}
+  const retryInfo: Record<string, { times: number, nextIndex: number }> = {}
   window.addEventListener(
     'error',
     (e) => {

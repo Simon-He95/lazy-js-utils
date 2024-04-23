@@ -36,29 +36,29 @@ export function dragEvent(
         ),
       )
       options.dragMove
-        && stop.push(
-          useEventListener(
-            target,
-            'touchmove',
-            (e) => {
-              if (!trigger || down)
-                options.dragMove?.(wrapperE(e))
-            },
-            false,
-          ),
-        )
+      && stop.push(
+        useEventListener(
+          target,
+          'touchmove',
+          (e) => {
+            if (!trigger || down)
+              options.dragMove?.(wrapperE(e))
+          },
+          false,
+        ),
+      )
       options.dragEnd
-        && stop.push(
-          useEventListener(
-            target,
-            'touchend',
-            (e) => {
-              options.dragEnd?.(wrapperE(e))
-              down = false
-            },
-            false,
-          ),
-        )
+      && stop.push(
+        useEventListener(
+          target,
+          'touchend',
+          (e) => {
+            options.dragEnd?.(wrapperE(e))
+            down = false
+          },
+          false,
+        ),
+      )
     }
     else {
       stop.push(
@@ -73,29 +73,29 @@ export function dragEvent(
         ),
       )
       options.dragMove
-        && stop.push(
-          useEventListener(
-            target,
-            'mousemove',
-            (e) => {
-              if (!trigger || down)
-                options.dragMove?.(e)
-            },
-            false,
-          ),
-        )
+      && stop.push(
+        useEventListener(
+          target,
+          'mousemove',
+          (e) => {
+            if (!trigger || down)
+              options.dragMove?.(e)
+          },
+          false,
+        ),
+      )
       options.dragEnd
-        && stop.push(
-          useEventListener(
-            target,
-            'mouseup',
-            (e) => {
-              options.dragEnd?.(e)
-              down = false
-            },
-            false,
-          ),
-        )
+      && stop.push(
+        useEventListener(
+          target,
+          'mouseup',
+          (e) => {
+            options.dragEnd?.(e)
+            down = false
+          },
+          false,
+        ),
+      )
     }
     if (isStopped)
       stop.forEach(stop => stop())

@@ -8,12 +8,14 @@ import { toNumber } from './toNumber'
 /**
  * 将长度单位转换为数字
  * @param value
- * @returns
+ * @returns number
  */
 export function toPxNum(value: unknown): number {
-  if (isNum(value)) return value
+  if (isNum(value))
+    return value
 
-  if (isPx(value)) return +(value as string).replace('px', '')
+  if (isPx(value))
+    return +(value as string).replace('px', '')
 
   if (isVw(value))
     return (+(value as string).replace('vw', '') * window.innerWidth) / 100
@@ -30,7 +32,8 @@ export function toPxNum(value: unknown): number {
     return num * Number.parseFloat(rootFontSize)
   }
 
-  if (isStr(value)) return toNumber(value)
+  if (isStr(value))
+    return toNumber(value)
 
   // % and other
   return 0

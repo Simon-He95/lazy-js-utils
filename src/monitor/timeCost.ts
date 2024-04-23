@@ -1,7 +1,7 @@
 /**
  * 检测函数执行耗时
  * @param { Function } fn 函数
- * @returns
+ * @returns number
  */
 export function timeCost(fn: Function): number {
   const start = new Date().getTime()

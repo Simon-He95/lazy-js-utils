@@ -1,3 +1,4 @@
+import process from 'node:process'
 import { isStr } from '../is/isStr'
 
 class CustomerError extends Error {

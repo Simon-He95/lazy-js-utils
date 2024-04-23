@@ -9,8 +9,10 @@ export function compareDateTime(date1: string, date2: string) {
   const date1_time = new Date(date1.replace(/-/g, '/'))
   const date2_time = new Date(date2.replace(/-/g, '/'))
 
-  if (date1_time < date2_time) return -1
-  if (date1_time > date2_time) return 1
+  if (date1_time < date2_time)
+    return -1
+  if (date1_time > date2_time)
+    return 1
 
   return 0
 }

@@ -15,7 +15,7 @@ interface ArrayToTreeOptions {
   pid?: number | string 默认 'pid'
   children?: string 默认 'children'
 }
- * @returns
+ * @returns Record<string, any>
  */
 export function arrayToTree(
   array: Record<string, any>[],

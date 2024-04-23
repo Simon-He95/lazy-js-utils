@@ -8,8 +8,8 @@ export function hasProtocol(
   acceptProtocolRelative = false,
 ): boolean {
   return (
-    PROTOCOL_REGEX.test(inputStr) ||
-    (acceptProtocolRelative && PROTOCOL_RELATIVE_REGEX.test(inputStr))
+    PROTOCOL_REGEX.test(inputStr)
+    || (acceptProtocolRelative && PROTOCOL_RELATIVE_REGEX.test(inputStr))
   )
 }
 

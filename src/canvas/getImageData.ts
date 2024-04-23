@@ -21,7 +21,8 @@ export function getImageData(src: string): Promise<ImageData> {
         })
       }
       image.onerror = reject
-    } catch (error) {
+    }
+    catch (error) {
       reject(error)
     }
   })

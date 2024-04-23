@@ -122,7 +122,7 @@ export class VFetch {
       fetch(
         url!,
         this.config?.interceptors?.request?.success?.(this.config)
-          || this.config,
+        || this.config,
       ),
       new Promise((resolve) => {
         setTimeout(() => {

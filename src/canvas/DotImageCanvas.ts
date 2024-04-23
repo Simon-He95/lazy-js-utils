@@ -97,7 +97,8 @@ export class DotImageCanvas {
   async executor() {
     try {
       this.createImage()
-    } catch (error) {}
+    }
+    catch (error) {}
     return this
   }
 
@@ -123,7 +124,8 @@ export class DotImageCanvas {
           }
         })
       }
-    } else if (this.direction === 'horizontal') {
+    }
+    else if (this.direction === 'horizontal') {
       for (let i = 0; i < h; i++) {
         tasks.push(() => {
           for (let j = 0; j < w; j++) {
@@ -137,7 +139,8 @@ export class DotImageCanvas {
           }
         })
       }
-    } else if (this.direction === 'vertical') {
+    }
+    else if (this.direction === 'vertical') {
       for (let j = 0; j < w; j++) {
         tasks.push(() => {
           for (let i = 0; i < h; i++) {
@@ -151,7 +154,8 @@ export class DotImageCanvas {
           }
         })
       }
-    } else if (this.direction === 'vertical-reverse') {
+    }
+    else if (this.direction === 'vertical-reverse') {
       for (let j = w - 1; j >= 0; j--) {
         tasks.push(() => {
           for (let i = h - 1; i >= 0; i--) {
@@ -218,6 +222,7 @@ export class DotImageCanvas {
     insertElement(container, this.canvas)
     return this
   }
+
   destory() {
     this.stop()
     removeElement(this.canvas)

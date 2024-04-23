@@ -10,7 +10,8 @@ export function forEachBack<T>(
   arr: T[],
   callback: (item: T, i: number) => void,
 ) {
-  if (!isArray(arr)) return arr
+  if (!isArray(arr))
+    return arr
   const len = arr.length - 1
   for (let i = len; i >= 0; i--) callback(arr[i], i)
 }

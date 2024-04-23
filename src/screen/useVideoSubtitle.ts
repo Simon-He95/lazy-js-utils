@@ -17,7 +17,7 @@ interface UseVideoSubtitle {
  */
 export function useVideoSubtitle(options: UseVideoSubtitle[], name = 'zh') {
   const result = toArray(options)
-    .map((option) => getTitle(option as UseVideoSubtitle))
+    .map(option => getTitle(option as UseVideoSubtitle))
     .join('\n')
   generateVtt(result, name)
 }
@@ -41,7 +41,8 @@ function getTime(t: number) {
 }
 
 function addZero(n: number, len: number) {
-  if (String(n).length === len) return n
+  if (String(n).length === len)
+    return n
   const l = len - String(n).length
   return '0'.repeat(l) + n
 }

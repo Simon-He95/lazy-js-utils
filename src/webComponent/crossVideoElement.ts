@@ -27,13 +27,12 @@ class VideoElement extends HTMLElement {
   }
 
   onIfrLoad(ifr: any, children: string) {
-    const me = this
     const doc = ifr.contentWindow.document
     doc.body.setAttribute('style', 'margin:0;')
     const attributes = ['width', 'height', 'style', 'class', 'src', 'controls']
     const single = ['controls']
     const attrs = attributes.reduce((result, attribute) => {
-      const attr = me.getAttribute(attribute)
+      const attr = this.getAttribute(attribute)
       if (single.includes(attribute))
         return (result += `${attribute} `)
       if (!attr)
@@ -41,9 +40,9 @@ class VideoElement extends HTMLElement {
       return (result += `${attribute}="${attr}"`)
     }, '')
     doc.body.innerHTML = `<video ${attrs}>${children}</video>`
-    doc.body.querySelector('video').onload = function () {
-      me.width = ifr.width = this.width
-      me.height = ifr.height = this.height
+    doc.body.querySelector('video').onload = () => {
+      this.width = ifr.width = this.width
+      this.height = ifr.height = this.height
     }
   }
 }

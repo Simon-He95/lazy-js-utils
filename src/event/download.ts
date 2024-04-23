@@ -11,7 +11,8 @@ export function download(href: string, download = '') {
       href,
       download,
     }).click()
-  } catch (error: any) {
+  }
+  catch (error: any) {
     throw new Error(error)
   }
 }

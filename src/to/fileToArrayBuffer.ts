@@ -1,7 +1,7 @@
 /**
  * 文件转buffer
  * @param { File } file 文件
- * @returns
+ * @returns Promise<Uint8Array>
  */
 export function fileToArrayBuffer(file: File): Promise<Uint8Array> {
   return new Promise((resolve, reject) => {

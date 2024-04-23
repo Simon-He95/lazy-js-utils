@@ -4,7 +4,7 @@ import type { TrimType } from '../types'
  * 删除空格
  * @param { string } s 字符串
  * @param { TrimType } type 所有 ｜ 前置 ｜ 前后 ｜ 后置 'all' | 'pre' | 'around' | 'post'
- * @returns
+ * @returns string
  */
 export function trim(s: string, type: TrimType = 'around'): string {
   if (type === 'pre')

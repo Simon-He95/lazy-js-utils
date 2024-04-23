@@ -27,20 +27,19 @@ class ImageElement extends HTMLElement {
   }
 
   onIfrLoad(ifr: any) {
-    const me = this
     const doc = ifr.contentWindow.document
     doc.body.setAttribute('style', 'margin:0;')
     const attributes = ['width', 'height', 'style', 'class', 'alt', 'src']
     const attrs = attributes.reduce((result, attribute) => {
-      const attr = me.getAttribute(attribute)
+      const attr = this.getAttribute(attribute)
       if (!attr)
         return result
       return (result += `${attribute}="${attr}" `)
     }, '')
     doc.body.innerHTML = `<img ${attrs}>`
-    doc.body.querySelector('img').onload = function () {
-      me.width = ifr.width = this.width
-      me.height = ifr.height = this.height
+    doc.body.querySelector('img').onload = () => {
+      this.width = ifr.width = this.width
+      this.height = ifr.height = this.height
     }
   }
 }

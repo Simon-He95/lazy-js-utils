@@ -2,7 +2,7 @@
  * 截取函数
  * @param { string | any[] } list 数组
  * @param { number } start 启示索引
- * @returns
+ * @returns any[]
  */
 export function toSlice(list: any, start?: number): Array<any> {
   start = start || 0

@@ -22,6 +22,7 @@ export async function getPkg(
   url = './package.json',
 ): Promise<IPackage & Record<string, any>> {
   const resolvedPath = toAbsolutePath(ensureSuffix('/package.json', url))
-  if (!isFile(resolvedPath)) throw new Error(`${resolvedPath} is not a file`)
+  if (!isFile(resolvedPath))
+    throw new Error(`${resolvedPath} is not a file`)
   return JSON.parse(await fsp.readFile(resolvedPath, 'utf-8'))
 }
