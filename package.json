@@ -1,6 +1,5 @@
 {
   "name": "lazy-js-utils",
-  "type": "module",
   "version": "0.0.91",
   "packageManager": "pnpm@7.33.7",
   "description": "js-tool",
