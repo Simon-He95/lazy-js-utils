@@ -66,7 +66,7 @@ import {
 
 ```
 
-## 👉 [文档](http://vitepress.hejian.club/)
+## 👉 [文档](https://lazy-js-utils-docs.netlify.app/)
 
 ## :coffee:
 
