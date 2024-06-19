@@ -1,6 +1,7 @@
 import { isArray } from '../is/isArray'
 import { isUndef } from '../is/isUndef'
 import { isDef } from '../is/isDef'
+import { executeStr } from '../js/executeStr'
 
 /**
  *
@@ -21,9 +22,7 @@ export function quickFilter(array: any[], key: string | Array<string>) {
       return false
     return isDef(_value)
       ? reg.test(_value)
-        ? new RegExp(eval(new Function(`return (${_value})`)())).test(
-          item[_key],
-        )
+        ? new RegExp(executeStr(_value)).test(item[_key])
         : _value === item[_key]
       : /.*/.test(item[key])
   }
