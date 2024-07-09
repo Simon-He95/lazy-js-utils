@@ -31,10 +31,10 @@ export function jsShell<T extends string | string[]>(
     stdio = options
   }
   else {
-    args = options.args || []
-    stdio = options.stdio || 'inherit'
-    errorExit = options.errorExit || true
-    isLog = options.isLog || false
+    args = options.args ?? []
+    stdio = options.stdio ?? 'inherit'
+    errorExit = options.errorExit ?? true
+    isLog = options.isLog ?? false
     cwd = options.cwd
   }
 
