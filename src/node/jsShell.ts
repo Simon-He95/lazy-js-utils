@@ -44,16 +44,14 @@ export function jsShell<T extends string | string[]>(
       : executor(commander)
   ) as T extends string ? IShellMessage : IShellMessage[]
   function executor(commander: string): IShellMessage {
-    const { status, output } = child_process.spawnSync(
-      commander,
-      args as string[],
-      {
+    const { status, output, stdout, stderr, error, signal, pid }
+      = child_process.spawnSync(commander, args as string[], {
         shell: true,
         encoding: 'utf8',
         stdio: stdio === 'inherit' ? 'inherit' : ['inherit', 'pipe', 'inherit'],
         cwd,
-      },
-    )
+      })
+
     const result = output[1]?.trim()
     if (status === 130) {
       if (isLog)
@@ -62,11 +60,19 @@ export function jsShell<T extends string | string[]>(
     }
     if (status !== 0) {
       if (isLog)
-        console.log(result)
+        console.log(result || error?.message)
       if (errorExit)
         process.exit(1)
     }
 
-    return { status, result } as IShellMessage
+    return {
+      status,
+      result,
+      stdout,
+      stderr,
+      error,
+      signal,
+      pid,
+    } as IShellMessage
   }
 }

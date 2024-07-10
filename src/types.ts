@@ -191,6 +191,11 @@ export interface ParsedURL {
 export interface IShellMessage {
   status: number
   result: string
+  stdout: string
+  stderr: string
+  error?: Error
+  pid: number
+  signal: NodeJS.Signals | null
 }
 
 export type PkgTool = 'npm' | 'yarn' | 'pnpm' | 'bun'
