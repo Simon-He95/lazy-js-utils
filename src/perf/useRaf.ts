@@ -38,6 +38,8 @@ export function useRaf(
       return
     if (isUndef(start)) {
       start = timestamp
+      // 首次立即执行
+      fn?.(timestamp)
     }
     else if (timestamp - start > delta) {
       fn?.(timestamp)
