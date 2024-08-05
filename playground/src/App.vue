@@ -1,10 +1,5 @@
 <script setup>
 import {
-  Button as TinyButton,
-  Layout as TinyLayout,
-  Row as TinyRow,
-} from '@opentiny/vue'
-import {
   iconDel,
   iconEdit,
   iconMail,
