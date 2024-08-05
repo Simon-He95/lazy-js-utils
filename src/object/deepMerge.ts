@@ -26,9 +26,12 @@ export function deepMerge(
           key in target
           && isPlainObject(target[key])
           && isPlainObject(source[key])
-        )
+        ) {
           deepMerge(target[key], source[key])
-        else target[key] = source[key]
+        }
+        else {
+          target[key] = source[key]
+        }
       }
     }
   })

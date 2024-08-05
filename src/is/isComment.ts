@@ -4,5 +4,5 @@
  * @returns
  */
 export function isComment(s: string) {
-  return /<! -{2,}.*?-{2,}>/.test(s)
+  return /<! -{2}.*?-{2}>/.test(s)
 }

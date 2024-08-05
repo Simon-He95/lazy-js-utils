@@ -10,7 +10,7 @@ import { executeStr } from '../js/executeStr'
  * @returns
  */
 export function quickFilter(array: any[], key: string | Array<string>) {
-  const reg = /\/[\w._ $]+\/[gims]*/
+  const reg = /\/[\w. $]+\/[gims]*/
   return array.filter((item) => {
     if (isArray(key))
       return key.some(k => findItem(item, k))

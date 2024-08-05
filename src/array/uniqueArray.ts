@@ -10,8 +10,9 @@ export function uniqueArray(array: any[]): any[] {
     if (
       (isType(item, 'o|a') && !isHave(result, item))
       || !result.includes(item)
-    )
+    ) {
       result.push(item)
+    }
     return result
   }, [])
 }
@@ -25,8 +26,9 @@ function equals(a: Record<any, any>, b: Record<any, any>): boolean {
       && isType(b[key], 'o|a')
       && !equals(a[key], b[key]))
       || a[key] !== b[key]
-    )
+    ) {
       return false
+    }
   }
   return true
 }

@@ -25,8 +25,9 @@ export function deepCompare(
       if (
         (isArray(ignoreKeys) && (ignoreKeys as string[]).includes(key))
         || (isReg(ignoreKeys) && (ignoreKeys as RegExp).test(key))
-      )
+      ) {
         continue
+      }
 
       const value1 = comp1[key]
       const value2 = comp2[key]

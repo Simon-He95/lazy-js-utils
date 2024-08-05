@@ -11,9 +11,9 @@ export function pwdLevel(s: string | number, minimum = 6): number {
     level++
   if (s.match(/[A-Z]/g))
     level++
-  if (s.match(/[0-9]/g))
+  if (s.match(/\d/g))
     level++
-  if (s.match(/[^a-zA-Z0-9]/g))
+  if (s.match(/[^a-z0-9]/gi))
     level++
   if (s.length < minimum)
     level = 0

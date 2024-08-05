@@ -8,5 +8,5 @@ export function getFirstDay() {
   const diff = day === 0 ? 6 : day - 1 // 计算与周一相差天数
   const monday = new Date(today) // 克隆一次日期对象
   monday.setDate(monday.getDate() - diff) // 设置为周一日期
-  return monday.toISOString().match(/(^[0-9]+-[0-9]+-[0-9]+)/)![1]
+  return monday.toISOString().match(/(^\d+-\d+-\d+)/)![1]
 }

@@ -5,7 +5,7 @@
 import { isEqual } from '../is'
 import { useRaf } from '../perf'
 
-const SCRIPTSRC = /<script .*src=["']([\w?=.\/@]+)["']><\/script>/gm
+const SCRIPTSRC = /<script .*src=["']([\w?=./@]+)["']><\/script>/g
 let lastSrcs: string[]
 /**
  * 检测首页中script src是否存在更新

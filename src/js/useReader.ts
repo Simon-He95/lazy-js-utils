@@ -9,7 +9,7 @@ export async function useReader(
   callback?: (value?: any) => any,
 ) {
   let result = ''
-  const dataReg = /data: ({.*})/gm
+  const dataReg = /data: (\{.*\})/g
   while (true) {
     const { done, value } = await reader.read()
     if (done) {

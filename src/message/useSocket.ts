@@ -7,7 +7,7 @@ import { isSocketUrl } from '../is/isSocketUrl'
  * @returns
  */
 export function useSocket(url: string, protocols?: string | string[]) {
-  url = isSocketUrl(url) ? url : `ws://${url.replace(/^http[s:\/\/]/, '')}`
+  url = isSocketUrl(url) ? url : `ws://${url.replace(/^http[s:/]/, '')}`
   const socket = new WebSocket(url, protocols)
   const receive = (callback: (event: MessageEvent<any>) => void) =>
     socket.addEventListener('message', callback)

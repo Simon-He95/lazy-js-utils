@@ -10,7 +10,7 @@ export function formateNum(
   decimals = 2,
   integer: 'floor' | 'ceil' = 'ceil',
 ) {
-  number = `${number}`.replace(/[^0-9+-Ee.]/g, '')
+  number = `${number}`.replace(/[^+-Ee]/g, '')
   const n = !Number.isFinite(+number) ? 0 : +number
   const prec = !Number.isFinite(+decimals) ? 0 : Math.abs(decimals)
   const sep = ','

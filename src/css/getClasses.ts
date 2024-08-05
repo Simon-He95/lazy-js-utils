@@ -1,4 +1,4 @@
-export const classesReg = /(<.* class=["']([\w\-\_$ ]*)["'_\-\w$=:\/ ]*\>)/gm
+export const classesReg = /(<.* class=["']([\w\-$ ]*)["'\-\w$=:/ ]*>)/g
 export function getClasses(
   str: string,
   callback: (classes: string, block: string, index: number) => string,

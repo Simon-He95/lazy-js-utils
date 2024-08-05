@@ -1,58 +1,104 @@
-<script setup lang="ts"></script>
+<script setup>
+import {
+  Button as TinyButton,
+  Layout as TinyLayout,
+  Row as TinyRow,
+} from '@opentiny/vue'
+import {
+  iconDel,
+  iconEdit,
+  iconMail,
+  iconSearch,
+  iconStarO,
+  iconYes,
+} from '@opentiny/vue-icon'
+
+const IconDel = iconDel()
+const IconYes = iconYes()
+const IconEdit = iconEdit()
+const IconMail = iconMail()
+const IconStarO = iconStarO()
+const IconSearch = iconSearch()
+</script>
 
 <template>
-  <div class="swiper-container" ma style="width: 100%">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide w-2">
-        Slide 1
-      </div>
-      <div class="swiper-slide w-20">
-        Slide 2
-      </div>
-
-      <div class="swiper-slide">
-        Slide 3
-      </div>
-    </div>
-  </div>
+  <TinyLayout>
+    <TinyRow>
+      <TinyButton>默认按钮</TinyButton>
+      <TinyButton type="primary" native-type="submit">
+        主要按钮
+      </TinyButton>
+      <TinyButton type="success">
+        成功按钮
+      </TinyButton>
+      <TinyButton type="info">
+        信息按钮
+      </TinyButton>
+      <TinyButton type="warning">
+        警告按钮
+      </TinyButton>
+      <TinyButton type="danger">
+        危险按钮
+      </TinyButton>
+    </TinyRow>
+    <TinyRow>
+      <TinyButton plain>
+        朴素按钮
+      </TinyButton>
+      <TinyButton type="primary" plain>
+        主要按钮
+      </TinyButton>
+      <TinyButton type="success" plain>
+        成功按钮
+      </TinyButton>
+      <TinyButton type="info" plain>
+        信息按钮
+      </TinyButton>
+      <TinyButton type="warning" plain>
+        警告按钮
+      </TinyButton>
+      <TinyButton type="danger" plain>
+        危险按钮
+      </TinyButton>
+    </TinyRow>
+    <TinyRow>
+      <TinyButton round>
+        圆角按钮
+      </TinyButton>
+      <TinyButton type="primary" round>
+        主要按钮
+      </TinyButton>
+      <TinyButton type="success" round>
+        成功按钮
+      </TinyButton>
+      <TinyButton type="info" round>
+        信息按钮
+      </TinyButton>
+      <TinyButton type="warning" round>
+        警告按钮
+      </TinyButton>
+      <TinyButton type="danger" round>
+        危险按钮
+      </TinyButton>
+    </TinyRow>
+    <TinyRow>
+      <TinyButton :icon="IconSearch" circle />
+      <TinyButton type="primary" :icon="IconEdit" circle />
+      <TinyButton type="success" :icon="IconYes" circle />
+      <TinyButton type="info" :icon="IconMail" circle />
+      <TinyButton type="warning" :icon="IconStarO" circle />
+      <TinyButton type="danger" :icon="IconDel" circle />
+    </TinyRow>
+  </TinyLayout>
 </template>
 
 <style scoped>
-.swiper-container {
-  width: 300px;
-  height: 200px;
-  overflow: hidden;
+.tiny-row {
+  margin-bottom: 20px;
 }
-
-.swiper-wrapper {
-  display: flex;
-  width: 300%;
-  animation: slide 10s infinite;
-  animation-play-state: running;
-}
-
-.swiper-slide {
-  flex: 1;
-  width: 100%;
-}
-
-/* 鼠标移入时暂停动画 */
-.swiper-container:hover .swiper-wrapper {
-  animation-play-state: paused;
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(0);
-  }
-  33.33% {
-    transform: translateX(-100%);
-  }
-  66.66% {
-    transform: translateX(-200%);
-  }
-  100% {
-    transform: translateX(0);
-  }
+.tiny-button {
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 24px;
 }
 </style>

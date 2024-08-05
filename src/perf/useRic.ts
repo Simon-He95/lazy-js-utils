@@ -40,8 +40,9 @@ export function useRic(tasks: Function[], options?: Options): () => void {
       if (
         (deadline.timeRemaining() > +timeRemaining || deadline.didTimeout)
         && tasks.length > 0
-      )
+      ) {
         taskResult.push(tasks.shift()?.())
+      }
       if (tasks.length > 0) {
         idleCallback(animationCallback)
       }

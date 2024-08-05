@@ -1,6 +1,6 @@
 export async function catchAwait<T, U = Error>(
   promise: Promise<T> | any,
-  errorExt?: Object,
+  errorExt?: object,
 ): Promise<[U, undefined] | [undefined, T]> {
   try {
     return [undefined, await promise]

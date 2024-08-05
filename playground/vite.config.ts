@@ -1,12 +1,14 @@
 /// <reference types="vitest" />
 
 import path from 'node:path'
+import process from 'node:process'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
+import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
 
 export default defineConfig({
   resolve: {
@@ -14,7 +16,11 @@ export default defineConfig({
       '~/': `${path.resolve(__dirname, 'src')}/`,
     },
   },
+  define: {
+    'process.env': { ...process.env },
+  },
   plugins: [
+    autoImportPlugin('vite'),
     Vue({
       reactivityTransform: path.resolve(__dirname, 'src'),
     }),

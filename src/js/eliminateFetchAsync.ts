@@ -9,7 +9,6 @@ export function eliminateFetchAsync(fn: Function) {
       else if (cache[i].status === 'rejected')
         throw cache[i].err
     }
-    console.log(args)
     const type = ((args[1] as any)?.type || 'json') as
       | 'json'
       | 'blob'

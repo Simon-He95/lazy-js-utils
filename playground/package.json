@@ -13,11 +13,11 @@
     "serve": "node ./server/index.js"
   },
   "dependencies": {
+    "@opentiny/unplugin-tiny-vue": "^0.0.2",
+    "@opentiny/vue": "^3.17.2",
     "@vueuse/core": "^8.9.4",
-    "ant-design-vue": "4.0.0",
     "vue": "^3.4.35",
-    "vue-router": "^4.4.1",
-    "vuetify": "^3.6.14"
+    "vue-router": "^4.4.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.9",
