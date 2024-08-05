@@ -12,9 +12,16 @@ import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
 
 export default defineConfig({
   resolve: {
-    alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
-    },
+    alias: [
+      {
+        find: '~/',
+        replacement: `${path.resolve(__dirname, 'src')}/`
+      },
+      {
+        find: /\@opentiny\/vue-theme\/(?!(smb))/,
+        replacement: '@opentiny/vue-theme/smb-theme/'
+      },
+    ],
   },
   define: {
     'process.env': { ...process.env },
