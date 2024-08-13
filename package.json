@@ -39,17 +39,14 @@
     "prepublishOnly": "nr build",
     "release": "bumpp --commit --tag --push && pnpm publish"
   },
-  "peerDependencies": {
-    "vue": "^3.2.41"
-  },
   "dependencies": {
     "htmlparser2": "^8.0.2",
     "lazy-js-utils": "workspace:^",
-    "qrcode": "^1.5.3",
+    "qrcode": "^1.5.4",
     "spark-md5": "^3.0.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.24.1",
+    "@antfu/eslint-config": "^2.25.1",
     "@types/node": "^17.0.45",
     "@types/qrcode": "^1.5.5",
     "@types/spark-md5": "^3.0.4",

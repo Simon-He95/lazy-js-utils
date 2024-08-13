@@ -15,18 +15,15 @@ importers:
         specifier: workspace:^
         version: 'link:'
       qrcode:
-        specifier: ^1.5.3
-        version: 1.5.3
+        specifier: ^1.5.4
+        version: 1.5.4
       spark-md5:
         specifier: ^3.0.2
         version: 3.0.2
-      vue:
-        specifier: ^3.2.41
-        version: 3.4.21(typescript@4.9.5)
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^2.24.1
-        version: 2.24.1(@vue/compiler-sfc@3.4.35)(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0))
+        specifier: ^2.25.1
+        version: 2.25.1(@typescript-eslint/utils@8.1.0(eslint@9.1.1)(typescript@4.9.5))(@vue/compiler-sfc@3.4.37)(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0))
       '@types/node':
         specifier: ^17.0.45
         version: 17.0.45
@@ -38,7 +35,7 @@ importers:
         version: 3.0.4
       '@vitejs/plugin-vue':
         specifier: ^2.3.4
-        version: 2.3.4(vite@4.5.3(@types/node@17.0.45))(vue@3.4.21(typescript@4.9.5))
+        version: 2.3.4(vite@4.5.3(@types/node@17.0.45))(vue@3.4.37(typescript@4.9.5))
       bumpp:
         specifier: ^8.2.1
         version: 8.2.1
@@ -72,27 +69,24 @@ importers:
 
   playground:
     dependencies:
-      '@opentiny/unplugin-tiny-vue':
-        specifier: ^0.0.2
-        version: 0.0.2(@babel/parser@7.25.3)(rollup@2.77.3)(vite@2.9.18)(vue@3.4.35(typescript@4.9.5))
-      '@opentiny/vue':
-        specifier: ^3.17.2
-        version: 3.17.2(echarts@5.4.1)
       '@vueuse/core':
         specifier: ^8.9.4
-        version: 8.9.4(vue@3.4.35(typescript@4.9.5))
+        version: 8.9.4(vue@3.4.37(typescript@4.9.5))
       vue:
-        specifier: ^3.4.35
-        version: 3.4.35(typescript@4.9.5)
+        specifier: ^3.4.37
+        version: 3.4.37(typescript@4.9.5)
       vue-router:
-        specifier: ^4.4.1
-        version: 4.4.2(vue@3.4.35(typescript@4.9.5))
+        specifier: ^4.4.3
+        version: 4.4.3(vue@3.4.37(typescript@4.9.5))
+      vuetify:
+        specifier: ^3.6.14
+        version: 3.6.14(typescript@4.9.5)(vue@3.4.37(typescript@4.9.5))
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.18.9
         version: 0.18.9(eslint@8.57.0)(typescript@4.9.5)
       '@iconify-json/carbon':
-        specifier: ^1.1.36
+        specifier: ^1.1.37
         version: 1.1.37
       '@types/node':
         specifier: ^17.0.45
@@ -102,7 +96,7 @@ importers:
         version: 0.61.9
       '@vitejs/plugin-vue':
         specifier: ^2.3.4
-        version: 2.3.4(vite@2.9.18)(vue@3.4.35(typescript@4.9.5))
+        version: 2.3.4(vite@2.9.18)(vue@3.4.37(typescript@4.9.5))
       '@vue/test-utils':
         specifier: ^2.4.6
         version: 2.4.6
@@ -120,16 +114,16 @@ importers:
         version: 0.61.9(postcss@8.4.40)(rollup@2.77.3)(vite@2.9.18)
       unplugin-auto-import:
         specifier: ^0.6.9
-        version: 0.6.9(@vueuse/core@8.9.4(vue@3.4.35(typescript@4.9.5)))(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)
+        version: 0.6.9(@vueuse/core@8.9.4(vue@3.4.37(typescript@4.9.5)))(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)
       unplugin-vue-components:
         specifier: ^0.18.5
-        version: 0.18.5(@babel/parser@7.25.3)(@babel/traverse@7.25.3)(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)(vue@3.4.35(typescript@4.9.5))
+        version: 0.18.5(@babel/parser@7.25.3)(@babel/traverse@7.25.3)(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)(vue@3.4.37(typescript@4.9.5))
       vite:
         specifier: ^2.9.18
         version: 2.9.18
       vite-plugin-pages:
         specifier: ^0.22.0
-        version: 0.22.0(@vue/compiler-sfc@3.4.35)(vite@2.9.18)
+        version: 0.22.0(@vue/compiler-sfc@3.4.37)(vite@2.9.18)
       vitest:
         specifier: ^0.7.13
         version: 0.7.13(happy-dom@8.9.0)(jsdom@19.0.0)
@@ -173,8 +167,8 @@ packages:
     peerDependencies:
       eslint: '>=7.4.0'
 
-  '@antfu/eslint-config@2.24.1':
-    resolution: {integrity: sha512-vk2zqPO3HFHxhlIZbMxjo185qvMmCUUc6H58TrXHjMxnCCkw9SqBDWemV6uKUmPSphaOipjzoXYYSyeFYhGa1w==}
+  '@antfu/eslint-config@2.25.1':
+    resolution: {integrity: sha512-aWnq8kNL4MM3RjXJtMvCGhzzXiukbNn4oXT3RFVgQ2KkBmryrlCos8HW7zfF27gggSqrMX8p75wHk8zM/Mo9+Q==}
     hasBin: true
     peerDependencies:
       '@eslint-react/eslint-plugin': ^1.5.8
@@ -439,15 +433,6 @@ packages:
   '@babel/types@7.25.2':
     resolution: {integrity: sha512-YTnYtra7W9e6/oAZEHj0bJehPRUlLH9/fbpT5LfB0NhQXyALCRkRs3zH9v07IYhkgpqX6Z78FnuccZr/l4Fs4Q==}
     engines: {node: '>=6.9.0'}
-
-  '@better-scroll/core@2.5.0':
-    resolution: {integrity: sha512-+3aKf8T3kUl4Gj1M7NKV3fNFhsrBpTWwHoDClkXVmQ8S3TxMMHf6Kyw6l1zKsg4r+9ukW5lDDkyif7/gY76qXQ==}
-
-  '@better-scroll/shared-utils@2.5.1':
-    resolution: {integrity: sha512-AplkfSjXVYP9LZiD6JsKgmgQJ/mG4uuLmBuwLz8W5OsYc7AYTfN8kw6GqZ5OwCGoXkVhBGyd8NeC4xwYItp0aw==}
-
-  '@better-scroll/wheel@2.5.0':
-    resolution: {integrity: sha512-+cru8CtMtgGGMv3yOxn33ApbtatOZBVUCa7+X3UqVVyaxi6FbCrcSZCBlXhXpsFhJo1R282O6nQyik6KUidvoA==}
 
   '@clack/core@0.3.4':
     resolution: {integrity: sha512-H4hxZDXgHtWTwV3RAVenqcC4VbJZNegbBjlPvzOzCouXtS2y3sDvlO3IsbrPNWuLWPPlYVYPghQdSF64683Ldw==}
@@ -1043,15 +1028,6 @@ packages:
     resolution: {integrity: sha512-5WoDz3Y19Bg2BnErkZTp0en+c/i9PvgFS7MBe1+m60HjFr0hrphlAGp4yzI7pxpt4xShln4ZyYp4neJm8hmOkQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@floating-ui/core@1.6.5':
-    resolution: {integrity: sha512-8GrTWmoFhm5BsMZOTHeGD2/0FLKLQQHvO/ZmQga4tKempYRLz8aqJGqXVuQgisnMObq2YZ2SgkwctN1LOOxcqA==}
-
-  '@floating-ui/dom@1.6.8':
-    resolution: {integrity: sha512-kx62rP19VZ767Q653wsP1XZCGIirkE09E0QUGNYTM/ttbbQHqcGPdSfWFxUyyNLc/W6aoJRBajOSXhP6GXjC0Q==}
-
-  '@floating-ui/utils@0.2.5':
-    resolution: {integrity: sha512-sTcG+QZ6fdEUObICavU+aB3Mp8HY4n14wYHdxK4fXjPmv3PXZZeY5RaguJmGyeH/CJQhX3fqKUtS4qc1LoHwhQ==}
-
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
@@ -1124,719 +1100,6 @@ packages:
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
 
-  '@opentiny/unplugin-tiny-vue@0.0.2':
-    resolution: {integrity: sha512-VChuA8iQ1h7fBJjy2nZHOn0VfydO6vWFGbsxEBGykxBjrqMYGkbTjbAMSJYXKB3840pbBUOsMZ9vgKHUJVC9kQ==}
-    peerDependencies:
-      vite: '>=4'
-
-  '@opentiny/vue-action-menu@3.17.0':
-    resolution: {integrity: sha512-SrJcbk4u5lAj5MArKgUqsx8YyRqz24a+Sg1MHO59d7HgJ+2JXmq0bnZgWDxDE+4sVCq2TCzFIXYGdnW7M4lgfg==}
-
-  '@opentiny/vue-action-sheet@3.17.0':
-    resolution: {integrity: sha512-Xol4KMJXmajCoeyjsEnAGLXvNn5hc0wP4tx2Q3f6o77j+bBknp9RWKt8Z9TuNVk7QuFAQnee31Wbj2JP7D35Zg==}
-
-  '@opentiny/vue-alert@3.17.0':
-    resolution: {integrity: sha512-FbWcH187amA3JP6kYvprxSsShJEFAJ4DqttVE/cSZd88GnqUG/CAVvyzhCPsUt4qn0abVEBdqOoxc0WV1YzrZw==}
-
-  '@opentiny/vue-amount@3.17.0':
-    resolution: {integrity: sha512-OhMjrhWaoOd3Y/qP+Z3WbtW/8tlbmnV4Y9Wy+/f9xofK2i/AaZHwjjR1OhmXe3VhgTW3pGGsxLTwwkGD/ycr7w==}
-
-  '@opentiny/vue-anchor@3.17.0':
-    resolution: {integrity: sha512-bj21D1V7KG/DwEWGW0Hrv48OfB0Orfa/g4vO7lQzZzxVU2g6iIDFuq+h4GKMAwbYPTZaMM+5ZD9+JO6dhETmfQ==}
-
-  '@opentiny/vue-area@3.17.0':
-    resolution: {integrity: sha512-xe0e/oshPtu85m3QhjUifFzF03pT4prvMc8lSYGn3dIlD2EkzVaa5z3gRH9jBQ2KZwCwVW/XIQX2ILY1pxdN1w==}
-
-  '@opentiny/vue-async-flowchart@3.17.0':
-    resolution: {integrity: sha512-Lrf6Z4naz3rBxLXlDKPFxx7pw5iwW/L6PvlGRE3bRy6Sbmb0OjQYXWnzubsRaEnhvgFlSRkg9yHsc9A0N8+xhQ==}
-
-  '@opentiny/vue-autocomplete@3.17.0':
-    resolution: {integrity: sha512-u8T1kdavcXk7vD+r0+i4qKstfKgl+vKfolXKGqqj3/ZZK29xTTaM3ui/xekch0hQ7aPGdwTTNpuE33K7Oi9NOA==}
-
-  '@opentiny/vue-autonavi-map@3.17.0':
-    resolution: {integrity: sha512-zSc6Z8/EJiOA9Pa1mk9qlXWlqZfohNXeQxW+Fdg/RQ4IUwgfqC134ZBVVhHC+vuv6oGMvBzmKm1vsl9wRjJc4w==}
-
-  '@opentiny/vue-avatar@3.17.0':
-    resolution: {integrity: sha512-tANbgrAJzYtGW3vZaV+UJDDWxgh9LTe9nS8cVU+4JjGOMLwtunC3kQuXyq1QBkEanGFJDsVSk7QxP6p53i0hHg==}
-
-  '@opentiny/vue-badge@3.17.0':
-    resolution: {integrity: sha512-CATHj6h0pxfl/kTTMb5PCZTJyJm6dqJo2ZldTX/gAIVR/S9e39J7nFeIj8JycV5upyy1J7gvd9NQ/i0PVwWKoQ==}
-
-  '@opentiny/vue-baidu-map@3.17.0':
-    resolution: {integrity: sha512-bw+nAzUTb+ZVBHdfq3U9SWoAhi+jmwys5ILiJho4nf/iyWboCmDSV0WkGX5skfoHKurpLTKIthcHcZaJPpw10g==}
-
-  '@opentiny/vue-base-select@3.17.0':
-    resolution: {integrity: sha512-gGvoVoVwTctV00XgUqqtm4hMa/YOkSTHz8eGYk3fZagxtQKchZXcBTzUVzMteTRpx5bNdV6sJrWD+oSp9wHKPQ==}
-
-  '@opentiny/vue-breadcrumb-item@3.17.0':
-    resolution: {integrity: sha512-UnHL9k/b493s/FL4toEYJXa07H0npZWSjy0bplE5VsVhSI5wsw3Eqg7Osp7/2xnLuaUpYrndTIPO7WO3HJvwYA==}
-
-  '@opentiny/vue-breadcrumb@3.17.0':
-    resolution: {integrity: sha512-AHSGTxXuzdn9jPL0xPzZTSl9EaGQHyT/UendlU5TUwHizyCtOBku+BSPh9gLCr0DqrO3CXgJQV/W9LVxwQ0sPQ==}
-
-  '@opentiny/vue-bulletin-board@3.17.0':
-    resolution: {integrity: sha512-Z0MHNBjGuiYli6gLhwkkz/KQx5YdiOyPddHD0au9jmuHUUMS+7Wq+GWPIQ7ibO+bJqI62eLpMp+pWnBBMnuwSg==}
-
-  '@opentiny/vue-button-group@3.17.1':
-    resolution: {integrity: sha512-aQzvk/XA+5G2bYN6x94Iu+qZ+BaFT6olAOFR2vaAojeR870qTSdhRXi5GXZUm0Smom7pHXUom+pZWYGiWYTTuQ==}
-
-  '@opentiny/vue-button@3.17.0':
-    resolution: {integrity: sha512-QhX5nAh5E0ahHJrz66ZKuZULQZgldg9j9NtZL3AMT17CcuX2CHFGfW72sxmuS9StEm6giF/+Kw1Or1+cXm8BcA==}
-
-  '@opentiny/vue-calendar-bar@3.17.0':
-    resolution: {integrity: sha512-5TxiBBhHlN/xXITGXk0VEYPE3nTFUAZUL00fqoESWkEp2Qv4fv9p4cxx34cmjnBbL9STtffHGwXRRD/bM4KtOA==}
-
-  '@opentiny/vue-calendar-view@3.17.0':
-    resolution: {integrity: sha512-pFGs7TnPoZFN6G2KoLgjOC5/CBxFxopPYYnlw6tFMvI44QoRUxNAKF7nfKaOKWA/UYytSJVV7hN/HRUhhz21Nw==}
-
-  '@opentiny/vue-calendar@3.17.0':
-    resolution: {integrity: sha512-QPafDAPIRtloKOrVkqPuTPj9fPMykdxcO7PGvmEGubsGYlchLJ4gcXA2JiMb8GL17tM/y67dZ9BPJUGk70uMcw==}
-
-  '@opentiny/vue-card-group@3.17.0':
-    resolution: {integrity: sha512-jj2arBKN6jJcQz1JYijsL9xnCYoPHnjzAqEQ8Ii1in+N3OZ5FS4MWZkeUUGGuS2gNfqoRrqTHaUng4t+9Pj1Rw==}
-
-  '@opentiny/vue-card-template@3.17.0':
-    resolution: {integrity: sha512-KGClwz9MjhBhDlKDf7IVM2B4b/R6eFqsAcSyGovvGcTbuYuLV3w8qTtanOYKW9GsWfa94R2VL20s+9ZiIeh+Lg==}
-
-  '@opentiny/vue-card@3.17.0':
-    resolution: {integrity: sha512-p1J4UAq5Iue8t6RjViBkKpevmU8bzRW6FnlYXfKeKwgw8XhbX3ME7M/1Br3hGi5wDkt6ZdubyDudmJUtv/O1gw==}
-
-  '@opentiny/vue-carousel-item@3.17.0':
-    resolution: {integrity: sha512-X4oxDt19FhuY+yhBppvYme0PQZwBFbH1MiewkfKHxOpiT3v+PZ/Pdw9bjMYJx+xfD0e7bGOmw8kRV/8UpeQ0Wg==}
-
-  '@opentiny/vue-carousel@3.17.0':
-    resolution: {integrity: sha512-3TkFXP86mdzzLvL5TxLJQmoVta0jpODLOydwzBAMMJaD3pbGhgwZmh6JGjLCoksVebkxC2PBeWjPZacSYDFw7A==}
-
-  '@opentiny/vue-cascader-menu@3.17.0':
-    resolution: {integrity: sha512-uWLuvmCx+Z7R92kOpo/DGGFhPouzvMPrvlucHTXTNZWUYHOlFuuYZf2dCW1eIgyO9kkT0tQ5CsbUvlaIgROM/w==}
-
-  '@opentiny/vue-cascader-mobile@3.17.0':
-    resolution: {integrity: sha512-D1hZ2ybixlLZ34iKZsWXlVA7tFbS7UBAvpQu0MzE6tAOTtlTQrpoE4lwSaZUBigpuxCywe7n1uy8AsqRbptACQ==}
-
-  '@opentiny/vue-cascader-node@3.17.0':
-    resolution: {integrity: sha512-j0kGKVQajcOAODK9fxFEJH37pbGoLuFPlh7u38bSm6nEVDQwvc10qJ7fI5W5jD3cVcvhHYLYKtCEb+TdPOY/kQ==}
-
-  '@opentiny/vue-cascader-panel@3.17.0':
-    resolution: {integrity: sha512-YZhx9Rc7GSFMBXVTdJT7vPixCV2EHyRaHUWcUfPJshHGPqIDrREyBlz7edPIL5XYcUa8RMUjJ2D9AncQPzgJ0w==}
-
-  '@opentiny/vue-cascader-select@3.17.0':
-    resolution: {integrity: sha512-gXGQZKeCKXTVzmhH/1BeQu8lo6n9CvTXiT9EuJNTVkgIVN5sX8jwVvvlcw3oH5f95ArVI25EeKkTybeutDkYtw==}
-
-  '@opentiny/vue-cascader-view@3.17.0':
-    resolution: {integrity: sha512-yCmdfN3FZGa3l0c6s14x7sDjXzhS3holXapHMOuhfmi9vtGhQQ+KG3+fBZv226TSebkYswhPOX+G8CaIKzqvsA==}
-
-  '@opentiny/vue-cascader@3.17.0':
-    resolution: {integrity: sha512-zEbincPXHLMv7S2PnuV8JvydE2rdCXQseUeQ1yOep8onI4IxmFAkKDQF6n8nccqs95qLItrcCK4tT0hqHSkUKA==}
-
-  '@opentiny/vue-cell@3.17.0':
-    resolution: {integrity: sha512-X/53c7Tv8lzKSeGr36YHhceCj1H/T8JMmNP9OPM4k1k6/atMEFVKlkjHKQ2j7vkdHXABq70D73KVEcC1o9IvHQ==}
-
-  '@opentiny/vue-chart-bar@3.17.0':
-    resolution: {integrity: sha512-gswzfan6qd90Ud5Bt5Z8YPS67Alb8AHpopVGBDjmMUKsClJhCew4d0YdmMpwLmF/9Of+S7jPG6Dg3pxiUTFw1A==}
-
-  '@opentiny/vue-chart-boxplot@3.17.0':
-    resolution: {integrity: sha512-LEka9I6kSdwH0lBiOXwcC6dd3io9fUp0XxSB8kdBf2H2caJmztC+AcUx4AWEzgJ4SC5OVzwJoWINg0dIaBX5Ow==}
-
-  '@opentiny/vue-chart-candle@3.17.0':
-    resolution: {integrity: sha512-XfiyPuemB5/qkRDBh+w9yaSwsKrO1iTtjhsnoFOWBoBWp6IqZOnsbyFVVoDvoGlpU2NHUY3Wdr362nW/e3sO0A==}
-
-  '@opentiny/vue-chart-core@3.17.1':
-    resolution: {integrity: sha512-nZP77gMXrf5uB5l8H0bd6NvKuXiBkb59qjRJCLXn8M/ykn1EbTHwvv5LdzDObBJjeZ7ERZoOBBccjgwQ9CqYfg==}
-
-  '@opentiny/vue-chart-funnel@3.17.0':
-    resolution: {integrity: sha512-TlCMQoIMTRfcpGjvRlfGJmBR8RpEVaHabaIqLz5llGvqQxHcAvjbCSFD+mUUv6WWitSPdgoQhzoW2RxudtNtyQ==}
-
-  '@opentiny/vue-chart-gauge@3.17.0':
-    resolution: {integrity: sha512-/XzrF/sqCRLhrONKGj9wPcBP3OEfFnBgwve3/owLUSX3acKprBGddgjBdeHMhQdkdfUpVqu2D3KzeYmB8ypzFA==}
-
-  '@opentiny/vue-chart-graph@3.17.0':
-    resolution: {integrity: sha512-v+hu/hK5aygVa3uC6GkXg83BIWYF6VMoPeJeSjNjLAc4HQrflM4mO9eGraQ55n6aTzg6+qxNm5x4Shr1pN8KFA==}
-
-  '@opentiny/vue-chart-heatmap@3.17.0':
-    resolution: {integrity: sha512-7RO/sr6ztvdOU9NpkSztQhel9HR240xHUf+4KCxOYdJGQ0JWF30tZjwBbm9ZPJ/kzsgfn6hnWsON/VHuWjxlyg==}
-
-  '@opentiny/vue-chart-histogram@3.17.0':
-    resolution: {integrity: sha512-U7IOOdhrB0hSq+JOTdYg/4OOBnCSnxeyI3L4ylG14AivSRwWPwqQ3Bsmr3Slq2sgt4QA781T4OKOtVoEeiCcLw==}
-
-  '@opentiny/vue-chart-line@3.17.0':
-    resolution: {integrity: sha512-FFnrR9FmP9wq7yl+4h4wwYbQV3jI7JA3WxjIAm+2WwdfAl5AxtDps5U1YrmlctbldPgmA+YBMfAke+LBWVinug==}
-
-  '@opentiny/vue-chart-liquidfill@3.17.0':
-    resolution: {integrity: sha512-bzOlXpJqvkMtooteyicDpQoHhQdgMMayutsxY+IbFIAqn/iwbxxjW7kKIbtcIUBO1ql5rAHgzqvDFdtM67o7Cg==}
-
-  '@opentiny/vue-chart-map@3.17.0':
-    resolution: {integrity: sha512-8UW6MYg2IM7Eb+8ukvhLQ8mHYTqjIbIJYjc51x8r032SY9VPTQp7HL/BNqBQPbwp7oS3mBFsOsCujMZ5WeJaCQ==}
-
-  '@opentiny/vue-chart-pie@3.17.0':
-    resolution: {integrity: sha512-WS9BuRduTVtz4UNBZazbqP4cLsItpZxR6wLxdRgE5cqsGHL4CmO1pNx0Y7R3xHSGd824OytOnl1R9eZ309yOKQ==}
-
-  '@opentiny/vue-chart-process@3.17.0':
-    resolution: {integrity: sha512-YKFZURF/rxQRce0qZkfYRLLkPtEHC73Uz26qE0zkeDSDT5Lv4bLY0RQhi5HoGRbaT0V3dAz7Hiw1gRbvq1nh/Q==}
-
-  '@opentiny/vue-chart-radar@3.17.0':
-    resolution: {integrity: sha512-iEIUFFcfwUIfzv21McqgUFAw2B1lZFZ2b8ALYC/QzFMqGL4m81CZqUf6S/VAocse+rwyX8P/x5MJO8KHmIQUEg==}
-
-  '@opentiny/vue-chart-ring@3.17.0':
-    resolution: {integrity: sha512-XvhcNEbVnMpWW+Hgz6UzhkESs8vZYAO1VuSIOkFxYZ5GoFydULgv34uO2TdA6/XLJ3NMwCk+qFpG8Hnuxbmpzw==}
-
-  '@opentiny/vue-chart-sankey@3.17.0':
-    resolution: {integrity: sha512-LGH0gOvGiWYkRAEsRi6YIGyjdVCkm7x8bHW5CogsT9wgXYHz7dQ5AyZ9jvnp0fT13PzifQ1VCuZY9Rg4a3+Q6Q==}
-
-  '@opentiny/vue-chart-scatter@3.17.0':
-    resolution: {integrity: sha512-Pdy1cseupCjJXpoTpd9kZrh8hdRfDC91eyKDHh75j9qwmFmQ2MgfEuP5DyCvtS98DVbNIxWeRN1dijKoGyXMRg==}
-
-  '@opentiny/vue-chart-sunburst@3.17.0':
-    resolution: {integrity: sha512-nPDvjy+XtqzqISTxRDkGCD6Pdk79ZTVaef8SoJL+6nHQE9b942n3jTAUwlpR1KZMcBdJeykep1tLOouy64sO2A==}
-
-  '@opentiny/vue-chart-tree@3.17.0':
-    resolution: {integrity: sha512-GeOwBsI9BkXG/3rF8SkVUtGGOfq1WjYr+6zKlhehTYYNbqI3RTGN7/2/8rug88i2DlZddP8E6G+5MwOD7gXRIQ==}
-
-  '@opentiny/vue-chart-waterfall@3.17.0':
-    resolution: {integrity: sha512-kVpnBPAzhL4qWwl7hniK9MRPCY26m0y2Dy/QfVNipT73fhMVk+2gffX3XqVu4ppB+SOVOfSehvb8pyZx1NHvMw==}
-
-  '@opentiny/vue-chart-wordcloud@3.17.0':
-    resolution: {integrity: sha512-tnFjV2OPILd974BlBaEZu7+rgPVMR11JP0jBiSnht/A5ttgHQAXwiwL8hTH9bVy4ZCyU73I/tKVRTy86j04mAA==}
-
-  '@opentiny/vue-chart@3.17.0':
-    resolution: {integrity: sha512-+3A2qbYePCAC7WFF7r6qJB3uOlKyeTk2uq5Kwy7taJTe9Lo+ZWOkDu1zDqnPiY70T4iI0w8RR3ELIebjPoTcMQ==}
-
-  '@opentiny/vue-checkbox-button@3.17.0':
-    resolution: {integrity: sha512-92DOld7Av6z9sRIVrn13Udi6WXHDsUGXeBFUL0eFE0HdRZxH4oeA3pmkr9jSow9jQ03wzqJHfkCv3kTqErhYag==}
-
-  '@opentiny/vue-checkbox-group@3.17.0':
-    resolution: {integrity: sha512-0Qu90uWvkn8HO+n8EIfL+OBUXeCfd/60H2mHexSSdvwz91GZKTe5kjtAN8YBCynvcRN3eJh/AXflPQu+OWjmUw==}
-
-  '@opentiny/vue-checkbox@3.17.0':
-    resolution: {integrity: sha512-5oO61wmxjTjoulROFQlrU7D+aE+xrNgDOHdHnNLVyriG8JaPDxMrIR5rIAXLOnrRKq161v2rrF6FPWZSsfoBmg==}
-
-  '@opentiny/vue-col@3.17.0':
-    resolution: {integrity: sha512-zfhl8WRhIdEoTpLRoSqEi3RwdLtclkaui1cquZOZDeSvqZBK7MKwnQncFznz8U4zugIjQgE1HQLw3n/wzGAWwg==}
-
-  '@opentiny/vue-collapse-item@3.17.0':
-    resolution: {integrity: sha512-h2JipCu1D+2UwhqYrw4QcKGwTTPKhy8KPVBlYzOzGX7po1hkv/sUNX6HtZSdgfiDBnBn4FZLiEfNbdleiGzjrQ==}
-
-  '@opentiny/vue-collapse-transition@3.17.0':
-    resolution: {integrity: sha512-HWMK/G2CsQYXLnN8vtropcTcjeY5ZSkEGqIZ10lIJbbaPZzDabCflpPz86INEWZqMpi7Bl05Kgj7dknvp+VPZw==}
-
-  '@opentiny/vue-collapse@3.17.0':
-    resolution: {integrity: sha512-0viZI+FFgvuBdsjz0suHpzKGBZ7DA6vym8sRARldgKJ/oiDyfft2vq3Da1lRn9iuZ17k9UdTRKTkJVIsjPdplg==}
-
-  '@opentiny/vue-color-picker@3.17.0':
-    resolution: {integrity: sha512-EpQdBiItme6E3DXOIp4sIdVhzaQaIfc6o7UwUGe1AMqRiaeIV/IoZHuHicEexG9OfupZijhVJBW9mrMOcOfBXg==}
-
-  '@opentiny/vue-color-select-panel@3.17.0':
-    resolution: {integrity: sha512-oIuS6+8ARBTABSLpvQlKSVg7jTtAEr9ntkn25StmZEkTg5cGAZkDRhVsWiKvBaiA7fSC4czWwQYGAoD/Eysv8A==}
-
-  '@opentiny/vue-column-list-group@3.17.0':
-    resolution: {integrity: sha512-+hK7N2D+4+LA3wzBXqLfcZfbRRC9fZ3jlDJW2G/lQmc4nxRcFigAHd0ilhTg6oGBAsehBSlgQ7VxZGgAx77tJA==}
-
-  '@opentiny/vue-column-list-item@3.17.0':
-    resolution: {integrity: sha512-OTRvAkjRtKvhyHub583uM5myqwmFOAwxMKIpHGVQ0RH/6rOSaiokOmXkQtwu2S+LaVkfteJE5RBtMm0DvaqJjg==}
-
-  '@opentiny/vue-common@3.17.0':
-    resolution: {integrity: sha512-mzM8l/b+6/QYUvF3Wnaq1gF7moZ99J1DpUNHpltweJj1Yy+XMWurKhd3GSX3SQAcMu39ewyRkCnio+YeOfjaNw==}
-
-  '@opentiny/vue-company@3.17.0':
-    resolution: {integrity: sha512-LGO0K1TJkxC6nsIDabItGsYZMfRxPv6YMKvPsF6sLUjZHRQQmp02JZOFnuY4X2iDY7Pj/FycadK12zHS3ufs8A==}
-
-  '@opentiny/vue-config-provider@3.17.0':
-    resolution: {integrity: sha512-YV5559hm8YmxaCqBV2TPho1jDHdNieVIDVducMWCvZ3OcYIWOnJ9SuPAg+KDCXDZFuQjDWMiOTmEj+esuC6pCw==}
-
-  '@opentiny/vue-container@3.17.0':
-    resolution: {integrity: sha512-+o330igmmxUHbFH46t/AB5xltV6PnNL1vn2poavexm0Loo2NHXKa1sNwz8pNhnRKEO7bntwT94m37u2w+ksSjw==}
-
-  '@opentiny/vue-country@3.17.0':
-    resolution: {integrity: sha512-53eqCFLOzXqnzJs6AF0ET63W5NN4DctEeTwOehQl3xfRiWukuIWc4OnmzHWzXtfLEECFg1eDgpCqBOVN8tj//Q==}
-
-  '@opentiny/vue-crop@3.17.0':
-    resolution: {integrity: sha512-lDL7Mu1YcnlECRAmEstvxdH37iJl7vOgeYLmABN3orJb6KF4H0+bua4+oRKusn04YeS4UtRfxPoQAKCdqZRwhw==}
-
-  '@opentiny/vue-currency@3.17.0':
-    resolution: {integrity: sha512-ebAL8RZ1RXZ1SR4n+KqykY/+1J9KsIFVGt3QNqNhpz8SaTLc5/ZTXlfBXnju+TBlDxuJS5k/a/oaG9B8GIWLJQ==}
-
-  '@opentiny/vue-date-panel@3.17.0':
-    resolution: {integrity: sha512-F77F7F28CwSQz07zzUGHZqnRbPt0pDAbw1lhCIqvnrJtS5VT3Q/eznlx912w8yPeKrYpqMW8u8zOLVASfpWj4w==}
-
-  '@opentiny/vue-date-picker-mobile-first@3.17.0':
-    resolution: {integrity: sha512-HGISQIfT8a28yyKxyZjMM1XsX9/0u3bZ4ArBrZ1d7Ap3OHkaT1V8qnlQykSCMIT23c72OF3IbaZVp6W9XJRtPQ==}
-
-  '@opentiny/vue-date-picker@3.17.0':
-    resolution: {integrity: sha512-1vCyH2456cMNQNc8z0SOL30mAMdGh/1OWXDkbbIMFjN3MzHQxWvWGKV0GQCPeTxqY7SwjVRc1qK6Oj2bNpUegA==}
-
-  '@opentiny/vue-date-range@3.17.0':
-    resolution: {integrity: sha512-iJzoOwRbYjqrwUi1bFe0P1OnMgeDCQSn+qXlIuxllhg5KfnoOxUMOrLZEJnMKGApBOlEbAIiTcVlxF0LByZhHw==}
-
-  '@opentiny/vue-date-table@3.17.0':
-    resolution: {integrity: sha512-c9W8/TCkF6vNcMyEbcu7rHcYU7mKW5/RLDk9U5i2uXYVFZc5z43Jz7ByP6rUsWsXJzSjiovWmWT2H/7iKlfbsg==}
-
-  '@opentiny/vue-dept@3.17.0':
-    resolution: {integrity: sha512-nWQOsXrostufRLP7WdYUYc11PgS5RPnqoZ60TILiugZjPiT2pAANiNcCUiGVyOSYaJUOr74BDQFHrNfEiIgfcQ==}
-
-  '@opentiny/vue-dialog-box@3.17.0':
-    resolution: {integrity: sha512-JbletTod+SbqFWwea1ceGy1p9ChvR8/kyvVe7eWCzDibb+A09lLeTVrP6NHnYCpYW7a/P2DiFRG/FqipaBVnMw==}
-
-  '@opentiny/vue-dialog-select@3.17.0':
-    resolution: {integrity: sha512-xaPq2p9Ec4rOMejWstwy9mfg2L4Rbxi0sgVGp9odNPSf7Cvvu2TH3R+lkzarbj5z9sx/X0w6f9eiEtGD5qJCYQ==}
-
-  '@opentiny/vue-directive@3.17.0':
-    resolution: {integrity: sha512-+VDHESr6twXMAIgqQ6pu1bFAt5XPhh8w7+okjIaOzoTcuZ16LYTNO5QlsZ+MWiez2Somltmos/jSDRk1XDJ2dA==}
-
-  '@opentiny/vue-divider@3.17.0':
-    resolution: {integrity: sha512-P4+NibkWXoaaRPFC0epSr0H2xM7nxpUGkVUdZHXKKbqslUkeV9ltoLtcupRO0TsKhGodElfgUS+nOhTvlhBqRA==}
-
-  '@opentiny/vue-drawer@3.17.2':
-    resolution: {integrity: sha512-1LUJl2fSwCbdcHEBLJvd9OVwK4a1lmIxPN91OPmKN1NsZ7rORNkQisl1h2GFxZzPWyuUJpnsmqt7arOXSYLogA==}
-
-  '@opentiny/vue-drop-roles@3.17.0':
-    resolution: {integrity: sha512-PpnAO2QWT1PVtfDZnto/SWkhoOu6c1UPCM5qjCi5PgXAQ6llcpICi4fPND+TdLTR4aT9N/3rFMET9EL3hDwGdg==}
-
-  '@opentiny/vue-drop-times@3.17.0':
-    resolution: {integrity: sha512-l4evDpebDu46JBSVC1hiPDhjnDRw8B3vvq4+l0vk3UVX/1ICB+Q7FgYh4iLcwfa6DYRIXI419zVmgEgGgvoDFQ==}
-
-  '@opentiny/vue-dropdown-item@3.17.0':
-    resolution: {integrity: sha512-IBRfA4mKFqW4BKtgWbuTZGa8zfq1L/X7DfbROlgKvMfS5rNh+GGn3+9nAg41JZgdR/i6HZsMwrcjTu0L8cck/w==}
-
-  '@opentiny/vue-dropdown-menu@3.17.0':
-    resolution: {integrity: sha512-9xPCZLe7nVHTSubxlhcRXP8LyYaSEBo1dCoYEp1JoEgC49giZDXpnThm+tFceGBTlyV2lpP/mKKXuoqgLP+lKg==}
-
-  '@opentiny/vue-dropdown@3.17.0':
-    resolution: {integrity: sha512-Gj6VK4sI3TqelbtTN7hCyTuiawG0PyjuEX0blc04QP67urN2lFF1MyyS3iXjWWKRpfn995N7mttOGPPtLGLpSw==}
-
-  '@opentiny/vue-dynamic-scroller-item@3.17.0':
-    resolution: {integrity: sha512-jwciVDcWKIo3fBIE8OibjroF+Kb1dk8gKr5l+jay5PYtzqBj9KnmZHggEqb3uTYfjbxj7lo+VvaYiQPWGw6lnQ==}
-
-  '@opentiny/vue-dynamic-scroller@3.17.0':
-    resolution: {integrity: sha512-dHB/JNSOp6MmLOCXR0bbk747THXUEUZ2MfsnGq2anzZB7tkhBAOKDui+fy8xeWx+y9GxUYpdifB39btDTVcnXw==}
-
-  '@opentiny/vue-espace@3.17.0':
-    resolution: {integrity: sha512-5nQ7WHbl3Swe8taZWLc61HJUlx9jdHiSEknzu543ZNFEIoEcthxxCiEBztnc8N64QeNVz/md/Ic/3twgpwZeIw==}
-
-  '@opentiny/vue-exception@3.17.0':
-    resolution: {integrity: sha512-wCFwcKWQGTp9CSpCoF88rhb37kXL+za+Jx/kWHh08zrnGcanj422iJ0lpOFI7qmaMYjCBaARRFcyJ4j3J/9DuA==}
-
-  '@opentiny/vue-fall-menu@3.17.0':
-    resolution: {integrity: sha512-VlodkvIHEVKvXf+rWqQQZA0q97+GydE/5mGEGwsK6Nq5f3ACUCeTuPyb0uXPWI3hHdepj0Jiomk1brtNgmME/g==}
-
-  '@opentiny/vue-file-upload@3.17.0':
-    resolution: {integrity: sha512-R14ncaRnlBGG1h1r3kXiWnrtQWhYQlbfK2NgxfAqobfc/k0ivTZZrFFo7UUpMYgZCjik1i8emIexgYgBdzbI3A==}
-
-  '@opentiny/vue-filter-bar@3.17.0':
-    resolution: {integrity: sha512-OaglzB1bU05vzyVw8sFumsuKD09j0KW8L8YURGlN8Yc6+yTO09sNT8NaS8QrYQE9YmKuibGGU+jNF7G2katAJw==}
-
-  '@opentiny/vue-filter-box@3.17.0':
-    resolution: {integrity: sha512-Hi0ug3E4P9lNam1n4WtqQz+PFQ9u71K/kKahFaUk2+JR0t7eLoWWK/Ggbm6vJe4qHgtPfuv5jQmLyrHAdfjt7w==}
-
-  '@opentiny/vue-filter-panel@3.17.0':
-    resolution: {integrity: sha512-B96ocfcNrMOQAliQX/OI6SzVj4RtXJtp3wJZQFLMc2nNSnyFdwAhs5VFWOJ6/1moj8IgSe3dTb0tOr4d2cpqkQ==}
-
-  '@opentiny/vue-filter@3.17.0':
-    resolution: {integrity: sha512-x9BpUw+/VTwiUUwbiNKmSd/aQdSEeYtrOYBO+HNtR4ABn0zDph4zq6klo1uy3xpDP0vK87UbmGov6YmZjZAuqw==}
-
-  '@opentiny/vue-float-button@3.17.0':
-    resolution: {integrity: sha512-HwcwxaQ1fNq6re8nN2vucTm4FHprdzwRgu42nIbxFalPDodvq0DfPWv7/Q21X+Zgoe3DN0asoY32Q9yLJQgcqw==}
-
-  '@opentiny/vue-floatbar@3.17.0':
-    resolution: {integrity: sha512-WckAoNzygMQ26Gbo6JXbRrumBtUVGpnonsoIzqS60MABpDRHa0pwZsuNkd4fhOlTV7rf/QIC0JQ7yGjFUpHN4Q==}
-
-  '@opentiny/vue-floating-button@3.17.0':
-    resolution: {integrity: sha512-OTJaF52cxSgBDoEM17fCWPsHEzpRjWihK9+IQbv4NJ8sjHrAhK9UbEsHP7OP0OdtmEP0bwkfAkZmW+qA+kdeyg==}
-
-  '@opentiny/vue-flowchart@3.17.0':
-    resolution: {integrity: sha512-Kk9cfSZ9b+5oVWliItGLEgrqWSGnq7bhRz0WdivflLuKLo/lonCHnOMbkyXnEZeLB52sUfdbewy01VsMPFWlgg==}
-
-  '@opentiny/vue-form-item@3.17.0':
-    resolution: {integrity: sha512-rX8zPmadt5D++h/ShZqJndEHUMR7PQY6ie3+ZRy6TtOo6X4ZXkpUVbQyj+EmLQfwfANrL5STs/1NZrTk7bscAQ==}
-
-  '@opentiny/vue-form@3.17.0':
-    resolution: {integrity: sha512-7yUIBWV3fGnNy/ePAq7NV0CWsD0Yv3sevLYEG92uhss4lD+gm4ZikGZmdWxhlhA90RKyKvjNTEoiXe2PQ6S2lA==}
-
-  '@opentiny/vue-fullscreen@3.17.0':
-    resolution: {integrity: sha512-GLACCjT4XxzjlM8VZhd+Bp1Q+7U13GRPp3L5d72or+mDDzd3gjTnxdzLXSDQlQvS2At3aLTfLWGzaX+IDjQPxA==}
-
-  '@opentiny/vue-grid-column@3.17.0':
-    resolution: {integrity: sha512-/iqRe4G1SRvIoQJh65xVR8sPVBt0Tj54RHkh8QXj0SUluHsp7iRp6XN+9waug/b8evyrXUnkrIfBNnasGlHjsg==}
-
-  '@opentiny/vue-grid-manager@3.17.0':
-    resolution: {integrity: sha512-MwPYm4bZpAL4bkGg9Fvoyq/MwMC1PKzqIFzdG4znulIv0Hp/P8AhTnJMmptuUMifqn8A2AkVKzqBzc+z2oGhuA==}
-
-  '@opentiny/vue-grid-toolbar@3.17.2':
-    resolution: {integrity: sha512-9ij2GYTOUM1D9T55fqV3pmzamnHlHi9lFeViC2kO7txaAYO1SPzHN4XekclNYCZ073NDgrZ/QqRPW1jx36LqBw==}
-
-  '@opentiny/vue-grid@3.17.0':
-    resolution: {integrity: sha512-IkN5klzI9VL4xCcBCWvqygpMlb/gWrKb+mQHwHsx/HAGyJ5FL0lI0pT2iptVJcpVU1+SsmAvglpkyV2z3PyC2g==}
-
-  '@opentiny/vue-guide@3.17.0':
-    resolution: {integrity: sha512-ptbD7GIf55vh/jZjSflJRMOvJ9HNBGOcI2fWv58ZY+G3YnD7boUQOY+369ERXTTAqReLapqFi/cDtlLP3rztpw==}
-
-  '@opentiny/vue-hrapprover@3.17.0':
-    resolution: {integrity: sha512-9TpxIpUnDCsE8nd3Iz1oFzRpAIe1fdiiTzR9zFoPhESZx29Cg1tBy4g+HTdo9Bvw+LHZPv9fKcBnUSv0npkVzA==}
-
-  '@opentiny/vue-icon@3.17.0':
-    resolution: {integrity: sha512-u4odnI2QrRQ4fLJ7WYFvqqdqaLHSfxPJwi7QUBNeeiVuiI+CKUuFEAXIpfd+r0yLgCZAt1Ei3Te4za0tbvmd6g==}
-
-  '@opentiny/vue-image-viewer@3.17.0':
-    resolution: {integrity: sha512-WnsGbGNV7xFKJ3Vxho0TT7PFP0OOgVTny2EtC9Gbm2g0vDbCbdSEZf99orU0o73IruNOT2XqU5JDmNEEt5IBsQ==}
-
-  '@opentiny/vue-image@3.17.0':
-    resolution: {integrity: sha512-i9i2tx5mzTjEskFPCjvFSdt2yfx0Z8D6I9S4do5wzGC+/31ShJ7+xRQ5tLU8S4NGZobp03/PWwyelXAsuJ5/Kg==}
-
-  '@opentiny/vue-index-bar-anchor@3.17.0':
-    resolution: {integrity: sha512-vS8BNemMsOilUEMLHfNkwIIxgEgdAXF5V9F4ggdVSH4mLJMnin6pRIOgtbOzOqnhGIsrUrmiYWpflFMWWz9WDA==}
-
-  '@opentiny/vue-index-bar@3.17.0':
-    resolution: {integrity: sha512-2AbgdPvr56HyZ+U+APRp5tmdTgp8MMXT2cEGlqWW8HdC2fpvaRI/tPAm0Sk2sUxQvxZ1lPs5wGJ9IkiTuDwK8g==}
-
-  '@opentiny/vue-input@3.17.0':
-    resolution: {integrity: sha512-QfY9aAZHf38SFZVgyfg+9Fjfoxcc7pSSPtbi/u2EnMU2cA7d2yMG5/F8cyeFUpbQ5A3qNGDAYcm322nTcjfgtw==}
-
-  '@opentiny/vue-ip-address@3.17.0':
-    resolution: {integrity: sha512-/cD7AAZZDTOznMjJ2bkMOlBALZ69n7ULihhdlznQm+bbnoQC0qkng9X0ewjXFQNalNvs4kiLqFFTCamY0TjAmw==}
-
-  '@opentiny/vue-label@3.17.0':
-    resolution: {integrity: sha512-kKhyPFW9ykRcihP38CKaaersaYYtU7dVxEKCNx1rnKZfC7cKgCy/+9GgO8aYFQv+HBNpNcChiBeO2BDpeJYQDQ==}
-
-  '@opentiny/vue-layout@3.17.0':
-    resolution: {integrity: sha512-nNY2VLV9/gQVQch61vHSxbOJv97jC/fvdoZK+5L3Lt6bLBApkYDr1GW5m8bdLv5Ut+hcHuh44lwdii1tRNtDig==}
-
-  '@opentiny/vue-link-menu@3.17.0':
-    resolution: {integrity: sha512-AYNx/4FONAWQ3h+g4SkmxnyhSrObF4WD/qsZlZga2TJItIkvfjnJC0S86C6mVE/Hue4wrBc3BXKQT73wwoN5eA==}
-
-  '@opentiny/vue-link@3.17.0':
-    resolution: {integrity: sha512-hYLleLWEerlCNK/EGZCR4v6yv7kGfQ5PWC+sgFnEs5yklCFW6DLiPOLm3os42wuwKyomO8sPjSuWgDiuJVUaOQ==}
-
-  '@opentiny/vue-list@3.17.0':
-    resolution: {integrity: sha512-LdUyyLhK7EGrqG/qq7ahVWJNeQOaINbDlLf3kXTPAgn+UFhjbTuj/xZePl+2HZzlBX5EMlP9lT6JNf+T3yCzjQ==}
-
-  '@opentiny/vue-loading@3.17.0':
-    resolution: {integrity: sha512-Kwo+S73acVwNU14sO00kDCIOgMwY+TDdlU2/FgsMKC9ZkL7l9GMeMhAqjlM2+bZrWjqgPXbqmi6I6nXFe4Ad9g==}
-
-  '@opentiny/vue-locale@3.17.0':
-    resolution: {integrity: sha512-YVJWJhKeRS9AXz4r+zQ9E9234ltPek3KHySgTwT/7VwluBtQBY7AXdfH8vQFdaR9TuR7nCpbAzwxF6RxwJsSww==}
-
-  '@opentiny/vue-locales@3.17.0':
-    resolution: {integrity: sha512-+zBWnWNXNcWqJvx4riHR75R4NT6DkN743HDSphH7990CwcIVNyTafL13b9VtfEcKlPzGKQLiUofExy0eQe0XwQ==}
-
-  '@opentiny/vue-logon-user@3.17.0':
-    resolution: {integrity: sha512-al4ljC/r8HJPHJGnFD2PoT7y9LdRwyrYKp8ih6x0HrAoUmZud5d3bQTZVx9V3bYx7OGXId/TSge0eFiVD6bSMA==}
-
-  '@opentiny/vue-logout@3.17.0':
-    resolution: {integrity: sha512-JCt7OfMQ8NHczyN8BLb3fZ7E0L16eyrwURMp+lvLc09PVbd9PCli/7AXW6lmO97PuFYKEsNlxHo+vW5/u5BFRA==}
-
-  '@opentiny/vue-mask@3.17.0':
-    resolution: {integrity: sha512-T+DWPz/44HmS0sKcvBFEho3KmVO8javoolQzFrHIWtXXzzbO/y+RkjspSc5BlfcpbziSdccyuetwDN8RVAkcXg==}
-
-  '@opentiny/vue-menu@3.17.0':
-    resolution: {integrity: sha512-TizOw6/alRH4RZFhLtfLnU47YJItPKq82XENjE2F6L+kc3TvAHeMFqcXEIkDFHtI/5loCYusjjg8TSRm9IIzMw==}
-
-  '@opentiny/vue-message@3.17.0':
-    resolution: {integrity: sha512-8zi4YnnmKoa4Ln3qsgSiwkbUki0ZGjdpMc4ynA7R/DG+N0doilx8tdsoi7xfNM5KFtZi3CTegZ/c+G2nLuCBtg==}
-
-  '@opentiny/vue-milestone@3.17.0':
-    resolution: {integrity: sha512-9mruGtY15Cc0ZGQ6UBxKmcCuuF74UqwlT0E9/Gkinrj51jUw+I/sl5L7vgfID6BqPCXVOrI+r8XBahffYp0PXw==}
-
-  '@opentiny/vue-mind-map@3.17.0':
-    resolution: {integrity: sha512-U7Ylh1lZKO53GsBI0czX8lRFfnkatAM6NX8+dSY+fdIByH5Ebk1T2sigajKsKZu5c1dyNwm6ORez1U8F4SL3ug==}
-
-  '@opentiny/vue-mini-picker@3.17.0':
-    resolution: {integrity: sha512-FKX0xyIJN+44Qhmsa1P8HnhoVZAaxZJYUxvsIKwlWHu7EUu72FYq5t95dw7Oc1S/B3aJ8Sltwp3k2ZlWWd7lwQ==}
-
-  '@opentiny/vue-modal@3.17.0':
-    resolution: {integrity: sha512-gNhdD6oi8WoesNx9fsKzJjLSoo8Mhw1Hmju3R/6CDvn9Mvd5AysRDI4tI4RYU8w/VDoOmy0fSt9VbVB3fMyVFA==}
-
-  '@opentiny/vue-month-range@3.17.0':
-    resolution: {integrity: sha512-2ikU4jebqHd5lV40IZg9CseEhgn/GrA0w341t+NwgUvUuP4L17NtRVkWfe1fTxpMtzJhzYvXo2oCGZr7evsnfA==}
-
-  '@opentiny/vue-month-table@3.17.0':
-    resolution: {integrity: sha512-kw0gCPeelfAId/+ySVtHD61gHR/K/cpDf8Iy+j4tRPJ+jiKRXtHcoWczQ2hahrgWpHa8qxMU7eJDCyVVVaRjkQ==}
-
-  '@opentiny/vue-multi-select-item@3.17.0':
-    resolution: {integrity: sha512-L/M+zDj51srHG5ZUul0U6oAJLvdFE1QK9OkDjb9U9izacRfwOVQj7O6BzZG5lvF04eETYKfdFqVfDwAcnGBYGQ==}
-
-  '@opentiny/vue-multi-select@3.17.0':
-    resolution: {integrity: sha512-DyQ3REY2cMFUecmrgnTqAm/ybYgdDpQg610hfwjqttEBBVnS2UpsHjTNEN34v+AkL0Ga7qx/SOZAwWJD24TbPQ==}
-
-  '@opentiny/vue-nav-bar@3.17.0':
-    resolution: {integrity: sha512-HS/1PO902TudFiHc97xYevHduuOTv5UihuTNL5vRgSxo1Fv0zpLw1BanvVxYg1tLlbuDo4q4fb+BXM5FKxZCGg==}
-
-  '@opentiny/vue-nav-menu@3.17.0':
-    resolution: {integrity: sha512-9WBs7qCg+o1q1xBKfbnTBuefHCcc5iAIvfChoMoDGtO6B4q71e3HamLXPTFE7UZ7x/nLMghyEfj7ytq1d9D7Ug==}
-
-  '@opentiny/vue-notify@3.17.0':
-    resolution: {integrity: sha512-LOnQY2YCAjnasQ4vsTpb5Kuxw0/ljzgHwHs0W+7GNsxuNwZdq4Pxie6KMiWpOVSf7U8KBkcBTvGnJrFcWiqIOg==}
-
-  '@opentiny/vue-numeric@3.17.0':
-    resolution: {integrity: sha512-oC9Fl03qgn9/ahM4JEUL3EfQOYFO4R7LGEAHx+PElGbA0NeSAn6c/szcBw53qxIwPL05zzwiVQXqH6RuYrt+Eg==}
-
-  '@opentiny/vue-option-group@3.17.0':
-    resolution: {integrity: sha512-AgL917G8FqfC65QTi9q27eQM6tz8m3hp4/m+5DRQ4h+w5Dpg8By9XWEVa0J/J3HngO7iqqz33aREbD8Zm8O0Xg==}
-
-  '@opentiny/vue-option@3.17.0':
-    resolution: {integrity: sha512-YWe/ZhY2US7DIGqkyurVswnZQkQnZ5LOclFKRIv/jE7vxJ4u62EHARbFGV64xYb7HV7PdqcQvvxjVQ0pep105A==}
-
-  '@opentiny/vue-pager-item@3.17.0':
-    resolution: {integrity: sha512-D1UHQism977raQVdtSUNVahfwdHl+R7Vpx4eJoFXJZqNwY3CW0OEBM24Zc7860QYxGK4cqbiefjbhk+MS1voNw==}
-
-  '@opentiny/vue-pager@3.17.0':
-    resolution: {integrity: sha512-rQiArPJs9Q/QiM4HUwYgZOLOodfCB+GdiW+9bdbcd6GjZxrSW0KMS/LL23hhnFg17a3eZdBDtdlG9CIXrttpuA==}
-
-  '@opentiny/vue-panel@3.17.0':
-    resolution: {integrity: sha512-IKs4p0lqAE66PJ+y6omWgjO+tv5zf0yL302Gh2h/uOwQ28HKwUtBGf3V2UpTsKzg3eoxKvk8PMZtYYvMEKZhzg==}
-
-  '@opentiny/vue-picker-column@3.17.0':
-    resolution: {integrity: sha512-9mkcdY3VShheO1OU66AWLDKorTj9/FYeYNM3jcVte99d34WNztpFCJZ+udfddW6UrFiiV2rLMBPERbcYTwQ1Iw==}
-
-  '@opentiny/vue-picker@3.17.0':
-    resolution: {integrity: sha512-wjff6d6B4e/lOKpmzeFjmvUiGLnwAm9l8t+Q0HYfVDAtSd+znYQQn51UprywLjLr03rWxjkzQVGveoDbY/x2kw==}
-
-  '@opentiny/vue-pop-upload@3.17.0':
-    resolution: {integrity: sha512-ltENztGHHTilKwmxiYsoNs2M38M+jJ98JGvrHvXzZSIgfswj6B7Kuxt38FPZkUM3/prINK+VpMAJxue0uHjE1Q==}
-
-  '@opentiny/vue-popconfirm@3.17.0':
-    resolution: {integrity: sha512-VuSk8DCXTvlH2Cv8fY0VdrxvM2okk69JwNhzQaIVVrJwbhxE3TadLmTG2b1gyaJQzTCn0IGRbxGthUsKP37ISA==}
-
-  '@opentiny/vue-popeditor@3.17.0':
-    resolution: {integrity: sha512-bYyPnU6h6rC4Pj2gtZGjDF9gRkV5At3JAig24lLNqPoKgScgp0TI4Nj0uFAwxuOsdco+jBatYbpO4NrCZjTBog==}
-
-  '@opentiny/vue-popover@3.17.0':
-    resolution: {integrity: sha512-A2fxjge1hG0r5VvAFdQd/zkX4F82dZkbsO76hhXwJtv59vfOteFO3pmbv27jxv83mwQPfIayD8Z4wMBAKxNdJA==}
-
-  '@opentiny/vue-popup@3.17.0':
-    resolution: {integrity: sha512-M3PRqNgoFCfPB+CQIw+CuyeS2G2O/WEeoOeS3HBsRdDhZnrtiktOwdEb5wOY4PRv0EYLhDnvl/16f4kKU8xm7A==}
-
-  '@opentiny/vue-progress@3.17.0':
-    resolution: {integrity: sha512-h2ZQGa1F+fnlP1YJA6vPPiaJnaaqk9HtQbCBIwDxwr3wdYdOEn9HCSUM3qwSn2AC3AHrmZh2uH6RziYPIZaH8A==}
-
-  '@opentiny/vue-pull-refresh@3.17.0':
-    resolution: {integrity: sha512-MSsEAKNwjTQLwWX5RyVdMaNiZil8Uj+V+yRWXeUjuczLD5SuXTkk2jswLEK4SXd5L4WTqzViNSma66tmct4U8w==}
-
-  '@opentiny/vue-qr-code@3.17.0':
-    resolution: {integrity: sha512-umVy70q11OEq5qy2OfPdhcUfFh9CIZfrw6cj97Fb46yq9lYZME2ouAocTqm3CaSkcAlU0HbZcX7HEqSJgO95ug==}
-
-  '@opentiny/vue-quarter-panel@3.17.0':
-    resolution: {integrity: sha512-oHcpEPbKwcBiZzlCFOr6QPHoYU3nCFgBjDKQEJMfX73K4izubFinALocdUSdNIOqXy76T6AGvDkQtkKXglG0xA==}
-
-  '@opentiny/vue-query-builder@3.17.0':
-    resolution: {integrity: sha512-L+5XC/2U2CdBXozzHM8qSxqRviU30RnW9P75GfnqLrC+ikLNl9PbIfayKWEEf6x37VA3GLfO1esOWDYfSr4LwA==}
-
-  '@opentiny/vue-radio-button@3.17.0':
-    resolution: {integrity: sha512-GfV0v+YR0NgRNpLNTMzlg9mC5XlrK7SuB3wnb/piukSEL54H3RQ0jyJ0DkcSypIawCg+jWAOeUHKw/mOfj5VPw==}
-
-  '@opentiny/vue-radio-group@3.17.0':
-    resolution: {integrity: sha512-io/vBV/Tae3ptZ5pUh+QpBj8U/w3i4COGEJaMlRWS9nzFMqabrwTbGZrgXRJ6eaOcIHNut4bAbN79juaq55ShQ==}
-
-  '@opentiny/vue-radio@3.17.0':
-    resolution: {integrity: sha512-UIvAw2tZD7KGpXnClQKQnVC/8snFT6EY9INZMvi0TEg7YJ72LFk3JI2xLujqxbt0W3pWLFpHpQpCdOFm7LPt2w==}
-
-  '@opentiny/vue-rate@3.17.0':
-    resolution: {integrity: sha512-JU5KIF54xQ3z4hFON3Tnj7VVIZXv1Qqu/VsfwvPXNdfiQQe2AhkHiB3z6PUH0VQFhqQ3fuNHGM+tmkg3SJRL1A==}
-
-  '@opentiny/vue-record@3.17.0':
-    resolution: {integrity: sha512-3kqShRVRt2DO76MtwvnUahkJWG0o3nW7gnkfuN4WT9/k0NGgHLo1TnDfUWMa36jMz/BjF1D/YAt2pglUC2baPg==}
-
-  '@opentiny/vue-recycle-scroller@3.17.0':
-    resolution: {integrity: sha512-obgC42MELM8L2468CzLDB2Gu6GuMDUuNA9+nvLWpQ/8soGfLFc5zkXDKyonGzTom4xkWMhtOAlpNQz+84RLq9w==}
-
-  '@opentiny/vue-renderless@3.17.6':
-    resolution: {integrity: sha512-nHtyUZEpFPQSNSaukj1/4QL/1EbLkiFHbQVaw67W46q8DFG1YPIAevqC9kJzf0enpa/NIJTOlXyAY5ftWerUyw==}
-
-  '@opentiny/vue-rich-text-editor@3.17.0':
-    resolution: {integrity: sha512-xnDfdlhh6j6cr6rpdvTtnaSP4+4/zHvvkhyi+Xmyl372Q7DFnNXL4F3kwokGpudZAl92HD+aHLRJepN8yIrN4w==}
-
-  '@opentiny/vue-river@3.17.0':
-    resolution: {integrity: sha512-7SFBiQ4BdO/I000peUKwLkwevtL/UlV3nKVbUD/qgou8EAS3B7AQTZmREcrzwdxnL2A+kuRoE0Nn6HKARsmWWw==}
-
-  '@opentiny/vue-roles@3.17.0':
-    resolution: {integrity: sha512-NbM+JLSnVLWGO1qxhos2TM4r3IH72H50u1rCd/qzQehLzvoE3eVWwu4bg/uJIOYZmlCk2n8MUpYu1sYaQtg+Wg==}
-
-  '@opentiny/vue-row@3.17.0':
-    resolution: {integrity: sha512-gm5DE77lfhXnkLtXBy4A0BLjCX53DFpAxaKNFtwTDJTnJBw2Ra7hwDQwD28cNpngn9u6lDVvPYYPNr/96M3rTw==}
-
-  '@opentiny/vue-scroll-text@3.17.0':
-    resolution: {integrity: sha512-kK/307F/0tCqS6B5Gi+CYOIYMWXvzLpQlg8PesOOAJdwwq9FENMSOVCJyiZ7mYo3w+BRhjoQ7YaMAnB2q6KrYg==}
-
-  '@opentiny/vue-scrollbar@3.17.0':
-    resolution: {integrity: sha512-ro5kM7eNVS42o0OdBHDKoqprOeCarO95yR9ovBMnlPVW2eVhPpW6CqZyyprADvVZJeCRDu9y645NQUwT1cQfyQ==}
-
-  '@opentiny/vue-search@3.17.0':
-    resolution: {integrity: sha512-oS93nMzGh/S5khqeAGD6wVu6/wP6GrdZmVMvhx/GFI6sIG/+6PqEB7rGDlCeTJnxPBqMln06oxjVv3t5CpyVQg==}
-
-  '@opentiny/vue-select-dropdown@3.17.0':
-    resolution: {integrity: sha512-issT1AijKE5ITm/DjcVuftmqo6DWQtkePUhtW1098YBVf2i+x+C/XfX1E0sNgO5+5NIhP+ODY4UZll+2rf6tFg==}
-
-  '@opentiny/vue-select-mobile@3.17.0':
-    resolution: {integrity: sha512-NrjoI8l9MucSMFpPRKzN1t3q0a4S1hH7SAd5CU0qyszImbqKsbxvAAYpajC2KIhYO1dS4HXyI6acxPKTGIpQEg==}
-
-  '@opentiny/vue-select-view@3.17.0':
-    resolution: {integrity: sha512-0qdoBAWWjhFJWRMD+5zc7Y7R9zSgFMeOp88+1JWLi5lAaNgMnAMWEsMv773d5NQZL5TmykE+O1+QoFX9N470Uw==}
-
-  '@opentiny/vue-select@3.17.0':
-    resolution: {integrity: sha512-p25U//Bq7LCOURzimJeRXCKz3R69rrvrRQSfLE1aPtNbuLFPdo/vsqsL/YJeq0Z9Gppsl6KrkO737k3uJP9sfg==}
-
-  '@opentiny/vue-selected-box@3.17.0':
-    resolution: {integrity: sha512-CEhPBpZjbltgj4vJC6GECP8a0Vn15lwi91KbBYOiXYFlOSdSaF38CfuLwj65igd/WpIbzn80xEKzpHAMzCnOAA==}
-
-  '@opentiny/vue-signature@3.17.0':
-    resolution: {integrity: sha512-HC8hHotHWGy+QqPfG/Rq4bvpz+3ucVElNheonc0yM0zywhZoz6TXIhod/vY3FlMo+xDQCKqvXyZvzp3f6WujqQ==}
-
-  '@opentiny/vue-skeleton-item@3.17.0':
-    resolution: {integrity: sha512-pW1gAUSzqdKWn0YveGl1XvAx+IROzMGcvawr/GzjWibn91F2Uu6A6dTlCfnsd841PCl9uZb/bsuNjXyz/Gnxdg==}
-
-  '@opentiny/vue-skeleton@3.17.0':
-    resolution: {integrity: sha512-WpMY5GTChcbTRIYaqyUa1sB+OvYqqZCLb8O6kcScKxnPgh79MkLtYtrB2wAMI7JoxGrrzpb87JLft2zqTxvDcQ==}
-
-  '@opentiny/vue-slider-button-group@3.17.0':
-    resolution: {integrity: sha512-kk9UGJw7gvzycYjpEHrPu8RlDHDU3mUKBG+Yso57/gsPNRRsh2tCvI8ixmgr2TeVIQg1+nJzWEbhVeEGndkI9w==}
-
-  '@opentiny/vue-slider-button@3.17.0':
-    resolution: {integrity: sha512-KA2Sp0ILrNB7hDZcAspPdBvumhJq3ryMB/R7r083FSm6R0gU/njN35KQZglaPIaq2VDHiWyF/BZVtnrpTWIx5Q==}
-
-  '@opentiny/vue-slider@3.17.0':
-    resolution: {integrity: sha512-DVau5qBrx3AfbhVNmc+IBCY7AdK5fQ4Oq8BR8YbZkKoI1UAP1vzwpyqn0y2MARMZTFwo/OUBtGR8e7daJfRkag==}
-
-  '@opentiny/vue-split@3.17.0':
-    resolution: {integrity: sha512-e0uifYmCHTod+TCRi5clJc+zJwshTSUPB7KVCSYNdFXYHe9fFKw8+jj7vPqGJEHGf7Dy2NfUFtsX/d50E0usDA==}
-
-  '@opentiny/vue-standard-list-item@3.17.0':
-    resolution: {integrity: sha512-grhmA0e3Y2cGrZylBN1PRLTZkWeOGkRDE2BhijPHkhaontq78+gb24rQlK414R95KCzSSqddTMpDjQAVsBYXgQ==}
-
-  '@opentiny/vue-statistic@3.17.0':
-    resolution: {integrity: sha512-i1iIvULwyEQSFj11S8hegHLQMFHcVR0fNPlk9jiM4Wb/4qCyuZKb3YkbUSCovGa/3AJPYVy0BTOoEvjfSC6OCQ==}
-
-  '@opentiny/vue-steps@3.17.0':
-    resolution: {integrity: sha512-9gSrhJAlAEm/wAdSnjBM1rNtxp1bBU0Hdu2QpV+jFYb3LPgbp5WyFehnUJJloAzZ/fEb4pw3SESGkjbBTOritg==}
-
-  '@opentiny/vue-svg-icon@3.17.0':
-    resolution: {integrity: sha512-0Xw/86UyiqkUwuTVmusJy4Os4Oj781Z9fQUfTyJU90ws5nKFkgWIPTKQSPDuPv/F7mQQl+rXX5hA8ACvfrXYRA==}
-
-  '@opentiny/vue-switch@3.17.0':
-    resolution: {integrity: sha512-dtWdSjZwsA+qWVEVyyGVf2sW7KvQMhiCpLQ4p61QMLx74gHoEunECaFIhr20St829uZqTDkrUIOb0Dud9BTU8w==}
-
-  '@opentiny/vue-tab-item@3.17.0':
-    resolution: {integrity: sha512-jnF2iBeVTSErWus8MzjbecoIIuVUEQDKOpkpr1ISgQBiI3FcJUFoHwqbv2RVaL3ekvd4R2hlRizU3Evmn4F3oQ==}
-
-  '@opentiny/vue-tabbar-item@3.17.0':
-    resolution: {integrity: sha512-/rlqOi5hjCCN6bgfi4Q679RjSgELP8SgqdhvWZc8V5DXJR3nfZGqeMzTytxwZ5ePPzFwsh0byaAwcQn91OvGxA==}
-
-  '@opentiny/vue-tabbar@3.17.0':
-    resolution: {integrity: sha512-Zzil2OcjPLeHWseFQUUMhR445WMwDl2RrzPJQw9znqvqDApFUusMrdv1HaeHcESRP45xiMvR1IE1IYQAhUX1Bg==}
-
-  '@opentiny/vue-table@3.17.0':
-    resolution: {integrity: sha512-Yt0HAhe0eDkqDDCUgs7f1aUqdhb+mDYgxGNSjnBSrRNJWkWcxl05RFB6lwqELzz8DPFDsDiGSGnVY4IiDFV0zA==}
-
-  '@opentiny/vue-tabs@3.17.0':
-    resolution: {integrity: sha512-rRUlNgXCDDGV7trWVmEsOrOAG4EYYbfhknnJLQpRVMifrt/g5TV2TtjqpkjE7UrFTEihmobZdIQjKcO71Ij59w==}
-
-  '@opentiny/vue-tag-group@3.17.0':
-    resolution: {integrity: sha512-BHnynMRF0tczDiZf0x+d21djqn/oRSYIIA7U9cBUGdlxhyiSyaY8LrhRvaw3K1WauYARFd61VuoZvl/UHNJqug==}
-
-  '@opentiny/vue-tag@3.17.0':
-    resolution: {integrity: sha512-HXolmIaW/Lg3xbkkXkeonxL5Iv0TvmwYdCGHoMGeiXrM66QUEw6k3yl8uF39zdR3lGflQFp3K12CzSiISSHt9g==}
-
-  '@opentiny/vue-text-popup@3.17.0':
-    resolution: {integrity: sha512-uyPfCOT4TNt6eAp1jEKE47Sg229ljxrwnoKdvfJ/W8CM0zCBjT/qQadxHSsnGD89P0lJKk0+nB5Ki3jCtO38qg==}
-
-  '@opentiny/vue-theme-mobile@3.17.0':
-    resolution: {integrity: sha512-snQEzzbtZm7D8EXTrvd7II4awRe6ne0QoRWdw+OQV/5pwvRlGki3mrSZC9cHTCtIJOS0zQXGV96wzESAXkElSQ==}
-
-  '@opentiny/vue-theme@3.17.4':
-    resolution: {integrity: sha512-wbqZXm+d+4mFxeTexj6WwpTtZ6OobllzoHwxcT7pFKqFpLeaqpfGeMeLVVnJKRlRUZ+SV00b7RziS5m3wyCjsQ==}
-
-  '@opentiny/vue-time-line@3.17.0':
-    resolution: {integrity: sha512-yIeMUt9pRVHFGnASpedAJN5KQbTMDXfmshdDi7NE9c26dPcwxXr5AQPy3PEnNGR7VIbz7WLEAV24EOWezZaTZQ==}
-
-  '@opentiny/vue-time-panel@3.17.0':
-    resolution: {integrity: sha512-643fQK0jJ73Ao3gQH85rlrcZ4tuBPA6fqTFiIG6RRzqzqZNPRo+6Pl3iJQ3uLsz/eYCuv56BhNIGZ1UtB7/1Lw==}
-
-  '@opentiny/vue-time-picker-mobile@3.17.0':
-    resolution: {integrity: sha512-oYLvgAlif2exYfnagwU6nwYhzFvO2AZzBWc9osI05ccAFEAF3uFFdRNzc379d26qnj4AZRrXI5KKT8zUTOeWlg==}
-
-  '@opentiny/vue-time-picker@3.17.0':
-    resolution: {integrity: sha512-j2lqYGmGYK+LZ3ikz3dFvCEURCrZmzR6byZ4rwmTK4JAKFWkDLBFK+IZQBRxFjkyKqHtlvNGIIOw4dZai+zWVQ==}
-
-  '@opentiny/vue-time-range@3.17.0':
-    resolution: {integrity: sha512-93JvMAUMLD/70GvD/9d3HJLwGOWE98A0v8kJMACQ3rCMuWGyOiboxFoYkZacZLvgl0KygrqudRWOKVcT5VR4kQ==}
-
-  '@opentiny/vue-time-select@3.17.0':
-    resolution: {integrity: sha512-wPvPHLzebRB8v2E077CCJlWoKGbFxZegL/ohiMeBGxUEgb1K9/YYia61x8/1xpte+JvmLAdMOFzCGhKdJrWTvA==}
-
-  '@opentiny/vue-time-spinner@3.17.0':
-    resolution: {integrity: sha512-Mrt1s3DiC7O7KErYrruK851/bWqjTM7USiS5fFvX+nwZOKD80Gw5LxUeUV6db74yg0qiv8fConbo95papMRDbA==}
-
-  '@opentiny/vue-time@3.17.0':
-    resolution: {integrity: sha512-6mEIZaqAeyIikRgh6uNu5OIhPnrHNMptsi1f7zcbyaBzGRRDTHBPsuCdByl2m5yXOepPPeGu5KQj6s2PzOM1vg==}
-
-  '@opentiny/vue-timeline-item@3.17.0':
-    resolution: {integrity: sha512-IUJhFwOdNimvUJfMmeRFPV2Es3tFbJMQXBJHJJJfSTsOtU8HBl8F3+dHNwWpyS8As36eyvOVI5yBXOcouDx9rg==}
-
-  '@opentiny/vue-toast@3.17.0':
-    resolution: {integrity: sha512-rSV8o0A+pB1MFtH6Cm+gTGJynC5+LHnuppJCi1p8J6X2RvuFEfo/dBLP1yZAIu6M4aRvrL9NBzG09GDcZLv3gg==}
-
-  '@opentiny/vue-toggle-menu@3.17.0':
-    resolution: {integrity: sha512-yyrDd4gugH1L5LcenVZAzZI748rYl7XujGDlQBGsyuYeaGAm2nEy7H+lwOhbX4+h/r/8t/4vt1SsozCW3SIpeg==}
-
-  '@opentiny/vue-tooltip@3.17.0':
-    resolution: {integrity: sha512-9x7IuQSJ77Erd2RO9VqEVP4GIF6x7kZMvHSQM/m4sVc2llyC9dNs+eqcelaHhLE52ouVbFtHMwlNY8oHpS8n6g==}
-
-  '@opentiny/vue-top-box@3.17.0':
-    resolution: {integrity: sha512-e+SfwZrbq0wxowugmhSxVLJJEX9PUN5EolfWCiAnUFwSi3irJPyrTOA+SQmHCGpDE/lvh8CqFxMm5IuFeJ2Vww==}
-
-  '@opentiny/vue-transfer-panel@3.17.0':
-    resolution: {integrity: sha512-xgUzSR0dS0n65yEFifEhiVyKR0JA7ZOYkpLbuYshW8cGZpktaAFnAsCtAijONeMotItMADfDRUHFNyeK1xYdMA==}
-
-  '@opentiny/vue-transfer@3.17.0':
-    resolution: {integrity: sha512-nyskTTvdUdnw3nqdLQTBT8e67CTllUqjk6xV/TKsfWTT20REOWae53uWZjv8NUrAwxOV8wcxSpDnkLQ8jTMTdQ==}
-
-  '@opentiny/vue-tree-menu@3.17.0':
-    resolution: {integrity: sha512-NenvZLP54iLvLx7Q5sk47ACnwNr4mm2olNXu1PW/rDzdKy5QGN2YzR6+pqr3ArmEifvLVwRSz9RU8AsW1ifWrg==}
-
-  '@opentiny/vue-tree@3.17.0':
-    resolution: {integrity: sha512-o0X++SuBXshbszBlH0XbK1/XzvgwbM/JhaYbZomOtQ+j3OZGzQVHA3UNwoDmmCaxuLNiOC+JAmxUxYiTBn6xzg==}
-
-  '@opentiny/vue-upload-dragger@3.17.0':
-    resolution: {integrity: sha512-plwqQ2LxxOQi4T44F2+/ICUraVWIgSEG6ocbtuM0P9Y25SH7mvM0Y4BAvdFOInQH/q6Y7R4IcejUEH0SOAlEJg==}
-
-  '@opentiny/vue-upload-list@3.17.0':
-    resolution: {integrity: sha512-4rasIOkOZGHT3YPPSbZNzK0rMuZzUQApys9MT5DeB4fksyX2y5rycURsysLEJavbHWUrawUTdnOvW/IdDne3dw==}
-
-  '@opentiny/vue-upload@3.17.0':
-    resolution: {integrity: sha512-keqVrP6gy6vuXqWejagWz1KVSGbQytAEf61VrKGH78evscmbGkp2J4THRk1WI7AgYOBoNILyYsIGPNqEhwS/Ww==}
-
-  '@opentiny/vue-user-account@3.17.0':
-    resolution: {integrity: sha512-8TDM43HTFZGrnL2oxQHC8YpynLbVrVCJT82wYu0FjCbV/dLc4W69DJh263G3FmBQs2TEoW32pe5vlnvtlZGCMw==}
-
-  '@opentiny/vue-user-contact@3.17.0':
-    resolution: {integrity: sha512-xZuSnnuf8VBgNFklUubzhAFLeerdBCuuee5N5Uc6Q4MLKimsSLNJVMRRXAHOsz57svut0g9HvW8eEaGRC950ww==}
-
-  '@opentiny/vue-user-head-group@3.17.0':
-    resolution: {integrity: sha512-6c5UX2IT3yElcrBVNSjCMdxR7YTahz98e96qJbaji3ppfmY0DChbGfQwi7Zc71zVKDJD8B0ncc4vUMwCglwTlA==}
-
-  '@opentiny/vue-user-head@3.17.0':
-    resolution: {integrity: sha512-+l5VqYHW5QjlL2ppVkMVI0GnXsSFggD9N7Up7pO9kKgY04WfUGThmbDKfY6wCFKhSkEZ9MeBkjSxSACkMLImQg==}
-
-  '@opentiny/vue-user-link@3.17.0':
-    resolution: {integrity: sha512-hK7iyg3c3xdfz4IhYRYqN4XRSf4mYdTTpIgi0kztZ8kT+cfhxgWhE2J8sXx7/rPtxPyMHufGSk+cOOWubzKpsg==}
-
-  '@opentiny/vue-user@3.17.0':
-    resolution: {integrity: sha512-SLBmueAS4uEqH9sJauB3VixU17E4WgdBbwAPwdzXMG6o2idWYqQ57I/a6p6dH2OAPXd8JxiB1vSznmbfLoyH3g==}
-
-  '@opentiny/vue-watermark@3.17.0':
-    resolution: {integrity: sha512-8tBF3LScvJzzvPWYHyowzHmDlpAUuCdf0ik+qHWWJmBnl4IkcCg2IWgrUFZLFfhx/n4YCnJQ2IMP/TcGxoC0AA==}
-
-  '@opentiny/vue-wheel@3.17.0':
-    resolution: {integrity: sha512-DX43Oup5fD8Nj8kL1KU/bQSHb2F/hP9oz48AD8FWAkjeOh8mZUnrcVMq/0uiZ0UqD1rhZ5JFlBcuinTkpr08Lw==}
-
-  '@opentiny/vue-wizard@3.17.0':
-    resolution: {integrity: sha512-H1JSUHYyslmZJwydLiWlib9vum3QjpXWdRHLdqMK18fKCgkocOrz3UEJQI4tLtq8Z4NWVRWNp3dc+v5jRpyVlw==}
-
-  '@opentiny/vue-year-range@3.17.0':
-    resolution: {integrity: sha512-TEQEN9JNCoZNsBOnYonOCmhR6rnBalfEHiswZKqQgpIkTJFAEWheb2f3kONJn/v67ZS/LRozPsRvGAP1pMEDUg==}
-
-  '@opentiny/vue-year-table@3.17.0':
-    resolution: {integrity: sha512-XdjC099YswiRYG37UdC14Kfv9xb2mNHIa5hvEwuiL9F/ydgSjFeow9d2q1MJ29NTIaMrKI50EF+SAYWcoMFa8g==}
-
-  '@opentiny/vue@3.17.2':
-    resolution: {integrity: sha512-CX08v7s8n+d/L+5VEZgSnpkHO7Hv2UWgqKQ5ZSd2p2odulSB2hvBb/91s0SVzwHS0UhAj3aQVVnNbZtpJ+xEpg==}
-
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
@@ -1861,31 +1124,31 @@ packages:
       rollup:
         optional: true
 
-  '@stylistic/eslint-plugin-js@2.6.1':
-    resolution: {integrity: sha512-iLOiVzcvqzDGD9U0EuVOX680v+XOPiPAjkxWj+Q6iV2GLOM5NB27tKVOpJY7AzBhidwpRbaLTgg3T4UzYx09jw==}
+  '@stylistic/eslint-plugin-js@2.6.2':
+    resolution: {integrity: sha512-wCr/kVctAPayMU3pcOI1MKR7MoKIh6VKZU89lPklAqtJoxT+Em6RueiiARbpznUYG5eg3LymiU+aMD+aIZXdqA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.40.0'
 
-  '@stylistic/eslint-plugin-jsx@2.6.1':
-    resolution: {integrity: sha512-5qHLXqxfY6jubAQfDqrifv41fx7gaqA9svDaChxMI6JiHpEBfh+PXxmm3g+B8gJCYVBTC62Rjl0Ny5QabK58bw==}
+  '@stylistic/eslint-plugin-jsx@2.6.2':
+    resolution: {integrity: sha512-dSXK/fSPA938J1fBi10QmhzLKtZ/2TuyVNHQMk8jUhWfKJDleAogaSqcWNAbN8fwcoe9UWmt/3StiIf2oYC1aQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.40.0'
 
-  '@stylistic/eslint-plugin-plus@2.6.1':
-    resolution: {integrity: sha512-z/IYu/q8ipApzNam5utSU+BrXg4pK/Gv9xNbr4eWv/bZppvTWJU62xCO4nw/6r2dHNPnqc7uCHEC7GMlBnPY0A==}
+  '@stylistic/eslint-plugin-plus@2.6.2':
+    resolution: {integrity: sha512-cANcPASfRvq3VTbbQCrSIXq+2AI0IW68PNYaZoXXS0ENlp7HDB8dmrsJnOgWCcoEvdCB8z/eWcG/eq/v5Qcl+Q==}
     peerDependencies:
       eslint: '*'
 
-  '@stylistic/eslint-plugin-ts@2.6.1':
-    resolution: {integrity: sha512-Mxl1VMorEG1Hc6oBYPD0+KIJOWkjEF1R0liL7wWgKfwpqOkgmnh5lVdZBrYyfRKOE4RlGcwEFTNai1IW6orgVg==}
+  '@stylistic/eslint-plugin-ts@2.6.2':
+    resolution: {integrity: sha512-6OEN3VtUNxjgOvWPavnC10MByr1H4zsgwNND3rQXr5lDFv93MLUnTsH+/SH15OkuqdyJgrQILI6b9lYecb1vIg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.40.0'
 
-  '@stylistic/eslint-plugin@2.6.1':
-    resolution: {integrity: sha512-UT0f4t+3sQ/GKW7875NiIIjZJ1Bh4gd7JNfoIkwIQyWqO7wGd0Pqzu0Ho30Ka8MNF5lm++SkVeqAk26vGxoUpg==}
+  '@stylistic/eslint-plugin@2.6.2':
+    resolution: {integrity: sha512-Ic5oFNM/25iuagob6LiIBkSI/A2y45TsyKtDtODXHRZDy52WfPfeexI6r+OH5+aWN9QGob2Bw+4JRM9/4areWw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.40.0'
@@ -1950,8 +1213,8 @@ packages:
       typescript:
         optional: true
 
-  '@typescript-eslint/eslint-plugin@8.0.0':
-    resolution: {integrity: sha512-STIZdwEQRXAHvNUS6ILDf5z3u95Gc8jzywunxSNqX00OooIemaaNIA0vEgynJlycL5AjabYLLrIyHd4iazyvtg==}
+  '@typescript-eslint/eslint-plugin@8.1.0':
+    resolution: {integrity: sha512-LlNBaHFCEBPHyD4pZXb35mzjGkuGKXU5eeCA1SxvHfiRES0E82dOounfVpL4DCqYvJEKab0bZIA0gCRpdLKkCw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       '@typescript-eslint/parser': ^8.0.0 || ^8.0.0-alpha.0
@@ -1971,8 +1234,8 @@ packages:
       typescript:
         optional: true
 
-  '@typescript-eslint/parser@8.0.0':
-    resolution: {integrity: sha512-pS1hdZ+vnrpDIxuFXYQpLTILglTjSYJ9MbetZctrUawogUsPdz31DIIRZ9+rab0LhYNTsk88w4fIzVheiTbWOQ==}
+  '@typescript-eslint/parser@8.1.0':
+    resolution: {integrity: sha512-U7iTAtGgJk6DPX9wIWPPOlt1gO57097G06gIcl0N0EEnNw8RGD62c+2/DiP/zL7KrkqnnqF7gtFGR7YgzPllTA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
@@ -1993,6 +1256,10 @@ packages:
     resolution: {integrity: sha512-V0aa9Csx/ZWWv2IPgTfY7T4agYwJyILESu/PVqFtTFz9RIS823mAze+NbnBI8xiwdX3iqeQbcTYlvB04G9wyQw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@typescript-eslint/scope-manager@8.1.0':
+    resolution: {integrity: sha512-DsuOZQji687sQUjm4N6c9xABJa7fjvfIdjqpSIIVOgaENf2jFXiM9hIBZOL3hb6DHK9Nvd2d7zZnoMLf9e0OtQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
   '@typescript-eslint/type-utils@5.62.0':
     resolution: {integrity: sha512-xsSQreu+VnfbqQpW5vnCJdq1Z3Q0U31qiWmRhr98ONQmcp/yhiPJFPq8MXiJVLiksmOKSjIldZzkebzHuCGzew==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -2003,8 +1270,8 @@ packages:
       typescript:
         optional: true
 
-  '@typescript-eslint/type-utils@8.0.0':
-    resolution: {integrity: sha512-mJAFP2mZLTBwAn5WI4PMakpywfWFH5nQZezUQdSKV23Pqo6o9iShQg1hP2+0hJJXP2LnZkWPphdIq4juYYwCeg==}
+  '@typescript-eslint/type-utils@8.1.0':
+    resolution: {integrity: sha512-oLYvTxljVvsMnldfl6jIKxTaU7ok7km0KDrwOt1RHYu6nxlhN3TIx8k5Q52L6wR33nOwDgM7VwW1fT1qMNfFIA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '*'
@@ -2022,6 +1289,10 @@ packages:
 
   '@typescript-eslint/types@8.0.0':
     resolution: {integrity: sha512-wgdSGs9BTMWQ7ooeHtu5quddKKs5Z5dS+fHLbrQI+ID0XWJLODGMHRfhwImiHoeO2S5Wir2yXuadJN6/l4JRxw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/types@8.1.0':
+    resolution: {integrity: sha512-q2/Bxa0gMOu/2/AKALI0tCKbG2zppccnRIRCW6BaaTlRVaPKft4oVYPp7WOPpcnsgbr0qROAVCVKCvIQ0tbWog==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@typescript-eslint/typescript-estree@5.62.0':
@@ -2051,6 +1322,15 @@ packages:
       typescript:
         optional: true
 
+  '@typescript-eslint/typescript-estree@8.1.0':
+    resolution: {integrity: sha512-NTHhmufocEkMiAord/g++gWKb0Fr34e9AExBRdqgWdVBaKoei2dIyYKD9Q0jBnvfbEA5zaf8plUFMUH6kQ0vGg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   '@typescript-eslint/utils@5.62.0':
     resolution: {integrity: sha512-n8oxjeb5aIbPFEtmQxQYOLI0i9n5ySBEY/ZEHHZqKQSFnxio1rv6dthascc9dLuwrL0RC5mPCxB7vnAVGAYWAQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -2069,6 +1349,12 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
+  '@typescript-eslint/utils@8.1.0':
+    resolution: {integrity: sha512-ypRueFNKTIFwqPeJBfeIpxZ895PQhNyH4YID6js0UoBImWYoSjBsahUn9KMiJXh94uOjVBgHD9AmkyPsPnFwJA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+
   '@typescript-eslint/visitor-keys@5.62.0':
     resolution: {integrity: sha512-07ny+LHRzQXepkGg6w0mFY41fVUNBrL2Roj/++7V1txKugfjm/Ci/qSND03r2RhlJhJYMcTn9AhhSSqQp0Ysyw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -2079,6 +1365,10 @@ packages:
 
   '@typescript-eslint/visitor-keys@8.0.0':
     resolution: {integrity: sha512-oN0K4nkHuOyF3PVMyETbpP5zp6wfyOvm7tWhTMfoqxSSsPmJIh6JNASuZDlODE8eE+0EB9uar+6+vxr9DBTYOA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@typescript-eslint/visitor-keys@8.1.0':
+    resolution: {integrity: sha512-ba0lNI19awqZ5ZNKh6wCModMwoZs457StTebQ0q1NP58zSi2F6MOZRXwfKZy+jB78JNJ/WH8GSh2IQNzXX8Nag==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@ungap/structured-clone@1.2.0':
@@ -2177,6 +1467,21 @@ packages:
       vite: ^2.5.10
       vue: ^3.2.25
 
+  '@vitest/eslint-plugin@1.0.1':
+    resolution: {integrity: sha512-albpL56cL9XMwHJWCWZqjDxkuDkBXBF3WpPGOv6q2WA3cipCP41cKEwfSGktoRNGmPN77wuX452O8pM+z+ApNw==}
+    peerDependencies:
+      '@typescript-eslint/utils': '>= 8.0'
+      eslint: '>= 8.57.0'
+      typescript: '>= 5.0.0'
+      vitest: '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/utils':
+        optional: true
+      typescript:
+        optional: true
+      vitest:
+        optional: true
+
   '@vitest/expect@0.28.5':
     resolution: {integrity: sha512-gqTZwoUTwepwGIatnw4UKpQfnoyV0Z9Czn9+Lo2/jLIt4/AXLTn+oVZxlQ7Ng8bzcNkR+3DqLJ08kNr8jRmdNQ==}
 
@@ -2213,26 +1518,26 @@ packages:
   '@vue/compiler-core@3.4.21':
     resolution: {integrity: sha512-MjXawxZf2SbZszLPYxaFCjxfibYrzr3eYbKxwpLR9EQN+oaziSu3qKVbwBERj1IFIB8OLUewxB5m/BFzi613og==}
 
-  '@vue/compiler-core@3.4.35':
-    resolution: {integrity: sha512-gKp0zGoLnMYtw4uS/SJRRO7rsVggLjvot3mcctlMXunYNsX+aRJDqqw/lV5/gHK91nvaAAlWFgdVl020AW1Prg==}
+  '@vue/compiler-core@3.4.37':
+    resolution: {integrity: sha512-ZDDT/KiLKuCRXyzWecNzC5vTcubGz4LECAtfGPENpo0nrmqJHwuWtRLxk/Sb9RAKtR9iFflFycbkjkY+W/PZUQ==}
 
   '@vue/compiler-dom@3.4.21':
     resolution: {integrity: sha512-IZC6FKowtT1sl0CR5DpXSiEB5ayw75oT2bma1BEhV7RRR1+cfwLrxc2Z8Zq/RGFzJ8w5r9QtCOvTjQgdn0IKmA==}
 
-  '@vue/compiler-dom@3.4.35':
-    resolution: {integrity: sha512-pWIZRL76/oE/VMhdv/ovZfmuooEni6JPG1BFe7oLk5DZRo/ImydXijoZl/4kh2406boRQ7lxTYzbZEEXEhj9NQ==}
+  '@vue/compiler-dom@3.4.37':
+    resolution: {integrity: sha512-rIiSmL3YrntvgYV84rekAtU/xfogMUJIclUMeIKEtVBFngOL3IeZHhsH3UaFEgB5iFGpj6IW+8YuM/2Up+vVag==}
 
   '@vue/compiler-sfc@3.4.21':
     resolution: {integrity: sha512-me7epoTxYlY+2CUM7hy9PCDdpMPfIwrOvAXud2Upk10g4YLv9UBW7kL798TvMeDhPthkZ0CONNrK2GoeI1ODiQ==}
 
-  '@vue/compiler-sfc@3.4.35':
-    resolution: {integrity: sha512-xacnRS/h/FCsjsMfxBkzjoNxyxEyKyZfBch/P4vkLRvYJwe5ChXmZZrj8Dsed/752H2Q3JE8kYu9Uyha9J6PgA==}
+  '@vue/compiler-sfc@3.4.37':
+    resolution: {integrity: sha512-vCfetdas40Wk9aK/WWf8XcVESffsbNkBQwS5t13Y/PcfqKfIwJX2gF+82th6dOpnpbptNMlMjAny80li7TaCIg==}
 
   '@vue/compiler-ssr@3.4.21':
     resolution: {integrity: sha512-M5+9nI2lPpAsgXOGQobnIueVqc9sisBFexh5yMIMRAPYLa7+5wEJs8iqOZc1WAa9WQbx9GR2twgznU8LTIiZ4Q==}
 
-  '@vue/compiler-ssr@3.4.35':
-    resolution: {integrity: sha512-7iynB+0KB1AAJKk/biENTV5cRGHRdbdaD7Mx3nWcm1W8bVD6QmnH3B4AHhQQ1qZHhqFwzEzMwiytXm3PX1e60A==}
+  '@vue/compiler-ssr@3.4.37':
+    resolution: {integrity: sha512-TyAgYBWrHlFrt4qpdACh8e9Ms6C/AZQ6A6xLJaWrCL8GCX5DxMzxyeFAEMfU/VFr4tylHm+a2NpfJpcd7+20XA==}
 
   '@vue/devtools-api@6.6.3':
     resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==}
@@ -2240,36 +1545,25 @@ packages:
   '@vue/reactivity@3.4.21':
     resolution: {integrity: sha512-UhenImdc0L0/4ahGCyEzc/pZNwVgcglGy9HVzJ1Bq2Mm9qXOpP8RyNTjookw/gOCUlXSEtuZ2fUg5nrHcoqJcw==}
 
-  '@vue/reactivity@3.4.35':
-    resolution: {integrity: sha512-Ggtz7ZZHakriKioveJtPlStYardwQH6VCs9V13/4qjHSQb/teE30LVJNrbBVs4+aoYGtTQKJbTe4CWGxVZrvEw==}
+  '@vue/reactivity@3.4.37':
+    resolution: {integrity: sha512-UmdKXGx0BZ5kkxPqQr3PK3tElz6adTey4307NzZ3whZu19i5VavYal7u2FfOmAzlcDVgE8+X0HZ2LxLb/jgbYw==}
 
-  '@vue/runtime-core@3.4.21':
-    resolution: {integrity: sha512-pQthsuYzE1XcGZznTKn73G0s14eCJcjaLvp3/DKeYWoFacD9glJoqlNBxt3W2c5S40t6CCcpPf+jG01N3ULyrA==}
+  '@vue/runtime-core@3.4.37':
+    resolution: {integrity: sha512-MNjrVoLV/sirHZoD7QAilU1Ifs7m/KJv4/84QVbE6nyAZGQNVOa1HGxaOzp9YqCG+GpLt1hNDC4RbH+KtanV7w==}
 
-  '@vue/runtime-core@3.4.35':
-    resolution: {integrity: sha512-D+BAjFoWwT5wtITpSxwqfWZiBClhBbR+bm0VQlWYFOadUUXFo+5wbe9ErXhLvwguPiLZdEF13QAWi2vP3ZD5tA==}
+  '@vue/runtime-dom@3.4.37':
+    resolution: {integrity: sha512-Mg2EwgGZqtwKrqdL/FKMF2NEaOHuH+Ks9TQn3DHKyX//hQTYOun+7Tqp1eo0P4Ds+SjltZshOSRq6VsU0baaNg==}
 
-  '@vue/runtime-dom@3.4.21':
-    resolution: {integrity: sha512-gvf+C9cFpevsQxbkRBS1NpU8CqxKw0ebqMvLwcGQrNpx6gqRDodqKqA+A2VZZpQ9RpK2f9yfg8VbW/EpdFUOJw==}
-
-  '@vue/runtime-dom@3.4.35':
-    resolution: {integrity: sha512-yGOlbos+MVhlS5NWBF2HDNgblG8e2MY3+GigHEyR/dREAluvI5tuUUgie3/9XeqhPE4LF0i2wjlduh5thnfOqw==}
-
-  '@vue/server-renderer@3.4.21':
-    resolution: {integrity: sha512-aV1gXyKSN6Rz+6kZ6kr5+Ll14YzmIbeuWe7ryJl5muJ4uwSwY/aStXTixx76TwkZFJLm1aAlA/HSWEJ4EyiMkg==}
+  '@vue/server-renderer@3.4.37':
+    resolution: {integrity: sha512-jZ5FAHDR2KBq2FsRUJW6GKDOAG9lUTX8aBEGq4Vf6B/35I9fPce66BornuwmqmKgfiSlecwuOb6oeoamYMohkg==}
     peerDependencies:
-      vue: 3.4.21
-
-  '@vue/server-renderer@3.4.35':
-    resolution: {integrity: sha512-iZ0e/u9mRE4T8tNhlo0tbA+gzVkgv8r5BX6s1kRbOZqfpq14qoIvCZ5gIgraOmYkMYrSEZgkkojFPr+Nyq/Mnw==}
-    peerDependencies:
-      vue: 3.4.35
+      vue: 3.4.37
 
   '@vue/shared@3.4.21':
     resolution: {integrity: sha512-PuJe7vDIi6VYSinuEbUIQgMIRZGgM8e4R+G+/dQTk0X1NEdvgvvgv7m+rfmDH1gZzyA1OjjoWskvHlfRNfQf3g==}
 
-  '@vue/shared@3.4.35':
-    resolution: {integrity: sha512-hvuhBYYDe+b1G8KHxsQ0diDqDMA8D9laxWZhNAjE83VZb5UDaXl9Xnz7cGdDSyiHM90qqI/CyGMcpBpiDy6VVQ==}
+  '@vue/shared@3.4.37':
+    resolution: {integrity: sha512-nIh8P2fc3DflG8+5Uw8PT/1i17ccFn0xxN/5oE9RfV5SVnd7G0XEFRwakrnNFE/jlS95fpGXDVG5zDETS26nmg==}
 
   '@vue/test-utils@2.4.6':
     resolution: {integrity: sha512-FMxEjOpYNYiFe0GkaHsnJPXFHxQ6m4t8vI/ElPGpMWxZKpmRvQ33OIrvRXemy6yha03RxhOlQuy+gZMC3CQSow==}
@@ -2458,11 +1752,6 @@ packages:
   browser-process-hrtime@1.0.0:
     resolution: {integrity: sha512-9o5UecI3GhkpM6DrXr69PblIuWxPKk9Y0jHBRhdocZ2y7YECBFCsHm79Pr3OyR2AvjhDkabFJaDJMYRazHgsow==}
 
-  browserslist@4.23.0:
-    resolution: {integrity: sha512-QW8HiM1shhT2GuzkvklfjcKDiWFXHOeFCIA/huJPwHsslwcydgk7X+z2zXpEijP98UCY7HbubZt5J2Zgvf0CaQ==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-
   browserslist@4.23.3:
     resolution: {integrity: sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -2513,9 +1802,6 @@ packages:
   camelcase@5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
-
-  caniuse-lite@1.0.30001612:
-    resolution: {integrity: sha512-lFgnZ07UhaCcsSZgWW0K5j4e69dK1u/ltrL9lTUiFOwNHs12S3UMIEYgBV0Z6C6hRDev7iRnMzzYmKabYdXF9g==}
 
   caniuse-lite@1.0.30001649:
     resolution: {integrity: sha512-fJegqZZ0ZX8HOWr6rcafGr72+xcgJKI9oWfDW5DrD7ExUtgZC7a7R7ZYmZqplh7XDocFdGeIFn7roAxhOeYrPQ==}
@@ -2595,13 +1881,6 @@ packages:
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
 
-  color-string@1.9.1:
-    resolution: {integrity: sha512-shrVawQFojnZv6xM40anx4CkoDP+fZsw/ZerEMsW/pyzsRbElpsL/DBVW7q3ExxwusdNXI3lXpuhEZkzs8p5Eg==}
-
-  color@4.2.3:
-    resolution: {integrity: sha512-1rXeuUUiGGrykh+CeBdu5Ie7OJwinCgQY0bc7GCRxy5xVHy+moaqkpL/jqQq0MtQOeYcrqEz4abc5f0KtU7W4A==}
-    engines: {node: '>=12.5.0'}
-
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
@@ -2616,9 +1895,6 @@ packages:
   commander@11.0.0:
     resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
     engines: {node: '>=16'}
-
-  commander@2.20.3:
-    resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
   commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
@@ -2647,15 +1923,9 @@ packages:
   core-js-compat@3.37.0:
     resolution: {integrity: sha512-vYq4L+T8aS5UuFg4UwDhc7YNRWVeVZwltad9C/jV3R2LgVOpS9BDr7l/WL6BN0dbV3k1XejPTHqqEzJgsa0frA==}
 
-  cropperjs@1.5.7:
-    resolution: {integrity: sha512-sGj+G/ofKh+f6A4BtXLJwtcKJgMUsXYVUubfTo9grERiDGXncttefmue/fyQFvn8wfdyoD1KhDRYLfjkJFl0yw==}
-
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
-
-  crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   css-tree@2.3.1:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
@@ -2668,9 +1938,6 @@ packages:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
     hasBin: true
-
-  cssfilter@0.0.10:
-    resolution: {integrity: sha512-FAaLDaplstoRsDR8XGYH51znUN0UY7nMc6Z9/fvE8EXGwvJE9hu7W2vHwx1+bd6gCYnln9nLbzxFTrcO9YQDZw==}
 
   cssom@0.3.8:
     resolution: {integrity: sha512-b0tGHbfegbhPJpxpiBPU2sCkigAqtM9O121le6bbOlgyV+NyGyCmVfJ6QW9eRjz8CpNfWEOYBIMIGRYkLwsIYg==}
@@ -2745,10 +2012,6 @@ packages:
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
-  deepmerge@4.3.1:
-    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
-    engines: {node: '>=0.10.0'}
-
   define-data-property@1.1.4:
     resolution: {integrity: sha512-rBMvIzlpA8v6E+SJZoo++HAYqsLrkg7MSfIinMPFhmkorw7X+dOXVJQs+QT69zGkzMyfDnIMN2Wid1+NbL3T+A==}
     engines: {node: '>= 0.4'}
@@ -2820,26 +2083,10 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  echarts-liquidfill@3.1.0:
-    resolution: {integrity: sha512-5Dlqs/jTsdTUAsd+K5LPLLTgrbbNORUSBQyk8PSy1Mg2zgHDWm83FmvA4s0ooNepCJojFYRITTQ4GU1UUSKYLw==}
-    peerDependencies:
-      echarts: ^5.0.1
-
-  echarts-wordcloud@2.0.0:
-    resolution: {integrity: sha512-K7l6pTklqdW7ZWzT/1CS0KhBSINr/cd7c5N1fVMzZMwLQHEwT7x+nivK7g5hkVh7WNcAv4Dn6/ZS5zMKRozC1g==}
-    peerDependencies:
-      echarts: ^5.0.1
-
-  echarts@5.4.1:
-    resolution: {integrity: sha512-9ltS3M2JB0w2EhcYjCdmtrJ+6haZcW6acBolMGIuf01Hql1yrIV01L1aRj7jsaaIULJslEP9Z3vKlEmnJaWJVQ==}
-
   editorconfig@1.0.4:
     resolution: {integrity: sha512-L9Qe08KWTlqYMVvMcTIvMAdl1cDUubzRNYL+WfA4bLDMHe4nemKkpmYzkznE1FwLKu0EEmy6obgQKzMJrg4x9Q==}
     engines: {node: '>=14'}
     hasBin: true
-
-  electron-to-chromium@1.4.746:
-    resolution: {integrity: sha512-jeWaIta2rIG2FzHaYIhSuVWqC6KJYo7oSBX4Jv7g+aVujKztfvdpf+n6MGwZdC5hQXbax4nntykLH2juIQrfPg==}
 
   electron-to-chromium@1.5.4:
     resolution: {integrity: sha512-orzA81VqLyIGUEA77YkVA1D+N+nNfl2isJVjjmOyrlxuooZ19ynb+dOlaDTqd/idKRS9lDCSBmtzM+kyCsMnkA==}
@@ -2849,9 +2096,6 @@ packages:
 
   emoji-regex@9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
-
-  encode-utf8@1.0.3:
-    resolution: {integrity: sha512-ucAnuBEhUK4boH2HjVYG5Q2mQyPorvv0u/ocS+zhdw0S8AlHYY+GOFhP1Gio5z4icpP2ivFSvhtFjQi8+T9ppw==}
 
   enhanced-resolve@5.17.1:
     resolution: {integrity: sha512-LMHl3dXhTcfv8gM4kEzIUeTQ+7fpdA0l2tUf34BddXPkz2A5xJ5L/Pchd5BL6rdccM9QGvu0sWZzK1Z1t4wwyg==}
@@ -2866,6 +2110,10 @@ packages:
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
+
+  entities@5.0.0:
+    resolution: {integrity: sha512-BeJFvFRJddxobhvEdm5GqHzRV/X+ACeuw0/BuuxsCh1EUZcAIz8+kYmBp/LrQuloy6K1f3a0M7+IhmZ7QnkISA==}
     engines: {node: '>=0.12'}
 
   error-ex@1.3.2:
@@ -3166,8 +2414,8 @@ packages:
       '@typescript-eslint/parser':
         optional: true
 
-  eslint-plugin-jsdoc@48.11.0:
-    resolution: {integrity: sha512-d12JHJDPNo7IFwTOAItCeJY1hcqoIxE0lHA8infQByLilQ9xkqrRa6laWCnsuCrf+8rUnvxXY1XuTbibRBNylA==}
+  eslint-plugin-jsdoc@50.0.1:
+    resolution: {integrity: sha512-UayhAysIk1Du8InV27WMbV4AMSJSu60+bekmeuGK2OUy4QJSFPr1srYT6AInykGkmMdRuHfDX6Q0tJEr8BtDtg==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -3202,8 +2450,8 @@ packages:
     peerDependencies:
       eslint: '>=7.0.0'
 
-  eslint-plugin-n@17.10.1:
-    resolution: {integrity: sha512-hm/q37W6efDptJXdwirsm6A257iY6ZNtpoSG0wEzFzjJ3AhL7OhEIhdSR2e4OdYfHO5EDeqlCfFrjf9q208IPw==}
+  eslint-plugin-n@17.10.2:
+    resolution: {integrity: sha512-e+s4eAf5NtJaxPhTNu3qMO0Iz40WANS93w9LQgYcvuljgvDmWi/a3rh+OrNyMHeng6aOWGJO0rCg5lH4zi8yTw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.23.0'
@@ -3212,14 +2460,14 @@ packages:
     resolution: {integrity: sha512-Lf4YW/bL6Un1R6A76pRZyE1dl1vr31G/ev8UzIc/geCgFWyrKil8hVjYqWVKGB/UIGmb6Slzs9T0wNezdSVegw==}
     engines: {node: '>=5.0.0'}
 
-  eslint-plugin-perfectionist@3.1.1:
-    resolution: {integrity: sha512-joaAPd2gVNV+Gm+xU6tqOxy9WlBcb/6TSCUaHLNSdhot/KcsyiKSzeTVToasrCPIxgqgGwcOy+AJaGaBhBwblw==}
+  eslint-plugin-perfectionist@3.1.3:
+    resolution: {integrity: sha512-eFRkBvMnnHjle5MuqTzoTIukWIr7Gm2wXvhTj3HyT/ku2J5oj7quBRbvZ8iYkjPyUFBpir3ZBnVQ5vFYswvpQg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       astro-eslint-parser: ^1.0.2
       eslint: '>=8.0.0'
       svelte: '>=3.0.0'
-      svelte-eslint-parser: ^0.40.0
+      svelte-eslint-parser: ^0.41.0
       vue-eslint-parser: '>=9.0.0'
     peerDependenciesMeta:
       astro-eslint-parser:
@@ -3267,27 +2515,13 @@ packages:
     peerDependencies:
       eslint: '>=8.56.0'
 
-  eslint-plugin-unused-imports@4.0.1:
-    resolution: {integrity: sha512-rax76s05z64uQgG9YXsWFmXrgjkaK79AvfeAWiSxhPP6RVGxeRaj4+2u+wxxu/mDy2pmJoOy1QTOEALMia2xGQ==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+  eslint-plugin-unused-imports@4.1.3:
+    resolution: {integrity: sha512-lqrNZIZjFMUr7P06eoKtQLwyVRibvG7N+LtfKtObYGizAAGrcqLkc3tDx+iAik2z7q0j/XI3ihjupIqxhFabFA==}
     peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^8.0.0-0
-      eslint: ^9.0.0
+      '@typescript-eslint/eslint-plugin': ^8.0.0-0 || ^7.0.0 || ^6.0.0 || ^5.0.0
+      eslint: ^9.0.0 || ^8.0.0
     peerDependenciesMeta:
       '@typescript-eslint/eslint-plugin':
-        optional: true
-
-  eslint-plugin-vitest@0.5.4:
-    resolution: {integrity: sha512-um+odCkccAHU53WdKAw39MY61+1x990uXjSPguUCq3VcEHdqJrOb8OTMrbYlY6f9jAKx7x98kLVlIe3RJeJqoQ==}
-    engines: {node: ^18.0.0 || >= 20.0.0}
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': '*'
-      eslint: ^8.57.0 || ^9.0.0
-      vitest: '*'
-    peerDependenciesMeta:
-      '@typescript-eslint/eslint-plugin':
-        optional: true
-      vitest:
         optional: true
 
   eslint-plugin-vue@8.7.1:
@@ -3319,10 +2553,6 @@ packages:
     peerDependencies:
       '@vue/compiler-sfc': ^3.3.0
       eslint: ^8.50.0 || ^9.0.0
-
-  eslint-rule-composer@0.3.0:
-    resolution: {integrity: sha512-bt+Sh8CtDmn2OajxvNO+BX7Wn4CIWMpTRm3MaiKPCQcnnlm0CS2mhui6QaoeQugs+3Kj2ESKEEGJUdVafwhiCg==}
-    engines: {node: '>=4.0.0'}
 
   eslint-scope@5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
@@ -3708,9 +2938,6 @@ packages:
   is-arrayish@0.2.1:
     resolution: {integrity: sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==}
 
-  is-arrayish@0.3.2:
-    resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
-
   is-async-function@2.0.0:
     resolution: {integrity: sha512-Y1JXKrfykRJGdlDwdKlLpLyMIiWqWvuSd17TvZk68PLAOGOoF4Xyav1z0Xhoi+gCYjZVeC5SI+hYFOfvXmGRCA==}
     engines: {node: '>= 0.4'}
@@ -4037,9 +3264,6 @@ packages:
     resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
     engines: {node: '>=12'}
 
-  magic-string@0.30.10:
-    resolution: {integrity: sha512-iIRwTIf0QKV3UAnYK4PU8uiEc4SRh5jX0mwpIwETPpHdhVM4f53RSwS/vXvN1JhGX+Cs7B8qIq3d6AH49O5fAQ==}
-
   magic-string@0.30.11:
     resolution: {integrity: sha512-+Wri9p0QHMy+545hKww7YAu5NyzF8iomPL/RQazugQ9+Ez4Ic3mERMd8ZTX5rfK944j+560ZJi8iAwgak1Ac7A==}
 
@@ -4089,9 +3313,6 @@ packages:
   min-indent@1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
-
-  mind-elixir@3.3.2:
-    resolution: {integrity: sha512-SHHospQXT7ARaNMMnaZLFzBsOela9tc8rgSYHPhAPrV8Jxh6MCo1X8qQxJAvuqIVvN8uSGnXf+Po4nhzzSmWWQ==}
 
   minimatch@10.0.1:
     resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
@@ -4164,9 +3385,6 @@ packages:
     peerDependenciesMeta:
       encoding:
         optional: true
-
-  node-releases@2.0.14:
-    resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
 
   node-releases@2.0.18:
     resolution: {integrity: sha512-d9VeXT4SJ7ZeOqGX6R5EM022wpL+eWPooLI+5UpWn2jCT1aosUQEhQP214x33Wkwx3JQMvIm+tIoVOdodFS40g==}
@@ -4440,13 +3658,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  qrcode@1.5.1:
-    resolution: {integrity: sha512-nS8NJ1Z3md8uTjKtP+SGGhfqmTCs5flU/xR623oI0JX+Wepz9R8UrRVCTBTJm3qGw3rH6jJ6MUHjkDx15cxSSg==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-
-  qrcode@1.5.3:
-    resolution: {integrity: sha512-puyri6ApkEHYiVl4CFzo1tDkAZ+ATcnbJrJ6RiBM1Fhctdn/ix9MTE3hRph33omisEbC/2fcfemsseiKgBPKZg==}
+  qrcode@1.5.4:
+    resolution: {integrity: sha512-1ca71Zgiu6ORjHqFBDpnSMTR2ReToX4l1Au1VFLyVeBTFavzQnv5JxMFr3ukHVKpSrSA2MCk0lNJSykjUfz7Zg==}
     engines: {node: '>=10.13.0'}
     hasBin: true
 
@@ -4618,10 +3831,6 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  shepherd.js@11.1.1:
-    resolution: {integrity: sha512-7nVEgLTZUu5qQCKTlzQeKL1AQd2rG9Y9iqzZUgGvCFwMUZZhfwtZ6eEyMWMYw0zl8qKjSrjgzxFOe+SpfO43aA==}
-    engines: {node: 16.* || >= 18}
-
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
     engines: {node: '>= 0.4'}
@@ -4639,9 +3848,6 @@ packages:
   simple-git-hooks@2.11.1:
     resolution: {integrity: sha512-tgqwPUMDcNDhuf1Xf6KTUsyeqGdgKMhzaH4PAZZuzguOgTl5uuyeYe/8mWgAr6IBxB5V06uqEf6Dy37gIWDtDg==}
     hasBin: true
-
-  simple-swizzle@0.2.2:
-    resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
   sirv@2.0.4:
     resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
@@ -4710,9 +3916,6 @@ packages:
   stop-iteration-iterator@1.0.0:
     resolution: {integrity: sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==}
     engines: {node: '>= 0.4'}
-
-  streamsaver@2.0.6:
-    resolution: {integrity: sha512-LK4e7TfCV8HzuM0PKXuVUfKyCB1FtT9L0EGxsFk5Up8njj0bXK8pJM9+Wq2Nya7/jslmCQwRK39LFm55h7NBTw==}
 
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
@@ -4800,9 +4003,6 @@ packages:
     resolution: {integrity: sha512-7gr8p9TQP6RAHusBOSLs46F4564ZrjV8xFmw5zCmgmhGUcw2hxsShhJ6CEiHQMgPDwAQ1fWHPM0ypc4RMAig4A==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  tailwind-merge@1.14.0:
-    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
-
   tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
     engines: {node: '>=6'}
@@ -4887,9 +4087,6 @@ packages:
 
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-
-  tslib@2.3.0:
-    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
 
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
@@ -5020,19 +4217,6 @@ packages:
       '@babel/traverse':
         optional: true
 
-  unplugin-vue-components@0.26.0:
-    resolution: {integrity: sha512-s7IdPDlnOvPamjunVxw8kNgKNK8A5KM1YpK5j/p97jEKTjlPNrA0nZBiSfAKKlK1gWZuyWXlKL5dk3EDw874LQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@babel/parser': ^7.15.8
-      '@nuxt/kit': ^3.2.2
-      vue: 2 || 3
-    peerDependenciesMeta:
-      '@babel/parser':
-        optional: true
-      '@nuxt/kit':
-        optional: true
-
   unplugin@0.4.0:
     resolution: {integrity: sha512-4ScITEmzlz1iZW3tkz+3L1V5k/xMQ6kjgm4lEXKxH0ozd8/OUWfiSA7RMRyrawsvq/t50JIzPpp1UyuSL/AXkA==}
     peerDependencies:
@@ -5050,19 +4234,9 @@ packages:
       webpack:
         optional: true
 
-  unplugin@1.12.0:
-    resolution: {integrity: sha512-KeczzHl2sATPQUx1gzo+EnUkmN4VmGBYRRVOZSGvGITE9rGHRDGqft6ONceP3vgXcyJ2XjX5axG5jMWUwNCYLw==}
-    engines: {node: '>=14.0.0'}
-
   upath@2.0.1:
     resolution: {integrity: sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==}
     engines: {node: '>=4'}
-
-  update-browserslist-db@1.0.13:
-    resolution: {integrity: sha512-xebP81SNcPuNpPP3uzeW1NYXxI3rxyJzF3pD6sH4jE7o/IX+WtSpwnVU+qIsDPyk0d3hmFQ7mjqc6AtV604hbg==}
-    hasBin: true
-    peerDependencies:
-      browserslist: '>= 4.21.0'
 
   update-browserslist-db@1.1.0:
     resolution: {integrity: sha512-EdRAaAyk2cUE1wOf2DkEhzxqOQvFOoRJFNS6NeyJ01Gp2beMRpBAINjM2iDXE3KCuKhwnvHIQCJm6ThL2Z+HzQ==}
@@ -5220,8 +4394,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  vue-router@4.4.2:
-    resolution: {integrity: sha512-1qNybkn2L7QsLzaXs8nvlQmRKp8XF8DCxZys/Jr1JpQcHsKUxTKzTxCVA1G7NfBfwRIBgCJPoujOG5lHCCNUxw==}
+  vue-router@4.4.3:
+    resolution: {integrity: sha512-sv6wmNKx2j3aqJQDMxLFzs/u/mjA9Z5LCgy6BE0f7yFWMjrPLnS/sPNn8ARY/FXw6byV18EFutn5lTO6+UsV5A==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -5231,20 +4405,31 @@ packages:
     peerDependencies:
       typescript: '*'
 
-  vue@3.4.21:
-    resolution: {integrity: sha512-5hjyV/jLEIKD/jYl4cavMcnzKwjMKohureP8ejn3hhEjwhWIhWeuzL2kJAjzl/WyVsgPY56Sy4Z40C3lVshxXA==}
+  vue@3.4.37:
+    resolution: {integrity: sha512-3vXvNfkKTBsSJ7JP+LyR7GBuwQuckbWvuwAid3xbqK9ppsKt/DUvfqgZ48fgOLEfpy1IacL5f8QhUVl77RaI7A==}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  vue@3.4.35:
-    resolution: {integrity: sha512-+fl/GLmI4GPileHftVlCdB7fUL4aziPcqTudpTGXCT8s+iZWuOCeNEB5haX6Uz2IpRrbEXOgIFbe+XciCuGbNQ==}
+  vuetify@3.6.14:
+    resolution: {integrity: sha512-iSa3CgdTEt/7B0aGDmkBARe8rxDDycEYHu1zNtOf1Xpvs/Tv7Ql5yHGqM2XCY0h7SL8Dme39pJIovzg3q4JLbQ==}
+    engines: {node: ^12.20 || >=14.13}
     peerDependencies:
-      typescript: '*'
+      typescript: '>=4.7'
+      vite-plugin-vuetify: '>=1.0.0'
+      vue: ^3.3.0
+      vue-i18n: ^9.0.0
+      webpack-plugin-vuetify: '>=2.0.0'
     peerDependenciesMeta:
       typescript:
+        optional: true
+      vite-plugin-vuetify:
+        optional: true
+      vue-i18n:
+        optional: true
+      webpack-plugin-vuetify:
         optional: true
 
   w3c-hr-time@1.0.2:
@@ -5265,15 +4450,8 @@ packages:
     resolution: {integrity: sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==}
     engines: {node: '>=12'}
 
-  webpack-sources@3.2.3:
-    resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
-    engines: {node: '>=10.13.0'}
-
   webpack-virtual-modules@0.4.6:
     resolution: {integrity: sha512-5tyDlKLqPfMqjT3Q9TAqf2YqjwmnUleZwzJi1A5qXnlBCdj2AtOJ6wAWdglTIDOPgOiOrXeBeFcsQ8+aGQ6QbA==}
-
-  webpack-virtual-modules@0.6.2:
-    resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
 
   whatwg-encoding@2.0.0:
     resolution: {integrity: sha512-p41ogyeMUrw3jWclHWTQg1k05DSVXPLcVxRTYsXUk+ZooOCZLcoYgPZ/HL/D/N+uQPOtcp1me1WhBEaX02mhWg==}
@@ -5359,11 +4537,6 @@ packages:
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
 
-  xss@1.0.11:
-    resolution: {integrity: sha512-EimjrjThZeK2MO7WKR9mN5ZC1CSqivSl55wvUK5EtU6acf0rzEE1pN+9ZDrFXJ82BRp3JL38pPE6S4o/rpp1zQ==}
-    engines: {node: '>= 0.10.0'}
-    hasBin: true
-
   y18n@4.0.3:
     resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==}
 
@@ -5421,9 +4594,6 @@ packages:
   yocto-queue@1.0.0:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
-
-  zrender@5.4.1:
-    resolution: {integrity: sha512-M4Z05BHWtajY2241EmMPHglDQAJ1UyHQcYsxDNzD9XLSkPDqMq4bB28v9Pb4mvHnVQ0GxyTklZ/69xCFP6RXBA==}
 
 snapshots:
 
@@ -5514,13 +4684,14 @@ snapshots:
       - supports-color
       - typescript
 
-  '@antfu/eslint-config@2.24.1(@vue/compiler-sfc@3.4.35)(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0))':
+  '@antfu/eslint-config@2.25.1(@typescript-eslint/utils@8.1.0(eslint@9.1.1)(typescript@4.9.5))(@vue/compiler-sfc@3.4.37)(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0))':
     dependencies:
       '@antfu/install-pkg': 0.3.3
       '@clack/prompts': 0.7.0
-      '@stylistic/eslint-plugin': 2.6.1(eslint@9.1.1)(typescript@4.9.5)
-      '@typescript-eslint/eslint-plugin': 8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)
-      '@typescript-eslint/parser': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
+      '@stylistic/eslint-plugin': 2.6.2(eslint@9.1.1)(typescript@4.9.5)
+      '@typescript-eslint/eslint-plugin': 8.1.0(@typescript-eslint/parser@8.1.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)
+      '@typescript-eslint/parser': 8.1.0(eslint@9.1.1)(typescript@4.9.5)
+      '@vitest/eslint-plugin': 1.0.1(@typescript-eslint/utils@8.1.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0))
       eslint: 9.1.1
       eslint-config-flat-gitignore: 0.1.8
       eslint-flat-config-utils: 0.3.0
@@ -5529,20 +4700,19 @@ snapshots:
       eslint-plugin-command: 0.2.3(eslint@9.1.1)
       eslint-plugin-eslint-comments: 3.2.0(eslint@9.1.1)
       eslint-plugin-import-x: 3.1.0(eslint@9.1.1)(typescript@4.9.5)
-      eslint-plugin-jsdoc: 48.11.0(eslint@9.1.1)
+      eslint-plugin-jsdoc: 50.0.1(eslint@9.1.1)
       eslint-plugin-jsonc: 2.16.0(eslint@9.1.1)
       eslint-plugin-markdown: 5.1.0(eslint@9.1.1)
-      eslint-plugin-n: 17.10.1(eslint@9.1.1)
+      eslint-plugin-n: 17.10.2(eslint@9.1.1)
       eslint-plugin-no-only-tests: 3.1.0
-      eslint-plugin-perfectionist: 3.1.1(eslint@9.1.1)(typescript@4.9.5)(vue-eslint-parser@9.4.3(eslint@9.1.1))
+      eslint-plugin-perfectionist: 3.1.3(eslint@9.1.1)(typescript@4.9.5)(vue-eslint-parser@9.4.3(eslint@9.1.1))
       eslint-plugin-regexp: 2.6.0(eslint@9.1.1)
       eslint-plugin-toml: 0.11.1(eslint@9.1.1)
       eslint-plugin-unicorn: 55.0.0(eslint@9.1.1)
-      eslint-plugin-unused-imports: 4.0.1(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)
-      eslint-plugin-vitest: 0.5.4(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0))
+      eslint-plugin-unused-imports: 4.1.3(@typescript-eslint/eslint-plugin@8.1.0(@typescript-eslint/parser@8.1.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)
       eslint-plugin-vue: 9.27.0(eslint@9.1.1)
       eslint-plugin-yml: 1.14.0(eslint@9.1.1)
-      eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.35)(eslint@9.1.1)
+      eslint-processor-vue-blocks: 0.1.2(@vue/compiler-sfc@3.4.37)(eslint@9.1.1)
       globals: 15.9.0
       jsonc-eslint-parser: 2.4.0
       local-pkg: 0.5.0
@@ -5553,6 +4723,7 @@ snapshots:
       yaml-eslint-parser: 1.2.3
       yargs: 17.7.2
     transitivePeerDependencies:
+      - '@typescript-eslint/utils'
       - '@vue/compiler-sfc'
       - supports-color
       - svelte
@@ -5868,16 +5039,6 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  '@better-scroll/core@2.5.0':
-    dependencies:
-      '@better-scroll/shared-utils': 2.5.1
-
-  '@better-scroll/shared-utils@2.5.1': {}
-
-  '@better-scroll/wheel@2.5.0':
-    dependencies:
-      '@better-scroll/core': 2.5.0
-
   '@clack/core@0.3.4':
     dependencies:
       picocolors: 1.0.1
@@ -5895,7 +5056,7 @@ snapshots:
       '@types/estree': 1.0.5
       '@typescript-eslint/types': 7.7.1
       comment-parser: 1.4.1
-      esquery: 1.5.0
+      esquery: 1.6.0
       jsdoc-type-pratt-parser: 4.0.0
 
   '@es-joy/jsdoccomment@0.46.0':
@@ -6224,17 +5385,6 @@ snapshots:
 
   '@eslint/js@9.1.1': {}
 
-  '@floating-ui/core@1.6.5':
-    dependencies:
-      '@floating-ui/utils': 0.2.5
-
-  '@floating-ui/dom@1.6.8':
-    dependencies:
-      '@floating-ui/core': 1.6.5
-      '@floating-ui/utils': 0.2.5
-
-  '@floating-ui/utils@0.2.5': {}
-
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -6324,2172 +5474,6 @@ snapshots:
 
   '@one-ini/wasm@0.1.1': {}
 
-  '@opentiny/unplugin-tiny-vue@0.0.2(@babel/parser@7.25.3)(rollup@2.77.3)(vite@2.9.18)(vue@3.4.35(typescript@4.9.5))':
-    dependencies:
-      unplugin-vue-components: 0.26.0(@babel/parser@7.25.3)(rollup@2.77.3)(vue@3.4.35(typescript@4.9.5))
-      vite: 2.9.18
-    transitivePeerDependencies:
-      - '@babel/parser'
-      - '@nuxt/kit'
-      - rollup
-      - supports-color
-      - vue
-
-  '@opentiny/vue-action-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-action-sheet@3.17.0':
-    dependencies:
-      '@better-scroll/core': 2.5.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-drawer': 3.17.2
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-alert@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-amount@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-currency': 3.17.0
-      '@opentiny/vue-date-picker': 3.17.0
-      '@opentiny/vue-date-picker-mobile-first': 3.17.0
-      '@opentiny/vue-filter-box': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-radio-group': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-anchor@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-area@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-async-flowchart@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-flowchart': 3.17.0
-      '@opentiny/vue-loading': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-autocomplete@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-autonavi-map@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-avatar@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-badge@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-baidu-map@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-base-select@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-filter-box': 3.17.0
-      '@opentiny/vue-grid': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-recycle-scroller': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-select-dropdown': 3.17.0
-      '@opentiny/vue-tag': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-breadcrumb-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-breadcrumb@3.17.0':
-    dependencies:
-      '@opentiny/vue-breadcrumb-item': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-bulletin-board@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tab-item': 3.17.0
-      '@opentiny/vue-tabs': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-button-group@3.17.1':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-directive': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-button@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-calendar-bar@3.17.0':
-    dependencies:
-      '@opentiny/vue-cascader-select': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-calendar-view@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-date-picker': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-radio-button': 3.17.0
-      '@opentiny/vue-radio-group': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-slider-button': 3.17.0
-      '@opentiny/vue-slider-button-group': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-calendar@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-card-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-card-template@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-card@3.17.0':
-    dependencies:
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-carousel-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-carousel@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-cascader-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-cascader-node': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-cascader-mobile@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-exception': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-cascader-node@3.17.0':
-    dependencies:
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-cascader-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-cascader-menu': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-cascader-select@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-cascader-view@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-exception': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-cascader@3.17.0':
-    dependencies:
-      '@opentiny/vue-cascader-mobile': 3.17.0
-      '@opentiny/vue-cascader-panel': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-filter-box': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-tag': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-cell@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-chart-bar@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-boxplot@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-candle@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-
-  '@opentiny/vue-chart-core@3.17.1':
-    dependencies:
-      '@opentiny/vue-theme': 3.17.4
-      echarts: 5.4.1
-
-  '@opentiny/vue-chart-funnel@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-gauge@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-graph@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-heatmap@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-histogram@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-line@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-liquidfill@3.17.0(echarts@5.4.1)':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-      echarts-liquidfill: 3.1.0(echarts@5.4.1)
-    transitivePeerDependencies:
-      - echarts
-
-  '@opentiny/vue-chart-map@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-pie@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-
-  '@opentiny/vue-chart-process@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-radar@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-ring@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-
-  '@opentiny/vue-chart-sankey@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-scatter@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-sunburst@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-tree@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-
-  '@opentiny/vue-chart-waterfall@3.17.0':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-
-  '@opentiny/vue-chart-wordcloud@3.17.0(echarts@5.4.1)':
-    dependencies:
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-      echarts-wordcloud: 2.0.0(echarts@5.4.1)
-    transitivePeerDependencies:
-      - echarts
-
-  '@opentiny/vue-chart@3.17.0(echarts@5.4.1)':
-    dependencies:
-      '@opentiny/vue-autonavi-map': 3.17.0
-      '@opentiny/vue-baidu-map': 3.17.0
-      '@opentiny/vue-chart-bar': 3.17.0
-      '@opentiny/vue-chart-boxplot': 3.17.0
-      '@opentiny/vue-chart-candle': 3.17.0
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-chart-funnel': 3.17.0
-      '@opentiny/vue-chart-gauge': 3.17.0
-      '@opentiny/vue-chart-graph': 3.17.0
-      '@opentiny/vue-chart-heatmap': 3.17.0
-      '@opentiny/vue-chart-histogram': 3.17.0
-      '@opentiny/vue-chart-line': 3.17.0
-      '@opentiny/vue-chart-liquidfill': 3.17.0(echarts@5.4.1)
-      '@opentiny/vue-chart-map': 3.17.0
-      '@opentiny/vue-chart-pie': 3.17.0
-      '@opentiny/vue-chart-radar': 3.17.0
-      '@opentiny/vue-chart-ring': 3.17.0
-      '@opentiny/vue-chart-sankey': 3.17.0
-      '@opentiny/vue-chart-scatter': 3.17.0
-      '@opentiny/vue-chart-sunburst': 3.17.0
-      '@opentiny/vue-chart-tree': 3.17.0
-      '@opentiny/vue-chart-waterfall': 3.17.0
-      '@opentiny/vue-chart-wordcloud': 3.17.0(echarts@5.4.1)
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-    transitivePeerDependencies:
-      - echarts
-
-  '@opentiny/vue-checkbox-button@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-checkbox-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-checkbox-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-checkbox@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-directive': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-col@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-collapse-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-collapse-transition': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-collapse-transition@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-collapse@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-color-picker@3.17.0':
-    dependencies:
-      '@opentiny/vue-color-select-panel': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-color-select-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-button-group': 3.17.1
-      '@opentiny/vue-collapse': 3.17.0
-      '@opentiny/vue-collapse-item': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-column-list-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-column-list-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-common@3.17.0':
-    dependencies:
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      tailwind-merge: 1.14.0
-
-  '@opentiny/vue-company@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-config-provider@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-container@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-country@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-crop@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      cropperjs: 1.5.7
-
-  '@opentiny/vue-currency@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-select-mobile': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-date-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-date-table': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-month-table': 3.17.0
-      '@opentiny/vue-popup': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-time': 3.17.0
-      '@opentiny/vue-year-table': 3.17.0
-
-  '@opentiny/vue-date-picker-mobile-first@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-recycle-scroller': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-time-picker-mobile': 3.17.0
-
-  '@opentiny/vue-date-picker@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-mini-picker': 3.17.0
-      '@opentiny/vue-picker': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-date-range@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-date-table': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-time': 3.17.0
-
-  '@opentiny/vue-date-table@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-dept@3.17.0':
-    dependencies:
-      '@opentiny/vue-col': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-row': 3.17.0
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-dialog-box@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-dialog-select@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-grid': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-pager': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-selected-box': 3.17.0
-      '@opentiny/vue-split': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-directive@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-divider@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-drawer@3.17.2':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-drop-roles@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-drop-times@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-dropdown-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popup': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-dropdown-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-dropdown@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-button-group': 3.17.1
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-dynamic-scroller-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-dynamic-scroller@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-recycle-scroller': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-espace@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-exception@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-fall-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-col': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-row': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-file-upload@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-progress': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-switch': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-      '@opentiny/vue-upload': 3.17.0
-      '@opentiny/vue-upload-list': 3.17.0
-      crypto-js: 4.2.0
-      streamsaver: 2.0.6
-
-  '@opentiny/vue-filter-bar@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-filter-box@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-filter-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-filter-box': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-filter@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-filter-bar': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-float-button@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-floatbar@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-floating-button@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-flowchart@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-form-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-form@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-fullscreen@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-grid-column@3.17.0':
-    dependencies:
-      '@opentiny/vue-grid': 3.17.0
-
-  '@opentiny/vue-grid-manager@3.17.0':
-    dependencies:
-      '@opentiny/vue-grid': 3.17.0
-
-  '@opentiny/vue-grid-toolbar@3.17.2':
-    dependencies:
-      '@opentiny/vue-alert': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-checkbox-group': 3.17.0
-      '@opentiny/vue-col': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-grid': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-layout': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-radio-group': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-row': 3.17.0
-      '@opentiny/vue-search': 3.17.0
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-split': 3.17.0
-      '@opentiny/vue-tab-item': 3.17.0
-      '@opentiny/vue-tabs': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-grid@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-exception': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-loading': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-pager': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tag': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-guide@3.17.0':
-    dependencies:
-      '@floating-ui/dom': 1.6.8
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      shepherd.js: 11.1.1
-
-  '@opentiny/vue-hrapprover@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dept': 3.17.0
-      '@opentiny/vue-loading': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-icon@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-image-viewer@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-image@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-image-viewer': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-index-bar-anchor@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-index-bar@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-input@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-ip-address@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-label@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-layout@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-link-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-link@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-list@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-loading@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-locale@3.17.0':
-    dependencies:
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-locales@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-logon-user@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-logout@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-mask@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-exception': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-message@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-milestone@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-mind-map@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      mind-elixir: 3.3.2
-
-  '@opentiny/vue-mini-picker@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-picker-column': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-modal@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-checkbox-group': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popconfirm': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-month-range@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-month-table': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-month-table@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-multi-select-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-multi-select@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-mask': 3.17.0
-      '@opentiny/vue-multi-select-item': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-wheel': 3.17.0
-
-  '@opentiny/vue-nav-bar@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-nav-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-notify@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-numeric@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-filter-panel': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-radio-group': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tag': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-option-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-option@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-pager-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-pager@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-loading': 3.17.0
-      '@opentiny/vue-pager-item': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-picker-column@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-picker@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-date-panel': 3.17.0
-      '@opentiny/vue-date-picker-mobile-first': 3.17.0
-      '@opentiny/vue-date-range': 3.17.0
-      '@opentiny/vue-filter-box': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-month-range': 3.17.0
-      '@opentiny/vue-quarter-panel': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-time': 3.17.0
-      '@opentiny/vue-time-panel': 3.17.0
-      '@opentiny/vue-time-picker-mobile': 3.17.0
-      '@opentiny/vue-time-range': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-      '@opentiny/vue-year-range': 3.17.0
-
-  '@opentiny/vue-pop-upload@3.17.0':
-    dependencies:
-      '@opentiny/vue-alert': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-file-upload': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-popconfirm@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-popeditor@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-grid': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-pager': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-selected-box': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-popover@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-popup@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-progress@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-pull-refresh@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-loading': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-qr-code@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      qrcode: 1.5.1
-
-  '@opentiny/vue-quarter-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-year-table': 3.17.0
-
-  '@opentiny/vue-query-builder@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-date-picker': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-numeric': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-option-group': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-time-picker': 3.17.0
-
-  '@opentiny/vue-radio-button@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-radio-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-radio-button': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-radio@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-rate@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-record@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-recycle-scroller@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-renderless@3.17.6':
-    dependencies:
-      color: 4.2.3
-      xss: 1.0.11
-
-  '@opentiny/vue-rich-text-editor@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-river@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      echarts: 5.4.1
-
-  '@opentiny/vue-roles@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-row@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-scroll-text@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-scrollbar@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-search@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-select-dropdown@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-search': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-select-mobile@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-cell': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-exception': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-select-view@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-exception': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-select@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-filter-box': 3.17.0
-      '@opentiny/vue-grid': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-recycle-scroller': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-select-dropdown': 3.17.0
-      '@opentiny/vue-tag': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tooltip': 3.17.0
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-selected-box@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-signature@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-skeleton-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-skeleton@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-skeleton-item': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-slider-button-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-slider-button': 3.17.0
-
-  '@opentiny/vue-slider-button@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-slider@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-split@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-standard-list-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tag-group': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-      '@opentiny/vue-user-head': 3.17.0
-
-  '@opentiny/vue-statistic@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-steps@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-svg-icon@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-switch@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-tab-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-tabbar-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-badge': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-tabbar@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tabbar-item': 3.17.0
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-table@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-tabs@3.17.0':
-    dependencies:
-      '@opentiny/vue-carousel': 3.17.0
-      '@opentiny/vue-carousel-item': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-locale': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-tag-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tag': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-tag@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-text-popup@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-theme-mobile@3.17.0': {}
-
-  '@opentiny/vue-theme@3.17.4': {}
-
-  '@opentiny/vue-time-line@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-      '@opentiny/vue-timeline-item': 3.17.0
-
-  '@opentiny/vue-time-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-time-picker-mobile@3.17.0':
-    dependencies:
-      '@opentiny/vue-cascader-select': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-time-picker@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-picker': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-time-range@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-time-spinner': 3.17.0
-
-  '@opentiny/vue-time-select@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-picker': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-time-spinner@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-time@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-time-spinner': 3.17.0
-
-  '@opentiny/vue-timeline-item@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-toast@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-toggle-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-tooltip@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-top-box@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-transfer-panel@3.17.0':
-    dependencies:
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-pager': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-transfer@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-transfer-panel': 3.17.0
-
-  '@opentiny/vue-tree-menu@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-tree': 3.17.0
-
-  '@opentiny/vue-tree@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-collapse-transition': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-switch': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-upload-dragger@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-
-  '@opentiny/vue-upload-list@3.17.0':
-    dependencies:
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-image-viewer': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-progress': 3.17.0
-      '@opentiny/vue-record': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-tooltip': 3.17.0
-
-  '@opentiny/vue-upload@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-upload-dragger': 3.17.0
-
-  '@opentiny/vue-user-account@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-logout': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-user-contact': 3.17.0
-
-  '@opentiny/vue-user-contact@3.17.0':
-    dependencies:
-      '@opentiny/vue-card-template': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-espace': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-user-head': 3.17.0
-
-  '@opentiny/vue-user-head-group@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-user-head': 3.17.0
-
-  '@opentiny/vue-user-head@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-user-link@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-loading': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-user@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-watermark@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue-wheel@3.17.0':
-    dependencies:
-      '@better-scroll/core': 2.5.0
-      '@better-scroll/wheel': 2.5.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme-mobile': 3.17.0
-
-  '@opentiny/vue-wizard@3.17.0':
-    dependencies:
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-      '@opentiny/vue-user-contact': 3.17.0
-
-  '@opentiny/vue-year-range@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-icon': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-year-table': 3.17.0
-
-  '@opentiny/vue-year-table@3.17.0':
-    dependencies:
-      '@opentiny/vue-common': 3.17.0
-      '@opentiny/vue-renderless': 3.17.6
-      '@opentiny/vue-theme': 3.17.4
-
-  '@opentiny/vue@3.17.2(echarts@5.4.1)':
-    dependencies:
-      '@opentiny/vue-action-menu': 3.17.0
-      '@opentiny/vue-action-sheet': 3.17.0
-      '@opentiny/vue-alert': 3.17.0
-      '@opentiny/vue-amount': 3.17.0
-      '@opentiny/vue-anchor': 3.17.0
-      '@opentiny/vue-area': 3.17.0
-      '@opentiny/vue-async-flowchart': 3.17.0
-      '@opentiny/vue-autocomplete': 3.17.0
-      '@opentiny/vue-autonavi-map': 3.17.0
-      '@opentiny/vue-avatar': 3.17.0
-      '@opentiny/vue-badge': 3.17.0
-      '@opentiny/vue-baidu-map': 3.17.0
-      '@opentiny/vue-base-select': 3.17.0
-      '@opentiny/vue-breadcrumb': 3.17.0
-      '@opentiny/vue-breadcrumb-item': 3.17.0
-      '@opentiny/vue-bulletin-board': 3.17.0
-      '@opentiny/vue-button': 3.17.0
-      '@opentiny/vue-button-group': 3.17.1
-      '@opentiny/vue-calendar': 3.17.0
-      '@opentiny/vue-calendar-bar': 3.17.0
-      '@opentiny/vue-calendar-view': 3.17.0
-      '@opentiny/vue-card': 3.17.0
-      '@opentiny/vue-card-group': 3.17.0
-      '@opentiny/vue-card-template': 3.17.0
-      '@opentiny/vue-carousel': 3.17.0
-      '@opentiny/vue-carousel-item': 3.17.0
-      '@opentiny/vue-cascader': 3.17.0
-      '@opentiny/vue-cascader-menu': 3.17.0
-      '@opentiny/vue-cascader-mobile': 3.17.0
-      '@opentiny/vue-cascader-node': 3.17.0
-      '@opentiny/vue-cascader-panel': 3.17.0
-      '@opentiny/vue-cascader-select': 3.17.0
-      '@opentiny/vue-cascader-view': 3.17.0
-      '@opentiny/vue-cell': 3.17.0
-      '@opentiny/vue-chart': 3.17.0(echarts@5.4.1)
-      '@opentiny/vue-chart-bar': 3.17.0
-      '@opentiny/vue-chart-boxplot': 3.17.0
-      '@opentiny/vue-chart-candle': 3.17.0
-      '@opentiny/vue-chart-core': 3.17.1
-      '@opentiny/vue-chart-funnel': 3.17.0
-      '@opentiny/vue-chart-gauge': 3.17.0
-      '@opentiny/vue-chart-graph': 3.17.0
-      '@opentiny/vue-chart-heatmap': 3.17.0
-      '@opentiny/vue-chart-histogram': 3.17.0
-      '@opentiny/vue-chart-line': 3.17.0
-      '@opentiny/vue-chart-liquidfill': 3.17.0(echarts@5.4.1)
-      '@opentiny/vue-chart-map': 3.17.0
-      '@opentiny/vue-chart-pie': 3.17.0
-      '@opentiny/vue-chart-process': 3.17.0
-      '@opentiny/vue-chart-radar': 3.17.0
-      '@opentiny/vue-chart-ring': 3.17.0
-      '@opentiny/vue-chart-sankey': 3.17.0
-      '@opentiny/vue-chart-scatter': 3.17.0
-      '@opentiny/vue-chart-sunburst': 3.17.0
-      '@opentiny/vue-chart-tree': 3.17.0
-      '@opentiny/vue-chart-waterfall': 3.17.0
-      '@opentiny/vue-chart-wordcloud': 3.17.0(echarts@5.4.1)
-      '@opentiny/vue-checkbox': 3.17.0
-      '@opentiny/vue-checkbox-button': 3.17.0
-      '@opentiny/vue-checkbox-group': 3.17.0
-      '@opentiny/vue-col': 3.17.0
-      '@opentiny/vue-collapse': 3.17.0
-      '@opentiny/vue-collapse-item': 3.17.0
-      '@opentiny/vue-collapse-transition': 3.17.0
-      '@opentiny/vue-color-picker': 3.17.0
-      '@opentiny/vue-color-select-panel': 3.17.0
-      '@opentiny/vue-column-list-group': 3.17.0
-      '@opentiny/vue-column-list-item': 3.17.0
-      '@opentiny/vue-company': 3.17.0
-      '@opentiny/vue-config-provider': 3.17.0
-      '@opentiny/vue-container': 3.17.0
-      '@opentiny/vue-country': 3.17.0
-      '@opentiny/vue-crop': 3.17.0
-      '@opentiny/vue-currency': 3.17.0
-      '@opentiny/vue-date-panel': 3.17.0
-      '@opentiny/vue-date-picker': 3.17.0
-      '@opentiny/vue-date-picker-mobile-first': 3.17.0
-      '@opentiny/vue-date-range': 3.17.0
-      '@opentiny/vue-date-table': 3.17.0
-      '@opentiny/vue-dept': 3.17.0
-      '@opentiny/vue-dialog-box': 3.17.0
-      '@opentiny/vue-dialog-select': 3.17.0
-      '@opentiny/vue-divider': 3.17.0
-      '@opentiny/vue-drawer': 3.17.2
-      '@opentiny/vue-drop-roles': 3.17.0
-      '@opentiny/vue-drop-times': 3.17.0
-      '@opentiny/vue-dropdown': 3.17.0
-      '@opentiny/vue-dropdown-item': 3.17.0
-      '@opentiny/vue-dropdown-menu': 3.17.0
-      '@opentiny/vue-dynamic-scroller': 3.17.0
-      '@opentiny/vue-dynamic-scroller-item': 3.17.0
-      '@opentiny/vue-espace': 3.17.0
-      '@opentiny/vue-exception': 3.17.0
-      '@opentiny/vue-fall-menu': 3.17.0
-      '@opentiny/vue-file-upload': 3.17.0
-      '@opentiny/vue-filter': 3.17.0
-      '@opentiny/vue-filter-bar': 3.17.0
-      '@opentiny/vue-filter-box': 3.17.0
-      '@opentiny/vue-filter-panel': 3.17.0
-      '@opentiny/vue-float-button': 3.17.0
-      '@opentiny/vue-floatbar': 3.17.0
-      '@opentiny/vue-floating-button': 3.17.0
-      '@opentiny/vue-flowchart': 3.17.0
-      '@opentiny/vue-form': 3.17.0
-      '@opentiny/vue-form-item': 3.17.0
-      '@opentiny/vue-fullscreen': 3.17.0
-      '@opentiny/vue-grid': 3.17.0
-      '@opentiny/vue-grid-column': 3.17.0
-      '@opentiny/vue-grid-manager': 3.17.0
-      '@opentiny/vue-grid-toolbar': 3.17.2
-      '@opentiny/vue-guide': 3.17.0
-      '@opentiny/vue-hrapprover': 3.17.0
-      '@opentiny/vue-image': 3.17.0
-      '@opentiny/vue-image-viewer': 3.17.0
-      '@opentiny/vue-index-bar': 3.17.0
-      '@opentiny/vue-index-bar-anchor': 3.17.0
-      '@opentiny/vue-input': 3.17.0
-      '@opentiny/vue-ip-address': 3.17.0
-      '@opentiny/vue-label': 3.17.0
-      '@opentiny/vue-layout': 3.17.0
-      '@opentiny/vue-link': 3.17.0
-      '@opentiny/vue-link-menu': 3.17.0
-      '@opentiny/vue-list': 3.17.0
-      '@opentiny/vue-loading': 3.17.0
-      '@opentiny/vue-locales': 3.17.0
-      '@opentiny/vue-logon-user': 3.17.0
-      '@opentiny/vue-logout': 3.17.0
-      '@opentiny/vue-mask': 3.17.0
-      '@opentiny/vue-menu': 3.17.0
-      '@opentiny/vue-message': 3.17.0
-      '@opentiny/vue-milestone': 3.17.0
-      '@opentiny/vue-mind-map': 3.17.0
-      '@opentiny/vue-mini-picker': 3.17.0
-      '@opentiny/vue-modal': 3.17.0
-      '@opentiny/vue-month-range': 3.17.0
-      '@opentiny/vue-month-table': 3.17.0
-      '@opentiny/vue-multi-select': 3.17.0
-      '@opentiny/vue-multi-select-item': 3.17.0
-      '@opentiny/vue-nav-bar': 3.17.0
-      '@opentiny/vue-nav-menu': 3.17.0
-      '@opentiny/vue-notify': 3.17.0
-      '@opentiny/vue-numeric': 3.17.0
-      '@opentiny/vue-option': 3.17.0
-      '@opentiny/vue-option-group': 3.17.0
-      '@opentiny/vue-pager': 3.17.0
-      '@opentiny/vue-pager-item': 3.17.0
-      '@opentiny/vue-panel': 3.17.0
-      '@opentiny/vue-picker': 3.17.0
-      '@opentiny/vue-picker-column': 3.17.0
-      '@opentiny/vue-pop-upload': 3.17.0
-      '@opentiny/vue-popconfirm': 3.17.0
-      '@opentiny/vue-popeditor': 3.17.0
-      '@opentiny/vue-popover': 3.17.0
-      '@opentiny/vue-popup': 3.17.0
-      '@opentiny/vue-progress': 3.17.0
-      '@opentiny/vue-pull-refresh': 3.17.0
-      '@opentiny/vue-qr-code': 3.17.0
-      '@opentiny/vue-quarter-panel': 3.17.0
-      '@opentiny/vue-query-builder': 3.17.0
-      '@opentiny/vue-radio': 3.17.0
-      '@opentiny/vue-radio-button': 3.17.0
-      '@opentiny/vue-radio-group': 3.17.0
-      '@opentiny/vue-rate': 3.17.0
-      '@opentiny/vue-record': 3.17.0
-      '@opentiny/vue-recycle-scroller': 3.17.0
-      '@opentiny/vue-rich-text-editor': 3.17.0
-      '@opentiny/vue-river': 3.17.0
-      '@opentiny/vue-roles': 3.17.0
-      '@opentiny/vue-row': 3.17.0
-      '@opentiny/vue-scroll-text': 3.17.0
-      '@opentiny/vue-scrollbar': 3.17.0
-      '@opentiny/vue-search': 3.17.0
-      '@opentiny/vue-select': 3.17.0
-      '@opentiny/vue-select-dropdown': 3.17.0
-      '@opentiny/vue-select-mobile': 3.17.0
-      '@opentiny/vue-select-view': 3.17.0
-      '@opentiny/vue-selected-box': 3.17.0
-      '@opentiny/vue-signature': 3.17.0
-      '@opentiny/vue-skeleton': 3.17.0
-      '@opentiny/vue-skeleton-item': 3.17.0
-      '@opentiny/vue-slider': 3.17.0
-      '@opentiny/vue-slider-button': 3.17.0
-      '@opentiny/vue-slider-button-group': 3.17.0
-      '@opentiny/vue-split': 3.17.0
-      '@opentiny/vue-standard-list-item': 3.17.0
-      '@opentiny/vue-statistic': 3.17.0
-      '@opentiny/vue-steps': 3.17.0
-      '@opentiny/vue-svg-icon': 3.17.0
-      '@opentiny/vue-switch': 3.17.0
-      '@opentiny/vue-tab-item': 3.17.0
-      '@opentiny/vue-tabbar': 3.17.0
-      '@opentiny/vue-tabbar-item': 3.17.0
-      '@opentiny/vue-table': 3.17.0
-      '@opentiny/vue-tabs': 3.17.0
-      '@opentiny/vue-tag': 3.17.0
-      '@opentiny/vue-tag-group': 3.17.0
-      '@opentiny/vue-text-popup': 3.17.0
-      '@opentiny/vue-time': 3.17.0
-      '@opentiny/vue-time-line': 3.17.0
-      '@opentiny/vue-time-panel': 3.17.0
-      '@opentiny/vue-time-picker': 3.17.0
-      '@opentiny/vue-time-picker-mobile': 3.17.0
-      '@opentiny/vue-time-range': 3.17.0
-      '@opentiny/vue-time-select': 3.17.0
-      '@opentiny/vue-time-spinner': 3.17.0
-      '@opentiny/vue-timeline-item': 3.17.0
-      '@opentiny/vue-toast': 3.17.0
-      '@opentiny/vue-toggle-menu': 3.17.0
-      '@opentiny/vue-tooltip': 3.17.0
-      '@opentiny/vue-top-box': 3.17.0
-      '@opentiny/vue-transfer': 3.17.0
-      '@opentiny/vue-transfer-panel': 3.17.0
-      '@opentiny/vue-tree': 3.17.0
-      '@opentiny/vue-tree-menu': 3.17.0
-      '@opentiny/vue-upload': 3.17.0
-      '@opentiny/vue-upload-dragger': 3.17.0
-      '@opentiny/vue-upload-list': 3.17.0
-      '@opentiny/vue-user': 3.17.0
-      '@opentiny/vue-user-account': 3.17.0
-      '@opentiny/vue-user-contact': 3.17.0
-      '@opentiny/vue-user-head': 3.17.0
-      '@opentiny/vue-user-head-group': 3.17.0
-      '@opentiny/vue-user-link': 3.17.0
-      '@opentiny/vue-watermark': 3.17.0
-      '@opentiny/vue-wheel': 3.17.0
-      '@opentiny/vue-wizard': 3.17.0
-      '@opentiny/vue-year-range': 3.17.0
-      '@opentiny/vue-year-table': 3.17.0
-    transitivePeerDependencies:
-      - echarts
-
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
@@ -8510,7 +5494,7 @@ snapshots:
     optionalDependencies:
       rollup: 2.77.3
 
-  '@stylistic/eslint-plugin-js@2.6.1(eslint@9.1.1)':
+  '@stylistic/eslint-plugin-js@2.6.2(eslint@9.1.1)':
     dependencies:
       '@types/eslint': 9.6.0
       acorn: 8.12.1
@@ -8518,15 +5502,15 @@ snapshots:
       eslint-visitor-keys: 4.0.0
       espree: 10.1.0
 
-  '@stylistic/eslint-plugin-jsx@2.6.1(eslint@9.1.1)':
+  '@stylistic/eslint-plugin-jsx@2.6.2(eslint@9.1.1)':
     dependencies:
-      '@stylistic/eslint-plugin-js': 2.6.1(eslint@9.1.1)
+      '@stylistic/eslint-plugin-js': 2.6.2(eslint@9.1.1)
       '@types/eslint': 9.6.0
       eslint: 9.1.1
       estraverse: 5.3.0
       picomatch: 4.0.2
 
-  '@stylistic/eslint-plugin-plus@2.6.1(eslint@9.1.1)(typescript@4.9.5)':
+  '@stylistic/eslint-plugin-plus@2.6.2(eslint@9.1.1)(typescript@4.9.5)':
     dependencies:
       '@types/eslint': 9.6.0
       '@typescript-eslint/utils': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
@@ -8535,9 +5519,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@stylistic/eslint-plugin-ts@2.6.1(eslint@9.1.1)(typescript@4.9.5)':
+  '@stylistic/eslint-plugin-ts@2.6.2(eslint@9.1.1)(typescript@4.9.5)':
     dependencies:
-      '@stylistic/eslint-plugin-js': 2.6.1(eslint@9.1.1)
+      '@stylistic/eslint-plugin-js': 2.6.2(eslint@9.1.1)
       '@types/eslint': 9.6.0
       '@typescript-eslint/utils': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
       eslint: 9.1.1
@@ -8545,12 +5529,12 @@ snapshots:
       - supports-color
       - typescript
 
-  '@stylistic/eslint-plugin@2.6.1(eslint@9.1.1)(typescript@4.9.5)':
+  '@stylistic/eslint-plugin@2.6.2(eslint@9.1.1)(typescript@4.9.5)':
     dependencies:
-      '@stylistic/eslint-plugin-js': 2.6.1(eslint@9.1.1)
-      '@stylistic/eslint-plugin-jsx': 2.6.1(eslint@9.1.1)
-      '@stylistic/eslint-plugin-plus': 2.6.1(eslint@9.1.1)(typescript@4.9.5)
-      '@stylistic/eslint-plugin-ts': 2.6.1(eslint@9.1.1)(typescript@4.9.5)
+      '@stylistic/eslint-plugin-js': 2.6.2(eslint@9.1.1)
+      '@stylistic/eslint-plugin-jsx': 2.6.2(eslint@9.1.1)
+      '@stylistic/eslint-plugin-plus': 2.6.2(eslint@9.1.1)(typescript@4.9.5)
+      '@stylistic/eslint-plugin-ts': 2.6.2(eslint@9.1.1)(typescript@4.9.5)
       '@types/eslint': 9.6.0
       eslint: 9.1.1
     transitivePeerDependencies:
@@ -8620,14 +5604,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)':
+  '@typescript-eslint/eslint-plugin@8.1.0(@typescript-eslint/parser@8.1.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)':
     dependencies:
       '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
-      '@typescript-eslint/scope-manager': 8.0.0
-      '@typescript-eslint/type-utils': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
-      '@typescript-eslint/utils': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
-      '@typescript-eslint/visitor-keys': 8.0.0
+      '@typescript-eslint/parser': 8.1.0(eslint@9.1.1)(typescript@4.9.5)
+      '@typescript-eslint/scope-manager': 8.1.0
+      '@typescript-eslint/type-utils': 8.1.0(eslint@9.1.1)(typescript@4.9.5)
+      '@typescript-eslint/utils': 8.1.0(eslint@9.1.1)(typescript@4.9.5)
+      '@typescript-eslint/visitor-keys': 8.1.0
       eslint: 9.1.1
       graphemer: 1.4.0
       ignore: 5.3.1
@@ -8650,13 +5634,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5)':
+  '@typescript-eslint/parser@8.1.0(eslint@9.1.1)(typescript@4.9.5)':
     dependencies:
-      '@typescript-eslint/scope-manager': 8.0.0
-      '@typescript-eslint/types': 8.0.0
-      '@typescript-eslint/typescript-estree': 8.0.0(typescript@4.9.5)
-      '@typescript-eslint/visitor-keys': 8.0.0
-      debug: 4.3.4
+      '@typescript-eslint/scope-manager': 8.1.0
+      '@typescript-eslint/types': 8.1.0
+      '@typescript-eslint/typescript-estree': 8.1.0(typescript@4.9.5)
+      '@typescript-eslint/visitor-keys': 8.1.0
+      debug: 4.3.6
       eslint: 9.1.1
     optionalDependencies:
       typescript: 4.9.5
@@ -8678,6 +5662,11 @@ snapshots:
       '@typescript-eslint/types': 8.0.0
       '@typescript-eslint/visitor-keys': 8.0.0
 
+  '@typescript-eslint/scope-manager@8.1.0':
+    dependencies:
+      '@typescript-eslint/types': 8.1.0
+      '@typescript-eslint/visitor-keys': 8.1.0
+
   '@typescript-eslint/type-utils@5.62.0(eslint@8.57.0)(typescript@4.9.5)':
     dependencies:
       '@typescript-eslint/typescript-estree': 5.62.0(typescript@4.9.5)
@@ -8690,11 +5679,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/type-utils@8.0.0(eslint@9.1.1)(typescript@4.9.5)':
+  '@typescript-eslint/type-utils@8.1.0(eslint@9.1.1)(typescript@4.9.5)':
     dependencies:
-      '@typescript-eslint/typescript-estree': 8.0.0(typescript@4.9.5)
-      '@typescript-eslint/utils': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
-      debug: 4.3.4
+      '@typescript-eslint/typescript-estree': 8.1.0(typescript@4.9.5)
+      '@typescript-eslint/utils': 8.1.0(eslint@9.1.1)(typescript@4.9.5)
+      debug: 4.3.6
       ts-api-utils: 1.3.0(typescript@4.9.5)
     optionalDependencies:
       typescript: 4.9.5
@@ -8707,6 +5696,8 @@ snapshots:
   '@typescript-eslint/types@7.7.1': {}
 
   '@typescript-eslint/types@8.0.0': {}
+
+  '@typescript-eslint/types@8.1.0': {}
 
   '@typescript-eslint/typescript-estree@5.62.0(typescript@4.9.5)':
     dependencies:
@@ -8726,11 +5717,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 7.7.1
       '@typescript-eslint/visitor-keys': 7.7.1
-      debug: 4.3.4
+      debug: 4.3.6
       globby: 11.1.0
       is-glob: 4.0.3
-      minimatch: 9.0.4
-      semver: 7.6.0
+      minimatch: 9.0.5
+      semver: 7.6.3
       ts-api-utils: 1.3.0(typescript@4.9.5)
     optionalDependencies:
       typescript: 4.9.5
@@ -8741,11 +5732,26 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.0.0
       '@typescript-eslint/visitor-keys': 8.0.0
-      debug: 4.3.4
+      debug: 4.3.6
       globby: 11.1.0
       is-glob: 4.0.3
-      minimatch: 9.0.4
-      semver: 7.6.0
+      minimatch: 9.0.5
+      semver: 7.6.3
+      ts-api-utils: 1.3.0(typescript@4.9.5)
+    optionalDependencies:
+      typescript: 4.9.5
+    transitivePeerDependencies:
+      - supports-color
+
+  '@typescript-eslint/typescript-estree@8.1.0(typescript@4.9.5)':
+    dependencies:
+      '@typescript-eslint/types': 8.1.0
+      '@typescript-eslint/visitor-keys': 8.1.0
+      debug: 4.3.6
+      globby: 11.1.0
+      is-glob: 4.0.3
+      minimatch: 9.0.5
+      semver: 7.6.3
       ts-api-utils: 1.3.0(typescript@4.9.5)
     optionalDependencies:
       typescript: 4.9.5
@@ -8776,7 +5782,7 @@ snapshots:
       '@typescript-eslint/types': 7.7.1
       '@typescript-eslint/typescript-estree': 7.7.1(typescript@4.9.5)
       eslint: 9.1.1
-      semver: 7.6.0
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -8787,6 +5793,17 @@ snapshots:
       '@typescript-eslint/scope-manager': 8.0.0
       '@typescript-eslint/types': 8.0.0
       '@typescript-eslint/typescript-estree': 8.0.0(typescript@4.9.5)
+      eslint: 9.1.1
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
+  '@typescript-eslint/utils@8.1.0(eslint@9.1.1)(typescript@4.9.5)':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.0(eslint@9.1.1)
+      '@typescript-eslint/scope-manager': 8.1.0
+      '@typescript-eslint/types': 8.1.0
+      '@typescript-eslint/typescript-estree': 8.1.0(typescript@4.9.5)
       eslint: 9.1.1
     transitivePeerDependencies:
       - supports-color
@@ -8805,6 +5822,11 @@ snapshots:
   '@typescript-eslint/visitor-keys@8.0.0':
     dependencies:
       '@typescript-eslint/types': 8.0.0
+      eslint-visitor-keys: 3.4.3
+
+  '@typescript-eslint/visitor-keys@8.1.0':
+    dependencies:
+      '@typescript-eslint/types': 8.1.0
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
@@ -8969,15 +5991,23 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vitejs/plugin-vue@2.3.4(vite@2.9.18)(vue@3.4.35(typescript@4.9.5))':
+  '@vitejs/plugin-vue@2.3.4(vite@2.9.18)(vue@3.4.37(typescript@4.9.5))':
     dependencies:
       vite: 2.9.18
-      vue: 3.4.35(typescript@4.9.5)
+      vue: 3.4.37(typescript@4.9.5)
 
-  '@vitejs/plugin-vue@2.3.4(vite@4.5.3(@types/node@17.0.45))(vue@3.4.21(typescript@4.9.5))':
+  '@vitejs/plugin-vue@2.3.4(vite@4.5.3(@types/node@17.0.45))(vue@3.4.37(typescript@4.9.5))':
     dependencies:
       vite: 4.5.3(@types/node@17.0.45)
-      vue: 3.4.21(typescript@4.9.5)
+      vue: 3.4.37(typescript@4.9.5)
+
+  '@vitest/eslint-plugin@1.0.1(@typescript-eslint/utils@8.1.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0))':
+    dependencies:
+      eslint: 9.1.1
+    optionalDependencies:
+      '@typescript-eslint/utils': 8.1.0(eslint@9.1.1)(typescript@4.9.5)
+      typescript: 4.9.5
+      vitest: 0.28.5(happy-dom@8.9.0)(jsdom@19.0.0)
 
   '@vitest/expect@0.28.5':
     dependencies:
@@ -9056,11 +6086,11 @@ snapshots:
       estree-walker: 2.0.2
       source-map-js: 1.2.0
 
-  '@vue/compiler-core@3.4.35':
+  '@vue/compiler-core@3.4.37':
     dependencies:
-      '@babel/parser': 7.24.7
-      '@vue/shared': 3.4.35
-      entities: 4.5.0
+      '@babel/parser': 7.25.3
+      '@vue/shared': 3.4.37
+      entities: 5.0.0
       estree-walker: 2.0.2
       source-map-js: 1.2.0
 
@@ -9069,10 +6099,10 @@ snapshots:
       '@vue/compiler-core': 3.4.21
       '@vue/shared': 3.4.21
 
-  '@vue/compiler-dom@3.4.35':
+  '@vue/compiler-dom@3.4.37':
     dependencies:
-      '@vue/compiler-core': 3.4.35
-      '@vue/shared': 3.4.35
+      '@vue/compiler-core': 3.4.37
+      '@vue/shared': 3.4.37
 
   '@vue/compiler-sfc@3.4.21':
     dependencies:
@@ -9086,15 +6116,15 @@ snapshots:
       postcss: 8.4.38
       source-map-js: 1.2.0
 
-  '@vue/compiler-sfc@3.4.35':
+  '@vue/compiler-sfc@3.4.37':
     dependencies:
-      '@babel/parser': 7.24.7
-      '@vue/compiler-core': 3.4.35
-      '@vue/compiler-dom': 3.4.35
-      '@vue/compiler-ssr': 3.4.35
-      '@vue/shared': 3.4.35
+      '@babel/parser': 7.25.3
+      '@vue/compiler-core': 3.4.37
+      '@vue/compiler-dom': 3.4.37
+      '@vue/compiler-ssr': 3.4.37
+      '@vue/shared': 3.4.37
       estree-walker: 2.0.2
-      magic-string: 0.30.10
+      magic-string: 0.30.11
       postcss: 8.4.40
       source-map-js: 1.2.0
 
@@ -9103,10 +6133,10 @@ snapshots:
       '@vue/compiler-dom': 3.4.21
       '@vue/shared': 3.4.21
 
-  '@vue/compiler-ssr@3.4.35':
+  '@vue/compiler-ssr@3.4.37':
     dependencies:
-      '@vue/compiler-dom': 3.4.35
-      '@vue/shared': 3.4.35
+      '@vue/compiler-dom': 3.4.37
+      '@vue/shared': 3.4.37
 
   '@vue/devtools-api@6.6.3': {}
 
@@ -9114,70 +6144,53 @@ snapshots:
     dependencies:
       '@vue/shared': 3.4.21
 
-  '@vue/reactivity@3.4.35':
+  '@vue/reactivity@3.4.37':
     dependencies:
-      '@vue/shared': 3.4.35
+      '@vue/shared': 3.4.37
 
-  '@vue/runtime-core@3.4.21':
+  '@vue/runtime-core@3.4.37':
     dependencies:
-      '@vue/reactivity': 3.4.21
-      '@vue/shared': 3.4.21
+      '@vue/reactivity': 3.4.37
+      '@vue/shared': 3.4.37
 
-  '@vue/runtime-core@3.4.35':
+  '@vue/runtime-dom@3.4.37':
     dependencies:
-      '@vue/reactivity': 3.4.35
-      '@vue/shared': 3.4.35
-
-  '@vue/runtime-dom@3.4.21':
-    dependencies:
-      '@vue/runtime-core': 3.4.21
-      '@vue/shared': 3.4.21
+      '@vue/reactivity': 3.4.37
+      '@vue/runtime-core': 3.4.37
+      '@vue/shared': 3.4.37
       csstype: 3.1.3
 
-  '@vue/runtime-dom@3.4.35':
+  '@vue/server-renderer@3.4.37(vue@3.4.37(typescript@4.9.5))':
     dependencies:
-      '@vue/reactivity': 3.4.35
-      '@vue/runtime-core': 3.4.35
-      '@vue/shared': 3.4.35
-      csstype: 3.1.3
-
-  '@vue/server-renderer@3.4.21(vue@3.4.21(typescript@4.9.5))':
-    dependencies:
-      '@vue/compiler-ssr': 3.4.21
-      '@vue/shared': 3.4.21
-      vue: 3.4.21(typescript@4.9.5)
-
-  '@vue/server-renderer@3.4.35(vue@3.4.35(typescript@4.9.5))':
-    dependencies:
-      '@vue/compiler-ssr': 3.4.35
-      '@vue/shared': 3.4.35
-      vue: 3.4.35(typescript@4.9.5)
+      '@vue/compiler-ssr': 3.4.37
+      '@vue/shared': 3.4.37
+      vue: 3.4.37(typescript@4.9.5)
 
   '@vue/shared@3.4.21': {}
 
-  '@vue/shared@3.4.35': {}
+  '@vue/shared@3.4.37': {}
 
   '@vue/test-utils@2.4.6':
     dependencies:
       js-beautify: 1.15.1
       vue-component-type-helpers: 2.0.7
 
-  '@vueuse/core@8.9.4(vue@3.4.35(typescript@4.9.5))':
+  '@vueuse/core@8.9.4(vue@3.4.37(typescript@4.9.5))':
     dependencies:
       '@types/web-bluetooth': 0.0.14
       '@vueuse/metadata': 8.9.4
-      '@vueuse/shared': 8.9.4(vue@3.4.35(typescript@4.9.5))
-      vue-demi: 0.14.7(vue@3.4.35(typescript@4.9.5))
+      '@vueuse/shared': 8.9.4(vue@3.4.37(typescript@4.9.5))
+      vue-demi: 0.14.7(vue@3.4.37(typescript@4.9.5))
     optionalDependencies:
-      vue: 3.4.35(typescript@4.9.5)
+      vue: 3.4.37(typescript@4.9.5)
 
   '@vueuse/metadata@8.9.4': {}
 
-  '@vueuse/shared@8.9.4(vue@3.4.35(typescript@4.9.5))':
+  '@vueuse/shared@8.9.4(vue@3.4.37(typescript@4.9.5))':
     dependencies:
-      vue-demi: 0.14.7(vue@3.4.35(typescript@4.9.5))
+      vue-demi: 0.14.7(vue@3.4.37(typescript@4.9.5))
     optionalDependencies:
-      vue: 3.4.35(typescript@4.9.5)
+      vue: 3.4.37(typescript@4.9.5)
 
   abab@2.0.6: {}
 
@@ -9353,13 +6366,6 @@ snapshots:
 
   browser-process-hrtime@1.0.0: {}
 
-  browserslist@4.23.0:
-    dependencies:
-      caniuse-lite: 1.0.30001612
-      electron-to-chromium: 1.4.746
-      node-releases: 2.0.14
-      update-browserslist-db: 1.0.13(browserslist@4.23.0)
-
   browserslist@4.23.3:
     dependencies:
       caniuse-lite: 1.0.30001649
@@ -9409,8 +6415,6 @@ snapshots:
   callsites@3.1.0: {}
 
   camelcase@5.3.1: {}
-
-  caniuse-lite@1.0.30001612: {}
 
   caniuse-lite@1.0.30001649: {}
 
@@ -9504,16 +6508,6 @@ snapshots:
 
   color-name@1.1.4: {}
 
-  color-string@1.9.1:
-    dependencies:
-      color-name: 1.1.4
-      simple-swizzle: 0.2.2
-
-  color@4.2.3:
-    dependencies:
-      color-convert: 2.0.1
-      color-string: 1.9.1
-
   colorette@2.0.20: {}
 
   combined-stream@1.0.8:
@@ -9523,8 +6517,6 @@ snapshots:
   commander@10.0.1: {}
 
   commander@11.0.0: {}
-
-  commander@2.20.3: {}
 
   commander@4.1.1: {}
 
@@ -9545,17 +6537,13 @@ snapshots:
 
   core-js-compat@3.37.0:
     dependencies:
-      browserslist: 4.23.0
-
-  cropperjs@1.5.7: {}
+      browserslist: 4.23.3
 
   cross-spawn@7.0.3:
     dependencies:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
-
-  crypto-js@4.2.0: {}
 
   css-tree@2.3.1:
     dependencies:
@@ -9566,8 +6554,6 @@ snapshots:
     optional: true
 
   cssesc@3.0.0: {}
-
-  cssfilter@0.0.10: {}
 
   cssom@0.3.8: {}
 
@@ -9646,8 +6632,6 @@ snapshots:
 
   deep-is@0.1.4: {}
 
-  deepmerge@4.3.1: {}
-
   define-data-property@1.1.4:
     dependencies:
       es-define-property: 1.0.0
@@ -9724,19 +6708,6 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  echarts-liquidfill@3.1.0(echarts@5.4.1):
-    dependencies:
-      echarts: 5.4.1
-
-  echarts-wordcloud@2.0.0(echarts@5.4.1):
-    dependencies:
-      echarts: 5.4.1
-
-  echarts@5.4.1:
-    dependencies:
-      tslib: 2.3.0
-      zrender: 5.4.1
-
   editorconfig@1.0.4:
     dependencies:
       '@one-ini/wasm': 0.1.1
@@ -9744,15 +6715,11 @@ snapshots:
       minimatch: 9.0.1
       semver: 7.6.0
 
-  electron-to-chromium@1.4.746: {}
-
   electron-to-chromium@1.5.4: {}
 
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
-
-  encode-utf8@1.0.3: {}
 
   enhanced-resolve@5.17.1:
     dependencies:
@@ -9764,6 +6731,8 @@ snapshots:
   entities@3.0.1: {}
 
   entities@4.5.0: {}
+
+  entities@5.0.0: {}
 
   error-ex@1.3.2:
     dependencies:
@@ -10167,14 +7136,14 @@ snapshots:
   eslint-plugin-import-x@3.1.0(eslint@9.1.1)(typescript@4.9.5):
     dependencies:
       '@typescript-eslint/utils': 7.7.1(eslint@9.1.1)(typescript@4.9.5)
-      debug: 4.3.4
+      debug: 4.3.6
       doctrine: 3.0.0
       eslint: 9.1.1
       eslint-import-resolver-node: 0.3.9
-      get-tsconfig: 4.7.3
+      get-tsconfig: 4.7.6
       is-glob: 4.0.3
-      minimatch: 9.0.4
-      semver: 7.6.0
+      minimatch: 9.0.5
+      semver: 7.6.3
       stable-hash: 0.0.4
       tslib: 2.6.2
     transitivePeerDependencies:
@@ -10208,7 +7177,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jsdoc@48.11.0(eslint@9.1.1):
+  eslint-plugin-jsdoc@50.0.1(eslint@9.1.1):
     dependencies:
       '@es-joy/jsdoccomment': 0.46.0
       are-docs-informative: 0.0.2
@@ -10273,24 +7242,24 @@ snapshots:
       resolve: 1.22.8
       semver: 7.6.0
 
-  eslint-plugin-n@17.10.1(eslint@9.1.1):
+  eslint-plugin-n@17.10.2(eslint@9.1.1):
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.1.1)
       enhanced-resolve: 5.17.1
       eslint: 9.1.1
       eslint-plugin-es-x: 7.6.0(eslint@9.1.1)
-      get-tsconfig: 4.7.3
+      get-tsconfig: 4.7.6
       globals: 15.9.0
       ignore: 5.3.1
       minimatch: 9.0.5
-      semver: 7.6.0
+      semver: 7.6.3
 
   eslint-plugin-no-only-tests@3.1.0: {}
 
-  eslint-plugin-perfectionist@3.1.1(eslint@9.1.1)(typescript@4.9.5)(vue-eslint-parser@9.4.3(eslint@9.1.1)):
+  eslint-plugin-perfectionist@3.1.3(eslint@9.1.1)(typescript@4.9.5)(vue-eslint-parser@9.4.3(eslint@9.1.1)):
     dependencies:
-      '@typescript-eslint/types': 8.0.0
-      '@typescript-eslint/utils': 8.0.0(eslint@9.1.1)(typescript@4.9.5)
+      '@typescript-eslint/types': 8.1.0
+      '@typescript-eslint/utils': 8.1.0(eslint@9.1.1)(typescript@4.9.5)
       eslint: 9.1.1
       minimatch: 10.0.1
       natural-compare-lite: 1.4.0
@@ -10339,7 +7308,7 @@ snapshots:
 
   eslint-plugin-toml@0.11.1(eslint@9.1.1):
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.6
       eslint: 9.1.1
       eslint-compat-utils: 0.5.0(eslint@9.1.1)
       lodash: 4.17.21
@@ -10373,7 +7342,7 @@ snapshots:
       clean-regexp: 1.0.0
       core-js-compat: 3.37.0
       eslint: 9.1.1
-      esquery: 1.5.0
+      esquery: 1.6.0
       globals: 15.9.0
       indent-string: 4.0.0
       is-builtin-module: 3.2.1
@@ -10385,23 +7354,11 @@ snapshots:
       semver: 7.6.3
       strip-indent: 3.0.0
 
-  eslint-plugin-unused-imports@4.0.1(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1):
+  eslint-plugin-unused-imports@4.1.3(@typescript-eslint/eslint-plugin@8.1.0(@typescript-eslint/parser@8.1.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1):
     dependencies:
       eslint: 9.1.1
-      eslint-rule-composer: 0.3.0
     optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)
-
-  eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)(vitest@0.28.5(happy-dom@8.9.0)(jsdom@19.0.0)):
-    dependencies:
-      '@typescript-eslint/utils': 7.7.1(eslint@9.1.1)(typescript@4.9.5)
-      eslint: 9.1.1
-    optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 8.0.0(@typescript-eslint/parser@8.0.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)
-      vitest: 0.28.5(happy-dom@8.9.0)(jsdom@19.0.0)
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
+      '@typescript-eslint/eslint-plugin': 8.1.0(@typescript-eslint/parser@8.1.0(eslint@9.1.1)(typescript@4.9.5))(eslint@9.1.1)(typescript@4.9.5)
 
   eslint-plugin-vue@8.7.1(eslint@8.57.0):
     dependencies:
@@ -10423,7 +7380,7 @@ snapshots:
       natural-compare: 1.4.0
       nth-check: 2.1.1
       postcss-selector-parser: 6.0.16
-      semver: 7.6.0
+      semver: 7.6.3
       vue-eslint-parser: 9.4.3(eslint@9.1.1)
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
@@ -10441,7 +7398,7 @@ snapshots:
 
   eslint-plugin-yml@1.14.0(eslint@9.1.1):
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.6
       eslint: 9.1.1
       eslint-compat-utils: 0.5.0(eslint@9.1.1)
       lodash: 4.17.21
@@ -10450,12 +7407,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-processor-vue-blocks@0.1.2(@vue/compiler-sfc@3.4.35)(eslint@9.1.1):
+  eslint-processor-vue-blocks@0.1.2(@vue/compiler-sfc@3.4.37)(eslint@9.1.1):
     dependencies:
-      '@vue/compiler-sfc': 3.4.35
+      '@vue/compiler-sfc': 3.4.37
       eslint: 9.1.1
-
-  eslint-rule-composer@0.3.0: {}
 
   eslint-scope@5.1.1:
     dependencies:
@@ -10952,8 +7907,6 @@ snapshots:
 
   is-arrayish@0.2.1: {}
 
-  is-arrayish@0.3.2: {}
-
   is-async-function@2.0.0:
     dependencies:
       has-tostringtag: 1.0.2
@@ -11277,10 +8230,6 @@ snapshots:
     dependencies:
       sourcemap-codec: 1.4.8
 
-  magic-string@0.30.10:
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
-
   magic-string@0.30.11:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -11330,8 +8279,6 @@ snapshots:
   mimic-fn@4.0.0: {}
 
   min-indent@1.0.1: {}
-
-  mind-elixir@3.3.2: {}
 
   minimatch@10.0.1:
     dependencies:
@@ -11399,8 +8346,6 @@ snapshots:
     dependencies:
       whatwg-url: 5.0.0
     optional: true
-
-  node-releases@2.0.14: {}
 
   node-releases@2.0.18: {}
 
@@ -11675,17 +8620,9 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  qrcode@1.5.1:
+  qrcode@1.5.4:
     dependencies:
       dijkstrajs: 1.0.3
-      encode-utf8: 1.0.3
-      pngjs: 5.0.0
-      yargs: 15.4.1
-
-  qrcode@1.5.3:
-    dependencies:
-      dijkstrajs: 1.0.3
-      encode-utf8: 1.0.3
       pngjs: 5.0.0
       yargs: 15.4.1
 
@@ -11860,11 +8797,6 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  shepherd.js@11.1.1:
-    dependencies:
-      '@floating-ui/dom': 1.6.8
-      deepmerge: 4.3.1
-
   side-channel@1.0.6:
     dependencies:
       call-bind: 1.0.7
@@ -11879,10 +8811,6 @@ snapshots:
   signal-exit@4.1.0: {}
 
   simple-git-hooks@2.11.1: {}
-
-  simple-swizzle@0.2.2:
-    dependencies:
-      is-arrayish: 0.3.2
 
   sirv@2.0.4:
     dependencies:
@@ -11946,8 +8874,6 @@ snapshots:
   stop-iteration-iterator@1.0.0:
     dependencies:
       internal-slot: 1.0.7
-
-  streamsaver@2.0.6: {}
 
   string-argv@0.3.2: {}
 
@@ -12052,8 +8978,6 @@ snapshots:
       '@pkgr/core': 0.1.1
       tslib: 2.6.2
 
-  tailwind-merge@1.14.0: {}
-
   tapable@2.2.1: {}
 
   text-table@0.2.0: {}
@@ -12124,8 +9048,6 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@1.14.1: {}
-
-  tslib@2.3.0: {}
 
   tslib@2.6.2: {}
 
@@ -12272,7 +9194,7 @@ snapshots:
       - rollup
       - supports-color
 
-  unplugin-auto-import@0.6.9(@vueuse/core@8.9.4(vue@3.4.35(typescript@4.9.5)))(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18):
+  unplugin-auto-import@0.6.9(@vueuse/core@8.9.4(vue@3.4.37(typescript@4.9.5)))(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18):
     dependencies:
       '@antfu/utils': 0.5.2
       '@rollup/pluginutils': 4.2.1
@@ -12281,14 +9203,14 @@ snapshots:
       resolve: 1.22.8
       unplugin: 0.4.0(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)
     optionalDependencies:
-      '@vueuse/core': 8.9.4(vue@3.4.35(typescript@4.9.5))
+      '@vueuse/core': 8.9.4(vue@3.4.37(typescript@4.9.5))
     transitivePeerDependencies:
       - esbuild
       - rollup
       - vite
       - webpack
 
-  unplugin-vue-components@0.18.5(@babel/parser@7.25.3)(@babel/traverse@7.25.3)(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)(vue@3.4.35(typescript@4.9.5)):
+  unplugin-vue-components@0.18.5(@babel/parser@7.25.3)(@babel/traverse@7.25.3)(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)(vue@3.4.37(typescript@4.9.5)):
     dependencies:
       '@antfu/utils': 0.5.2
       '@rollup/pluginutils': 4.2.1
@@ -12300,7 +9222,7 @@ snapshots:
       minimatch: 5.1.6
       resolve: 1.22.8
       unplugin: 0.4.0(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18)
-      vue: 3.4.35(typescript@4.9.5)
+      vue: 3.4.37(typescript@4.9.5)
     optionalDependencies:
       '@babel/parser': 7.25.3
       '@babel/traverse': 7.25.3
@@ -12311,25 +9233,6 @@ snapshots:
       - vite
       - webpack
 
-  unplugin-vue-components@0.26.0(@babel/parser@7.25.3)(rollup@2.77.3)(vue@3.4.35(typescript@4.9.5)):
-    dependencies:
-      '@antfu/utils': 0.7.10
-      '@rollup/pluginutils': 5.1.0(rollup@2.77.3)
-      chokidar: 3.6.0
-      debug: 4.3.6
-      fast-glob: 3.3.2
-      local-pkg: 0.4.3
-      magic-string: 0.30.11
-      minimatch: 9.0.5
-      resolve: 1.22.8
-      unplugin: 1.12.0
-      vue: 3.4.35(typescript@4.9.5)
-    optionalDependencies:
-      '@babel/parser': 7.25.3
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-
   unplugin@0.4.0(esbuild@0.23.0)(rollup@2.77.3)(vite@2.9.18):
     dependencies:
       chokidar: 3.6.0
@@ -12339,20 +9242,7 @@ snapshots:
       rollup: 2.77.3
       vite: 2.9.18
 
-  unplugin@1.12.0:
-    dependencies:
-      acorn: 8.12.1
-      chokidar: 3.6.0
-      webpack-sources: 3.2.3
-      webpack-virtual-modules: 0.6.2
-
   upath@2.0.1: {}
-
-  update-browserslist-db@1.0.13(browserslist@4.23.0):
-    dependencies:
-      browserslist: 4.23.0
-      escalade: 3.1.2
-      picocolors: 1.0.1
 
   update-browserslist-db@1.1.0(browserslist@4.23.3):
     dependencies:
@@ -12396,7 +9286,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-pages@0.22.0(@vue/compiler-sfc@3.4.35)(vite@2.9.18):
+  vite-plugin-pages@0.22.0(@vue/compiler-sfc@3.4.37)(vite@2.9.18):
     dependencies:
       debug: 4.3.4
       deep-equal: 2.2.3
@@ -12407,7 +9297,7 @@ snapshots:
       vite: 2.9.18
       yaml: 2.4.1
     optionalDependencies:
-      '@vue/compiler-sfc': 3.4.35
+      '@vue/compiler-sfc': 3.4.37
     transitivePeerDependencies:
       - supports-color
 
@@ -12494,9 +9384,9 @@ snapshots:
 
   vue-component-type-helpers@2.0.7: {}
 
-  vue-demi@0.14.7(vue@3.4.35(typescript@4.9.5)):
+  vue-demi@0.14.7(vue@3.4.37(typescript@4.9.5)):
     dependencies:
-      vue: 3.4.35(typescript@4.9.5)
+      vue: 3.4.37(typescript@4.9.5)
 
   vue-eslint-parser@8.3.0(eslint@8.57.0):
     dependencies:
@@ -12513,44 +9403,40 @@ snapshots:
 
   vue-eslint-parser@9.4.3(eslint@9.1.1):
     dependencies:
-      debug: 4.3.4
+      debug: 4.3.6
       eslint: 9.1.1
       eslint-scope: 7.2.2
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
-      esquery: 1.5.0
+      esquery: 1.6.0
       lodash: 4.17.21
-      semver: 7.6.0
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
 
-  vue-router@4.4.2(vue@3.4.35(typescript@4.9.5)):
+  vue-router@4.4.3(vue@3.4.37(typescript@4.9.5)):
     dependencies:
       '@vue/devtools-api': 6.6.3
-      vue: 3.4.35(typescript@4.9.5)
+      vue: 3.4.37(typescript@4.9.5)
 
   vue-tsc@0.33.9(typescript@4.9.5):
     dependencies:
       '@volar/vue-typescript': 0.33.9
       typescript: 4.9.5
 
-  vue@3.4.21(typescript@4.9.5):
+  vue@3.4.37(typescript@4.9.5):
     dependencies:
-      '@vue/compiler-dom': 3.4.21
-      '@vue/compiler-sfc': 3.4.21
-      '@vue/runtime-dom': 3.4.21
-      '@vue/server-renderer': 3.4.21(vue@3.4.21(typescript@4.9.5))
-      '@vue/shared': 3.4.21
+      '@vue/compiler-dom': 3.4.37
+      '@vue/compiler-sfc': 3.4.37
+      '@vue/runtime-dom': 3.4.37
+      '@vue/server-renderer': 3.4.37(vue@3.4.37(typescript@4.9.5))
+      '@vue/shared': 3.4.37
     optionalDependencies:
       typescript: 4.9.5
 
-  vue@3.4.35(typescript@4.9.5):
+  vuetify@3.6.14(typescript@4.9.5)(vue@3.4.37(typescript@4.9.5)):
     dependencies:
-      '@vue/compiler-dom': 3.4.35
-      '@vue/compiler-sfc': 3.4.35
-      '@vue/runtime-dom': 3.4.35
-      '@vue/server-renderer': 3.4.35(vue@3.4.35(typescript@4.9.5))
-      '@vue/shared': 3.4.35
+      vue: 3.4.37(typescript@4.9.5)
     optionalDependencies:
       typescript: 4.9.5
 
@@ -12569,11 +9455,7 @@ snapshots:
 
   webidl-conversions@7.0.0: {}
 
-  webpack-sources@3.2.3: {}
-
   webpack-virtual-modules@0.4.6: {}
-
-  webpack-virtual-modules@0.6.2: {}
 
   whatwg-encoding@2.0.0:
     dependencies:
@@ -12678,11 +9560,6 @@ snapshots:
 
   xmlchars@2.2.0: {}
 
-  xss@1.0.11:
-    dependencies:
-      commander: 2.20.3
-      cssfilter: 0.0.10
-
   y18n@4.0.3: {}
 
   y18n@5.0.8: {}
@@ -12743,7 +9620,3 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yocto-queue@1.0.0: {}
-
-  zrender@5.4.1:
-    dependencies:
-      tslib: 2.3.0
