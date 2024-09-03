@@ -12,8 +12,10 @@ export class CreateSignatureCanvas implements ISignature {
   historyStack: ImageData[] = []
   resetStack: ImageData[] = []
   color = '#000000'
-  constructor(lineWidth = 2, w = 400, h = 400, color = '#000000') {
+  bg = '#eee'
+  constructor(lineWidth = 2, w = 400, h = 400, color = '#000000', bg = '#eee') {
     this.color = color
+    this.bg = bg
     this.createCanvas(lineWidth, w, h)
     window.onunload = () => this.unmount()
   }
@@ -21,7 +23,7 @@ export class CreateSignatureCanvas implements ISignature {
   createCanvas(lineWidth = 2, w = 400, h = 400) {
     this.canvas.width = w * devicePixelRatio
     this.canvas.height = h * devicePixelRatio
-    this.ctx.fillStyle = 'rgba(255, 255, 255, 0)'
+    this.ctx.fillStyle = this.bg
     this.ctx.fillRect(0, 0, w, h)
     this.ctx.strokeStyle = this.color
     this.ctx.lineWidth = lineWidth
@@ -107,6 +109,23 @@ export class CreateSignatureCanvas implements ISignature {
   setColor(color: string) {
     this.color = color
     this.ctx.strokeStyle = color
+  }
+
+  setBgColor(color: string) {
+    this.bg = color
+    // 保存当前画布内容到临时画布
+    const tempCanvas = document.createElement('canvas')
+    tempCanvas.width = this.canvas.width
+    tempCanvas.height = this.canvas.height
+    const tempCtx = tempCanvas.getContext('2d')!
+    tempCtx.drawImage(this.canvas, 0, 0)
+    // 清空画布
+    this.clearCanvas()
+    // 重绘背景
+    this.ctx.fillStyle = color
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+    // 重绘之前的内容
+    this.ctx.drawImage(tempCanvas, 0, 0)
   }
 
   unmount() {
