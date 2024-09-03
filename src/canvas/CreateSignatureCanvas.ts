@@ -20,9 +20,9 @@ export class CreateSignatureCanvas implements ISignature {
     window.onunload = () => this.unmount()
   }
 
-  createCanvas(lineWidth = 2, w = 400, h = 400) {
-    this.canvas.width = w * devicePixelRatio
-    this.canvas.height = h * devicePixelRatio
+  createCanvas(lineWidth = 2, w: number, h: number) {
+    this.canvas.width = w
+    this.canvas.height = h
     this.ctx.fillStyle = this.bg
     this.ctx.fillRect(0, 0, w, h)
     this.ctx.strokeStyle = this.color
@@ -97,7 +97,10 @@ export class CreateSignatureCanvas implements ISignature {
   }
 
   clearCanvas() {
+    // 清除画板,但要保留背景色
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this.ctx.fillStyle = this.bg
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
   }
 
   mount(el: MaybeElement) {
@@ -187,7 +190,7 @@ export class CreateSignatureCanvas implements ISignature {
     this.ctx.globalCompositeOperation = 'source-over'
   }
 
-  save() {
-    return this.canvas.toDataURL('image/png')
+  save(type = 'image/png', quality = 1) {
+    return this.canvas.toDataURL(type, quality)
   }
 }

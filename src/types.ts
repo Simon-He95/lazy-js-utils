@@ -122,8 +122,15 @@ export interface LRU {
 export interface ISignature {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
-  createCanvas: (w: number, h: number) => void
+  createCanvas: (lineWidth: number, w: number, h: number) => void
   clearCanvas: () => void
+  mount: (el: MaybeElement) => void
+  unmount: () => void
+  setColor: (color: string) => void
+  setBgColor: (bg: string) => void
+  undo: () => void
+  redo: () => void
+  save: (type?: string, quality?: any) => string
 }
 
 export interface FileMD5 {

@@ -8,18 +8,17 @@ import Pages from 'vite-plugin-pages'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
-import autoImportPlugin from '@opentiny/unplugin-tiny-vue'
 
 export default defineConfig({
   resolve: {
     alias: [
       {
         find: '~/',
-        replacement: `${path.resolve(__dirname, 'src')}/`
+        replacement: `${path.resolve(__dirname, 'src')}/`,
       },
       {
-        find: /\@opentiny\/vue-theme\/(?!(smb))/,
-        replacement: '@opentiny/vue-theme/smb-theme/'
+        find: /@opentiny\/vue-theme\/(?!(smb))/,
+        replacement: '@opentiny/vue-theme/smb-theme/',
       },
     ],
   },
@@ -27,7 +26,6 @@ export default defineConfig({
     'process.env': { ...process.env },
   },
   plugins: [
-    autoImportPlugin('vite'),
     Vue({
       reactivityTransform: path.resolve(__dirname, 'src'),
     }),
