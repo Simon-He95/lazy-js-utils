@@ -2,19 +2,24 @@
   "name": "lazy-js-utils",
   "version": "0.1.0",
   "packageManager": "pnpm@7.33.7",
-  "description": "js-tool",
+  "description": "A collection of lazy-loaded JavaScript utilities for efficient development",
   "author": "Simon He",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git + git@github.com:Simon-He95/lazy-js-utils.git"
+    "url": "git+https://github.com/Simon-He95/lazy-js-utils.git"
   },
   "bugs": {
     "url": "https://github.com/Simon-He95/lazy-js-utils/issues"
   },
   "keywords": [
     "lazy-js-utils",
-    "utils"
+    "utils",
+    "javascript",
+    "lazy-loading",
+    "development-tools",
+    "js-utilities",
+    "performance"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
