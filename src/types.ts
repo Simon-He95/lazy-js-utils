@@ -250,3 +250,5 @@ export type Direction =
   | 'vertical'
   | 'horizontal-reverse'
   | 'vertical-reverse'
+
+export type TimeUnit = 'days' | 'hours' | 'minutes' | 'seconds'
