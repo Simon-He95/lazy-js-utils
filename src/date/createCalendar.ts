@@ -5,7 +5,7 @@ import { getDaysOfMonth } from './getDaysOfMonth'
  * @param currentMonth 今天的月份-1 从0开始
  * @returns number[][]
  */
-export function createCanlendar(currentMonth: number) {
+export function createCalendar(currentMonth: number) {
   const monthList = []
   const d = new Date()
   d.setMonth(currentMonth)
