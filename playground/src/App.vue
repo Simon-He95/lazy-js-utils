@@ -1,4 +1,10 @@
-<script setup></script>
+<script setup>
+// asdas
+
+fn({
+  name: 'simon',
+})
+</script>
 
 <template>
   <div @click="onClick" @keydown="keydownHandler" />

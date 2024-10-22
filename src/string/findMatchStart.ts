@@ -11,12 +11,12 @@ const matchMap = {
  * @returns 匹配符号的结束偏移量
  * @throws 如果在代码字符串中找不到匹配符号的结束偏移量，则抛出错误
  */
-export function findMatchEndOffset(matchStr: string, code: string) {
+export function findMatchStartOffset(matchStr: string, code: string) {
   let offset = 0
   let dep = 0
   if (!code.length)
     return offset
-  for (let i = 0; i < code.length; i++) {
+  for (let i = code.length - 1; i > 0; i--) {
     const cur = code[i]
     if (cur === matchStr && dep === 0)
       return offset
@@ -30,5 +30,5 @@ export function findMatchEndOffset(matchStr: string, code: string) {
       return offset
     offset++
   }
-  throw new Error(`Can't find match end offset for ${matchStr} in ${code}`)
+  throw new Error(`Can't find match start offset for ${matchStr} in ${code}`)
 }
