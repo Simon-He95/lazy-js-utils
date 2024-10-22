@@ -1,7 +1,7 @@
 const matchMap = {
-  '{': '}',
-  '[': ']',
-  '(': ')',
+  '}': '{',
+  ']': '[',
+  ')': '(',
 }
 /**
  * 查找匹配符号的结束偏移量
@@ -32,3 +32,13 @@ export function findMatchStartOffset(matchStr: string, code: string) {
   }
   throw new Error(`Can't find match start offset for ${matchStr} in ${code}`)
 }
+
+console.log(
+  findMatchStartOffset(
+    '(',
+    `<script setup>
+// asdas
+
+fn({name: 'simon',})`,
+  ),
+)

@@ -1,9 +1,7 @@
 <script setup>
 // asdas
 
-fn({
-  name: 'simon',
-})
+fn({ name: 'simon' })
 </script>
 
 <template>
