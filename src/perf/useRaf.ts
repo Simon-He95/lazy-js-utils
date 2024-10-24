@@ -34,20 +34,22 @@ export function useRaf(
     cancelAnimation(rafId)
   }
   rafId = animationFrame(function myFrame(timestamp: number) {
-    if (isStopped)
-      return
     if (isUndef(start)) {
       start = timestamp
       // 首次立即执行
+      if (autoStop) {
+        stop()
+        fn?.(timestamp)
+        return
+      }
       fn?.(timestamp)
+    }
+    else if (isStopped) {
+      return
     }
     else if (timestamp - start > delta) {
       fn?.(timestamp)
       start = timestamp
-      if (autoStop) {
-        stop()
-        return
-      }
     }
     rafId = animationFrame(myFrame)
   })

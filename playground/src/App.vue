@@ -1,11 +1,13 @@
 <script setup>
-// asdas
+const str = 'asdsa'
 
-fn({ name: 'simon' })
+onMounted(() => {
+  console.log('mounted')
+})
 </script>
 
 <template>
-  <div @click="onClick" @keydown="keydownHandler" />
+  <div>hello world</div>
 </template>
 
 <style scoped></style>
