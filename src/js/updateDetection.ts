@@ -14,14 +14,19 @@ let lastSrcs: string[]
  * @returns
  */
 export function updateDetection(s = 2000, callback: () => void) {
-  return useRaf(async () => {
-    const willUpdate = await needsUpdate()
-    if (willUpdate) {
-      console.log('页面有更新')
-      // reload
-      callback?.()
-    }
-  }, s)
+  return useRaf(
+    async () => {
+      const willUpdate = await needsUpdate()
+      if (willUpdate) {
+        console.log('页面有更新')
+        // reload
+        callback?.()
+      }
+    },
+    {
+      delta: s,
+    },
+  )
 }
 
 async function getNewScripts() {

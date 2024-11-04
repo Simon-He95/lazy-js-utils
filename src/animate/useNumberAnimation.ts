@@ -18,20 +18,25 @@ export function useNumberAnimation(
   let value = from
   onProgress(value)
   const timeInterval = 50
-  const stop = useRaf(() => {
-    const now = Date.now()
-    const time = now - start
-    const t = time / duration
-    const bezierCurveValue = calculateBezierCurveValue(t)
-    const currentIncrement = Math.round(dis * bezierCurveValue)
-    if (time >= duration) {
-      value = to
+  const stop = useRaf(
+    () => {
+      const now = Date.now()
+      const time = now - start
+      const t = time / duration
+      const bezierCurveValue = calculateBezierCurveValue(t)
+      const currentIncrement = Math.round(dis * bezierCurveValue)
+      if (time >= duration) {
+        value = to
+        onProgress(value)
+        return stop()
+      }
+      value = from + currentIncrement
       onProgress(value)
-      return stop()
-    }
-    value = from + currentIncrement
-    onProgress(value)
-  }, timeInterval)
+    },
+    {
+      delta: timeInterval,
+    },
+  )
 }
 
 function calculateBezierCurveValue(t: number) {

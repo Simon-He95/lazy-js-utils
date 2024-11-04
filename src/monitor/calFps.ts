@@ -12,5 +12,5 @@ export function calFps() {
       frame = 0
       lastTime = timestamp
     }
-  }, 0)
+  })
 }

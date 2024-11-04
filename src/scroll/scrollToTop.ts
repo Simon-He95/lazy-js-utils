@@ -18,7 +18,7 @@ export function scrollToTop() {
       else {
         window.scrollTo(0, (pre = (7 * t) / 8))
       }
-    }, 0)
+    })
   }
   catch (error: any) {
     throw new Error(error)
