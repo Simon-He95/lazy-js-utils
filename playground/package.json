@@ -15,9 +15,6 @@
   "dependencies": {
     "@opentiny/unplugin-tiny-vue": "^0.0.2",
     "@vueuse/core": "^8.9.4",
-    "antd": "5.0.0",
-    "element-plus": "^2.0.2-beta.44",
-    "element-ui": "^2.15.1",
     "vue": "^3.4.35",
     "vue-router": "^4.4.1"
   },

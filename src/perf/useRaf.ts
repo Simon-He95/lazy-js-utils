@@ -1,21 +1,27 @@
 import { isUndef } from '../is/isUndef'
 
 /**
- * 浏览器在下次重绘之前调用指定的回调函数更新动画
- * @param { Function } fn 函数
- * @param { number } delta 间隔时间
- * @param { boolean } autoStop 自动销毁
- * @returns
+ * 使用 requestAnimationFrame 执行一个函数，并提供停止执行的功能。
+ *
+ * @param {function(number): void} fn - 在每一帧调用的函数，参数是时间戳。
+ * @param {object} [options] - 配置选项。
+ * @param {number} [options.delta] - 两次调用之间的最小时间间隔（毫秒）。
+ * @param {boolean} [options.autoStop] - 是否在首次调用后自动停止。
+ * @param {boolean} [options.immediate] - 是否在首次调用时立即执行。
+ * @returns {function(): void} - 停止执行的函数。
  */
 export function useRaf(
   fn: (timestamp: number) => void,
-  delta = 0,
-  autoStop = false,
+  options: {
+    delta?: number
+    autoStop?: boolean
+    immediate?: boolean
+  } = {},
 ): () => void {
   let start: number
   let isStopped = false
   let rafId: number
-
+  const { immediate, delta = 0, autoStop } = options
   const animationFrame
     = window.requestAnimationFrame
     || window.webkitRequestAnimationFrame
@@ -36,13 +42,10 @@ export function useRaf(
   rafId = animationFrame(function myFrame(timestamp: number) {
     if (isUndef(start)) {
       start = timestamp
-      // 首次立即执行
-      if (autoStop) {
-        stop()
+      if (immediate) {
+        // 首次立即执行
         fn?.(timestamp)
-        return
       }
-      fn?.(timestamp)
     }
     else if (isStopped) {
       return
@@ -50,6 +53,10 @@ export function useRaf(
     else if (timestamp - start > delta) {
       fn?.(timestamp)
       start = timestamp
+      if (autoStop) {
+        stop()
+        return
+      }
     }
     rafId = animationFrame(myFrame)
   })

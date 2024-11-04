@@ -7,7 +7,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>hello world</div>
+  <el-form :model="formModel">
+    <el-form-item prop="string" label="string">
+      <el-input v-model="formModel.inputVModel" placeholder="string" />
+    </el-form-item>
+  </el-form>
 </template>
 
 <style scoped></style>
