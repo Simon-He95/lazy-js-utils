@@ -33,12 +33,12 @@ export function findMatchStartOffset(matchStr: string, code: string) {
   throw new Error(`Can't find match start offset for ${matchStr} in ${code}`)
 }
 
-console.log(
-  findMatchStartOffset(
-    '(',
-    `<script setup>
-// asdas
+// console.log(
+//   findMatchStartOffset(
+//     '(',
+//     `<script setup>
+// // asdas
 
-fn({name: 'simon',})`,
-  ),
-)
+// fn({name: 'simon',})`,
+//   ),
+// )
