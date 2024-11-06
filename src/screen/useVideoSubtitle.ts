@@ -1,4 +1,3 @@
-import fsp from 'node:fs/promises'
 import { toArray } from '../to/toArray'
 
 interface UseVideoSubtitle {
@@ -19,7 +18,8 @@ export function useVideoSubtitle(options: UseVideoSubtitle[], name = 'zh') {
   const result = toArray(options)
     .map(option => getTitle(option as UseVideoSubtitle))
     .join('\n')
-  generateVtt(result, name)
+  return result
+  // generateVtt(result, name)
 }
 
 function getTitle(options: UseVideoSubtitle) {
@@ -47,6 +47,6 @@ function addZero(n: number, len: number) {
   return '0'.repeat(l) + n
 }
 
-function generateVtt(content: string, name: string) {
-  fsp.writeFile(`${name}.vtt`, content, 'utf-8')
-}
+// function generateVtt(content: string, name: string) {
+//   fsp.writeFile(`${name}.vtt`, content, 'utf-8')
+// }
