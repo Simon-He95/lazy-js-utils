@@ -8,7 +8,13 @@ export default defineConfig({
   sourcemap: false,
   clean: true,
   dts: true,
-  entryPoints: ['src/index.ts'],
+  entryPoints: [
+    'src/index.ts',
+    'src/node/index.ts',
+    'src/worker/*.ts',
+    'src/webComponent/index.ts',
+    'src/vite/index.ts',
+  ],
   define: {
     __DEV__: 'false',
   },
