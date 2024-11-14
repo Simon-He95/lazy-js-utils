@@ -26,15 +26,15 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./node": {
+    "./dist/node": {
       "import": "./dist/node/index.mjs",
       "require": "./dist/node/index.js"
     },
-    "./vite": {
+    "./dist/vite": {
       "import": "./dist/vite/index.mjs",
       "require": "./dist/vite/index.js"
     },
-    "./webComponents": {
+    "./dist/webComponents": {
       "import": "./dist/webComponents/index.mjs",
       "require": "./dist/webComponents/index.js"
     }
