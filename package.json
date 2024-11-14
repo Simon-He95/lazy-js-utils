@@ -21,6 +21,24 @@
     "js-utilities",
     "performance"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./node": {
+      "import": "./dist/node/index.mjs",
+      "require": "./dist/node/index.js"
+    },
+    "./vite": {
+      "import": "./dist/vite/index.mjs",
+      "require": "./dist/vite/index.js"
+    },
+    "./webComponents": {
+      "import": "./dist/webComponents/index.mjs",
+      "require": "./dist/webComponents/index.js"
+    }
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
