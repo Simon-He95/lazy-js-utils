@@ -1,3 +1,4 @@
+import type { SpawnSyncOptions } from 'node:child_process'
 import child_process from 'node:child_process'
 import process from 'node:process'
 import { isArray } from '../is/isArray'
@@ -17,6 +18,7 @@ interface Options {
   errorExit?: boolean
   isLog?: boolean
   cwd?: string
+  options?: SpawnSyncOptions
 }
 export function jsShell<T extends string | string[]>(
   commander: T,
@@ -27,6 +29,7 @@ export function jsShell<T extends string | string[]>(
   let errorExit: boolean = true
   let isLog: boolean = false
   let cwd: string | undefined
+  let _options: SpawnSyncOptions = {}
   if (typeof options === 'string') {
     stdio = options
   }
@@ -36,6 +39,7 @@ export function jsShell<T extends string | string[]>(
     errorExit = options.errorExit ?? true
     isLog = options.isLog ?? false
     cwd = options.cwd
+    _options = options.options ?? {}
   }
 
   return (
@@ -50,9 +54,11 @@ export function jsShell<T extends string | string[]>(
         encoding: 'utf8',
         stdio: stdio === 'inherit' ? 'inherit' : ['inherit', 'pipe', 'inherit'],
         cwd,
+        ..._options,
       })
 
-    const result = output[1]?.trim()
+    const result
+      = typeof output[1] === 'string' ? output[1]?.trim() : output[1]?.toString()
     if (status === 130) {
       if (isLog)
         console.log('已取消...')
