@@ -22,24 +22,24 @@ interface Options {
 }
 export function jsShell<T extends string | string[]>(
   commander: T,
-  options: Options | 'inherit' | 'pipe' = 'inherit',
+  options: Options | Options['stdio'] = 'inherit',
 ) {
   let args: string[] = []
-  let stdio: 'inherit' | 'pipe' = 'inherit'
+  let stdio: StdioOptions | keyof StdioOptions = 'inherit'
   let errorExit: boolean = true
   let isLog: boolean = false
   let cwd: string | undefined
   let _options: SpawnSyncOptions = {}
   if (typeof options === 'string') {
-    stdio = options
+    stdio = options as keyof StdioOptions
   }
   else {
-    args = options.args ?? []
-    stdio = options.stdio ?? 'inherit'
-    errorExit = options.errorExit ?? true
-    isLog = options.isLog ?? false
-    cwd = options.cwd
-    _options = options.options ?? {}
+    args = (options as Options).args ?? []
+    stdio = (options as Options).stdio ?? 'inherit'
+    errorExit = (options as Options).errorExit ?? true
+    isLog = (options as Options).isLog ?? false
+    cwd = (options as Options).cwd
+    _options = (options as Options).options ?? {}
   }
 
   return (
