@@ -14,7 +14,7 @@ import type { IShellMessage } from '../types'
 
 interface Options {
   args?: string[]
-  stdio?: StdioOptions
+  stdio?: StdioOptions | undefined
   errorExit?: boolean
   isLog?: boolean
   cwd?: string
@@ -22,20 +22,20 @@ interface Options {
 }
 export function jsShell<T extends string | string[]>(
   commander: T,
-  options: Options | Options['stdio'] = 'inherit',
+  options?: Options | Options['stdio'],
 ) {
   let args: string[] = []
-  let stdio: StdioOptions | keyof StdioOptions = 'inherit'
+  let stdio: StdioOptions | undefined
   let errorExit: boolean = true
   let isLog: boolean = false
   let cwd: string | undefined
   let _options: SpawnSyncOptions = {}
   if (typeof options === 'string') {
-    stdio = options as keyof StdioOptions
+    stdio = options
   }
-  else {
+  else if (options) {
     args = (options as Options).args ?? []
-    stdio = (options as Options).stdio ?? 'inherit'
+    stdio = (options as Options).stdio
     errorExit = (options as Options).errorExit ?? true
     isLog = (options as Options).isLog ?? false
     cwd = (options as Options).cwd
@@ -52,11 +52,10 @@ export function jsShell<T extends string | string[]>(
       = child_process.spawnSync(commander, args as string[], {
         shell: true,
         encoding: 'utf8',
-        stdio: stdio === 'inherit' ? 'inherit' : ['inherit', 'pipe', 'inherit'],
+        stdio,
         cwd,
         ..._options,
       })
-
     const result
       = typeof output[1] === 'string' ? output[1]?.trim() : output[1]?.toString()
     if (status === 130) {
