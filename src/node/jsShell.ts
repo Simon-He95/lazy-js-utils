@@ -1,4 +1,4 @@
-import type { SpawnSyncOptions } from 'node:child_process'
+import type { SpawnSyncOptions, StdioOptions } from 'node:child_process'
 import child_process from 'node:child_process'
 import process from 'node:process'
 import { isArray } from '../is/isArray'
@@ -14,7 +14,7 @@ import type { IShellMessage } from '../types'
 
 interface Options {
   args?: string[]
-  stdio?: 'inherit' | 'pipe'
+  stdio?: StdioOptions
   errorExit?: boolean
   isLog?: boolean
   cwd?: string
