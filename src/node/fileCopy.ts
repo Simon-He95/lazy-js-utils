@@ -1,4 +1,3 @@
-import type { IShellMessage } from '../types'
 import { jsShell } from './jsShell'
 
 /**
@@ -7,6 +6,6 @@ import { jsShell } from './jsShell'
  * @param destination 目录
  * @returns IShellMessage
  */
-export function fileCopy(urls: string[], destination: string): IShellMessage {
+export function fileCopy(urls: string[], destination: string) {
   return jsShell(`cp -r {${urls.join(',')}} ${destination}`, 'pipe')
 }
