@@ -1,5 +1,5 @@
 import type { SpawnOptions, StdioOptions } from 'node:child_process'
-import { spawn } from 'node:child_process'
+import child_process from 'node:child_process'
 import process from 'node:process'
 import { isArray } from '../is/isArray'
 import type { IShellMessage } from '../types'
@@ -49,7 +49,7 @@ export function jsShell<T extends string | string[]>(
   ) as T extends string ? Promise<IShellMessage> : Promise<IShellMessage[]>
   function executor(commander: string): Promise<IShellMessage> {
     return new Promise((resolve, reject) => {
-      const child = spawn(commander, args as string[], {
+      const child = child_process.spawn(commander, args as string[], {
         shell: true,
         stdio,
         cwd,
