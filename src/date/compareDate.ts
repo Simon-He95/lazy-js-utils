@@ -1,3 +1,5 @@
+import type { DateString } from '../types'
+
 /**
  * 比较2个月份的大小
  * @param date1 '2021-02-01' | '2021/02/01'
@@ -6,8 +8,8 @@
  * @returns -1 | 1 | 0
  */
 export function compareDate(
-  date1: string,
-  date2: string,
+  date1: DateString,
+  date2: DateString,
   separator: '-' | '/' = '-',
 ) {
   const date1Parts = date1.split(separator)

@@ -4,9 +4,9 @@
  * @param { Function } iterator 迭代数组函数
  * @returns 结果的个数
  */
-export function countBy(
-  array: any[],
-  iterator: (item: Record<string, any>) => any,
+export function countBy<T extends Record<string, any>>(
+  array: T[],
+  iterator: (item: T) => any,
 ) {
   return array.reduce((result, item) => {
     const val = iterator(item)

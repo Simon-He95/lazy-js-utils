@@ -1,10 +1,10 @@
 /**
  *
- * @param { any[] } arr 数组
+ * @param { T[] } arr 数组
  * @param { number } size 以多少为基准分割
  * @returns  分割后的数组
  */
-export function chunk(arr: any[], size = 1) {
+export function chunk<T>(arr: T[], size = 1) {
   if (size < 1)
     return []
   const result = []

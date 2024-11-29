@@ -17,9 +17,9 @@ export function addStyle(s: string | StyleObject, scoped?: string) {
     ? Object.keys(s).reduce((result, key) => {
       const obj = s[key]
       return (result += `${key} { ${Object.keys(obj).reduce(
-          (r, k: any) => (r += `${hyphenate(k)}: ${obj[k]};`),
-          '',
-        )} }`)
+        (r, k: any) => (r += `${hyphenate(k)}: ${obj[k]};`),
+        '',
+      )} }`)
     }, '')
     : s
 

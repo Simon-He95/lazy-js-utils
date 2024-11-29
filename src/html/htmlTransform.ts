@@ -62,9 +62,9 @@ function astToCode(ast: any[], options: HtmlTransformOptions) {
       }
       result += node.tagName
         ? `<${node.tagName}${transformProps(node.attribs)}>${astToCode(
-            node.children,
-            options,
-          )}</${node.tagName}>`
+          node.children,
+          options,
+        )}</${node.tagName}>`
         : ''
       afterAppend.forEach(fn => fn())
     }

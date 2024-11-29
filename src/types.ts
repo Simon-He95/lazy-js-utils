@@ -248,3 +248,7 @@ export type Direction =
   | 'vertical-reverse'
 
 export type TimeUnit = 'days' | 'hours' | 'minutes' | 'seconds'
+
+export type DateString =
+  | `${number}-${number}-${number}`
+  | `${number}/${number}/${number}`

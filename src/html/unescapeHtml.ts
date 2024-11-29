@@ -6,7 +6,7 @@
 export function unescapeHtml(s: string): string {
   return s.replace(
     /&amp;|&lt;|&gt;|&#39;|&quot;/g,
-    tag =>
+    (tag: string) =>
       ({ '&amp;': '&', '&lt;': '<', '&gt;': '>', '&#39;': '\'', '&quot;': '"' }[
         tag
       ] || tag),

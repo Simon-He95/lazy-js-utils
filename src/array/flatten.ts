@@ -7,11 +7,11 @@ import { isArray } from '../is/isArray'
  * @param { boolean }onlyLastNode  只保留最后一层级的数据
  * @returns 一层的数组
  */
-export function flatten(
-  o: Record<string, any> | Record<string, any>[],
+export function flatten<T extends Record<string, any>>(
+  o: T | T[],
   flattenProps = 'children',
   onlyLastNode = false,
-  result: Record<string, any>[] = [],
+  result: T[] = [],
 ) {
   o = isArray(o) ? o : [o]
   o.forEach((node: any) => {

@@ -23,8 +23,8 @@ function equals(a: Record<any, any>, b: Record<any, any>): boolean {
   for (const key in a) {
     if (
       (isType(a[key], 'o|a')
-      && isType(b[key], 'o|a')
-      && !equals(a[key], b[key]))
+        && isType(b[key], 'o|a')
+        && !equals(a[key], b[key]))
       || a[key] !== b[key]
     ) {
       return false

@@ -7,7 +7,11 @@ import { isDef } from '../is/isDef'
  * @param { string } prop 按照哪个属性
  * @returns
  */
-export function sortByOrder(sortArr: any[], order: string[], prop?: string) {
+export function sortByOrder<T>(
+  sortArr: T[],
+  order: string[],
+  prop?: string,
+): T[] {
   if (!order)
     return sortArr
   const result: any[] = []

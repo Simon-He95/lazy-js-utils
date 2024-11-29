@@ -2,9 +2,13 @@ import { removeItem } from './removeItem'
 
 /**
  *
- * @param { Array<unknown> } arr 数组
- * @param { unknown } item
+ * @param { Array<T> } arr 数组
+ * @param { T } item
  */
-export function toggleItem(arr: Array<unknown>, item: unknown) {
-  arr.includes(item) ? removeItem(arr, item) : arr.push(item)
+export function toggleItem<T>(arr: Array<T>, item: T) {
+  if (arr.includes(item))
+    return removeItem(arr, item)
+
+  arr.push(item)
+  return arr
 }

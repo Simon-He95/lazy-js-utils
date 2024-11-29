@@ -6,10 +6,10 @@ import { isType } from '../is/isType'
  * @param { Array<string | number> | number | string } match 匹配条件
  * @returns
  */
-export function sort(
-  array: any[],
+export function sort<T>(
+  array: T[],
   match: Array<string | number> | number | string,
-): any[] {
+): T[] {
   if (isType(match, 's|n'))
     match = [`${match}`] as string[]
 
@@ -19,7 +19,7 @@ export function sort(
       flag = true
       cur = cur.slice(1)
     }
-    return result.sort((a, b) => {
+    return result.sort((a: any, b: any) => {
       if (cur !== '1' && b[cur] === a[cur])
         return 0
       if (flag) {

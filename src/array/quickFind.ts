@@ -3,35 +3,35 @@ import { isUndef } from '../is/isUndef'
 
 /**
  *
- * @param { any[] } array 数组
+ * @param { T[] } array 数组
  * @param { string | number } id 主键
  * @returns
  */
-export function quickFind(array: any[], id: string | number) {
+export function quickFind<T>(array: T[], id: T[keyof T]) {
   const indexMap = new Map()
-  array.forEach((item, i) => indexMap.set(item[id], i))
+  array.forEach((item, i) => indexMap.set((item as any)[id], i))
   return new QuickFind(array, indexMap, id)
 }
 
-class QuickFind {
+class QuickFind<T> {
   constructor(
-    public array: any[],
+    public array: T[],
     public indexMap: Map<any, number>,
-    public id: string | number,
+    public id: T[keyof T],
   ) {
     this.array = array
     this.indexMap = indexMap
     this.id = id
   }
 
-  find(id: any) {
+  find(id: T[keyof T]) {
     const index = this.indexMap.get(id)
     if (isUndef(index))
       return undefined
     return this.array[index]
   }
 
-  _update(id: any, key: any, value: any) {
+  _update(id: T[keyof T], key: keyof T | T, value: any) {
     if (isUndef(key)) {
       const index = this.indexMap.get(id)
       if (isUndef(index))
@@ -43,13 +43,13 @@ class QuickFind {
     else {
       const target = this.find(id)
       if (isUndef(target))
-        return
-      target[key] = value
+        return this.array
+      target[key as keyof T] = value
     }
     return this.array
   }
 
-  delete(id: any) {
+  delete(id: T[keyof T]) {
     const index = this.indexMap.get(id)
     if (isUndef(index))
       return
@@ -58,16 +58,16 @@ class QuickFind {
     return this.array
   }
 
-  set(id: any, key: any, value?: any) {
+  set(id: T[keyof T], key: keyof T | T, value?: any) {
+    let tempValue = value
     const index = this.indexMap.get(id)
     if (isUndef(value)) {
       if (isUndef(key))
-        return
-      value = key
-      key = undefined
+        return this.array
+      tempValue = key
     }
     if (isDef(index)) {
-      return this._update(id, key, value)
+      return this._update(id, key, tempValue)
     }
     else {
       if (isUndef(value[this.id]))

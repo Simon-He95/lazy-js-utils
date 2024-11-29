@@ -1,7 +1,7 @@
 import type { IsESModule } from '../types'
 
 /**
- * 判断对象是ESmodule
+ * 判断对象是ESModule
  * @param obj
  * @returns
  */
