@@ -7,7 +7,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-form :model="formModel">
+  <el-form :model="formModel" gap5>
     <el-form-item prop="string" label="string">
       <el-input v-model="formModel.inputVModel" placeholder="string" />
     </el-form-item>

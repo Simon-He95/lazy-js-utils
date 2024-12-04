@@ -47,7 +47,8 @@ describe('quickFind test', () => {
         },
       ]
     `)
-    expect(finder.set(3, { id: 3, name: 'new value' })).toMatchInlineSnapshot(`
+    expect(finder.set(3, { id: 3, name: 'new value', age: 1 }))
+      .toMatchInlineSnapshot(`
       [
         {
           "age": 18,
@@ -65,6 +66,7 @@ describe('quickFind test', () => {
           "name": "new value~~",
         },
         {
+          "age": 1,
           "id": 3,
           "name": "new value",
         },

@@ -70,6 +70,9 @@ class QuickFind<T> {
       return this._update(id, key, tempValue)
     }
     else {
+      if (!value) {
+        value = key
+      }
       if (isUndef(value[this.id]))
         throw new Error('新增的数据必须包含唯一id')
       if (value[this.id] !== id)

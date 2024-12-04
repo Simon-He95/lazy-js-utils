@@ -21,8 +21,8 @@ export function fileToBase64(file: File | Blob): Promise<string> {
     const reader = new FileReader()
     reader.readAsDataURL(file)
     try {
-      reader.onload = function (e) {
-        resolve(e?.target?.result as string)
+      reader.onload = function () {
+        resolve(reader.result as string)
       }
     }
     catch (error: any) {

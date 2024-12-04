@@ -220,28 +220,29 @@ describe('test quickFind', () => {
     `)
     expect(finder.set(3, { id: 3, name: 'new value', age: 1 }))
       .toMatchInlineSnapshot(`
-      [
-        {
-          "age": 18,
-          "id": 0,
-          "name": "simon",
-        },
-        {
-          "age": 19,
-          "id": 1,
-          "name": "simon1",
-        },
-        {
-          "age": 29,
-          "id": 2,
-          "name": "new value~~",
-        },
-        {
-          "id": 3,
-          "name": "new value",
-        },
-      ]
-    `)
+        [
+          {
+            "age": 18,
+            "id": 0,
+            "name": "simon",
+          },
+          {
+            "age": 19,
+            "id": 1,
+            "name": "simon1",
+          },
+          {
+            "age": 29,
+            "id": 2,
+            "name": "new value~~",
+          },
+          {
+            "age": 1,
+            "id": 3,
+            "name": "new value",
+          },
+        ]
+      `)
     expect(finder.delete(3)).toMatchInlineSnapshot(`
       [
         {
@@ -463,25 +464,33 @@ describe('test transformKey', () => {
           name: 'simonPeople',
           family: {
             bro: 'simonPeopleBro',
+            xx: 'xxx',
           },
         },
       },
     ]
     expect(
-      transformKey(arr, {
-        'family.bro': 'name',
-        'people.family.bro': 'familyName',
-      }),
+      transformKey(
+        arr,
+        {
+          'family.bro': 'dd.xx',
+          'xaxa.ccc': 'ddd',
+          'people.family.bro': 'familyName',
+        },
+        true,
+      ),
     ).toMatchInlineSnapshot(`
       [
         {
-          "family": {
-            "name": "simonBro",
+          "dd": {
+            "xx": "simonBro",
           },
+          "family": {},
+          "familyName": "simonPeopleBro",
           "name": "simon",
           "people": {
             "family": {
-              "familyName": "simonPeopleBro",
+              "xx": "xxx",
             },
             "name": "simonPeople",
           },
