@@ -13,7 +13,7 @@
     "serve": "node ./server/index.js"
   },
   "dependencies": {
-    "@opentiny/unplugin-tiny-vue": "^0.0.2",
+    "@dcloudio/uni-app": "3.0.0-4030620241128001",
     "@vueuse/core": "^8.9.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"

@@ -9,7 +9,6 @@ export async function useReader(
   callback?: (value?: any) => any,
 ) {
   let result = ''
-  const dataReg = /data: (\{.*\})/g
   while (true) {
     const { done, value } = await reader.read()
     if (done) {
@@ -17,11 +16,8 @@ export async function useReader(
       break
     }
 
-    let text = ''
-    String.fromCharCode
-      .apply(null, value as any)
-      .replace(dataReg, (_, v) => (text = v))
-    text = JSON.parse(text)
+    const decoder = new TextDecoder()
+    const text = decoder.decode(value)
     result += callback?.(text) || ''
   }
   return result
