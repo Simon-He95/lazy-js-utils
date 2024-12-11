@@ -28,7 +28,7 @@ export async function replaceAsync(
 
     // 将捕获组参数传递给替换函数
     const replacement = isFn(replaceValue)
-      ? await replaceValue(...match) // 使用扩展运算符传递所有捕获组
+      ? await replaceValue(...match, match.index) // 使用扩展运算符传递所有捕获组
       : replaceValue
 
     // 将替换内容添加到结果中
