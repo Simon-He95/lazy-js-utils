@@ -39,7 +39,7 @@ export function useRaf(
     isStopped = true
     cancelAnimation(rafId)
   }
-  rafId = animationFrame(function myFrame(timestamp: number) {
+  rafId = animationFrame(function myFrame(timestamp: number = Date.now()) {
     if (isUndef(start)) {
       start = timestamp
       if (immediate) {
