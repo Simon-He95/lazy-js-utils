@@ -13,7 +13,7 @@
 ## :100: 亮点
 
 - 纯 js 的工具函数,可使用在任何可执行 js 的环境
-- 大量减少`ref<HTMLElment>` 和 `onMounted`的使用，可以 script 标签直接调用
+- 大量减少`ref<HTMLElement>` 和 `onMounted`的使用，可以 script 标签直接调用
 - 所有的副作用函数都能返回一个 stop 函数，可以在任意地方停止事件的执行，并且在页面销毁时自动销毁事件
 - api 设计简单、实用、类型友好
 

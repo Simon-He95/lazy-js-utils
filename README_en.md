@@ -13,7 +13,7 @@ At present, I have sorted out <strong>about 200</strong> commonly used functions
 ## :100: Highlights
 
 - Pure JS utility functions, Can be used in any environment where JS can be executed
-- Greatly reduced the use of `ref<HTMLElment>` and `onMounted`, which can be called directly from the script tag
+- Greatly reduced the use of `ref<HTMLElement>` and `onMounted`, which can be called directly from the script tag
 - All side effect functions can return a stop function, which can stop the execution of the event anywhere, and automatically destroy the event when the page is destroyed
 - API design is simple, practical and type-friendly
 
