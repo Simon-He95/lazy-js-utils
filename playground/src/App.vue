@@ -1,13 +1,11 @@
-<script setup>
-const str = 'asdsa'
-</script>
+<script setup></script>
 
 <template>
-  <view />
-  <checkbox-group>
-    <checkbox value="String" @click="onSubmit" />
-  </checkbox-group>
-  <map />
+  <div v-if="isShow" @click="handleClick">
+    <h1>Vue 3 Playground</h1>
+    <p>Start editing to see some magic happen :)</p>
+  </div>
+  <div v-else />
 </template>
 
 <style scoped></style>

@@ -1,6 +1,6 @@
 import process from 'node:process'
 import path from 'node:path'
-import { jsShell } from '../node/jsShell'
+import { jsShell } from './jsShell'
 
 /**
  * 判断是否是rust环境
