@@ -1,6 +1,7 @@
 import type { SpawnOptions, StdioOptions } from 'node:child_process'
 import child_process from 'node:child_process'
 import process from 'node:process'
+import { isPlainObject } from '../is'
 import { isArray } from '../is/isArray'
 import type { IShellMessage } from '../types'
 
@@ -30,16 +31,16 @@ export function jsShell<T extends string | string[]>(
   let isLog: boolean = false
   let cwd: string | undefined
   let _options: SpawnOptions = {}
-  if (typeof options === 'string') {
-    stdio = options
-  }
-  else if (options) {
+  if (isPlainObject(options)) {
     args = (options as Options).args ?? []
     stdio = (options as Options).stdio
     errorExit = (options as Options).errorExit ?? true
     isLog = (options as Options).isLog ?? false
     cwd = (options as Options).cwd
     _options = (options as Options).options ?? {}
+  }
+  else if (options) {
+    stdio = options
   }
 
   return (
