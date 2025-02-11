@@ -5,8 +5,7 @@ import { jsShell } from './jsShell'
 /**
  * 判断是否是rust环境
  */
-export async function isRust() {
-  const rootPath = process.cwd()
+export async function isRust(rootPath = process.cwd()) {
   const url = path.resolve(rootPath, 'Cargo.toml')
   const { result } = await jsShell(
     `test -f "${url}" && echo "0"|| echo "1"`,
