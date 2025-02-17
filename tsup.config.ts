@@ -4,7 +4,7 @@ export default defineConfig({
   name: 'tsup',
   target: 'node14',
   format: ['cjs', 'esm'],
-  splitting: false,
+  splitting: true,
   sourcemap: false,
   clean: true,
   dts: true,
