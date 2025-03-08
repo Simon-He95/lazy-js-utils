@@ -27,18 +27,20 @@ import {
   useRaf,
 } from 'lazy-js-utils'
 
-// 监听container的变化, 你不在需要const container = ref<HTMLElement>
+// 监听container的变化, 你不再需要const container = ref<HTMLElement>
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
 })
 // requestAnimationFrame
 useRaf(
   (timestamp) => {
-    // 每针相隔1s执行
+    // 每帧相隔1s执行
     console.log('animationFrame', timestamp)
   },
-  1000,
-  true /* 只执行一次后被销毁 */,
+  {
+    delta: 1000,
+    autoStop: true /* 只执行一次后被销毁 */
+  }
 )
 // 注册事件
 useEventListener('#container', 'click', () => {
