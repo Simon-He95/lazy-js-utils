@@ -19,26 +19,28 @@ At present, I have sorted out <strong>about 200</strong> commonly used functions
 
 ## &#x270B; Example
 
-```js
+```ts
 import {
-  animationFrameWrapper,
   insertElement,
   useEventListener,
   useMutationObserver,
+  useRaf,
 } from 'lazy-js-utils'
 
-// To listen for container changes, you don't need const container <HTMLElement>= ref
+// To listen for container changes, you don't need const container = ref<HTMLElement>
 useMutationObserver('#container', (mutationsList, observer) => {
   console.log(mutationsList)
 })
 // requestAnimationFrame
-animationFrameWrapper(
+useRaf(
   (timestamp) => {
-    // Each needle is executed 1s apart
+    // Executed only when at least 1s has passed between frames
     console.log('animationFrame', timestamp)
   },
-  1000,
-  true /* It is destroyed after only one execution */,
+  {
+    delta: 1000,
+    autoStop: true /* It is destroyed after only one execution */
+  }
 )
 // Register for events
 useEventListener('#container', 'click', () => {
@@ -72,7 +74,7 @@ import {
 
 [Buy me a cup of coffee](https://github.com/Simon-He95/sponsor)
 
-## GitHub 地址
+## GitHub Repository
 
 [Welcome to PR](https://github.com/Simon-He95/lazy-js-utils)
 
