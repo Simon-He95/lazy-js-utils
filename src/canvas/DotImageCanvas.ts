@@ -110,6 +110,7 @@ export class DotImageCanvas {
     const size = (this.fontWeight * 50) / this.canvas.width
     const getPoint = memorizeFn((i: number) => oneTempLength * (i + 0.5))
     const tasks: Function[] = []
+
     if (this.direction === 'horizontal-reverse') {
       for (let i = h - 1; i >= 0; i--) {
         tasks.push(() => {
@@ -170,6 +171,65 @@ export class DotImageCanvas {
         })
       }
     }
+    else if (
+      this.direction === 'center-out'
+      || this.direction === 'out-center'
+    ) {
+      // Calculate center point
+      const centerX = Math.floor(w / 2)
+      const centerY = Math.floor(h / 2)
+
+      // Create an array of all points with their distances from center
+      const pointsWithDistance: {
+        x: number
+        y: number
+        color: any
+        distance: number
+      }[] = []
+
+      for (let i = 0; i < h; i++) {
+        for (let j = 0; j < w; j++) {
+          const color = imagePointSet[i][j]
+          if (color) {
+            // Calculate Euclidean distance from center
+            const distance = Math.sqrt((j - centerX) ** 2 + (i - centerY) ** 2)
+            pointsWithDistance.push({ x: j, y: i, color, distance })
+          }
+        }
+      }
+
+      // Sort based on direction
+      if (this.direction === 'center-out') {
+        pointsWithDistance.sort((a, b) => a.distance - b.distance) // Ascending order
+      }
+      else {
+        // out-center
+        pointsWithDistance.sort((a, b) => b.distance - a.distance) // Descending order
+      }
+
+      // Group points by similar distance for better batching
+      const batchSize = Math.max(1, Math.floor(pointsWithDistance.length / 100))
+
+      for (let i = 0; i < pointsWithDistance.length; i += batchSize) {
+        const batch = pointsWithDistance.slice(i, i + batchSize)
+
+        tasks.push(() => {
+          for (const point of batch) {
+            this.ctx.beginPath()
+            this.ctx.arc(
+              getPoint(point.x),
+              getPoint(point.y),
+              size,
+              0,
+              Math.PI * 2,
+            )
+            this.ctx.fillStyle = this.color || `${point.color}`
+            this.ctx.fill()
+          }
+        })
+      }
+    }
+
     this.stop = useRic(tasks, {
       callback: () => {
         this.status = 'success'

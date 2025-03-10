@@ -243,9 +243,11 @@ export type Lang =
 
 export type Direction =
   | 'horizontal'
-  | 'vertical'
   | 'horizontal-reverse'
+  | 'vertical'
   | 'vertical-reverse'
+  | 'center-out' // From center to perimeter
+  | 'out-center' // From perimeter to center
 
 export type TimeUnit = 'days' | 'hours' | 'minutes' | 'seconds'
 
