@@ -34,7 +34,7 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
       '../node_modules/lazy-js-utils/dist/worker/useNodeWorkerThread.mjs',
     )
     if (!fs.existsSync(url))
-      url = path.resolve(__dirname, '../worker/useNodeWorkerThread.mjs')
+      url = path.resolve(__dirname, './worker/useNodeWorkerThread.mjs')
   }
   const { params } = isStr(payload)
     ? (payload = { params: payload } as any)
