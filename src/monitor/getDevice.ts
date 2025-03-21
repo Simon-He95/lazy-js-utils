@@ -1,4 +1,4 @@
-import { isUndef } from '../is/isUndef'
+import { isBrowser } from '../is'
 import type { DeviceType } from '../types'
 
 /**
@@ -16,7 +16,7 @@ export function getDevice(): DeviceType {
     return deviceCache
 
   // 检查是否在浏览器环境中
-  if (isUndef(navigator)) {
+  if (!isBrowser) {
     return { os: 'unknown', dev: 'unknown' }
   }
 
