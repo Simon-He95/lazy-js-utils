@@ -6,13 +6,33 @@ import { isArray } from '../is/isArray'
 import type { IShellMessage } from '../types'
 
 /**
+ * 执行 shell 命令的工具函数，支持单个或多个命令的执行。
  *
- * @param { string | string[] } commander 指令
- * @param { string } stdio 'inherit' | 'pipe'
- * @param { boolean } errorExit 错误时是否结束进程
- * @returns
+ * @template T - 指令类型，可以是字符串或字符串数组。
+ * @param {string | string[]} commander - 要执行的命令或命令数组。
+ * @param {Options | Options['stdio']} [options] - 配置选项或 stdio 配置。
+ * @param {string[]} [options.args] - 传递给命令的参数数组。
+ * @param {StdioOptions} [options.stdio] - 子进程的 stdio 配置，默认为 'pipe'。
+ * @param {boolean} [options.errorExit=true] - 是否在命令失败时退出进程。
+ * @param {boolean} [options.isLog=false] - 是否在控制台输出日志。
+ * @param {string} [options.cwd] - 子进程的工作目录。
+ * @param {SpawnOptions} [options.options] - 额外的子进程配置选项。
+ * @returns {Promise<IShellMessage | IShellMessage[]>} - 返回一个 Promise，解析为命令执行结果或结果数组。
+ *
+ * @throws {Error} - 如果命令执行失败且 `errorExit` 为 true，则抛出错误。
+ *
+ * @example
+ * // 执行单个命令
+ * jsShell('ls', { isLog: true })
+ *   .then(result => console.log(result))
+ *   .catch(error => console.error(error));
+ *
+ * @example
+ * // 执行多个命令
+ * jsShell(['ls', 'pwd'], { isLog: true })
+ *   .then(results => console.log(results))
+ *   .catch(error => console.error(error));
  */
-
 interface Options {
   args?: string[]
   stdio?: StdioOptions | undefined
@@ -58,6 +78,7 @@ export function jsShell<T extends string | string[]>(
       })
       const pid = child.pid!
       let result = ''
+      let errorOutput = ''
       child.stdout?.on('data', (data) => {
         result += data.toString()
       })
@@ -65,6 +86,7 @@ export function jsShell<T extends string | string[]>(
       child.stderr?.on('data', (data) => {
         if (isLog)
           console.error(data.toString())
+        errorOutput += data.toString()
       })
 
       child.on('close', (status) => {
@@ -78,11 +100,11 @@ export function jsShell<T extends string | string[]>(
           if (isLog)
             console.error(`Command failed with status ${status}`)
           if (errorExit) {
-            reject(new Error(result))
+            reject(new Error(errorOutput || result))
             process.exit(1)
           }
           else {
-            resolve({ status, result, pid })
+            resolve({ status, result: errorOutput || result, pid })
           }
         }
         else {

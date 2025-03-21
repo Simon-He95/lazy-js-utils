@@ -2,7 +2,10 @@ import { getDevice } from '../monitor/getDevice'
 import { useEventListener } from '../event/useEventListener'
 import type { DragEvent } from '../types'
 import { mount } from '../utils/mount'
+import { isBrowser } from '../is'
 
+const { os } = getDevice()
+const isPhone = os === 'ios' || os === 'android'
 /**
  * 拖砖
  * @param { HTMLElement | string } target 元素
@@ -18,8 +21,10 @@ export function dragEvent(
   options: DragEvent = {},
   trigger?: boolean,
 ) {
-  const { os } = getDevice()
-  const isPhone = os === 'ios' || os === 'android'
+  if (!isBrowser) {
+    throw new Error('dragEvent must be used in browser')
+  }
+
   const stop: (() => void)[] = []
   let isStopped = false
   mount(target, (target) => {

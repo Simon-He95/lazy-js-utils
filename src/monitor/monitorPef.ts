@@ -1,19 +1,48 @@
+import { isFn } from '../is/isFn'
+
 /**
  * 检测性能指标
- * @returns
+ * @returns {Record<string, number> | null} 返回性能指标对象，如果不支持则返回null
  */
-export function monitorPef() {
+export function monitorPef(): Record<string, number> | null {
+  // 首先检查Performance API是否可用
+  if (typeof performance === 'undefined') {
+    console.warn('当前环境不支持Performance API')
+    return null
+  }
+
+  // 检查getEntriesByType方法是否存在
+  if (!isFn(performance.getEntriesByType)) {
+    console.warn('当前环境不支持performance.getEntriesByType方法')
+    return null
+  }
+
   const timingObj: Record<string, number> = {}
+
   try {
-    const time = performance.getEntriesByType(
-      'navigation',
-    )[0] as PerformanceNavigationTiming
+    const navigationEntries = performance.getEntriesByType('navigation')
+
+    // 检查是否有Navigation条目
+    if (!navigationEntries || navigationEntries.length === 0) {
+      console.warn('无法获取导航性能数据')
+      return null
+    }
+
+    const time = navigationEntries[0] as PerformanceNavigationTiming
+
+    // 验证获取的对象是否符合PerformanceNavigationTiming接口
+    if (!('domComplete' in time)) {
+      console.warn('获取的性能条目不是标准的PerformanceNavigationTiming对象')
+      return null
+    }
+
     if (time.domComplete === 0) {
       setTimeout(() => {
         monitorPef()
       }, 200)
-      return
+      return null
     }
+
     timingObj['重定向时间'] = (time.redirectEnd - time.redirectStart) / 1000
     timingObj['重定向次数'] = time.redirectCount
     timingObj['首屏时间'] = time.domInteractive - time.fetchStart
@@ -33,10 +62,20 @@ export function monitorPef() {
     timingObj['onload事件时间']
       = (time.loadEventEnd - time.loadEventStart) / 1000
     timingObj['页面完全加载时间'] = (time.loadEventEnd - time.fetchStart) / 1000
+
     console.table(timingObj)
+    return timingObj
   }
   catch (e) {
-    console.log(timingObj)
-    console.log(performance.timing)
+    console.warn('监控性能指标时发生错误:', e)
+
+    // 尝试使用旧版API作为降级方案
+    if (performance.timing) {
+      console.log('使用旧版performance.timing API')
+      console.log(performance.timing)
+      return timingObj
+    }
+
+    return null
   }
 }

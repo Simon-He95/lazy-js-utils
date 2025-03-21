@@ -1,10 +1,25 @@
+import { isUndef } from '../is/isUndef'
 import type { DeviceType } from '../types'
 
 /**
+ * 设备信息缓存
+ */
+let deviceCache: DeviceType | null = null
+
+/**
  * 获取当前环境设备信息 os 手机设备 dev 浏览器环境
- * @returns
+ * @returns {DeviceType} 设备信息
  */
 export function getDevice(): DeviceType {
+  // 如果已有缓存，直接返回
+  if (deviceCache)
+    return deviceCache
+
+  // 检查是否在浏览器环境中
+  if (isUndef(navigator)) {
+    return { os: 'unknown', dev: 'unknown' }
+  }
+
   const u = navigator.userAgent
   const getBrowser = () => {
     const bws = [
@@ -88,6 +103,7 @@ export function getDevice(): DeviceType {
 
     return 'other'
   }
+
   const getOS = () => {
     if (!!u.match(/compatible/i) || u.match(/Windows/i))
       return 'windows'
@@ -101,5 +117,8 @@ export function getDevice(): DeviceType {
       return 'Ubuntu'
     else return 'other'
   }
-  return { os: getOS(), dev: getBrowser() }
+
+  // 缓存并返回结果
+  deviceCache = { os: getOS(), dev: getBrowser() }
+  return deviceCache
 }
