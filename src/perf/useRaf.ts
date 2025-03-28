@@ -24,17 +24,17 @@ export function useRaf(
   const { immediate, delta = 0, autoStop } = options
   const animationFrame
     = window.requestAnimationFrame
-    || window.webkitRequestAnimationFrame
-    || window.mozRequestAnimationFrame
-    || window.msRequestAnimationFrame
-    || (fn => setTimeout(fn, 1000 / 60))
+      || window.webkitRequestAnimationFrame
+      || window.mozRequestAnimationFrame
+      || window.msRequestAnimationFrame
+      || (fn => setTimeout(fn, 1000 / 60))
   const cancelAnimation
     = window.cancelAnimationFrame
-    || window.webkitCancelAnimationFrame
-    || window.mozCancelAnimationFrame
-    || window.oCancelAnimationFrame
-    || window.msCancelAnimationFrame
-    || clearTimeout
+      || window.webkitCancelAnimationFrame
+      || window.mozCancelAnimationFrame
+      || window.oCancelAnimationFrame
+      || window.msCancelAnimationFrame
+      || clearTimeout
   const stop = () => {
     isStopped = true
     cancelAnimation(rafId)

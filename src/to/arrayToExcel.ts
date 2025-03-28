@@ -36,12 +36,12 @@ export function arrayToExcel(options: IArrayToExcel) {
     title
       ? title.map(item => `<th align='center'>${item}</th>`).join('')
       : Object.keys(arrData[0])
-        .map((key) => {
-          if (filter && filter.includes(key))
-            return ''
-          return `<th align='center'>${key}</th>`
-        })
-        .join('')
+          .map((key) => {
+            if (filter && filter.includes(key))
+              return ''
+            return `<th align='center'>${key}</th>`
+          })
+          .join('')
   }</tr>`
   for (let i = 0; i < arrData.length; i++) {
     let row = '<tr>'

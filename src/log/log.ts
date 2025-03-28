@@ -21,12 +21,12 @@ export function log(
     isStr(style)
       ? style
       : stringify(style, {
-        sep: ';',
-        eq: ':',
-        hyp: true,
-        px: true,
-        encode: false,
-      }),
+          sep: ';',
+          eq: ':',
+          hyp: true,
+          px: true,
+          encode: false,
+        }),
     ...args,
   )
 }

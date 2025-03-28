@@ -6,9 +6,9 @@ export function dbStorage() {
   return new Promise((resolve, reject) => {
     const indexDB
       = window.indexedDB
-      || window.webkitIndexedDB
-      || window.mozIndexedDB
-      || window.msIndexedDB
+        || window.webkitIndexedDB
+        || window.mozIndexedDB
+        || window.msIndexedDB
     if (!indexDB)
       reject(new Error('浏览器不支持indexedDB'))
 

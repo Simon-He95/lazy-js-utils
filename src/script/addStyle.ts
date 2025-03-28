@@ -15,12 +15,12 @@ type StyleObject = Record<string, Record<string, string | number>>
 export function addStyle(s: string | StyleObject, scoped?: string) {
   const style = !isStr(s)
     ? Object.keys(s).reduce((result, key) => {
-      const obj = s[key]
-      return (result += `${key} { ${Object.keys(obj).reduce(
-        (r, k: any) => (r += `${hyphenate(k)}: ${obj[k]};`),
-        '',
-      )} }`)
-    }, '')
+        const obj = s[key]
+        return (result += `${key} { ${Object.keys(obj).reduce(
+          (r, k: any) => (r += `${hyphenate(k)}: ${obj[k]};`),
+          '',
+        )} }`)
+      }, '')
     : s
 
   const styleEl = createElement(

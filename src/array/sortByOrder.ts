@@ -34,8 +34,8 @@ export function sortByOrder<T>(
   function getDepthVal(_prop: string[] | undefined, item: any) {
     return _prop
       ? _prop.reduce((result, cur) => {
-        return result?.[cur]
-      }, item)
+          return result?.[cur]
+        }, item)
       : item
   }
 }

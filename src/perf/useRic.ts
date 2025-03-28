@@ -18,19 +18,19 @@ export function useRic(tasks: Function[], options?: Options): () => void {
   let work = true
   const idleCallback
     = window.requestIdleCallback
-    || function (handler) {
-      const startTime = Date.now()
-      return setTimeout(
-        () =>
-          handler({
-            didTimeout: false,
-            timeRemaining() {
-              return Math.max(0, 50.0 - (Date.now() - startTime))
-            },
-          }),
-        1,
-      )
-    }
+      || function (handler) {
+        const startTime = Date.now()
+        return setTimeout(
+          () =>
+            handler({
+              didTimeout: false,
+              timeRemaining() {
+                return Math.max(0, 50.0 - (Date.now() - startTime))
+              },
+            }),
+          1,
+        )
+      }
   const taskResult: any[] = []
   const idleCancel = window.cancelIdleCallback || clearTimeout
   const animationId = idleCallback(
