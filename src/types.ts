@@ -254,3 +254,9 @@ export type TimeUnit = 'days' | 'hours' | 'minutes' | 'seconds'
 export type DateString =
   | `${number}-${number}-${number}`
   | `${number}/${number}/${number}`
+
+export interface ImageData {
+  width: number
+  height: number
+  data: Uint8ClampedArray
+}

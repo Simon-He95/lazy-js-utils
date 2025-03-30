@@ -1,10 +1,6 @@
+import type { ImageData } from '../types'
 import { Canvas } from './Canvas'
 
-interface ImageData {
-  width: number
-  height: number
-  data: Uint8ClampedArray
-}
 export function getImageData(src: string): Promise<ImageData> {
   return new Promise((resolve, reject) => {
     try {
