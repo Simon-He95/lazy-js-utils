@@ -16,6 +16,7 @@ export class DotTextCanvas {
   status = 'pending'
   container?: HTMLElement
   stop: () => void = () => {}
+  mounted = false
 
   constructor(
     text: string,
@@ -145,11 +146,13 @@ export class DotTextCanvas {
 
   append(container: MaybeElement) {
     insertElement(container, this.canvas)
+    this.mounted = true
     return this
   }
 
   destory() {
     this.stop()
+    this.mounted = false
     removeElement(this.canvas)
   }
 }

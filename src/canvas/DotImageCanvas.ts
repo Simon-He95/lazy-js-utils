@@ -27,6 +27,7 @@ export class DotImageCanvas {
   // Array to store clear functions
   clearTasks: Function[] = []
   isPreferred = false
+  mounted = false
 
   constructor(
     src: string,
@@ -552,11 +553,13 @@ export class DotImageCanvas {
 
   append(container: MaybeElement) {
     insertElement(container, this.canvas)
+    this.mounted = true
     return this
   }
 
   destory() {
     this.stop()
+    this.mounted = false
     removeElement(this.canvas)
   }
 }
