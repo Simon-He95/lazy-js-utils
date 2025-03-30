@@ -175,7 +175,7 @@ export class DotImageCanvas {
       for (const { x, y, color } of batchPoints) {
         this.ctx.beginPath()
         this.ctx.fillStyle = color
-        this.ctx.clearRect(x - size, y - size, size * 5, size * 5)
+        this.ctx.clearRect(x - size, y - size, size * 2.5, size * 2.5)
       }
     }
 
