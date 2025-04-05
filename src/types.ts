@@ -260,3 +260,14 @@ export interface ImageData {
   height: number
   data: Uint8ClampedArray
 }
+
+export interface DotTextCanvasOptions {
+  text: string
+  fontSize: number
+  color: string
+  fontWeight: number
+  direction?: Direction
+  isPreferred?: boolean
+  charSpacing?: number // 全局字符间距
+  charSpacings?: number[] // 单独控制每个字符对之间的间距
+}
