@@ -5,26 +5,79 @@ import { removeElement } from '../event/removeElement'
 import type { Direction, DotTextCanvasOptions, MaybeElement } from '../types'
 import { useRaf } from '../perf/useRaf'
 
+/**
+ * DotTextCanvas 将文字转换为点阵形式展示，并提供动画绘制效果
+ *
+ * 支持多种绘制方向、颜色控制、间距设置以及动画效果
+ * @class
+ */
 export class DotTextCanvas {
+  /** 用于绘制的 Canvas 元素 */
   canvas = document.createElement('canvas')
+
+  /** Canvas 的绘制上下文 */
   ctx = this.canvas.getContext('2d')!
+
+  /** 缓存已处理字符的点阵数据 */
   points: Map<string, Array<number[]>> = new Map()
+
+  /** 原始文本内容 */
   originText: string
+
+  /** 字体大小 */
   fontSize: number
+
+  /** 点阵颜色 */
   color: string
+
+  /** 点阵粗细，影响绘制的圆点大小 */
   fontWeight: number
+
+  /** 绘制方向 */
   direction: Direction
-  charSpacing: number = 0 // 全局字符间距，默认为0
-  charSpacings: number[] = [] // 每个字符对之间的间距数组
+
+  /** 全局字符间距，默认为0 */
+  charSpacing: number = 0
+
+  /** 每个字符对之间的间距数组，优先级高于全局间距 */
+  charSpacings: number[] = []
+
+  /** 存储最终合成的点阵数据 */
   textPointSet: Array<number[]> = []
+
+  /** 绘制状态：pending-绘制中，success-完成 */
   status = 'pending'
+
+  /** 容器元素 */
   container?: HTMLElement
+
+  /** 停止当前动画的函数 */
   stop: () => void = () => {}
+
+  /** 是否已挂载到DOM */
   mounted = false
+
+  /** 是否使用优先渲染模式(RAF) */
   isPreferred = false
+
+  /** 用于文本绘制的临时Canvas元素 */
   private _textCanvas?: HTMLCanvasElement
+
+  /** 临时Canvas的绘制上下文 */
   private _textCtx?: CanvasRenderingContext2D
 
+  /**
+   * 创建 DotTextCanvas 实例
+   *
+   * @param {string | DotTextCanvasOptions} textOrOptions - 文本内容或选项对象
+   * @param {number} [fontSize] - 字体大小
+   * @param {string} [color] - 点阵颜色
+   * @param {number} [fontWeight] - 点阵粗细
+   * @param {Direction} [direction] - 绘制方向
+   * @param {boolean} [isPreferred] - 是否使用优先渲染模式
+   * @param {number} [charSpacing] - 全局字符间距
+   * @param {number[]} [charSpacings] - 每个字符对之间的间距数组
+   */
   constructor(
     textOrOptions: string | DotTextCanvasOptions,
     fontSize?: number,
@@ -33,7 +86,7 @@ export class DotTextCanvas {
     direction: Direction = 'vertical',
     isPreferred = false,
     charSpacing = 0,
-    charSpacings: number[] = [], // 添加默认参数
+    charSpacings: number[] = [],
   ) {
     if (typeof textOrOptions === 'string') {
       // 原始参数列表模式
@@ -64,6 +117,12 @@ export class DotTextCanvas {
     this.executor()
   }
 
+  /**
+   * 为单个字符创建点阵数据
+   *
+   * @param {string} text - 要转换为点阵的字符
+   * @returns {Array<number[]>} 字符的点阵数据
+   */
   createTextPoint(text: string) {
     // Cache the canvas and context instead of creating new ones each time
     if (!this._textCanvas) {
@@ -95,18 +154,32 @@ export class DotTextCanvas {
     return textPointSet
   }
 
+  /**
+   * 执行文字点阵转换流程
+   */
   executor() {
     this.originText.split('').forEach(text => this.getText(text))
     this.textPointSet = this.combineText()
     this.getCanvas()
   }
 
+  /**
+   * 获取字符的点阵数据，如果不存在则创建
+   *
+   * @param {string} text - 要获取点阵数据的字符
+   * @returns {Array<number[]>|undefined} 字符的点阵数据
+   */
   getText(text: string) {
     return this.points.has(text)
       ? this.points.get(text)
       : this.createTextPoint(text)
   }
 
+  /**
+   * 合并所有字符的点阵数据，并应用字符间距
+   *
+   * @returns {Array<number[]>} 合并后的点阵数据
+   */
   combineText() {
     const result: Array<number[]> = [[]]
     const len = this.originText.length
@@ -144,6 +217,13 @@ export class DotTextCanvas {
     return result
   }
 
+  /**
+   * 根据绘制方向生成点坐标数组
+   *
+   * @param {number} h - 点阵高度
+   * @param {number} w - 点阵宽度
+   * @returns {Array<[number, number]>} 按指定方向排列的点坐标数组
+   */
   getPointsForDirection(h: number, w: number): Array<[number, number]> {
     const pointsToDraw: Array<[number, number]> = []
 
@@ -212,6 +292,9 @@ export class DotTextCanvas {
     return pointsToDraw
   }
 
+  /**
+   * 设置Canvas大小并准备绘制
+   */
   getCanvas() {
     const h = this.textPointSet.length
     const w = this.textPointSet[0].length
@@ -231,6 +314,15 @@ export class DotTextCanvas {
     this.startDrawing(tasks)
   }
 
+  /**
+   * 创建分批绘制任务
+   *
+   * @param {Array<[number, number]>} pointsToDraw - 要绘制的点坐标数组
+   * @param {number} batchSize - 每批绘制的点数量
+   * @param {Function} getPoint - 点坐标计算函数
+   * @param {number} size - 点的大小
+   * @returns {Array<Function>} 绘制任务数组
+   */
   createDrawTasks(
     pointsToDraw: Array<[number, number]>,
     batchSize: number,
@@ -247,6 +339,14 @@ export class DotTextCanvas {
     return tasks
   }
 
+  /**
+   * 创建一批点的绘制任务
+   *
+   * @param {Array<[number, number]>} points - 一批要绘制的点坐标
+   * @param {Function} getPoint - 点坐标计算函数
+   * @param {number} size - 点的大小
+   * @returns {Function} 绘制任务函数
+   */
   createBatchDrawTask(
     points: Array<[number, number]>,
     getPoint: Function,
@@ -265,6 +365,11 @@ export class DotTextCanvas {
     }
   }
 
+  /**
+   * 开始执行动画绘制
+   *
+   * @param {Array<Function>} tasks - 绘制任务数组
+   */
   startDrawing(tasks: Array<Function>) {
     if (this.isPreferred) {
       this.stop = useRaf(() => {
@@ -285,6 +390,16 @@ export class DotTextCanvas {
     }
   }
 
+  /**
+   * 重新绘制文字，可以更新配置
+   *
+   * @param {string | Partial<DotTextCanvasOptions>} textOrOptions - 文本内容或选项对象
+   * @param {number} [fontSize] - 字体大小
+   * @param {string} [color] - 点阵颜色
+   * @param {number} [fontWeight] - 点阵粗细
+   * @param {Direction} [direction] - 绘制方向
+   * @returns {DotTextCanvas} 当前实例
+   */
   repaint(
     this: any,
     textOrOptions: string | Partial<DotTextCanvasOptions>,
@@ -367,17 +482,29 @@ export class DotTextCanvas {
     return this.append(p)
   }
 
+  /**
+   * 清除Canvas上的内容
+   */
   clearCanvas() {
     this.stop()
     this.ctx?.clearRect(0, 0, this.canvas!.width, this.canvas!.height)
   }
 
+  /**
+   * 将Canvas元素添加到DOM容器中
+   *
+   * @param {MaybeElement} container - 要插入的容器元素
+   * @returns {DotTextCanvas} 当前实例
+   */
   append(container: MaybeElement) {
     insertElement(container, this.canvas)
     this.mounted = true
     return this
   }
 
+  /**
+   * 销毁实例，移除DOM元素并停止所有动画
+   */
   destory() {
     this.stop()
     this.mounted = false

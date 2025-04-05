@@ -3,40 +3,103 @@ import { useRic } from '../perf/useRic'
 import { createElement } from '../event/createElement'
 import { insertElement } from '../event/insertElement'
 import { removeElement } from '../event/removeElement'
-import type { Direction, MaybeElement } from '../types'
+import type { Direction, DotImageCanvasOptions, MaybeElement } from '../types'
 import { useRaf } from '../perf'
 
+/**
+ * DotImageCanvas 将图片转换为点阵图形式展示，并提供动画绘制效果
+ *
+ * 支持多种绘制方向，颜色控制，背景设置，以及动画效果控制
+ * @class
+ */
 export class DotImageCanvas {
+  /** 用于绘制的 Canvas 元素 */
   canvas = document.createElement('canvas')
+
+  /** Canvas 的绘制上下文 */
   ctx = this.canvas.getContext('2d')!
+
+  /** 缓存已处理图像的点阵数据 */
   points: Map<string, Record<string, any>> = new Map()
+
+  /** 原始图片源地址 */
   originSrc = ''
+
+  /** 点阵图颜色，设置后将覆盖原图颜色 */
   color = ''
+
+  /** 点阵粗细，影响绘制的圆点大小 */
   fontWeight = 1
+
+  /** 绘制状态：pending-绘制中，success-完成，fail-失败，reverted-已撤销 */
   status = 'pending'
+
+  /** 背景颜色 */
   bgColor?: string = '#fff'
+
+  /** 停止当前动画的函数 */
   stop: () => void = () => {}
+
+  /** 绘制方向 */
   direction: Direction = 'horizontal'
 
-  // Enhanced state tracking for better revert
+  /** 所有绘制任务 */
   allTasks: Function[] = []
-  completedTaskIndex = 0
-  isReverting = false
-  drawnPoints: Array<{ x: number, y: number, color: any }[]> = [] // Store points per task
 
-  // Array to store clear functions
+  /** 已完成的任务索引 */
+  completedTaskIndex = 0
+
+  /** 是否正在撤销绘制 */
+  isReverting = false
+
+  /** 每个绘制任务中的点坐标记录 */
+  drawnPoints: Array<{ x: number, y: number, color: any }[]> = []
+
+  /** 清除任务列表 */
   clearTasks: Function[] = []
+
+  /** 是否使用优先渲染模式 (RAF) */
   isPreferred = false
+
+  /** 是否已挂载到DOM */
   mounted = false
 
+  /**
+   * 创建 DotImageCanvas 实例
+   *
+   * @param {string | DotImageCanvasOptions} srcOrOptions - 图片URL或选项对象
+   * @param {string} [color] - 绘制颜色，为空时保留原图颜色
+   * @param {number} [fontWeight] - 点阵粗细
+   * @param {string} [bgColor] - 背景颜色
+   * @param {Direction} [direction] - 绘制方向
+   */
   constructor(
-    src: string,
-    color: string,
-    fontWeight: number,
-    bgColor = '#fff',
+    srcOrOptions: string | DotImageCanvasOptions,
+    color?: string,
+    fontWeight?: number,
+    bgColor: string = '#fff',
     direction?: Direction,
   ) {
-    this.initOptions(src, color, fontWeight, bgColor, direction)
+    if (typeof srcOrOptions === 'string') {
+      // 原始参数列表模式
+      this.initOptions(srcOrOptions, color!, fontWeight!, bgColor, direction)
+    }
+    else {
+      // 选项对象模式
+      const options = srcOrOptions
+      this.initOptions(
+        options.src,
+        options.color,
+        options.fontWeight,
+        options.bgColor || '#fff',
+        options.direction,
+      )
+
+      // 设置其他选项
+      if (options.isPreferred !== undefined) {
+        this.isPreferred = options.isPreferred
+      }
+    }
     this.executor()
   }
 
@@ -522,22 +585,54 @@ export class DotImageCanvas {
     this.direction = direction
   }
 
+  /**
+   * 重新绘制图像，可以更新配置
+   *
+   * @param {string | Partial<DotImageCanvasOptions>} srcOrOptions - 图片URL或选项对象
+   * @param {string} [color] - 点阵颜色
+   * @param {number} [fontWeight] - 点阵粗细
+   * @param {string} [bgColor] - 背景颜色
+   * @param {Direction} [direction] - 绘制方向
+   * @returns {Promise<DotImageCanvas>} 更新后的实例
+   */
   async repaint(
-    src: string,
-    color: string,
-    fontWeight: number,
-    bgColor = '#fff',
+    srcOrOptions: string | Partial<DotImageCanvasOptions>,
+    color?: string,
+    fontWeight?: number,
+    bgColor: string = '#fff',
     direction?: Direction,
   ) {
     this.stop()
     const p = removeElement(this.canvas)
     this.status = 'pending'
-    this.initOptions(src, color, fontWeight, bgColor, direction)
+
+    if (typeof srcOrOptions === 'string') {
+      // 原始参数列表模式
+      this.initOptions(srcOrOptions, color!, fontWeight!, bgColor, direction)
+    }
+    else {
+      // 选项对象模式
+      const options = srcOrOptions
+      this.initOptions(
+        options.src || this.originSrc,
+        options.color || this.color,
+        options.fontWeight !== undefined ? options.fontWeight : this.fontWeight,
+        options.bgColor || this.bgColor || '#fff',
+        options.direction || this.direction,
+      )
+
+      // 更新其他选项
+      if (options.isPreferred !== undefined) {
+        this.isPreferred = options.isPreferred
+      }
+    }
+
     if (!p) {
       throw new Error(
         'repaint error not found canvas container or has been removed',
       )
     }
+
     return Object.assign(
       this,
       (await this.executor()) as DotImageCanvas,

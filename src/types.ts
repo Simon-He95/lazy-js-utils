@@ -271,3 +271,12 @@ export interface DotTextCanvasOptions {
   charSpacing?: number // 全局字符间距
   charSpacings?: number[] // 单独控制每个字符对之间的间距
 }
+
+export interface DotImageCanvasOptions {
+  src: string
+  color: string
+  fontWeight: number
+  bgColor?: string
+  direction?: Direction
+  isPreferred?: boolean
+}
