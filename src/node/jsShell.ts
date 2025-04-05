@@ -100,11 +100,11 @@ export function jsShell<T extends string | string[]>(
           if (isLog)
             console.error(`Command failed with status ${status}`)
           if (errorExit) {
-            reject(new Error(errorOutput || result))
+            reject(new Error(result || errorOutput))
             process.exit(1)
           }
           else {
-            resolve({ status, result: errorOutput || result, pid })
+            resolve({ status, result: result || errorOutput, pid })
           }
         }
         else {
