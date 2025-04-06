@@ -6,7 +6,7 @@ import { createElement } from '../event/createElement'
  * 图片视频预加载函数
  * @param { string[] } list 图片数组
  * @param { string } style 设置样式
- * @returns
+ * @returns { HTMLImageElement[] } 图片数组
  */
 export function preload(list: string[] | string, style?: string) {
   let imageNode: HTMLImageElement

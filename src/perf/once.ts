@@ -1,7 +1,7 @@
 /**
  * 只执行一次函数
  * @param { Function } fn 函数
- * @returns
+ * @returns { Function } 函数
  */
 export function once(fn: Function): Function {
   let called = false

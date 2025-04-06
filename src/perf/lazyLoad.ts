@@ -9,11 +9,11 @@ const loadingDefault
  *
  * @param { MaybeElement } element 元素
  * @param { string } loadingUrl 懒加载的loading图
- * @returns
+ * @returns { Function } 停止懒加载的函数
  */
 export function lazyLoad(element: MaybeElement, loadingUrl = loadingDefault) {
   return mount(element, (el) => {
-    (
+    ;(
       findElement(['img', 'video'], true, el) as unknown as (
         | HTMLImageElement
         | HTMLVideoElement
