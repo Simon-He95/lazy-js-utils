@@ -1,14 +1,14 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  name: 'tsup',
   target: 'node14',
   format: ['cjs', 'esm'],
-  splitting: true,
+  // splitting: true,
+  // bundle: true,
   sourcemap: false,
   clean: true,
   dts: true,
-  entryPoints: [
+  entry: [
     'src/index.ts',
     'src/node/index.ts',
     'src/worker/*.ts',
@@ -18,19 +18,6 @@ export default defineConfig({
   define: {
     __DEV__: 'false',
   },
-  bundle: true,
-  external: [
-    'vite',
-    'vue',
-    'vue/compiler-sfc',
-    'webpack',
-    'rollup',
-    'esbuild',
-    'tsup',
-    'spark-md5',
-    'qrcode',
-    'htmlparser2',
-    '@vueuse/core',
-  ],
+  external: ['spark-md5', 'qrcode', 'htmlparser2'],
   platform: 'node',
 })
