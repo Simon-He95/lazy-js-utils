@@ -38,6 +38,11 @@
     "./webComponents": {
       "import": "./dist/webComponents/index.js",
       "require": "./dist/webComponents/index.cjs"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.js",
+      "require": "./dist/types/index.cjs"
     }
   },
   "main": "./dist/index.js",

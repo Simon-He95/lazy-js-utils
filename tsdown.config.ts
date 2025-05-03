@@ -14,6 +14,7 @@ export default defineConfig({
     'src/worker/*.ts',
     'src/webComponent/index.ts',
     'src/vite/index.ts',
+    'src/types/index.ts',
   ],
   define: {
     __DEV__: 'false',
