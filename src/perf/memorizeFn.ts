@@ -26,7 +26,7 @@ export function memorizeFn(
 
     // 检查缓存大小，如果达到最大值，删除最早的条目（Map的第一个条目）
     if (cache.size >= maxSize) {
-      const firstKey = cache.keys().next().value
+      const firstKey = cache.keys().next().value!
       cache.delete(firstKey)
     }
 
