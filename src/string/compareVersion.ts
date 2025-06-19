@@ -1,23 +1,67 @@
+import type { ComparisonOperator } from '../types'
+
 /**
- * 比较两个版本字符串。
- *
- * @param {string} v1 - 第一个版本字符串。
- * @param {string} v2 - 第二个版本字符串。
- * @returns {number} - 如果 v1 大于 v2 返回 1，如果 v2 大于 v1 返回 -1，如果它们相等返回 0。
+ * 比较两个版本号
+ * @param {string} version1 - 第一个版本号
+ * @param {string} version2 - 第二个版本号
+ * @param {ComparisonOperator} [operator] - 比较操作符: '>', '<', '=', '>=', '<=', '!='
+ * @returns {number|boolean} 如果提供操作符则返回布尔值，否则返回数字(-1, 0, 1)
  */
-export function compareVersion(v1: string, v2: string): number {
-  const v1Arr = v1.split('.')
-  const v2Arr = v2.split('.')
-  const len = Math.max(v1Arr.length, v2Arr.length)
-  for (let i = 0; i < len; i++) {
-    const num1 = Number.parseInt(v1Arr[i] || '0')
-    const num2 = Number.parseInt(v2Arr[i] || '0')
-    if (num1 > num2) {
-      return 1
+function compareVersion(version1: string, version2: string): number
+function compareVersion(
+  version1: string,
+  version2: string,
+  operator: ComparisonOperator,
+): boolean
+function compareVersion(
+  version1: string,
+  version2: string,
+  operator?: ComparisonOperator,
+): number | boolean {
+  const v1Parts = version1.split('.').map(Number)
+  const v2Parts = version2.split('.').map(Number)
+
+  const maxLength = Math.max(v1Parts.length, v2Parts.length)
+
+  // 补齐较短的版本号
+  while (v1Parts.length < maxLength) v1Parts.push(0)
+  while (v2Parts.length < maxLength) v2Parts.push(0)
+
+  // 逐位比较
+  for (let i = 0; i < maxLength; i++) {
+    if (v1Parts[i] > v2Parts[i]) {
+      return operator ? handleOperator(1, operator) : 1
     }
-    else if (num1 < num2) {
-      return -1
+    if (v1Parts[i] < v2Parts[i]) {
+      return operator ? handleOperator(-1, operator) : -1
     }
   }
-  return 0
+
+  return operator ? handleOperator(0, operator) : 0
 }
+
+function handleOperator(
+  compareResult: number,
+  operator: ComparisonOperator,
+): boolean {
+  switch (operator) {
+    case '>':
+      return compareResult > 0
+    case '<':
+      return compareResult < 0
+    case '=':
+    case '==':
+      return compareResult === 0
+    case '>=':
+      return compareResult >= 0
+    case '<=':
+      return compareResult <= 0
+    case '!=':
+    case '!==':
+      return compareResult !== 0
+    default:
+      throw new Error(`Unsupported operator: ${operator}`)
+  }
+}
+
+export default compareVersion

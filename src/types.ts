@@ -280,3 +280,13 @@ export interface DotImageCanvasOptions {
   direction?: Direction
   isPreferred?: boolean
 }
+
+export type ComparisonOperator =
+  | '>'
+  | '<'
+  | '='
+  | '=='
+  | '>='
+  | '<='
+  | '!='
+  | '!=='
