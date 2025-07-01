@@ -6,11 +6,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types", "./types.d.ts"],
     "strict": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "exclude": ["dist", "playground", "cypress", "test"]
+  "include": ["src/**/*", "test/**/*", "types.d.ts"],
+  "exclude": ["dist", "playground", "cypress"]
 }
