@@ -1,7 +1,7 @@
 {
   "name": "lazy-js-utils",
   "type": "module",
-  "version": "0.1.46",
+  "version": "0.1.47",
   "packageManager": "pnpm@10.12.1",
   "description": "A collection of lazy-loaded JavaScript utilities for efficient development",
   "author": "Simon He",
