@@ -7,13 +7,13 @@ import type { ComparisonOperator } from '../types'
  * @param {ComparisonOperator} [operator] - 比较操作符: '>', '<', '=', '>=', '<=', '!='
  * @returns {number|boolean} 如果提供操作符则返回布尔值，否则返回数字(-1, 0, 1)
  */
-function compareVersion(version1: string, version2: string): number
-function compareVersion(
+export function compareVersion(version1: string, version2: string): number
+export function compareVersion(
   version1: string,
   version2: string,
   operator: ComparisonOperator,
 ): boolean
-function compareVersion(
+export function compareVersion(
   version1: string,
   version2: string,
   operator?: ComparisonOperator,
@@ -63,5 +63,3 @@ function handleOperator(
       throw new Error(`Unsupported operator: ${operator}`)
   }
 }
-
-export default compareVersion

@@ -7,11 +7,11 @@ describe('removeElement test', () => {
     const div = document.createElement('div')
     insertElement(p, div)
     expect(p.childNodes).toMatchInlineSnapshot(`
-      [
+      NodeList [
         <div />,
       ]
     `)
     removeElement(div)
-    expect(p.childNodes).toMatchInlineSnapshot('[]')
+    expect(p.childNodes).toMatchInlineSnapshot(`NodeList []`)
   })
 })

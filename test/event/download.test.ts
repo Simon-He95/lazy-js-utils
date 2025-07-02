@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { download } from '../../src/event'
 
-describe('download test', () => {
-  it.skip('test', () => {
+describe.skip('download test', () => {
+  it('test', () => {
     download('xxx.jpg')
     expect(true).toMatchInlineSnapshot('<DocumentFragment />')
   })

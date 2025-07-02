@@ -7,7 +7,7 @@ describe('getCssVar test', () => {
     el.setAttribute('style', '--main-bg: red;')
 
     getCssVar(el, '--main-bg', (_class) => {
-      expect(_class).toMatchInlineSnapshot('""')
+      expect(_class).toMatchInlineSnapshot(`"red"`)
       return _class
     })
   })

@@ -7,7 +7,7 @@ describe('unescapeHtml test', () => {
       = '&lt;div style=&quot;background:red;&quot;&gt;hello, world&lt;/div&gt;'
 
     expect(unescapeHtml(template)).toMatchInlineSnapshot(
-      '"<div style=\\"background:red;\\">hello, world</div>"',
+      `"<div style="background:red;">hello, world</div>"`,
     )
   })
 })

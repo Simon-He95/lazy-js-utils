@@ -6,7 +6,7 @@ describe('useElementBounding test', () => {
     const p = document.createElement('div')
     useElementBounding(p, (res) => {
       expect(res).toMatchInlineSnapshot(`
-        DOMRect {
+        {
           "bottom": 0,
           "height": 0,
           "left": 0,

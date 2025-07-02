@@ -13,7 +13,7 @@ describe('getStyles test', () => {
 
     expect(style).toMatchInlineSnapshot(`
       "
-          <div style=\\"background:red;color:white;\\">hello, world</div>
+          <div style="background:red;color:white;">hello, world</div>
           "
     `)
   })

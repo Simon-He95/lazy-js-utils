@@ -7,7 +7,7 @@ describe('insertElement test', () => {
     const div = document.createElement('div')
     insertElement(p, div)
     expect(p.childNodes).toMatchInlineSnapshot(`
-      [
+      NodeList [
         <div />,
       ]
     `)

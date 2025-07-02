@@ -26,7 +26,7 @@ describe('htmlTransform test', () => {
       },
     )
     expect(code).toMatchInlineSnapshot(
-      '"<span>hi</span><p class=\\"_ee\\" age=\\"19\\">hello</p><span>你好</span><view onTap=\\"xx\\"></view>"',
+      `"<span>hi</span><p class="_ee" age="19">hello</p><span>你好</span><view onTap="xx"></view>"`,
     )
   })
 })

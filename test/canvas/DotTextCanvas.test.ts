@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-describe('dotTextCanvas test', () => {
-  it.skip('test', () => {
+describe.skip('dotTextCanvas test', () => {
+  it('test', () => {
     // DotTextCanvas('hi', 10, 'red', 10)
     expect(true).toBe(true)
   })
