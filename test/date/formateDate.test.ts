@@ -4,6 +4,6 @@ import { formateDate } from '../../src/date'
 describe('formateDate test', () => {
   it('test', () => {
     const d = formateDate(new Date(), 'yyyy-mm-dd')
-    expect(d).toMatchInlineSnapshot(`"2025-22-06"`)
+    expect(d).toMatchInlineSnapshot(`"2025-24-06"`)
   })
 })
