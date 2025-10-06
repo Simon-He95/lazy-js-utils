@@ -9,6 +9,7 @@ import { isStr } from '../is/isStr'
  *   inline?: ScrollLogicalPosition;
  * }
  * @returns void
+ * @description EN: Smoothly scroll the given element or selector into view with optional options.
  */
 export function scrollToView(
   e: Element | string | null,
@@ -16,7 +17,7 @@ export function scrollToView(
 ) {
   try {
     if (isStr(e))
-      e = findElement(e) as Element
+      e = findElement(e) as unknown as Element
     if (!e)
       return
     e.scrollIntoView(Object.assign({ behavior: 'smooth' }, options))

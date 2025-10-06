@@ -2,6 +2,7 @@
  * 大写数字
  * @param { number } n 数字
  * @returns 返回大写数字
+ * @description EN: Convert a number to Chinese uppercase currency representation (e.g., 壹贰叁元...).
  */
 export function uppercaseNum(n: number) {
   const fraction = ['角', '分']

@@ -3,9 +3,10 @@ import path from 'node:path'
 import process from 'node:process'
 
 /**
- * 将模板html内容拷贝到最终结果
+ * 将模版html内容拷贝到最终结果
  * @param { string } template_url html url
  * @returns Plugin
+ * @description EN: Vite plugin factory that injects built CSS and JS asset links into a template HTML file and writes it to the build output.
  */
 export async function vitePluginCopyHtml(template_url: string) {
   let content = await fsp.readFile(

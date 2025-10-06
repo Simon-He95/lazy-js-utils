@@ -1,18 +1,16 @@
-import { isStr } from '../is/isStr'
-import { findElement } from './findElement'
-
 /**
- * 删除元素
- * @param {  HTMLElement | ChildNode | DocumentFragment | string } el 待被删除的节点
- * @returns 父节点
+ * Remove an element from the DOM.
+ *
+ * Accepts an HTMLElement (or ChildNode/DocumentFragment) or a selector string.
+ * If a selector is provided it will be resolved via `findElement` (caller
+ * should resolve before calling if passing a selector).
+ *
+ * @param el - Element or selector to remove
+ * @returns the parent HTMLElement that contained the removed node, or null
  */
 export function removeElement(
   el: HTMLElement | ChildNode | DocumentFragment | string,
 ): HTMLElement | null {
-  if (isStr(el))
-    el = findElement(el) || el
-  if (isStr(el))
-    throw new Error(`${el} is not a element`)
   const p = (el as HTMLElement).parentElement
   if (p)
     p.removeChild(el as HTMLElement)

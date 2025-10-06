@@ -9,6 +9,9 @@ import { createElement } from '../event/createElement'
  * @returns { HTMLImageElement[] } 图片数组
  */
 export function preload(list: string[] | string, style?: string) {
+  /**
+   * @description EN: Create and return image/video elements for the provided sources, optionally applying a style string.
+   */
   let imageNode: HTMLImageElement
   let videoNode: HTMLVideoElement
   if (!isArray(list))

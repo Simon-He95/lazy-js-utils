@@ -3,6 +3,7 @@
  * @param { string } start 开始日期 默认 '1999/01/1
  * @param { string } [end] 截止日期
  * @returns
+ * @description EN: Return a random Date between `start` and `end` (dates as strings). Defaults to 1999/01/1 -> today.
  */
 export function randomDate(start = '1999/01/1', end?: string) {
   const date = new Date()

@@ -14,6 +14,7 @@ type HtmlTransformOptions = Record<
 
 /**
  * htmlparser
+ * @description EN: Parse an HTML string into a DOM-like structure, allow transformations via callbacks, and return the transformed HTML string.
  * @param { string } s 字符串
  * @param options {}
  * @param { (key: string, value?: string) => void } options.setAttribs 设置属性

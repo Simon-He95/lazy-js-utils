@@ -10,14 +10,14 @@ export async function sliderValidation(
   url: string,
   container: HTMLElement | string,
   l: number | (() => void) = 42,
-  callback: () => void,
+  callback?: () => void,
 ) {
   if (isFn(l)) {
     callback = l as () => void
     l = 42
   }
   if (isStr(container))
-    container = findElement(container) || container
+    container = (findElement(container) as unknown as HTMLElement) || container
   if (isStr(container))
     throw new Error(`${container} is not a HTMLElement`)
   const image = new Image()

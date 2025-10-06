@@ -1,6 +1,7 @@
 /**
  * 全屏模式
  * @returns
+ * @description EN: Request the browser to enter fullscreen using common vendor-prefixed APIs; returns an Error if not supported.
  */
 export function fullScreen() {
   try {

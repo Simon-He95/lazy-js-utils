@@ -3,6 +3,9 @@
  * @returns get set remove
  */
 export function dbStorage() {
+  /**
+   * @description EN: Provide a small wrapper around IndexedDB for simple set/get/remove operations on a named object store.
+   */
   return new Promise((resolve, reject) => {
     const indexDB
       = window.indexedDB

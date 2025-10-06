@@ -1,9 +1,10 @@
 import { createElement } from '../event/createElement'
 
 /**
- * head添加link标签
- * @param { string } href css路径
- * @returns
+ * Add a <link rel="stylesheet"> tag to document head and return a remover.
+ *
+ * @param {string} href Stylesheet URL.
+ * @returns {() => void} Function that removes the link element.
  */
 export function addLink(href: string): () => void {
   const l = createElement('link', {

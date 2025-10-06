@@ -1,4 +1,7 @@
 export function formateDate(datetime: Date, fmt = 'yyyy-MM-dd') {
+  /**
+   * @description EN: Format a Date object into a string according to the provided format pattern (e.g., 'yyyy-MM-dd').
+   */
   const o: Record<string, any> = {
     'M+': datetime.getMonth() + 1, // 月份
     'd+': datetime.getDate(), // 日

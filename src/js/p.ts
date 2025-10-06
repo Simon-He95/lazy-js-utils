@@ -118,6 +118,7 @@ class PInstance<T = any> extends Promise<Awaited<T>[]> {
  *   .filter(async i => await isEven(i))
  * // [6, 12]
  * ```
+ * @description EN: Utility wrapper around Promise-based array operations (map/filter/reduce) with optional concurrency control. Returns a chainable PInstance.
  */
 export function p<T = any>(
   items?: Iterable<T>,

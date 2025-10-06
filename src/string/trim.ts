@@ -1,10 +1,15 @@
 import type { TrimType } from '../types'
 
 /**
- * 删除空格
- * @param { string } s 字符串
- * @param { TrimType } type 所有 ｜ 前置 ｜ 前后 ｜ 后置 'all' | 'pre' | 'around' | 'post'
- * @returns string
+ * Trim whitespace from a string in different ways.
+ *
+ * @param s - input string
+ * @param type - one of 'all' | 'pre' | 'around' | 'post'
+ *  - 'all'   : remove all whitespace
+ *  - 'pre'   : remove leading whitespace
+ *  - 'post'  : remove trailing whitespace
+ *  - 'around' (default) : remove leading and trailing whitespace
+ * @returns trimmed string
  */
 export function trim(s: string, type: TrimType = 'around'): string {
   if (type === 'pre')

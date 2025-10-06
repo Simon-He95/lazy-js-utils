@@ -1,3 +1,9 @@
+/*
+ * Event utilities and DOM helpers.
+ * This barrel exports small helpers for creating, inserting, removing elements
+ * and a set of `use*` hooks for common browser events (click, scroll, resize, etc.).
+ */
+
 export * from './createElement'
 export * from './createFragment'
 export * from './dragEvent'

@@ -9,15 +9,15 @@ interface StringifyOptions {
   encode?: boolean
 }
 /**
- * 对象序列化
- * @param { Record<string, string | number> } o {}
- * @param { StringifyOptions } options {}
- * @param { string } [options.sep] 分割字符 默认 &
- * @param { string } [options.eq] 连接字符 默认 =
- * @param { boolean } [options.hyp] aBb属性名转为a-bb
- * @param { boolean } [options.px] 自动给数字添加px
- * @param { boolean } [options.encode] 将结果encode
- * @returns
+ * Serialize a plain object to a query-string-like representation.
+ *
+ * Options allow customizing separators, equality sign, whether to hyphenate
+ * keys, append `px` to numeric values, and URL-encode values.
+ *
+ * @param {Record<string,string|number>} o Input object.
+ * @param {StringifyOptions} [options] Formatting options.
+ * @returns {string} Serialized string.
+ * @description EN: Convert a plain object to a delimited key-value string with optional formatting (used for style strings, query strings, etc.).
  */
 export function stringify(
   o: Record<string, string | number>,

@@ -3,10 +3,12 @@ import { mount } from '../utils/mount'
 import { useEventListener } from './useEventListener'
 
 /**
- * 点击事件
- * @param { MaybeElement } target 元素
- * @param { (e: MouseEvent) => void } callback 点击回调
- * @returns 停止
+ * Attach a click listener to a target (element or selector).
+ * The listener will be mounted when the element becomes available and can be stopped.
+ *
+ * @param target - A DOM element, selector string, or Document to attach the listener to
+ * @param callback - MouseEvent handler
+ * @returns A function that stops the listener. If called before the element exists, it will cancel mounting.
  */
 export function useClick(
   target: MaybeElement | Document,

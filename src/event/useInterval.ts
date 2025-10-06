@@ -6,13 +6,17 @@ interface UseIntervalControls {
   resume: () => void
 }
 
-type UseIntervalReturn<T> = T extends Function ? UseIntervalControls : undefined
+type UseIntervalReturn<T> = T extends Function
+  ? ((...args: any[]) => void) & UseIntervalControls
+  : undefined
 
 /**
- * 可暂停和恢复的 setInterval
- * @param { Function } fn 函数
- * @param { number } duration 间隔时间
- * @returns {{ isActive: () => boolean; pause: () => void; resume: () => void } | undefined }
+ * A small helper around setInterval which exposes pause/resume controls.
+ * If fn is not a function undefined is returned.
+ *
+ * @param fn - Callback function to run on each interval
+ * @param duration - Interval duration in milliseconds
+ * @returns Controls object with isActive, pause and resume methods, or undefined
  */
 export function useInterval<T>(fn: T, duration: number): UseIntervalReturn<T> {
   if (!isFn(fn))
@@ -38,7 +42,14 @@ export function useInterval<T>(fn: T, duration: number): UseIntervalReturn<T> {
     },
   }
 
+  // start
   controls.resume()
 
-  return controls as any
+  // Create a callable stop function for existing tests that expect to call the return value
+  const stopFn = (() => controls.pause()) as unknown as ((
+    ...args: any[]
+  ) => void) &
+  UseIntervalControls
+  Object.assign(stopFn, controls)
+  return stopFn as any
 }

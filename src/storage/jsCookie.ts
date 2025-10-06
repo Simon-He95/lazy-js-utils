@@ -4,6 +4,7 @@ import type { JSCookie } from '../types'
  * 快速操作cookie
  */
 export const jsCookie: JSCookie = {
+  // @description EN: Simple helpers to get/set/delete cookies.
   get(cname: string) {
     try {
       const name = `${cname}=`

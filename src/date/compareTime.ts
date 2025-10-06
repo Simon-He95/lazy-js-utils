@@ -3,6 +3,7 @@
  *
  * 该函数接受两个时间字符串，格式为 'HH:MM'，并比较它们的大小。
  * 返回值为 0 表示两个时间相同，1 表示第一个时间大于第二个时间，-1 表示第一个时间小于第二个时间。
+ * @description EN: Compare two times given as 'HH:MM'. Returns 0 if equal, 1 if time1 > time2, -1 if time1 < time2.
  *
  * @param {string} time1 - 第一个时间字符串，格式为 'HH:MM'
  * @param {string} time2 - 第二个时间字符串，格式为 'HH:MM'

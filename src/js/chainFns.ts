@@ -2,6 +2,7 @@ import { noop } from './noop'
 
 /**
  * 链式调用
+ * @description EN: Compose multiple functions into one that calls them in sequence, returning the last non-undefined result.
  * @param { Function[] } fns 函数数组
  * @returns
  */

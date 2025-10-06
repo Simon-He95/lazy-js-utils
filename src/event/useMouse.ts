@@ -1,10 +1,11 @@
 import { useEventListener } from './useEventListener'
 
 /**
- * 检测鼠标移动
- * @param { Function } callback 坚挺鼠标移动回调
- * @param { number } delay 间隔多久触发
- * @returns 停止
+ * Throttled mousemove listener. The callback will be called at most once per `delay` ms.
+ *
+ * @param callback - MouseEvent handler
+ * @param delay - Minimum ms between invocations
+ * @returns A stop function to remove the listener
  */
 export function useMouse(
   callback: (e: MouseEvent) => void,

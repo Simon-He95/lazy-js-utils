@@ -1,8 +1,10 @@
 /**
- * 将时间字符串解析为数字 (秒)
- * '01:02:03' => 1 * 60 * 60 + 2 * 60 + 3
- * @param { string } timeStr 字符串
- * @returns number
+ * Parse a time string (HH:MM:SS or MM:SS) into total seconds.
+ *
+ * Example: '01:02:03' => 1 * 3600 + 2 * 60 + 3
+ *
+ * @param timeStr - time string in H:M:S or M:S form
+ * @returns number of seconds represented by the string
  */
 export function parseTime(timeStr: string) {
   const parts = timeStr.split(':')

@@ -17,6 +17,7 @@ interface ParseOptions {
  * @param { string } options.eq 默认 =
  * @param { string } options.camel 默认 false
  * @returns
+ * @description EN: Parse a delimited key=value string (like a query string) into an object, with optional camelCase conversion.
  */
 export function parse(str: string, options: ParseOptions = {}) {
   const { sep = '&', eq = '=', camel = false } = options

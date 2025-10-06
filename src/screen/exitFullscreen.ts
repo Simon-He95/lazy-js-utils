@@ -1,6 +1,7 @@
 /**
  * 退出全屏模式
  * @returns
+ * @description EN: Exit fullscreen mode by attempting common vendor-prefixed cancel methods; returns an Error when unsupported.
  */
 export function exitFullscreen() {
   try {

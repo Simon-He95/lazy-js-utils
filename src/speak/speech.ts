@@ -2,6 +2,10 @@ import { isStr } from '../is/isStr'
 import type { Lang } from '../types'
 import { beforeUnmount } from '../utils'
 
+/**
+ * Speech options for text-to-speech
+ * @description EN: Configuration for the speech utterance (text, voice, rate, pitch, volume, lang).
+ */
 export interface SpeechOptions {
   text: string
   voice?: SpeechSynthesisVoice | null
@@ -31,15 +35,9 @@ export function speech(text?: string): SpeechResult
 export function speech(options?: SpeechOptions): SpeechResult
 /**
  * 文字转语音
- * @param { SpeechOptions | string } options {
-  text: string
-  voice?: SpeechSynthesisVoice | null
-  rate?: number
-  pitch?: number
-  volume?: number
-  lang?: Lang
-}
- * @returns
+ * @description EN: Simple wrapper around the Web SpeechSynthesis API. Returns controls to speak/pause/resume/cancel.
+ * @param { SpeechOptions | string } options - speech text or options object
+ * @returns SpeechResult - control methods for the utterance
  */
 export function speech(options?: SpeechOptions | string): SpeechResult {
   let preText = getSpeechInstance(options)

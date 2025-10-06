@@ -2,6 +2,7 @@ import { createElement } from '../event/createElement'
 
 /**
  * 获取电脑粘贴板的内容
+ * @description EN: Copy the provided string to the system clipboard using a temporary textarea and execCommand.
  * @param { string } s 内容
  * @returns
  */

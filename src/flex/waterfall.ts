@@ -6,12 +6,13 @@ import { mount } from '../utils/mount'
 import type { MaybeElement } from '../types'
 
 /**
- * 创建图片瀑布流
- * @param { string[] } imageList 图片列表
- * @param { string } target mount元素 默认 body
- * @param { number } width 图片宽度 默认 200
- * @param { number } space 图片间距 默认 20
- * @returns
+ * 创建图片瀑布流并挂载到目标容器
+ * @description EN: Create a simple waterfall (masonry) layout for images and mount it into the target container. Returns an `append` function to add more images.
+ * @param { string[] } imageList 图片 URL 列表
+ * @param { MaybeElement | number } target 目标容器或直接传入宽度（当传数字时表示宽度并默认挂载到 body）
+ * @param { number } width 图片显示宽度（像素），默认为 200
+ * @param { number } space 图片间距（像素），默认 20
+ * @returns {(imageList: string[]) => void} 返回一个函数，用于追加更多图片到瀑布流
  */
 export function waterfall(
   imageList: string[],
@@ -72,7 +73,7 @@ export function waterfall(
         })
       })
     }
-    (await promiseElements()).forEach(image => wrapper.appendChild(image))
+    ;(await promiseElements()).forEach(image => wrapper.appendChild(image))
     removeWrapper(container as HTMLElement)
     ;(container as HTMLElement).appendChild(wrapper)
   }

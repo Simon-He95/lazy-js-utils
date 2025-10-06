@@ -3,6 +3,7 @@ import { isFn } from '../is/isFn'
 /**
  * 检测性能指标
  * @returns {Record<string, number> | null} 返回性能指标对象，如果不支持则返回null
+ * @description EN: Collect a set of navigation/timing metrics from the Performance API and return them as a record. Returns null if unsupported.
  */
 export function monitorPef(): Record<string, number> | null {
   // 首先检查Performance API是否可用

@@ -10,6 +10,7 @@ import { fnToUrl } from './fnToUrl'
  *  updateViaCache?: ServiceWorkerUpdateViaCache;
  *  }
  * @returns
+ * @description EN: Register a ServiceWorker from a URL or an inline function converted to a blob URL.
  */
 export function useServiceWorker(
   url: string | (() => void),

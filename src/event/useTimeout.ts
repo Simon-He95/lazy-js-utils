@@ -2,10 +2,12 @@ import { isFn } from '../is/isFn'
 import type { UseTimeoutReturn } from '../types'
 
 /**
- * setTimeout
- * @param { Function } fn 函数
- * @param { number } duration 间隔时长
- * @returns 停止
+ * Run a function once after a delay and return a stop function.
+ * If fn is not a function, undefined is returned.
+ *
+ * @param fn - Function to run after the delay
+ * @param duration - Delay in milliseconds (default 0)
+ * @returns A function that clears the timeout, or undefined if fn is not a function
  */
 export function useTimeout<T>(fn: T, duration = 0): UseTimeoutReturn<T> {
   if (!isFn(fn))

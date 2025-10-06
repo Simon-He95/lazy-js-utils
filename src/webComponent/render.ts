@@ -40,6 +40,7 @@ export class Render extends HTMLElement {
   props: Record<string, string> = {}
   /**
    * 创建影子节点
+   * @description EN: A small base class for building Web Components by declaratively rendering a DOM tree and managing shadow DOM styles and attributes.
    * https://developer.mozilla.org/zh-CN/docs/Web/API/Element/attachShadow
    */
   shadowRoot: ShadowRoot = this.attachShadow({ mode: 'open' })

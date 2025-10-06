@@ -15,6 +15,9 @@ interface UseVideoSubtitle {
  * @param name
  */
 export function useVideoSubtitle(options: UseVideoSubtitle[], name = 'zh') {
+  /**
+   * @description EN: Generate subtitle (VTT-like) content from a list of timed subtitle objects.
+   */
   const result = toArray(options)
     .map(option => getTitle(option as UseVideoSubtitle))
     .join('\n')

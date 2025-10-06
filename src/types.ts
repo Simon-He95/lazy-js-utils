@@ -22,6 +22,7 @@ declare global {
     getUserMedia: () => void
   }
 }
+// @description EN: Project-wide ambient declarations and utility TypeScript types for browser and runtime compatibility.
 export type Redirect = 'follow' | 'error' | 'manual'
 export type Cache =
   | 'default'

@@ -4,6 +4,7 @@
  * @param { number } [timeout] 超时时间 默认 5000
  * @param { number } [maximumAge] 最大缓存位置时间 默认 0
  * @returns
+ * @description EN: Get current geolocation coordinates as a Promise, with optional high-accuracy and timeout settings.
  */
 export function getLocation(
   enableHighAccuracy = false,

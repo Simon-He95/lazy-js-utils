@@ -8,6 +8,7 @@ import { isReg } from '../is/isReg'
  * @param { any } comp2 对象2
  * @param { string[] | RegExp } ignoreKeys 忽律某项属性的比较
  * @returns
+ * @description EN: Deep-compare two values (objects/arrays/primitives), optionally ignoring keys. Returns errors and messages describing differences.
  */
 export function deepCompare(
   comp1: any,

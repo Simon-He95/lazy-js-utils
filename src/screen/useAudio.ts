@@ -6,6 +6,7 @@ import { isStr } from '../is/isStr'
  * 录音功能
  * @param { string | HTMLAudioElement } container 容器
  * @returns
+ * @description EN: Provide simple audio recording utilities that attach to an audio element and allow toggling and downloading of recorded audio.
  */
 export function useAudio(container: string | HTMLAudioElement) {
   if (!navigator)
@@ -17,7 +18,7 @@ export function useAudio(container: string | HTMLAudioElement) {
     (stream) => {
       const chunks: any[] = []
       const audio = isStr(container)
-        ? (findElement(container) as HTMLVideoElement)
+        ? (findElement(container) as unknown as HTMLAudioElement)
         : container
       if (!audio)
         return console.error('audio element not found')

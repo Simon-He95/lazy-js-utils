@@ -1,8 +1,11 @@
 /**
- * 将多个空格统一处理
- * @param { string } str 字符串
- * @param { string } replacer 替换为 默认 ' '
- * @returns
+ * Normalize repeated whitespace in a string by replacing runs of whitespace
+ * characters with a single replacer string (default is a single space).
+ *
+ * @param str - input string
+ * @param replacer - replacement for runs of whitespace (default: ' ')
+ * @returns normalized string
+ * @description EN: Replace consecutive whitespace characters with a single replacer string.
  */
 export function spaceFormat(str: string, replacer = ' ') {
   return str.replace(/\s+/g, replacer)

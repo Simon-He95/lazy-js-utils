@@ -1,5 +1,6 @@
 /**
  * 柯里化
+ * @description EN: Create a curried version of the provided function.
  * @param { Function } f 函数
  * @returns 函数
  */

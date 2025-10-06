@@ -6,6 +6,7 @@ import { getPkg } from './getPkg'
 /**
  * 获取当前包管理器 ‘yarn’ | 'pnpm' | 'bun' | 'npm'
  * @returns 返回当前package环境 ‘yarn’ | 'pnpm' | 'bun' | 'npm'
+ * @description EN: Determine the project's package manager (yarn|pnpm|bun|npm) by reading package.json or lockfiles.
  */
 export async function getPkgTool(): Promise<PkgTool> {
   const pkg = (await getPkg()) || {}

@@ -6,6 +6,7 @@ import { isPlainObject } from '../is/isPlainObject'
  * @returns get set delete clear
  */
 export function jsLocal() {
+  // @description EN: Simple wrapper to interact with localStorage: set/get/delete/clear.
   return {
     set(key: string | Record<string, string>, value?: string) {
       if (isPlainObject(key))

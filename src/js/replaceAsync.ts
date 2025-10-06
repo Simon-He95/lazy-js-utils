@@ -1,6 +1,12 @@
 import { isFn } from '../is/isFn'
 import { isStr } from '../is/isStr'
 
+/**
+ * @description EN: Perform asynchronous replacements on matches in a string using a sync or async replacer.
+ * @param {string} str The source string
+ * @param {string|RegExp} searchValue Pattern to search for
+ * @param {string|Function} replaceValue Replacement string or async replacer function
+ */
 export async function replaceAsync(
   str: string,
   searchValue: string | RegExp,

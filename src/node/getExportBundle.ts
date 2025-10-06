@@ -6,6 +6,7 @@ import process from 'node:process'
  * 获取npm包导出的文件内容
  * @param { string } url npm包名
  * @returns
+ * @description EN: Read the exported module file content for an installed npm package by resolving its package.json `module` or `main` field.
  */
 export async function getExportBundle(url: string) {
   if (/[./]/.test(url))

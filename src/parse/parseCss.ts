@@ -2,6 +2,7 @@
  * 解析css转换为对象
  * @param { string } str
  * @returns
+ * @description EN: Parse a block of CSS and return a mapping from selector to declaration string.
  */
 export function parseCss(str: string) {
   const getClasses = /\s*([.#][\w\- .#>+&]+)\{\s*([ :;\w\-\n]*)+\}\s*/g

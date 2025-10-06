@@ -3,14 +3,31 @@ import type { MaybeElement } from '../types'
 import { findElement } from './findElement'
 
 /**
- * 检测2个物体是否碰撞
- * @param { MaybeElement } o1 元素1
- * @param { MaybeElement } o2 元素2
- * @returns
+ * Return whether two elements overlap (axis-aligned bounding box collision).
+ *
+ * @param o1 - Element, selector, or null-like value for the first object
+ * @param o2 - Element, selector, or null-like value for the second object
+ * @returns true if the two bounding boxes overlap, false otherwise
  */
-export function collisionDetection(o1: MaybeElement, o2: MaybeElement) {
-  const obj1: HTMLElement | null = isStr(o1) ? findElement(o1) : o1
-  const obj2: HTMLElement | null = isStr(o2) ? findElement(o2) : o2
+export function collisionDetection(
+  o1: MaybeElement,
+  o2: MaybeElement,
+): boolean {
+  const r1 = isStr(o1)
+    ? findElement(o1, false)
+    : (o1 as HTMLElement | null | undefined)
+  const r2 = isStr(o2)
+    ? findElement(o2, false)
+    : (o2 as HTMLElement | null | undefined)
+
+  const obj1: HTMLElement | null
+    = r1 instanceof NodeList
+      ? (r1[0] as HTMLElement | null)
+      : (r1 as HTMLElement | null | undefined) ?? null
+  const obj2: HTMLElement | null
+    = r2 instanceof NodeList
+      ? (r2[0] as HTMLElement | null)
+      : (r2 as HTMLElement | null | undefined) ?? null
 
   if (!obj1 || !obj2)
     return false

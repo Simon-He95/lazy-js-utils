@@ -1,6 +1,6 @@
 /**
  * 浏览器关闭前
- * @description 浏览器关闭前
+ * @description EN: Register a callback to run before the window unloads (beforeunload).
  * @param { (ev: Event) => void } callback 回调
  * @returns { (ev: Event) => void }
  */

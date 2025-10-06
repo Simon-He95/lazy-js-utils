@@ -5,6 +5,7 @@ import { jsShell } from '../node/jsShell'
 /**
  * 判断是否是在go环境
  * @returns
+ * @description EN: Detect whether the current project is a Go project by checking for go files or go.mod.
  */
 export async function isGo(rootPath = process.cwd()) {
   const url = path.resolve(rootPath, 'go.mod')

@@ -1,5 +1,6 @@
 /**
  * 单例模式
+ * @description EN: Create a singleton proxy for a class so constructing it always returns the same instance.
  */
 export function singleModel(className: any) {
   let ins: any

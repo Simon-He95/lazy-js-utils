@@ -18,11 +18,11 @@ export function hasProtocol(
  * @param { string } input 链接
  * @param defaultProto
  * @returns
+ * @description EN: Parse a URL string into its components (protocol, host, pathname, search, hash), with optional default protocol.
  */
 export function parseURL(input = '', defaultProto?: string): ParsedURL {
   if (!hasProtocol(input, true))
     return defaultProto ? parseURL(defaultProto + input) : parsePath(input)
-
   const [protocol = '', auth, hostAndPath = ''] = (
     input.replace(/\\/g, '/').match(/([^:/]+:)?\/\/([^/@]+@)?(.*)/) || []
   ).splice(1)

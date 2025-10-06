@@ -1,9 +1,10 @@
 import { useEventListener } from './useEventListener'
 
 /**
- * 检测浏览器滚动
- * @param { Function } callback 坚挺浏览器滚动条位置变化回调
- * @returns 停止
+ * Listen to document scroll and call callback with current scrollLeft/scrollTop.
+ *
+ * @param callback - Receives (left, top)
+ * @returns A stop function for the scroll listener
  */
 export function useWindowScroll(
   callback: (left: number, top: number) => void,

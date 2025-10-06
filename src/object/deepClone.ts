@@ -3,30 +3,46 @@ import { isNull } from '../is/isNull'
 import { isObject } from '../is/isObject'
 
 const types = [Set, Map, WeakMap, WeakSet, RegExp, Date]
-const targetMap = new WeakMap()
+
 /**
- * 神拷贝
- * @param { any } target 克隆的目标
- * @returns
+ * Deep clone a value.
+ *
+ * Performs a deep clone for plain objects and arrays. Built-in collection
+ * types (Set, Map, WeakMap, WeakSet, RegExp, Date) are cloned via their
+ * constructors. Functions and `null` are returned as-is. A per-call WeakMap
+ * is used to handle circular references and to preserve object identity
+ * within the cloned structure.
+ *
+ * @param {any} target Value to deep clone.
+ * @returns {any} Deep-cloned value.
  */
 export function deepClone(target: any) {
-  if (targetMap.has(target))
-    return targetMap.get(target)
-  if (isFn(target) || isNull(target))
-    return target
-  if (types.includes(target.constructor))
-    return new target.constructor(target)
-  if (!isObject(target))
-    return target
-  const cloneObj = Object.create(
-    Object.getPrototypeOf(target),
-    Object.getOwnPropertyDescriptors(target),
-  )
-  targetMap.set(target, cloneObj)
-  for (const key of Reflect.ownKeys(target)) {
-    if (isObject(target[key]))
-      cloneObj[key] = deepClone(target[key])
-    else cloneObj[key] = target[key]
+  const targetMap = new WeakMap<any, any>()
+
+  function _clone(t: any): any {
+    if (targetMap.has(t))
+      return targetMap.get(t)
+    if (isFn(t) || isNull(t))
+      return t
+    if (types.includes(t?.constructor))
+      return new t.constructor(t)
+    if (!isObject(t))
+      return t
+
+    const cloneObj = Object.create(
+      Object.getPrototypeOf(t),
+      Object.getOwnPropertyDescriptors(t),
+    )
+
+    targetMap.set(t, cloneObj)
+
+    for (const key of Reflect.ownKeys(t)) {
+      const val = (t as any)[key]
+      cloneObj[key] = isObject(val) ? _clone(val) : val
+    }
+
+    return cloneObj
   }
-  return cloneObj
+
+  return _clone(target)
 }

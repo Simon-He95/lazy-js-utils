@@ -1,7 +1,8 @@
 /**
- * 文件转buffer
- * @param { File } file 文件
- * @returns Promise<Uint8Array>
+ * Read a File/Blob as an ArrayBuffer and return a Uint8Array.
+ *
+ * @param {File} file File or Blob to read.
+ * @returns {Promise<Uint8Array>} Resolves with file bytes.
  */
 export function fileToArrayBuffer(file: File): Promise<Uint8Array> {
   return new Promise((resolve, reject) => {

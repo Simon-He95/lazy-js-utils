@@ -6,10 +6,14 @@ import { hyphenate } from '../string'
 import { addStyleScoped } from './addStyleScoped'
 
 /**
- * 将style添加到head
- * @param { string } s style
- * @param { string } scoped 独立作用域 针对局部组件生效<div data-v-xxx></div>, 传入data-v-xxx
- * @returns
+ * Inject CSS into the document head.
+ *
+ * `s` may be a CSS string or an object of rules. If `scoped` is provided the
+ * style will be transformed to a scoped variant via `addStyleScoped`.
+ *
+ * @param {string|StyleObject} s CSS string or style object.
+ * @param {string} [scoped] Optional scope id to scope the styles.
+ * @returns {() => void} Function to remove the injected style.
  */
 type StyleObject = Record<string, Record<string, string | number>>
 export function addStyle(s: string | StyleObject, scoped?: string) {

@@ -6,6 +6,7 @@ import { promiseFinally } from './promiseFinally'
  * @param { number } ms 时间
  * @param { string } msg 错误消息
  * @returns
+ * @description EN: Run `fn` (which may be async) but reject with an Error(msg) if it doesn't finish within `ms` milliseconds.
  */
 export const timeout = function timeout(fn: Function, ms: number, msg: string) {
   let timerId: NodeJS.Timeout

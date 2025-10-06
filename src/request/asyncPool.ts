@@ -1,5 +1,6 @@
 /**
  * 并行执行任务
+ * @description EN: Execute tasks in parallel with a concurrency limit
  * @param { number } limit 并行数量 默认 4
  * @param { Function[] } tasks 任务队列
  * @returns

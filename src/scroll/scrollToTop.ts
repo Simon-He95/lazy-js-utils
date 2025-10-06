@@ -3,6 +3,7 @@ import { useRaf } from '../perf/useRaf'
 
 /**
  * 滚动到顶部
+ * @description EN: Smoothly scroll the document to the top using a requestAnimationFrame loop.
  */
 export function scrollToTop() {
   try {

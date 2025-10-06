@@ -2,13 +2,14 @@ import { isUndef } from '../is/isUndef'
 
 /**
  * 使用 requestAnimationFrame 执行一个函数，并提供停止执行的功能。
+ * @description EN: Run a callback using requestAnimationFrame with optional throttling (via `delta`) and an option to auto-stop after one invocation.
  *
- * @param {function(number): void} fn - 在每一帧调用的函数，参数是时间戳。
- * @param {object} [options] - 配置选项。
- * @param {number} [options.delta] - 两次调用之间的最小时间间隔（毫秒）。
- * @param {boolean} [options.autoStop] - 是否在首次调用后自动停止。
- * @param {boolean} [options.immediate] - 是否在首次调用时立即执行。
- * @returns {function(): void} - 停止执行的函数。
+ * @param {function(number): void} fn - Callback invoked each animation frame with the timestamp.
+ * @param {object} [options] - Configuration.
+ * @param {number} [options.delta] - Minimum time (ms) between invocations.
+ * @param {boolean} [options.autoStop] - If true, stop after the first invocation.
+ * @param {boolean} [options.immediate] - If true, invoke immediately on first frame.
+ * @returns {function(): void} Stop function that cancels the scheduled frames.
  */
 export function useRaf(
   fn: (timestamp: number) => void,

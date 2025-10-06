@@ -3,13 +3,16 @@ const matchMap = {
   ']': '[',
   ')': '(',
 }
+
 /**
- * 查找匹配符号的结束偏移量
+ * Find the offset from the end of `code` to the matching opening
+ * bracket for a given closing bracket character. This is useful when
+ * parsing snippets to find where a matching start bracket appears.
  *
- * @param matchStr - 要匹配的符号
- * @param code - 包含符号的代码字符串
- * @returns 匹配符号的结束偏移量
- * @throws 如果在代码字符串中找不到匹配符号的结束偏移量，则抛出错误
+ * @param matchStr - the closing bracket character to match (e.g. ')', '}', ']')
+ * @param code - the code string to search (search starts from the end)
+ * @returns offset from the end of the input to the matching opening bracket
+ * @throws if no matching opening bracket is found
  */
 export function findMatchStartOffset(matchStr: string, code: string) {
   let offset = 0
@@ -32,13 +35,3 @@ export function findMatchStartOffset(matchStr: string, code: string) {
   }
   throw new Error(`Can't find match start offset for ${matchStr} in ${code}`)
 }
-
-// console.log(
-//   findMatchStartOffset(
-//     '(',
-//     `<script setup>
-// // asdas
-
-// fn({name: 'simon',})`,
-//   ),
-// )

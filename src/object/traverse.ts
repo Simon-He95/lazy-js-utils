@@ -6,6 +6,7 @@ import { isArray } from '../is/isArray'
  * @param { Record<any, any> | any[] } target 对象或数组
  * @param { Record<string, Function> } options {}
  * @returns
+ * @description EN: Walk a target object or array and invoke callback functions for specified paths, passing (value, index, target).
  */
 export function traverse<T extends Record<any, any> | any[]>(
   target: T,

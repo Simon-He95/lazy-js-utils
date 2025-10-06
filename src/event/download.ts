@@ -1,9 +1,10 @@
 import { createElement } from './createElement'
 
 /**
- * 下载
- * @param { string } href 链接
- * @param { string } download 名字
+ * Trigger a download by creating a temporary anchor and clicking it.
+ *
+ * @param href - URL to download
+ * @param download - suggested filename
  */
 export function download(href: string, download = '') {
   try {

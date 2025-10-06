@@ -20,6 +20,7 @@ export function useCamera(
 ) {
   if (!navigator)
     return console.error('Not support navigator')
+  // @description EN: Access the user's camera and attach the MediaStream to a video element; returns a toggle to play/pause.
   if (isBool(video)) {
     autoplay = video
     video = { width: 640, height: 480 }
@@ -27,7 +28,7 @@ export function useCamera(
   let el: HTMLVideoElement
   navigator.mediaDevices.getUserMedia({ video }).then((stream) => {
     el = isStr(container)
-      ? (findElement(container) as HTMLVideoElement)
+      ? (findElement(container) as unknown as HTMLVideoElement)
       : container
     if (!el)
       return console.error('video element not found')

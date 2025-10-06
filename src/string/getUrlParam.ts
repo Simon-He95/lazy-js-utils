@@ -1,7 +1,8 @@
 /**
- * 获取url中的参数
- * @param { string } s url地址
- * @returns Record<string, string> | undefined
+ * Parse query parameters from a URL or a raw query string into an object.
+ *
+ * @param s - full URL or query string (if omitted, uses window.location.search)
+ * @returns an object mapping keys to values, or undefined if no query present
  */
 export function getUrlParam(s?: string): Record<string, string> | undefined {
   s = (s || window.location.search).split('?')[1]

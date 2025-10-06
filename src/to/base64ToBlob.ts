@@ -1,7 +1,8 @@
 /**
+ * Convert a base64 data URL to a `Blob`.
  *
- * @param { string } s base64
- * @returns Blob
+ * @param {string} s Base64 data URL (e.g. 'data:image/png;base64,...').
+ * @returns {Blob} A Blob containing the decoded bytes.
  */
 export function base64ToBlob(s: string): Blob {
   const arr = s.split(',')

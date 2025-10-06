@@ -3,6 +3,9 @@
  * @param { string } config 后缀文件
  * @returns vitePlugin
  */
+/**
+ * @description EN: Simple Vite plugin that converts a matched file into a default export of its content string.
+ */
 export function vitePluginExport(config: string) {
   return {
     name: 'vite-plugin-export',

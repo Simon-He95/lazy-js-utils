@@ -1,8 +1,11 @@
 /**
- * 确保后缀有这个字符串
- * @param { string } suffix 后缀
- * @param { string } str 字符串
- * @returns string
+ * Ensure the given string ends with the provided suffix. If it already
+ * ends with the suffix, the original string is returned; otherwise the
+ * suffix is appended.
+ *
+ * @param suffix - suffix to ensure
+ * @param str - input string
+ * @returns string that ends with suffix
  */
 export function ensureSuffix(suffix: string, str: string) {
   if (str.endsWith(suffix))

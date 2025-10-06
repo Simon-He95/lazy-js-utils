@@ -10,6 +10,13 @@ export function sort<T>(
   array: T[],
   match: Array<string | number> | number | string,
 ): T[] {
+  /**
+   * 数组排序，支持多字段和升降顺序
+   * @description EN: Sort an array by specified fields. `match` can be a string/number or an array of fields; prefix a field with '-' for descending order.
+   * @param {T[]} array Input array to sort.
+   * @param {Array<string|number>|number|string} match Field(s) or mode to sort by (e.g. ['-age','name'] or '1').
+   * @returns {T[]} Sorted array.
+   */
   if (isType(match, 's|n'))
     match = [`${match}`] as string[]
 

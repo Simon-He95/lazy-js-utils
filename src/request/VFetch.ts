@@ -7,6 +7,7 @@ const cancelMap = new Map()
 
 /**
  * Class fetch请求封装
+ * @description EN: Fetch request wrapper class
  */
 export class VFetch {
   config: IFetchConfig

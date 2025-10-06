@@ -1,5 +1,6 @@
 /**
  * 获取当前周的周一日期
+ * @description EN: Return the ISO date string for Monday of the current week (YYYY-MM-DD).
  * @returns
  */
 export function getFirstDay() {

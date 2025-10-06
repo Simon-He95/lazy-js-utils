@@ -2,11 +2,13 @@ const urlAlphabet
   = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict'
 /**
  * 随机字符串
- * @param { string } size 长度 默认 16
- * @param { urlAlphabet } dict 从这些字符串中随机
- * @returns
+ * @description EN: Generate a random string of given length from a character
+ * set. Useful for IDs and non-cryptographic tokens.
+ * @param { number } size 长度 默认 16
+ * @param { string } dict Character set to draw from (default alphabet above).
+ * @returns {string}
  */
-export function randomStr(size = 16, dict = urlAlphabet) {
+export function randomStr(size = 16, dict = urlAlphabet): string {
   let id = ''
   let i = size
   const len = dict.length

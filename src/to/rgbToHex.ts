@@ -1,5 +1,13 @@
 import { trim } from '../string'
 
+/**
+ * Convert an `rgb(r,g,b)` CSS color string to hex format `#rrggbb`.
+ *
+ * Returns `undefined` when input doesn't match `rgb(...)` pattern.
+ *
+ * @param {string} style CSS rgb string, e.g. 'rgb(255, 255, 255)'.
+ * @returns {string | undefined} Hex color string or undefined.
+ */
 export function rgbToHex(style: string) {
   const reg = /rgb\(([\w\s,]+)\)/
 

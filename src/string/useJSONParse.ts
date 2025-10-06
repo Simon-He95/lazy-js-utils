@@ -4,15 +4,24 @@
 // const commaMoreReg = /:\s*("[\w_\-\$\.]+"\s*,)\s*}/gm
 // const moreCommaReg = /,(\s*})/gm
 /**
- * 将字符串转为JSON.stringify的格式并parse出结果
- * @param { string } str 字符串
- * @returns { any }
+ * Parse a JavaScript object-like string into a value using Function.
+ * This allows parsing strings that are not strictly JSON (for example,
+ * containing functions or unquoted property names). Use with caution as
+ * it executes the input string as code.
+ *
+ * Example: useJSONParse("{ name: 'simon', age: 14 }") => { name: 'simon', age: 14 }
+ *
+ * @param str - string containing a JS expression representing a value
+ * @returns the parsed value
  */
 export function useJSONParse(str: string) {
-  // 将字符串转换为对象
+  // Convert the string into the represented value by evaluating it.
+  // NOTE: using Function to evaluate arbitrary strings is potentially unsafe
+  // and should only be used for trusted input.
   let obj = new Function(`return (${str})`)()
 
-  // 如果对象是正则表达式字符串，则将其转换为正则表达式对象
+  // If the evaluated result is a string that starts with "re", try to
+  // evaluate it again as a RegExp expression (used by some callers).
   if (typeof obj === 'string' && obj.startsWith('re'))
     obj = new Function(`return ${obj.slice(2)}`)()
   return obj
