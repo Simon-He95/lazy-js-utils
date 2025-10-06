@@ -5,6 +5,7 @@ import { jsShell } from './jsShell'
 /**
  * 判断路径下是否有package.jsons
  * @param { string } rootPath 默认 process.cwd()
+ * @description EN: Determine whether a package.json exists in the given path (defaults to process.cwd()).
  */
 export async function isPkg(rootPath: string = process.cwd()) {
   const url = path.resolve(

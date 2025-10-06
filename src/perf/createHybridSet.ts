@@ -3,6 +3,7 @@ type KeyType = object | Primitive
 
 /**
  * HybridSet 是一个支持对象和原始类型（如字符串、数字、布尔值等）作为元素的 Set 实现。
+ * @description EN: A Set-like collection that stores object keys in a WeakSet and primitive values in a Set.
  * - 对象类型的元素使用 WeakSet 存储，原始类型的元素使用 Set 存储。
  * - 这样既可以用对象做元素，也可以用字符串、数字等做元素，且对象元素不会阻止垃圾回收。
  * - 不支持遍历和 size 属性，因为 WeakSet 无法遍历。

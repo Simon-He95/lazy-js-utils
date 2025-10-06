@@ -1,8 +1,11 @@
 /**
- * 确保前缀有这个字符串
- * @param { string } prefix 前缀
- * @param { string } str 字符串
- * @returns
+ * Ensure the given string starts with the provided prefix. If it already
+ * starts with the prefix, the original string is returned; otherwise the
+ * prefix is prepended.
+ *
+ * @param prefix - prefix to ensure
+ * @param str - input string
+ * @returns string that starts with prefix
  */
 export function ensurePrefix(prefix: string, str: string) {
   if (!str.startsWith(prefix))

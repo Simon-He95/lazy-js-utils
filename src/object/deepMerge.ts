@@ -5,6 +5,7 @@ import { isPlainObject } from '../is/isPlainObject'
  * @param target 对象
  * @param sources 其他对象
  * @returns
+ * @description EN: Recursively merge source plain objects into the target object.
  */
 export function deepMerge(
   target: Record<any, any>,

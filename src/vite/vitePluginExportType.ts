@@ -7,6 +7,7 @@
 // //  [@vue/compiler-sfc] type argument passed to defineProps() must be a literal type, or a reference to an interface or literal type
 // // 插件支持setup中动态导入类型
 // export function vitePluginExportType() {
+// @description EN: Vite plugin (stub) to inline exported TypeScript types into .vue files to support dynamic type imports in setup.
 //   const TYPEREG = /\w+\s*<(\w+)>\s*\(/gm
 //   const EXPORTINTERFACE = /export\s+interface\s+([\w]+)\s*({[\w\s:,;]+})/gm
 //   const EXPORTTYPE = /export\s+type\s+([\w]+)\s*=\s*({[\w\s:,;]+})/gm

@@ -2,12 +2,20 @@ import { isArray } from './isArray'
 import { isPlainObject } from './isPlainObject'
 
 /**
- * 判断2个对象是否相等
- * @param { any } o1 对象1
- * @param { any } o2 对象2
- * @returns
+ * 深度比较两个值是否相等
+ * @description EN: Deep equality check for plain objects and arrays.
+ * @param {any} o1 First value.
+ * @param {any} o2 Second value.
+ * @returns {boolean} True when values are deeply equal.
  */
 export function isEqual(o1: any, o2: any): boolean {
+  /**
+   * Deep equality check for plain objects and arrays.
+   *
+   * @param {any} o1 First value.
+   * @param {any} o2 Second value.
+   * @returns {boolean} True when values are deeply equal.
+   */
   if (o1 === o2)
     return true
 

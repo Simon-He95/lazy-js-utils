@@ -36,7 +36,10 @@ const videoExtension = [
 ]
 
 /**
- * 判断是否是video
+ * 判断是否为视频文件（基于扩展名）
+ * @description EN: Returns true when the filepath ends with a known video file extension.
+ * @param {string} filepath Path or filename.
+ * @returns {boolean}
  */
 export function isVideo(filepath: string) {
   const last = filepath.lastIndexOf('.') + 1

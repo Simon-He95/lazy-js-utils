@@ -3,11 +3,15 @@ import type { DeviceType } from '../types'
 
 /**
  * 设备信息缓存
+ * @description EN: Cache for computed device information so repeated calls
+ * return the same value without recomputing.
  */
 let deviceCache: DeviceType | null = null
 
 /**
  * 获取当前环境设备信息 os 手机设备 dev 浏览器环境
+ * @description EN: Determine OS and device/browser identifiers from the
+ * user agent string and return a DeviceType describing the environment.
  * @returns {DeviceType} 设备信息
  */
 export function getDevice(): DeviceType {

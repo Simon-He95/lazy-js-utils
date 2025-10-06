@@ -1,4 +1,7 @@
 export function eliminateFetchAsync(fn: Function) {
+  /**
+   * @description EN: Replace window.fetch temporarily to deduplicate/serialize fetch calls inside the provided function, rethrowing a Promise to pause execution until underlying fetches settle.
+   */
   const originFetch = window.fetch
   const cache: any = []
   let i = 0

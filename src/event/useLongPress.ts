@@ -4,11 +4,12 @@ import { useEventListener } from './useEventListener'
 import { useTimeout } from './useTimeout'
 
 /**
- * 检测元素鼠标长按
- * @param { MaybeElement } el 元素
- * @param { number } ms 时长
- * @param { Function } callback 回调
- * @returns 停止
+ * Fire callback when the target receives a long mouse press (mousedown -> mouseup after ms).
+ *
+ * @param el - target element or selector
+ * @param ms - duration threshold in milliseconds
+ * @param callback - invoked when a long press is detected
+ * @returns A stop function to remove listeners
  */
 export function useLongPress(
   el: MaybeElement,

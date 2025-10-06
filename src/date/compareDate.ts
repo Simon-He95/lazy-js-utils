@@ -2,6 +2,7 @@ import type { DateString } from '../types'
 
 /**
  * 比较2个月份的大小
+ * @description EN: Compare two full dates (YYYY-MM-DD or YYYY/MM/DD) returning -1/0/1 when date1 is less/equal/greater than date2.
  * @param date1 '2021-02-01' | '2021/02/01'
  * @param date2 '2021-03-02' | '2021/03/02'
  * @param separator '-' | '/' 默认 '-'

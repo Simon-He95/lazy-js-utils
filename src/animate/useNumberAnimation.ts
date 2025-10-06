@@ -2,6 +2,7 @@ import { useRaf } from '../perf'
 
 /**
  * 贝塞尔曲线变化数字
+ * @description EN: Animate a number from `from` to `to` using a Bezier easing curve and call `onProgress` on each step.
  * @param from 起始数字
  * @param to 结束数字
  * @param duration 动画时长

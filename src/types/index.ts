@@ -1,4 +1,5 @@
 // 通用工具类型
+// @description EN: Common utility TypeScript types used across the project (Nullable, Optional, DeepPartial, etc.).
 
 /** 允许为 null 的类型 */
 export type Nullable<T> = T | null

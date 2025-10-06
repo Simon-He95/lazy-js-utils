@@ -8,6 +8,7 @@ import type { MaybeElement } from '../types'
  * @param { MaybeElement } container 容器
  * @param { Function } callback 停止回调
  * @returns
+ * @description EN: Capture and display the user's screen media in the provided container and call callback when sharing stops.
  */
 export function shareScreen(
   container: MaybeElement,
@@ -24,8 +25,10 @@ export function shareScreen(
         muted: '',
       })
       video.srcObject = stream
-      if (isStr(container))
-        container = findElement(container) || container
+      if (isStr(container)) {
+        container
+          = (findElement(container) as unknown as MaybeElement) || container
+      }
       if (isStr(container))
         reject(new Error(`${container} container is not a HTMLElement`))
       resolve('success')

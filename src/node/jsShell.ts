@@ -7,6 +7,7 @@ import type { IShellMessage } from '../types'
 
 /**
  * 执行 shell 命令的工具函数，支持单个或多个命令的执行。
+ * @description EN: Utility to execute shell commands (single or multiple). Returns promise(s) with execution results.
  *
  * @template T - 指令类型，可以是字符串或字符串数组。
  * @param {string | string[]} commander - 要执行的命令或命令数组。

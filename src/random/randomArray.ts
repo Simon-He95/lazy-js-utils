@@ -1,5 +1,6 @@
 /**
  * 随机打乱数组
+ * @description EN: Shuffle an array in-place using the Fisher–Yates algorithm.
  * @param array any[]
  * @returns array
  */

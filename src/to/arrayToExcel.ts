@@ -18,14 +18,13 @@ interface IArrayToExcel {
 }
 
 /**
- * 数组转换为excel
- * @param { IArrayToExcel } options {
-  data: Record<string, any>[]
-  filename?: string
-  title?: string[]
-  filter?: string[]
-}
- * @returns { void }
+ * Convert an array of objects into an Excel-compatible HTML table and
+ * trigger a download as an .xls file.
+ *
+ * Each item may be a primitive value or an object with display metadata
+ * (value, width, colspan, rowspan, style).
+ *
+ * @param options - Data and output options
  */
 export function arrayToExcel(options: IArrayToExcel) {
   const { data, filename = uuid(), title, filter } = options

@@ -1,12 +1,17 @@
 /**
+ * Convert a base64 data URL to a File object.
  *
- * @param { string } s base64
- * @param { string } filename 文件名
- * @returns File
+ * @param s - Base64 data URL (e.g. 'data:image/png;base64,...')
+ * @param filename - Desired filename for the File
+ * @returns A File built from the decoded base64 data
  */
 export function base64ToFile(s: string, filename: string): File {
   const arr = s.split(',')
-  const mime = arr[0]?.match(/:(.*?);/)?.[1]
+  if (arr.length < 2)
+    throw new Error('Invalid base64 string')
+
+  const mimeMatch = arr[0].match(/:(.*?);/)
+  const mime = mimeMatch?.[1] ?? ''
   const bstr = atob(arr[1])
   let n = bstr.length
   const u8arr = new Uint8Array(n)

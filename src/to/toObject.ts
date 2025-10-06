@@ -1,10 +1,15 @@
 import { isPlainObject } from '../is/isPlainObject'
 
 /**
- * 将数组中指定的元素转换为对象
- * @param { Array<any> } arr 数组
- * @param { string[] } filter 指定数组
- * @returns { object }
+ * Convert an array of plain objects into an object keyed by property names.
+ *
+ * For each key present in the input objects, the returned object will have an
+ * array of values collected from each item. Optionally restrict keys via
+ * `filter`.
+ *
+ * @param arr - Input array of plain objects.
+ * @param filter - Optional list of keys to include.
+ * @returns Object mapping keys to arrays of values.
  */
 export function toObject(arr: Array<any>, filter?: string[]): object {
   return arr.reduce(

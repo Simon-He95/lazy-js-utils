@@ -10,6 +10,7 @@ import { useRaf } from '../perf/useRaf'
  *
  * 支持多种绘制方向、颜色控制、间距设置以及动画效果
  * @class
+ * @description EN: Convert text into a dot-matrix representation and animate the drawing with configurable direction, color and spacing options.
  */
 export class DotTextCanvas {
   /** 用于绘制的 Canvas 元素 */

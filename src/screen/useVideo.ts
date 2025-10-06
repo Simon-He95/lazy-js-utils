@@ -31,6 +31,7 @@ interface VideoOptions {
  * @returns
  */
 export function useVideo(sources: Sources[] = [], videoOptions: VideoOptions) {
+  // @description EN: Create a video element with provided sources and controls, attach to container, and provide playback helpers.
   const video = createElement('video') as HTMLVideoElement
   const { controls = true, width, height, className, style } = videoOptions
   const container = videoOptions.container

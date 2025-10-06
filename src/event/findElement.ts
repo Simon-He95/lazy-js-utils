@@ -3,45 +3,83 @@ import { isBool } from '../is/isBool'
 import { isNull } from '../is/isNull'
 
 /**
- * 查找元素
- * @param { string | string[] } selector 选择器
- * @param { boolean } [all] 是否获取所有节点
- * @param { HTMLElement | Document } [currentNode] 在哪个节点下查找
+ * Find element(s) by CSS selector.
+ *
+ * - If `selector` is a string and `all` is truthy, returns a NodeList of matches.
+ * - If `selector` is a string and `all` is falsy, returns the first matched
+ *   HTMLElement or null.
+ * - If `selector` is an array of selectors, returns an array of Elements
+ *   matching all selectors (flattened).
+ * - If an actual HTMLElement or NodeList is passed as `selector`, it is
+ *   returned unchanged (passthrough) which makes this helper safe to call
+ *   on union-typed variables.
+ *
+ * @param selector - CSS selector, array of selectors, HTMLElement, NodeList, or falsy
+ * @param all - when true, return all matched nodes; when an HTMLElement is
+ *   passed, it is used as the `currentNode` to query from. Default is false.
+ * @param currentNode - Root node to query from (defaults to `document`).
  */
-export function findElement(selector: string | string[]): HTMLElement | null
-export function findElement<T extends boolean | HTMLElement>(
-  selector: string | string[],
-  all?: T,
+export function findElement(
+  selector: string,
+  all?: true | HTMLElement,
   currentNode?: HTMLElement | Document,
-): T extends true ? NodeListOf<Element> | undefined : HTMLElement | null
+): NodeListOf<Element> | undefined
+export function findElement(
+  selector: string,
+  all?: false | undefined | HTMLElement,
+  currentNode?: HTMLElement | Document,
+): HTMLElement | null
+export function findElement(
+  selector: string[],
+  all?: boolean | HTMLElement,
+  currentNode?: HTMLElement | Document,
+): Element[]
+export function findElement(
+  selector: HTMLElement | NodeListOf<Element> | null | undefined,
+): HTMLElement | NodeListOf<Element> | null | undefined
 
 export function findElement(
-  selector: string | string[],
+  selector:
+    | string
+    | string[]
+    | HTMLElement
+    | NodeListOf<Element>
+    | null
+    | undefined,
   all: boolean | HTMLElement = false,
   currentNode: HTMLElement | Document = document,
 ) {
+  // Passthrough: if caller provided an Element/NodeList or nothing, return it.
+  if (selector == null)
+    return selector as any
+
+  if (typeof selector !== 'string' && !isArray(selector))
+    return selector as any
+
   if (isNull(all))
     return
+
   if (!isBool(all)) {
     currentNode = all as unknown as HTMLElement
     all = false
   }
+
   if (isArray(selector)) {
-    return selector.reduce((result, c) => {
+    return selector.reduce((result: Element[], c) => {
       const item = all
         ? currentNode.querySelectorAll(c)
         : currentNode.querySelector(c)
       if (!item)
         return result
-      return (result = all
-        ? [...result, ...(item as unknown as Element[])]
-        : [...result, item as unknown as Element])
+      if (all)
+        return result.concat(Array.from(item as NodeListOf<Element>))
+      return result.concat(item as Element)
     }, [] as Element[])
   }
 
   return all
-    ? (currentNode.querySelectorAll(selector) as
+    ? (currentNode.querySelectorAll(selector as string) as
     | NodeListOf<Element>
     | undefined)
-    : (currentNode.querySelector(selector) as HTMLElement | null)
+    : (currentNode.querySelector(selector as string) as HTMLElement | null)
 }

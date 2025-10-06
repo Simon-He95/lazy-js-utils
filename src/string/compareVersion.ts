@@ -1,11 +1,15 @@
 import type { ComparisonOperator } from '../types'
 
 /**
- * 比较两个版本号
- * @param {string} version1 - 第一个版本号
- * @param {string} version2 - 第二个版本号
- * @param {ComparisonOperator} [operator] - 比较操作符: '>', '<', '=', '>=', '<=', '!='
- * @returns {number|boolean} 如果提供操作符则返回布尔值，否则返回数字(-1, 0, 1)
+ * Compare two semantic version strings (dot-separated numeric parts).
+ *
+ * Without an operator returns -1, 0, or 1. With an operator it returns a
+ * boolean result of the comparison.
+ *
+ * @param version1 - first version string (e.g. '1.2.3')
+ * @param version2 - second version string
+ * @param operator - optional comparison operator ('>', '<', '=', '>=', '<=', '!=')
+ * @returns number (-1, 0, 1) when operator is omitted, otherwise boolean
  */
 export function compareVersion(version1: string, version2: string): number
 export function compareVersion(
@@ -23,11 +27,11 @@ export function compareVersion(
 
   const maxLength = Math.max(v1Parts.length, v2Parts.length)
 
-  // 补齐较短的版本号
+  // Pad shorter version with zeros
   while (v1Parts.length < maxLength) v1Parts.push(0)
   while (v2Parts.length < maxLength) v2Parts.push(0)
 
-  // 逐位比较
+  // Compare each segment
   for (let i = 0; i < maxLength; i++) {
     if (v1Parts[i] > v2Parts[i]) {
       return operator ? handleOperator(1, operator) : 1

@@ -6,6 +6,7 @@ import { stringify } from '../object/stringify'
  * @param { string } s 内容
  * @param { Record<string, string | number>  } styleObj 样式
  * @param { string } type 类型 'warn' | 'error' | 'log'
+ * @description EN: Print styled logs to console with optional type and extra args. Accepts style object or CSS string.
  */
 export function log(
   s: string | number,

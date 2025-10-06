@@ -1,18 +1,20 @@
 import { isArray } from '../is/isArray'
 
 /**
- *
- * @param { Record<string, any> | Record<string, any>[] } o 对象或者数组
- * @param { string }flattenProps 展开的属性默认为children
- * @param { boolean }onlyLastNode  只保留最后一层级的数据
- * @returns 一层的数组
+ * 将嵌套结构扁平化为数组
+ * @description EN: Flatten a nested tree-like structure into a flat array. The property used for children can be customized.
+ * @param { Record<string, any> | Record<string, any>[] } o Object or array to flatten.
+ * @param { string } [flattenProps] Property name that holds children.
+ * @param { boolean } [onlyLastNode] When true, only keep leaf nodes.
+ * @param { any[] } [result] Internal accumulator used during recursion.
+ * @returns { any[] } Flattened array of nodes.
  */
 export function flatten<T extends Record<string, any>>(
   o: T | T[],
   flattenProps = 'children',
   onlyLastNode = false,
   result: T[] = [],
-) {
+): T[] {
   o = isArray(o) ? o : [o]
   o.forEach((node: any) => {
     const children = node[flattenProps]

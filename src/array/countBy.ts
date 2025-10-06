@@ -1,8 +1,9 @@
 /**
- *
- * @param { any[] } array 数组
- * @param { Function } iterator 迭代数组函数
- * @returns 结果的个数
+ * 按照迭代器结果统计数组中元素出现次数
+ * @description EN: Count elements in an array grouped by the value returned from the iterator.
+ * @param { any[] } array Input array to count.
+ * @param { Function } iterator Function that maps each item to a key.
+ * @returns {Record<string, number>} Map from key to its occurrence count.
  */
 export function countBy<T extends Record<string, any>>(
   array: T[],

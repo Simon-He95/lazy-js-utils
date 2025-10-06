@@ -7,6 +7,7 @@
 //  * @returns
 //  */
 // export function vitePluginTransformVdeep() {
+// @description EN: Vite plugin (stub) to transform CSS :deep/>>> selectors into :deep() form inside .vue files.
 //   return {
 //     name: 'vite-plugin-transform-Vdeep',
 //     transform(src: any, id: string) {

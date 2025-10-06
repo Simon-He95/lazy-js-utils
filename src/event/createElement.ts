@@ -1,10 +1,11 @@
 /**
- * 创建dom元素
- * @param { string } tag 创建的标签元素
- * @param { Record<string, string> } [attributes] 属性 {}
- * @param { string } [innerHTML] 插入的内容innerHTML
- * @param { ElementCreationOptions } [options] 通过 customElements.define() 定义的自定义元素的标签名称
- * @returns
+ * Create a DOM element with optional attributes and innerHTML.
+ *
+ * @param tag - tag name to create (e.g. 'div')
+ * @param attributes - optional attributes object to set on the element
+ * @param innerHTML - optional innerHTML to insert
+ * @param options - optional ElementCreationOptions for custom elements
+ * @returns the created HTMLElement
  */
 export function createElement<T extends keyof HTMLElementTagNameMap>(
   tag: T,

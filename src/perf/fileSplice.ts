@@ -5,6 +5,7 @@ import type { ChunkDetail, FileSpliceOptions } from '../types'
  * @param { File } _file 文件
  * @param { number } _chunkSize 切分大小 默认 1024 * 100
  * @returns
+ * @description EN: Split a large `File` into chunks for parallel processing using web workers and return chunk details.
  */
 export async function fileSplice(
   options: FileSpliceOptions,

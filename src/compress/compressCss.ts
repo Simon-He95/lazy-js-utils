@@ -9,3 +9,9 @@ export function compressCss(s: string): string {
     '',
   )
 }
+
+/**
+ * @description EN: Minify CSS rules by trimming selectors and removing redundant whitespace in declarations.
+ * @param s - CSS string to compress
+ * @returns compressed CSS string
+ */

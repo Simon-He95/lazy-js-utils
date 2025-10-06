@@ -6,15 +6,15 @@ import { isBrowser } from '../is'
 
 const { os } = getDevice()
 const isPhone = os === 'ios' || os === 'android'
+
 /**
- * 拖砖
- * @param { HTMLElement | string } target 元素
- * @param { DragEvent } options {}
- * @param { (e: any) => void } options.dragStart 开始拖拽callback
- * @param { (e: any) => void } options.dragMove 拖拽过程callback
- * @param { (e: any) => void } options.dragEnd 拖拽结束callback
- * @param trigger
- * @returns
+ * Unified drag event helper that supports mouse and touch.
+ * It normalizes touch events to look like mouse events (clientX/clientY etc.).
+ *
+ * @param target - Element or selector to attach drag handlers to
+ * @param options - Handlers: dragStart, dragMove, dragEnd
+ * @param trigger - When true, move events only fire after a start
+ * @returns A stop function to remove all listeners
  */
 export function dragEvent(
   target: HTMLElement | string,

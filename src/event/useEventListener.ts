@@ -3,13 +3,16 @@ import { unmount } from '../utils/unmount'
 import { useMutationObserver } from './useMutationObserver'
 
 /**
- * 事件监听
- * @param { Window | Document | Element | string } target 元素
- * @param { T } eventName 事件名
- * @param { (e: (WindowEventMap & DocumentEventMap)[T]) => void } callback 回调
- * @param { boolean | AddEventListenerOptions } useCapture 捕获
- * @param { boolean } autoRemove 是否自动被移除
- * @returns 停止
+ * Add an event listener to a target. The function supports Window, Document, Element,
+ * MediaQueryList or selector string. Listener is automatically cleaned up when unmounted.
+ *
+ * @template T - Event name type from WindowEventMap & DocumentEventMap
+ * @param target - Target to attach to (element, selector, window, document, or media query list)
+ * @param eventName - Event name
+ * @param callback - Event handler
+ * @param useCapture - Options for addEventListener (capture or options object)
+ * @param autoRemove - If true the listener will remove itself after first call
+ * @returns A function that stops/removes the listener
  */
 export function useEventListener<
   T extends keyof (WindowEventMap & DocumentEventMap),
@@ -22,7 +25,7 @@ export function useEventListener<
 ): () => void {
   let stopped = false
   let stop: () => void
-  let animationStop: () => void
+  let animationStop: (() => void) | undefined
   if (eventName === 'DOMContentLoaded')
     stopped = true
   function event(e: (WindowEventMap & DocumentEventMap)[T]) {
@@ -57,7 +60,7 @@ export function useEventListener<
     target.addEventListener(eventName, eventFunction, useCapture)
 
     let mutationStop: (() => void) | undefined
-    // 仅对 Element 类型做 DOM 移除监听
+    // Only observe DOM removal for Element targets
     if (target instanceof Element && target.parentNode) {
       mutationStop = useMutationObserver(target.parentNode, (mutations) => {
         for (const mutation of mutations) {

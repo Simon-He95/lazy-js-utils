@@ -1,8 +1,11 @@
 /**
- * 检测字符串强度
- * @param { string | number } s 字符串
- * @param { number } minimum 长度 默认 6
- * @returns
+ * Compute a simple password strength level (0-4) based on presence of
+ * lowercase, uppercase, digits and symbols. If the string is shorter than
+ * `minimum` the level is 0.
+ *
+ * @param s - input string or number (coerced to string)
+ * @param minimum - minimum length required (default: 6)
+ * @returns strength level from 0 (weak) to 4 (strong)
  */
 export function pwdLevel(s: string | number, minimum = 6): number {
   let level = 0

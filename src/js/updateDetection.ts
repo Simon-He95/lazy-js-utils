@@ -1,5 +1,6 @@
 /**
  * 用户停留在老页面但是已经有新的版本
+ * @description EN: Detects if the served HTML has updated script sources and invokes a callback when an update is detected.
  */
 
 import { isEqual } from '../is'
@@ -11,6 +12,7 @@ let lastSrcs: string[]
  * 检测首页中script src是否存在更新
  * @param { number } s 检测时间间隔 默认 2000
  * @param callback 如果页面检测出有更新则会被调用
+ * @description EN: s is the check interval in ms (default 2000). callback is invoked when an update is detected.
  * @returns
  */
 export function updateDetection(s = 2000, callback: () => void) {

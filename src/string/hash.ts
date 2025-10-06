@@ -1,3 +1,10 @@
+/**
+ * Fast string hash that returns a small alphanumeric token for the input.
+ * This is non-cryptographic and intended for short, human-friendly keys.
+ *
+ * @param str - input string to hash
+ * @returns 6-character base36 hash string
+ */
 export function hash(str: string) {
   let i
   let l

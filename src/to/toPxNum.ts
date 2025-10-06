@@ -1,40 +1,55 @@
-import { isNum, isStr } from '../is'
-import { isPx } from '../is/isPx'
+import { isStr } from '../is'
 import { isRem } from '../is/isRem'
 import { isVh } from '../is/isVh'
 import { isVw } from '../is/isVw'
 import { toNumber } from './toNumber'
 
 /**
- * 将长度单位转换为数字
- * @param value
- * @returns number
+ * Convert various CSS length formats to a pixel number.
+ *
+ * Supports:
+ * - numbers (returned as-is)
+ * - '12px' => 12
+ * - '2rem' => rem * root font-size
+ * - '10vw'/'5vh' => percentage of viewport width/height
+ * - other numeric strings parsed via `toNumber`
+ * Falls back to 0 for unsupported formats (e.g. percentages without context).
+ *
+ * @param value - Input value (number or CSS length string)
+ * @returns Pixel value as number
  */
 export function toPxNum(value: unknown): number {
-  if (isNum(value))
+  if (value == null)
+    return 0
+
+  if (typeof value === 'number')
     return value
 
-  if (isPx(value))
-    return +(value as string).replace('px', '')
+  const s = String(value).trim()
 
-  if (isVw(value))
-    return (+(value as string).replace('vw', '') * window.innerWidth) / 100
+  if (s.endsWith('px'))
+    return Number.parseFloat(s.replace('px', ''))
 
-  if (isVh(value))
-    return (+(value as string).replace('vh', '') * window.innerHeight) / 100
+  if (isVw(s)) {
+    const n = Number.parseFloat((s as string).replace('vw', ''))
+    return (n * window.innerWidth) / 100
+  }
 
-  if (isRem(value)) {
-    const num = +(value as string).replace('rem', '')
-    const rootFontSize = window.getComputedStyle(
-      document.documentElement,
-    ).fontSize
+  if (isVh(s)) {
+    const n = Number.parseFloat((s as string).replace('vh', ''))
+    return (n * window.innerHeight) / 100
+  }
 
+  if (isRem(s)) {
+    const num = Number.parseFloat((s as string).replace('rem', ''))
+    const rootFontSize
+      = window.getComputedStyle(document.documentElement).fontSize || '16px'
     return num * Number.parseFloat(rootFontSize)
   }
 
-  if (isStr(value))
-    return toNumber(value)
+  if (isStr(s))
+    return toNumber(s)
 
-  // % and other
+  // unsupported (percentages, etc.)
   return 0
 }

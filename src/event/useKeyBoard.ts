@@ -1,10 +1,12 @@
 import { useEventListener } from './useEventListener'
 
 /**
- * 检测指定按键
- * @param { string } c 按键字符串
- * @param { Function } callback 按键与案件字符串一致时的回调
- * @returns 停止
+ * Listen for specific keyboard shortcut string, e.g. "Ctrl+Shift+X".
+ * Calls the callback when the generated key string matches the provided one.
+ *
+ * @param c - Shortcut string to match
+ * @param callback - Called with the matched code when it occurs
+ * @returns A stop function that removes the keydown listener
  */
 export function useKeyBoard(c: string, callback: (code: string) => void) {
   return useEventListener(document, 'keydown', (e: KeyboardEvent) => {

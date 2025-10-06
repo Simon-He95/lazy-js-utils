@@ -6,6 +6,7 @@ import { isStr } from '../is/isStr'
  * @param { string } paths 路径
  * @param { (content: string, index: number) => string } callback 回调接收文件字符串将返回的内容重新写入该文件
  * @param { string } [encoding] 默认 'utf-8'
+ * @description EN: Overwrite files by reading their content, transforming it via callback, and writing back the result.
  */
 export function writeFile(
   paths: string[] | string,

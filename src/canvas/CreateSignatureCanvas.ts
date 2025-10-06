@@ -4,6 +4,10 @@ import { removeElement } from '../event/removeElement'
 import { useEventListener } from '../event/useEventListener'
 import { useKeyBoard } from '../event/useKeyBoard'
 
+/**
+ * 创建签名画布工具类
+ * @description EN: Utility class to create and manage a signature canvas with drawing, undo/redo, and export features.
+ */
 export class CreateSignatureCanvas implements ISignature {
   canvas: HTMLCanvasElement = document.createElement('canvas')
   ctx: CanvasRenderingContext2D = this.canvas.getContext('2d')!

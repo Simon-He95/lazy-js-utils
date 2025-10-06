@@ -3,6 +3,9 @@
  * sub 数字求差
  * mul 数字相乘
  * div 数字相除
+ * @description EN: Helper for basic arithmetic operations that mitigates
+ * floating-point rounding errors by scaling operands. Provides add, sub,
+ * mul and div methods accepting numbers or numeric strings.
  */
 export const calNum = {
   add(...args: (number | string)[]): number {

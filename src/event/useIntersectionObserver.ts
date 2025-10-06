@@ -10,14 +10,13 @@ interface IntersectionObserverOptions {
 }
 
 /**
- * 检测物体可见
- * @param { Element | string } element 元素
- * @param { (entries: IntersectionObserverEntry[]) => void } callback 元素可见回调
- * @param { IntersectionObserverOptions } options {}
- * @param { Element | Document | string | null } options.root 相对容器节点
- * @param { string } options.rootMargin 相对容器节点位置"10px 20px 30px 40px"
- * @param { number | number[] } options.threshold 相对容器节点百分比 [0, 0.25, 0.5, 0.75, 1]
- * @returns
+ * Observe intersection changes for an element and call callback with entries.
+ * `options.root` may be a selector string; if so it will be resolved via `findElement`.
+ *
+ * @param element - Element or selector to observe
+ * @param callback - Receives IntersectionObserverEntry[] when the observer fires
+ * @param options - IntersectionObserver options (root may be selector string)
+ * @returns A stop function that disconnects the observer
  */
 export function useIntersectionObserver(
   element: Element | string,
@@ -28,8 +27,13 @@ export function useIntersectionObserver(
   let stop: () => void
   unmount(() => stop?.())
   mount(element, (element) => {
-    if (options?.root && isStr(options.root))
-      options.root = findElement(options.root)
+    if (options?.root && isStr(options.root)) {
+      const r = findElement(options.root)
+      options.root
+        = r instanceof NodeList
+          ? (r[0] as Element | null)
+          : (r as Element | Document | null | undefined)
+    }
     const ob = new IntersectionObserver(
       callback,
       options as IntersectionObserverInit,

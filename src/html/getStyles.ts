@@ -5,6 +5,7 @@ export const stylesReg = /(<.* style=['"]([ \w$\-:;\n]*)['"][/ "'$\-\w]*>)/g
  * @param { string } str 字符串模板
  * @param { Function } callback 读取style时的回调
  * @returns
+ * @description EN: Extract inline style attributes from HTML-like strings and call `callback` with each style and the full matching block.
  */
 
 export function getStyles(

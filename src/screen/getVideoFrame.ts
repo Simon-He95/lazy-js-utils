@@ -5,6 +5,7 @@ import { Canvas } from '../canvas'
  * @param file 视频类型的File对象
  * @param time 需要截取帧的时间（单位：秒）
  * @returns Promise<{ url: string; blob: Blob }>
+ * @description EN: Extract a frame image from a video File at the given time (seconds) and return a blob URL and Blob.
  */
 export async function getVideoFrame(
   file: File,

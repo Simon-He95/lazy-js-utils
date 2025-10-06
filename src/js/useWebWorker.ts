@@ -1,24 +1,30 @@
-import { isStr } from '../is/isStr'
-import { fnToUrl } from './fnToUrl'
-
 /**
  * webWorker
  * @param { string } [url] url自定义worker文件路径 或者 worker函数
+ * @description EN: Create a simple WebWorker wrapper. Accepts a script URL or a function which will be converted to a URL. Returns helpers to post messages and register handlers.
  */
-export function useWebWorker(url: string): any
-export function useWebWorker(useWebWorkerThread: () => void): any
+import { fnToUrl } from './fnToUrl'
+
 export function useWebWorker(url: string | (() => void)) {
-  const worker = new Worker(isStr(url) ? url : fnToUrl(url))
-  let onMessage: any
-  let errorMessage: any
+  // Handler placeholders
+  let onMessage: ((d: any) => void) | undefined
+  let errorMessage: ((err: any) => void) | undefined
+
+  // Create or reuse a Worker from URL or function
+  const workerUrl = typeof url === 'function' ? fnToUrl(url) : url
+  const worker = new Worker(workerUrl)
+
   const on = (callback: (data: any) => void) => (onMessage = callback)
   const error = (err: (err: any) => void) => (errorMessage = err)
-  worker.onerror = error => errorMessage?.(error)
-  worker.onmessage = event => onMessage?.(event.data)
+
+  worker.onerror = (e: any) => errorMessage?.(e)
+  worker.onmessage = (event: MessageEvent) => onMessage?.(event.data)
+
   return {
     emit: (msg: any) => worker.postMessage(msg),
     on,
     error,
+    terminate: () => worker.terminate(),
   }
 }
 

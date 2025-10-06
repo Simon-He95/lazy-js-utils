@@ -1,9 +1,10 @@
 import { useEventListener } from './useEventListener'
 
 /**
- * 检测视口变化
- * @param { Function } callback 浏览器尺寸变化回调
- * @returns
+ * Call the callback when the window is resized, returning the viewport width and height.
+ *
+ * @param callback - Receives (width, height)
+ * @returns A stop function for the resize listener
  */
 export function useResizeObserver(
   callback: (width: number, height: number) => void,

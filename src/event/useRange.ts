@@ -1,8 +1,10 @@
 /**
- * 获取target元素所在位置最后的位置
- * 注意如果外容器有偏移量，需要减去偏移量
- * @param target
- * @returns
+ * Get the bounding client rect for a caret/cursor position at the start of a node.
+ * Useful for positioning popups next to inline nodes. If the container has offsets
+ * the caller may need to subtract them.
+ *
+ * @param target - Node to measure
+ * @returns DOMRect representing the range bounding box
  */
 export function useRange(target: Node) {
   const range = document.createRange()

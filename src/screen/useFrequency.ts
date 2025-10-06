@@ -21,6 +21,9 @@ export function useFrequency(
     analyser: AnalyserNode,
   ) => void,
 ) {
+  /**
+   * @description EN: Analyze audio frequency data from a mounted media element and call back with the frequency array and analyser context.
+   */
   const { audio, fftSize = 512 } = options
   mount(audio, (el) => {
     let isInit = false

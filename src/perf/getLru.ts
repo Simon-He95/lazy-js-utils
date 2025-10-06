@@ -4,6 +4,7 @@ import type { LRU } from '../types'
  *
  * @param max 最大存储量 默认 50
  * @returns
+ * @description EN: Create and return a small LRU cache object with `get`, `set`, `cache`, `max` and `size()`.
  */
 export function getLru(max = 50): LRU {
   return {
@@ -12,7 +13,7 @@ export function getLru(max = 50): LRU {
         this.cache.delete(key)
       this.cache.set(key, value)
       if (this.cache.size > this.max)
-        this.cache.delete(this.cache.keys().next().value)
+        this.cache.delete(this.cache.keys().next().value!)
     },
     get(key: string) {
       if (this.cache.has(key)) {

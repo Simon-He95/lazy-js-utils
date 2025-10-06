@@ -7,15 +7,16 @@ interface ArrayToTreeOptions {
 }
 
 /**
- * 将数组转为树
- * @param { Record<string, any>[] } array 数组
- * @param { number } parentId 父节点的id 默认 0
- * @param { ArrayToTreeOptions } options {
-  id?: number | string 默认 'id'
-  pid?: number | string 默认 'pid'
-  children?: string 默认 'children'
-}
- * @returns Record<string, any>
+ * Convert a flat array of records into a tree structure.
+ *
+ * Example: pass an array with id/pid and this will nest children under the
+ * configured `children` key. `options` can override the id/pid/children
+ * property names.
+ *
+ * @param {Record<string, any>[]} array Source array of records.
+ * @param {number|string} [parentId] Parent id to start building from.
+ * @param {ArrayToTreeOptions} [options] Optional keys configuration.
+ * @returns {Record<string, any>} A tree node (root node is returned).
  */
 export function arrayToTree(
   array: Record<string, any>[],

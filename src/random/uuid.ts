@@ -1,10 +1,14 @@
 import { isNum } from '../is/isNum'
 
 /**
- * 生成uuid
- * @param { number } len 长度
- * @param {  number | 'hex' } radix  number | 'hex'
- * @returns
+ * Generate a UUID-like string.
+ *
+ * If `len` is provided a random string of that length is returned using the
+ * provided radix. Otherwise a RFC-like UUID of 36 chars is returned.
+ *
+ * @param {number} [len] Length of id to generate.
+ * @param {number|'hex'} [radix] Radix to use for character selection or 'hex'.
+ * @returns {string} Generated id string.
  */
 export function uuid(len?: number, radix?: number | 'hex') {
   const chars

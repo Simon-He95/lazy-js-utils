@@ -24,13 +24,12 @@ export interface HeadOptions {
 }
 
 /**
- * 创建head相关标签
- * @param { HeadOptions } options
- * @param { string | (() => string) } options.title 返回一个title字符串
- * @param { IMeta[] } options.meta 'description' | 'viewport' | 'keywords' | 'robots' | string
- * @param { IScript[] } options.script 'async' | 'module' | 'nomodule' | 'defer'
- * @param { ILink[] } options.link 'stylesheet' | 'preload' | 'icon' | 'prefetch' | string
- * @returns 移除函数
+ * Mount meta/script/link elements and optionally set document.title.
+ * The created nodes are inserted into document.head and a function to remove
+ * the created fragment is returned.
+ *
+ * @param options - Head options (title, meta, script, link)
+ * @returns A function that removes the inserted nodes from the head
  */
 export function useHead(options: HeadOptions) {
   const { title, meta, script, link } = options

@@ -1,8 +1,10 @@
 /**
- * 判断是否是<! -- xxx -->注释
- * @param { string } s 字符串
- * @returns
+ * 判断是否为 HTML 注释
+ * @description EN: Test whether a string looks like an HTML comment (<!-- ... -->).
+ * Matches across newlines as well.
+ * @param {string} s Input string.
+ * @returns {boolean}
  */
 export function isComment(s: string) {
-  return /<! -{2}.*?-{2}>/.test(s)
+  return /<!--[\s\S]*?-->/.test(s)
 }

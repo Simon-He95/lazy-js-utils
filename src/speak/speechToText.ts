@@ -1,6 +1,10 @@
 import { isFn } from '../is'
 import type { Lang } from '../types'
 
+/**
+ * Speech-to-text options
+ * @description EN: Options for the SpeechRecognition instance (continuous recognition, interim results, language).
+ */
 export interface SpeechToTextOptions {
   continuous: boolean // 每次识别都返回连续结果
   interimResults: boolean // 返回临时结果的设置
@@ -16,14 +20,10 @@ const defaultSpeechOptions: SpeechToTextOptions = {
 }
 /**
  * 语音转文字
- * @param { SpeechOptions } options {
-  continuous: boolean // 每次识别都返回连续结果
-  interimResults: boolean // 返回临时结果的设置
-  lang: Lang
-  maxAlternatives: number
-}
- * @param { (result: any) => any } callback 结果回调函数
- * @returns { { toggle: () => void, abort: () => void } }
+ * @description EN: Wrapper around the Web SpeechRecognition API. Returns controls to toggle recognition or abort.
+ * @param options - SpeechToTextOptions or a callback when omitted
+ * @param callback - optional callback invoked with recognition results
+ * @returns controls { toggle, abort }
  */
 export function speechToText(
   options: SpeechToTextOptions | ((result: any) => any) = defaultSpeechOptions,

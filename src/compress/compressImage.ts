@@ -26,6 +26,13 @@ export function compressImage(
   })
 }
 
+/**
+ * @description EN: Compress an image (File or data URL) to a smaller size. Returns a base64 string or Blob depending on `options.type`.
+ * @param source - File or data URL string
+ * @param options - Compression options (quality, maxWidth, maxHeight, type)
+ * @returns Promise<string|Blob> compressed result
+ */
+
 function fileToDataURL(
   source: Blob | string,
   resolve: (blob: Blob | string) => void,

@@ -3,13 +3,16 @@ const matchMap = {
   '[': ']',
   '(': ')',
 }
+
 /**
- * 查找匹配符号的结束偏移量
+ * Find the offset from the start of `code` to the matching closing
+ * bracket for a given opening bracket character. Useful when scanning
+ * forward in code to find where a structure ends.
  *
- * @param matchStr - 要匹配的符号
- * @param code - 包含符号的代码字符串
- * @returns 匹配符号的结束偏移量
- * @throws 如果在代码字符串中找不到匹配符号的结束偏移量，则抛出错误
+ * @param matchStr - the opening bracket character to match (e.g. '{', '(', '[')
+ * @param code - the code string to search (search starts from the beginning)
+ * @returns offset from the start of the input to the matching closing bracket
+ * @throws if no matching closing bracket is found
  */
 export function findMatchEndOffset(matchStr: string, code: string) {
   let offset = 0

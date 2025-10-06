@@ -1,9 +1,10 @@
 import { createElement } from '../event/createElement'
 
 /**
- * head添加script标签
- * @param { string } src 路径
- * @returns
+ * Add a <script> tag to the document head and return a remover function.
+ *
+ * @param {string} src Script URL to add to the page.
+ * @returns {() => void} Function that removes the inserted script.
  */
 export function addScript(src: string): () => void {
   try {

@@ -3,6 +3,12 @@
  * 加载javascript失败，从域名数组中取资源加载
  * @param domains 域名数组
  */
+/**
+ * @description EN: Retry loading scripts from a list of alternate domains when
+ * a script element fails to load. Listens for global error events and rewrites
+ * the script src to attempt reloading from another domain.
+ * @param domains 域名数组
+ */
 export function retryScript(domains: string[]) {
   const retryInfo: Record<string, { times: number, nextIndex: number }> = {}
   window.addEventListener(

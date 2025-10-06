@@ -11,6 +11,7 @@ import { useRaf } from '../perf'
  *
  * 支持多种绘制方向，颜色控制，背景设置，以及动画效果控制
  * @class
+ * @description EN: Convert an image to a dot-matrix representation and provide animated drawing controls with various directions, colors, background and animation options.
  */
 export class DotImageCanvas {
   /** 用于绘制的 Canvas 元素 */

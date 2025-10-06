@@ -1,6 +1,6 @@
 /**
  * 浏览器卸载时
- * @description 浏览器卸载时
+ * @description EN: Register a callback to run when the window unloads.
  * @param { (ev: Event) => void } callback 回调
  * @returns { (ev: Event) => void }
  */

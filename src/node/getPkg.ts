@@ -17,6 +17,7 @@ interface IPackage {
  * 获取当前package.json 对象
  * @param { string } url 路径 默认 ./package.json
  * @returns 返回json格式package.json
+ * @description EN: Read and parse a package.json file at the provided path (defaults to ./package.json) and return its JSON object.
  */
 export async function getPkg(
   url = './package.json',

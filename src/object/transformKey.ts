@@ -6,6 +6,9 @@ export function transformKey(
   options: Record<string, string>,
   deleteEmpty = false,
 ) {
+  /**
+   * @description EN: Rename and/or relocate keys in an object (or array of objects) using a mapping; supports nested paths and optional deletion of empty containers.
+   */
   return !isObject(target)
     ? target
     : isArray(target)

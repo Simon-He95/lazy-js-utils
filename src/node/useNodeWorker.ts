@@ -15,13 +15,13 @@ type NodeWorkReturn<T> = T extends {
   : IShellMessage
 
 /**
- * 这个api需要 dependencies 中安装lazy-js-utils
  * @param { string | NodeWorkerPayload } payload 字符串 ｜ {
   params: string[]
   stdio?: 'inherit' | 'pipe'
 }
  * @param { string } [url] 自定义worker路径
  * @returns
+ * @description EN: Run shell-like commands inside a Node Worker thread using the bundled worker script; accepts a payload or a command string.
  */
 export async function useNodeWorker<T extends NodeWorkerPayload | string>(
   payload: T,
@@ -61,6 +61,9 @@ export async function useNodeWorker<T extends NodeWorkerPayload | string>(
 
 export function useProcressNodeWorker(callback: (data: any) => any) {
   const { parentPort } = worker_threads
+  /**
+   * @description EN: Helper to be used inside the worker thread to receive messages and post back results.
+   */
   parentPort!.on('message', async data =>
     parentPort?.postMessage((await callback?.(data)) || (() => '')))
 }

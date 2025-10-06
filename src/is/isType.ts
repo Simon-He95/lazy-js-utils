@@ -19,6 +19,15 @@ import { isWeakSet } from './isWeakSet'
 /**
  * 判断对象类型
  */
+/**
+ * 判断值是否匹配指定的类型标签
+ * @description EN: Flexible type checker that accepts a shorthand type string
+ * (like 'str', 'array', 'map') or multiple types separated by '|'. The
+ * implementation delegates to specific `isX` helpers.
+ * @param s Candidate value to test.
+ * @param type Type label or pipe-separated labels.
+ * @returns boolean True when any of the provided type labels match.
+ */
 export function isType<T>(s: T, type: string): boolean {
   type = type.toLocaleLowerCase()
   if (!type)

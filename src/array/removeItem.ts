@@ -1,10 +1,12 @@
 import { isEqual } from '../is/isEqual'
 
 /**
- *
- * @param { Array<unknown> } arr 数组
- * @param { unknown } item 数组中的一项
- * @returns 删除该项的数组
+ * 从数组中移除与指定项深度相等的第一个元素
+ * @description EN: Remove the first array element that deeply equals the given item. Optionally mutate the original array.
+ * @param {Array<T>} arr Input array.
+ * @param {unknown} item Item to remove (deep equality via isEqual).
+ * @param {boolean} [isOriginArray] When true, mutate the original array; otherwise return a new array.
+ * @returns {Array<T>} Array with the item removed (or original if not found).
  */
 export function removeItem<T>(
   arr: Array<T>,

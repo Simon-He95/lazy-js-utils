@@ -1,5 +1,6 @@
 /**
  * 反转义html
+ * @description EN: Convert HTML entities back into their corresponding characters.
  * @param { string } s 字符串
  * @returns
  */

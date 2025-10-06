@@ -2,6 +2,7 @@ import { isType } from '../is/isType'
 
 /**
  * 数组去重函数
+ * @description EN: Remove duplicates from an array. Optionally dedupe by specified key paths (supports nested paths like 'target.age').
  * @param { any[] } array 数组
  * @param { string[] } keys 可选，指定比较的键路径数组，如 ['name', 'target.age']。如果指定了keys，则只要这些指定的键值都相同，就认为是同一项进行去重
  * @returns 去重后的数组

@@ -8,6 +8,7 @@
 //  * @returns
 //  */
 // export function vitePluginCssVar(prefix = '$') {
+// @description EN: Vite plugin (stub) to convert project-specific CSS variable prefixes to CSS custom properties (var(--name)).
 //   const reg = new RegExp(`\\${prefix}(\\w+)`, 'g')
 //   const cache = new Set()
 //   return {

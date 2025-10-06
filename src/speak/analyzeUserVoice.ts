@@ -1,6 +1,7 @@
 /**
  * 声音分析错误类
  * @description 用于表示声音分析过程中出现的各种错误
+ * @description EN: Error class representing problems encountered during voice analysis.
  * @example
  * ```typescript
  * throw new VoiceAnalysisError('录制失败', 'RECORDING_FAILED', { device: 'microphone' })
@@ -26,6 +27,7 @@ export class VoiceAnalysisError extends Error {
 /**
  * 录制控制器接口
  * @description 提供录制过程的控制方法
+ * @description EN: Controller interface for recording operations (stop, status, progress).
  */
 export interface RecordingController {
   /** 停止录制 */
@@ -41,6 +43,7 @@ export interface RecordingController {
 /**
  * 分析帧数据接口
  * @description 单个时间点的音频分析数据
+ * @description EN: Single time-point audio analysis frame containing frequency and time-domain data.
  */
 export interface AnalysisFrame {
   /** 时间戳（毫秒） */
@@ -58,6 +61,7 @@ export interface AnalysisFrame {
 /**
  * 谐波信息接口
  * @description 声音的谐波特征
+ * @description EN: Harmonic information for a detected harmonic (frequency and amplitude).
  */
 export interface Harmonic {
   /** 谐波频率（Hz） */
@@ -69,6 +73,7 @@ export interface Harmonic {
 /**
  * 音色特征接口
  * @description 声音的音色特征参数
+ * @description EN: Timbre-related characteristics used to describe voice color.
  */
 export interface TimbreCharacteristics {
   /** 明亮度（0-1） */
@@ -84,6 +89,7 @@ export interface TimbreCharacteristics {
 /**
  * 声音特征接口
  * @description 完整的声音分析结果
+ * @description EN: Aggregated voice characteristics including pitch, formants, intensity and timbre.
  */
 export interface VoiceCharacteristics {
   /** 基频（Hz） */
@@ -109,6 +115,7 @@ export interface VoiceCharacteristics {
 /**
  * TTS 参数接口
  * @description 文本转语音的参数配置
+ * @description EN: Parameters suggested for TTS engines (pitch and rate).
  */
 export interface TTSParameters {
   /** 音调（0.1-2.0） */
@@ -120,6 +127,7 @@ export interface TTSParameters {
 /**
  * TTS 建议接口
  * @description 基于声音分析的 TTS 参数建议
+ * @description EN: Suggested TTS configuration derived from analysis (voice, pitch, rate, etc.).
  */
 export interface TTSSuggestions {
   /** 建议的语音类型 */
@@ -137,6 +145,7 @@ export interface TTSSuggestions {
 /**
  * 分析结果接口
  * @description 完整的声音分析结果，包含特征和 TTS 建议
+ * @description EN: Final analysis output containing voice characteristics and TTS suggestions.
  */
 export interface AnalysisResult {
   /** 声音特征 */
@@ -148,6 +157,7 @@ export interface AnalysisResult {
 /**
  * 音频约束接口
  * @description 音频录制的约束配置
+ * @description EN: Media constraints used when requesting microphone access (sampleRate, channelCount, etc.).
  */
 export interface AudioConstraints {
   /** 回声消除，默认 true */
@@ -169,6 +179,7 @@ export interface AudioConstraints {
 /**
  * 分析选项接口
  * @description 声音分析的配置选项
+ * @description EN: Options controlling recording duration, FFT size, callbacks and thresholds.
  */
 export interface AnalysisOptions {
   /** 录制时长（毫秒），默认 5000ms */
@@ -202,6 +213,7 @@ export interface AnalysisOptions {
 /**
  * 声音分析配置接口
  * @description 声音分析算法的配置参数
+ * @description EN: Algorithm-level configuration such as fundamental frequency range and formant/harmonic counts.
  */
 export interface VoiceAnalysisConfig {
   /** 人声基频检测范围最小值（Hz），默认 80 */
@@ -218,7 +230,10 @@ export interface VoiceAnalysisConfig {
   generateTTSParams?: boolean
 }
 
-// 声明全局类型
+/**
+ * 声明全局类型
+ * @description EN: Extend Window with webkitAudioContext for older WebKit-based browsers.
+ */
 declare global {
   interface Window {
     /** WebKit 浏览器的 AudioContext */
@@ -235,14 +250,19 @@ declare global {
  * const { result, controller } = await analyzer.analyzeVoice({
  *   duration: 5000,
  *   onProgress: (progress) => console.log(`进度: ${progress * 100}%`)
+/**
+ * 声音分析器类
+ * @description 提供实时声音录制、分析和特征提取功能
+ * @description EN: VoiceAnalyzer manages microphone recording, real-time analysis and feature extraction.
+ * @example
+ * ```typescript
+ * const analyzer = new VoiceAnalyzer()
+ * const { result, controller } = await analyzer.analyzeVoice({
+ *   duration: 5000,
+ *   onProgress: (progress) => console.log(`进度: ${progress * 100}%`)
  * })
  *
  * // 手动停止录制
- * controller.stop()
- *
- * // 获取分析结果
- * const characteristics = await result
- * ```
  */
 export class VoiceAnalyzer {
   private audioContext: AudioContext | null = null
@@ -303,6 +323,7 @@ export class VoiceAnalyzer {
    * @param options - 分析选项配置
    * @returns 包含分析结果 Promise 和控制器的对象
    * @throws {VoiceAnalysisError} 当录制已在进行中或参数无效时
+   * @description EN: Start recording from the microphone and perform analysis according to the options. Returns a controller and a Promise for the result.
    * @example
    * ```typescript
    * const { result, controller } = await analyzer.analyzeVoice({
@@ -397,6 +418,7 @@ export class VoiceAnalyzer {
   /**
    * 设置分析配置
    * @param config - 分析配置参数
+   * @description EN: Merge user-provided configuration into the analyzer's algorithm settings.
    * @example
    * ```typescript
    * analyzer.setAnalysisConfig({
@@ -415,6 +437,7 @@ export class VoiceAnalyzer {
    * 主动停止录制
    * @param reason - 停止原因
    * @param onRecordingStopped - 停止回调函数
+   * @description EN: Stop an in-progress recording, abort internal operations and invoke the stopped callback.
    */
   stopRecording(
     reason: 'manual' | 'duration' | 'error' = 'manual',
@@ -437,6 +460,7 @@ export class VoiceAnalyzer {
    * 获取 TTS 语音建议
    * @param characteristics - 声音特征数据
    * @returns TTS 参数建议，如果输入为空则返回 null
+   * @description EN: Convert detected voice characteristics to TTS parameter suggestions (pitch, rate, volume).
    * @example
    * ```typescript
    * const suggestions = analyzer.getTTSSuggestions(characteristics)
@@ -487,6 +511,7 @@ export class VoiceAnalyzer {
    * @private
    * @param options - 分析选项
    * @returns 声音特征分析结果
+   * @description EN: Core implementation that handles getUserMedia, streaming into the analyser and collecting frames.
    */
   private async performRecordingAnalysis(
     options: AnalysisOptions,
@@ -686,6 +711,7 @@ export class VoiceAnalyzer {
    * @param onVolumeChange - 音量变化回调
    * @param abortSignal - 中止信号
    * @returns 分析帧数据数组
+   * @description EN: Collect audio frames for the requested duration, invoking callbacks for realtime data and progress.
    */
   private performAnalysis(
     duration: number,

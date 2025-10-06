@@ -8,10 +8,9 @@ interface Options {
 /**
  * 浏览器空闲时期被调用
  * @param { Function[] } tasks 函数队列
- * @param { number } timeRemaining 剩余时间大于多少才继续执行
- * @param { number } timeout 超时时间
- * @param { Function } callback 回调
- * @returns
+ * @param {object} [options] 选项对象，可提供 timeRemaining/timeout/callback
+ * @returns { Function } 停止调度的函数
+ * @description EN: Schedule tasks during browser idle periods using requestIdleCallback (with a fallback). Executes queued tasks when the browser has available idle time and returns a stop function to cancel remaining tasks.
  */
 export function useRic(tasks: Function[], options?: Options): () => void {
   const { timeRemaining = 0, timeout = 2000, callback } = options || {}

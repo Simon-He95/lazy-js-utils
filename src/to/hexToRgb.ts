@@ -1,3 +1,12 @@
+/**
+ * Convert a hex color string to rgb or rgba string.
+ *
+ * Accepts short and full hex formats like '#fff' or '#ffffff'.
+ *
+ * @param {string} hex Hex color string (with leading '#').
+ * @param {number} [opacity] Optional opacity for rgba result.
+ * @returns {string} 'rgb(r,g,b)' or 'rgba(r,g,b,a)'.
+ */
 export function hexToRgb(hex: string, opacity?: number) {
   const l = 7 - hex.length
 

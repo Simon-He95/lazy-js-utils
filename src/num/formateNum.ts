@@ -4,6 +4,7 @@
  * @param { number } decimals 小数位
  * @param { 'floor' | 'ceil' } integer 向上截取 ｜ 向下截取 默认 'ceil'
  * @returns
+ * @description EN: Format a number with thousands separators and a fixed number of decimal places. Supports rounding via 'floor' or 'ceil'.
  */
 export function formateNum(
   number: number | string,

@@ -2,6 +2,7 @@ import { getDaysOfMonth } from './getDaysOfMonth'
 
 /**
  * 返回当前月份的日历数组信息
+ * @description EN: Generate a 6x7 calendar grid for the specified month index (0-based), returning an array of weeks with day numbers.
  * @param currentMonth 今天的月份-1 从0开始
  * @returns number[][]
  */
