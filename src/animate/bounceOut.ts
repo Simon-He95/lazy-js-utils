@@ -1,3 +1,9 @@
+/**
+ * 弹跳离开缓动曲线
+ * @description EN: Bounce-out easing that mimics an object dropping and bouncing to rest.
+ * @param { number } t 归一化时间进度，范围 0-1
+ * @returns { number }
+ */
 export function bounceOut(t: number) {
   const a = 4.0 / 11.0
   const b = 8.0 / 11.0

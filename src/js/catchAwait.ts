@@ -1,3 +1,10 @@
+/**
+ * 捕获 Promise 错误
+ * @description EN: Await a promise and return a tuple `[error, result]`, optionally merging extra fields into the error object.
+ * @param { Promise<T> } promise 需要处理的 Promise
+ * @param { object } [errorExt] 发生错误时附加到错误对象的额外信息
+ * @returns { Promise<[U | undefined, T | undefined]> }
+ */
 export async function catchAwait<T, U = Error>(
   promise: Promise<T> | any,
   errorExt?: object,

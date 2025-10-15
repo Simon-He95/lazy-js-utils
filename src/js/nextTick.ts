@@ -3,10 +3,8 @@ import { createTextNode } from '../event/createTextNode'
 
 /**
  * 下一次执行任务
- * @description EN: Schedule a callback to run on the next microtask (via Promise),
- * or fallback to MutationObserver / setTimeout when Promises are unavailable.
- * @param { () => any } flushCallbacks 函数
- * @returns
+ * @description EN: Schedule a callback to run on the next microtask (via Promise). Falls back to MutationObserver or setTimeout when Promises are unavailable.
+ * @param { () => any } flushCallbacks 待执行的回调函数
  */
 export function nextTick(flushCallbacks: () => any): void {
   if (typeof Promise !== 'undefined') {

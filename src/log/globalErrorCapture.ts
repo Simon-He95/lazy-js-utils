@@ -4,6 +4,7 @@ import { log } from './log'
 /**
  * 全局错误捕获
  * @description EN: Capture global window `error` events and log structured error information.
+ * @returns { () => void } 注销监听器的清理函数
  */
 export function globalErrorCapture() {
   return useEventListener(window, 'error', (err) => {

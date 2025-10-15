@@ -1,7 +1,8 @@
 /**
- * handleImageError
- * @param errorImageSrc string[] - Array of image sources to use as fallback
- * @returns (event: Event) => void - Function to handle error event on image element
+ * 图片加载失败时轮换备用图
+ * @description EN: Return an error handler that swaps an image's `src` with fallback URLs each time a load failure occurs.
+ * @param { string[] } errorImageSrc 备用图片地址列表
+ * @returns { (event: Event) => void }
  */
 export function handleImageError(errorImageSrc: string[]) {
   let index = 0

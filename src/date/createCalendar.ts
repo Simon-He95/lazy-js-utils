@@ -14,7 +14,6 @@ export function createCalendar(currentMonth: number) {
   let count = 0
   const currentDay = d.getDay()
   const preMonthDays = getDaysOfMonth(currentMonth - 1)
-  console.log(currentDay)
 
   for (let i = 0; i < 6; i++) {
     const weekList = Array.from({ length: 7 })

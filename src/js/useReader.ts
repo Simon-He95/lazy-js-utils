@@ -1,11 +1,8 @@
 /**
-/**
-/**
- * 读取ReadableStream
- * @description EN: Read data from a ReadableStreamDefaultReader and invoke
- * an optional callback for each chunk. Returns the concatenated string result.
- * @param { ReadableStreamDefaultReader<Uint8Array> } reader getReader() 的结果
- * @param { (value?: any) => any } [callback] 每片读取的回调
+ * 读取 ReadableStream
+ * @description EN: Read from a `ReadableStreamDefaultReader`, optionally process each chunk, and return the concatenated string.
+ * @param { ReadableStreamDefaultReader<Uint8Array> } reader `stream.getReader()` 的返回值
+ * @param { (value?: string) => any } [callback] 对每个文本块进行处理的回调
  * @returns { Promise<string> }
  */
 export async function useReader(

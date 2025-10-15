@@ -1,8 +1,8 @@
 /**
  * 检测函数执行耗时
- * @param { Function } fn 函数
- * @returns number
- * @description EN: Measure and log the execution time (in seconds) of the provided synchronous function.
+ * @description EN: Measure and log the execution time (seconds) of the provided synchronous function.
+ * @param { Function } fn 需要测量的函数
+ * @returns { number } 函数执行耗时（秒）
  */
 export function timeCost(fn: Function): number {
   const start = new Date().getTime()

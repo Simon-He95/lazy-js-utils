@@ -3,10 +3,10 @@ import { stringify } from '../object/stringify'
 
 /**
  * 日志输出
- * @param { string } s 内容
- * @param { Record<string, string | number>  } styleObj 样式
- * @param { string } type 类型 'warn' | 'error' | 'log'
- * @description EN: Print styled logs to console with optional type and extra args. Accepts style object or CSS string.
+ * @description EN: Print styled logs to console with optional level, CSS styles, and extra arguments.
+ * @param { string | number } s 日志内容
+ * @param {{ type?: 'warn' | 'error' | 'log'; style?: Record<string, string | number> | string; args?: any[] }} [options] 控制打印类型、样式与追加参数
+ * @returns { void }
  */
 export function log(
   s: string | number,

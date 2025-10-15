@@ -1,10 +1,10 @@
 /**
- *
- * @param { boolean } [enableHighAccuracy] 开启高精度模式 默认 false
- * @param { number } [timeout] 超时时间 默认 5000
- * @param { number } [maximumAge] 最大缓存位置时间 默认 0
- * @returns
- * @description EN: Get current geolocation coordinates as a Promise, with optional high-accuracy and timeout settings.
+ * 获取当前地理坐标
+ * @description EN: Resolve the current geolocation coordinates with optional high-accuracy, timeout, and cache controls.
+ * @param { boolean } [enableHighAccuracy] 是否启用高精度模式
+ * @param { number } [timeout] 允许的最大定位耗时（毫秒）
+ * @param { number } [maximumAge] 允许的最大缓存位置时间（毫秒）
+ * @returns { Promise<GeolocationCoordinates> }
  */
 export function getLocation(
   enableHighAccuracy = false,

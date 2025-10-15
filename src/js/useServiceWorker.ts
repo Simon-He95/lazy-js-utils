@@ -2,15 +2,11 @@ import { isStr } from '../is/isStr'
 import { fnToUrl } from './fnToUrl'
 
 /**
- *
- * @param url url自定义worker文件路径 或者 worker函数
- * @param { RegistrationOptions } options {
- *  scope?: string;
- *  type?: WorkerType;
- *  updateViaCache?: ServiceWorkerUpdateViaCache;
- *  }
- * @returns
- * @description EN: Register a ServiceWorker from a URL or an inline function converted to a blob URL.
+ * 注册 Service Worker
+ * @description EN: Register a ServiceWorker from a script URL or an inline function that is transformed into a blob URL.
+ * @param { string | (() => void) } url Service Worker 脚本地址，或一个将在 Worker 中执行的函数
+ * @param { RegistrationOptions } options Service Worker 注册配置项
+ * @returns { Promise<ServiceWorkerRegistration> }
  */
 export function useServiceWorker(
   url: string | (() => void),

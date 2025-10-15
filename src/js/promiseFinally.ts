@@ -1,11 +1,11 @@
 import { isFn } from '../is/isFn'
 
 /**
- *
- * @param { Function } fn 函数 ｜ 异步函数
- * @param { Function } finalFn 函数
- * @returns
- * @description EN: Execute `fn` (sync or async) and always call `finalFn` afterwards; propagate original or final errors similarly to a try/finally.
+ * Promise 最终处理
+ * @description EN: Run `fn` (sync or async) and always call `finalFn`, mirroring JavaScript `try/finally` behaviour for returned values and errors.
+ * @param { Function | Promise<any> } fn 可以是函数或已存在的 Promise
+ * @param { Function } finalFn 最终一定会执行的回调
+ * @returns { Promise<any> }
  */
 export async function promiseFinally(
   fn: Promise<any> | Function,

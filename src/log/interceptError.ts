@@ -18,10 +18,13 @@ function normalizeError(err: any): Error {
   }
 }
 
+/**
+ * 拦截并标准化函数错误
+ * @description EN: Wrap a function so that thrown values and rejected Promises are normalized into standard `Error` instances.
+ * @param { T } fn 需要包装的函数
+ * @returns { T }
+ */
 export function interceptError<T extends (...args: any[]) => any>(fn: T) {
-  /**
-   * @description EN: Wrap a function so that thrown values and rejected Promises are normalized into Error instances.
-   */
   // 返回一个包装函数，保留 this 与参数，同时支持同步异常和 Promise 拒绝
   return function (
     this: any,
