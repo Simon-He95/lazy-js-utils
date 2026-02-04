@@ -26,8 +26,7 @@ export function mount(...args: MountArgs): void {
   let isMounted = false
   let hasMounted = false
   update()
-  document.addEventListener('DOMContentLoaded', update)
-  setTimeout(() => document.removeEventListener('DOMContentLoaded', update))
+  document.addEventListener('DOMContentLoaded', update, { once: true })
   function update() {
     if (hasMounted)
       return

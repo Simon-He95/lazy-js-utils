@@ -11,21 +11,24 @@ export async function fileSplice(
   options: FileSpliceOptions,
 ): Promise<ChunkDetail[]> {
   return new Promise((resolve) => {
-    const { file, chunkSize = 5 * 1024 * 1024, callback } = options || {}
-    const THREAD_COUNT = navigator.hardwareConcurrency || 4
-    const result: ChunkDetail[] = []
-
+    const { file, chunkSize = 5 * 1024 * 1024, callback, workerUrl } = options
     const chunkCount = Math.ceil(file.size / chunkSize)
-    const workerChunkCount = Math.ceil(chunkCount / THREAD_COUNT)
+    if (chunkCount === 0)
+      return resolve([])
+    const threadCount = Math.min(navigator.hardwareConcurrency || 4, chunkCount)
+    const baseCount = Math.floor(chunkCount / threadCount)
+    const extra = chunkCount % threadCount
+    const result: ChunkDetail[] = []
     let finishCount = 0
-    for (let i = 0; i < THREAD_COUNT; i++) {
-      const worker = new Worker('./dist/worker/fileSpliceWorker.js', {
+    const resolvedWorkerUrl
+      = workerUrl ?? new URL('../worker/fileSpliceWorker.js', import.meta.url)
+    for (let i = 0; i < threadCount; i++) {
+      const worker = new Worker(resolvedWorkerUrl, {
         type: 'module',
       })
-      const startIndex = i * workerChunkCount
-      let endIndex = startIndex + workerChunkCount
-      if (endIndex > chunkCount)
-        endIndex = chunkCount
+      const startIndex = i * baseCount + Math.min(i, extra)
+      const count = baseCount + (i < extra ? 1 : 0)
+      const endIndex = startIndex + count
       worker.postMessage({ file, i, chunkSize, startIndex, endIndex })
       worker.onmessage = ({ data }) => {
         finishCount++
@@ -35,13 +38,13 @@ export async function fileSplice(
           type: file.type,
           size: file.size,
           lastModified: file.lastModified,
-          isDone: finishCount === THREAD_COUNT,
-          remaining: THREAD_COUNT - finishCount,
+          isDone: finishCount === threadCount,
+          remaining: threadCount - finishCount,
         }
         result.push(params)
         callback && callback(params)
         worker.terminate()
-        if (finishCount === THREAD_COUNT)
+        if (finishCount === threadCount)
           resolve(result)
       }
     }

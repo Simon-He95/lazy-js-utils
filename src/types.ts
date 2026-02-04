@@ -163,8 +163,9 @@ export interface ChunkInfo {
 
 export interface FileSpliceOptions {
   file: File
-  chunkSize: number
-  callback: (chunk: ChunkDetail) => void
+  chunkSize?: number
+  callback?: (chunk: ChunkDetail) => void
+  workerUrl?: string | URL
 }
 export interface Deadline {
   timeRemaining: () => number

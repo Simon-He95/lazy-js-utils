@@ -36,8 +36,12 @@
       "require": "./dist/vite/index.cjs"
     },
     "./webComponents": {
-      "import": "./dist/webComponents/index.js",
-      "require": "./dist/webComponents/index.cjs"
+      "import": "./dist/webComponent/index.js",
+      "require": "./dist/webComponent/index.cjs"
+    },
+    "./webComponent": {
+      "import": "./dist/webComponent/index.js",
+      "require": "./dist/webComponent/index.cjs"
     },
     "./types": {
       "types": "./dist/types/index.d.ts",
