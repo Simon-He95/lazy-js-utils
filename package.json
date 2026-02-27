@@ -2,7 +2,7 @@
   "name": "lazy-js-utils",
   "type": "module",
   "version": "0.1.50",
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.30.3",
   "description": "A collection of lazy-loaded JavaScript utilities for efficient development",
   "author": "Simon He",
   "license": "MIT",
@@ -80,7 +80,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.27.3",
     "@types/node": "^17.0.45",
-    "@types/qrcode": "^1.5.5",
+    "@types/qrcode": "^1.5.6",
     "@types/spark-md5": "^3.0.5",
     "bumpp": "^8.2.1",
     "eslint": "9.1.1",
@@ -88,10 +88,10 @@
     "lint-staged": "^13.3.0",
     "p-limit": "^4.0.0",
     "prettier": "^2.8.8",
-    "simple-git-hooks": "^2.13.0",
+    "simple-git-hooks": "^2.13.1",
     "tsdown": "^0.9.9",
     "tsx": "^3.14.0",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.3",
     "vitest": "^3.2.4"
   },
   "simple-git-hooks": {

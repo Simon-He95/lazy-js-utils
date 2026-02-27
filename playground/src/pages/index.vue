@@ -3,8 +3,7 @@ const name = $ref('')
 
 const router = useRouter()
 function go() {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
+  if (name) router.push(`/hi/${encodeURIComponent(name)}`)
 }
 </script>
 
@@ -39,12 +38,10 @@ function go() {
       border="~ rounded gray-200 dark:gray-700"
       outline="none active:none"
       @keydown.enter="go"
-    >
+    />
 
     <div>
-      <button class="m-3 text-sm btn" :disabled="!name" @click="go">
-        Go
-      </button>
+      <button class="m-3 text-sm btn" :disabled="!name" @click="go">Go</button>
     </div>
   </div>
 </template>

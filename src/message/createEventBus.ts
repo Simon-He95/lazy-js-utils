@@ -7,7 +7,7 @@ export function createEventBus(): EventBus {
   return {
     data: Object.create(null),
     emit(event: string, data: any) {
-      (this.data[event] || []).forEach(handler => handler(data))
+      ;(this.data[event] || []).forEach(handler => handler(data))
     },
     on(event, handler) {
       if (!this.data[event])

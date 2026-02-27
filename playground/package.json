@@ -15,12 +15,12 @@
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4030620241128001",
     "@vueuse/core": "^8.9.4",
-    "vue": "^3.5.16",
-    "vue-router": "^4.5.1"
+    "vue": "^3.5.29",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.9",
-    "@iconify-json/carbon": "^1.2.9",
+    "@iconify-json/carbon": "^1.2.18",
     "@types/node": "^17.0.45",
     "@unocss/reset": "^0.61.9",
     "@vitejs/plugin-vue": "^2.3.4",
@@ -32,7 +32,7 @@
     "unocss": "^0.61.9",
     "unplugin-auto-import": "^0.6.9",
     "unplugin-vue-components": "^0.18.5",
-    "vite": "^6.3.5",
+    "vite": "^6.4.1",
     "vite-plugin-pages": "^0.22.0",
     "vitest": "^3.2.4",
     "vue-tsc": "^0.33.9"
