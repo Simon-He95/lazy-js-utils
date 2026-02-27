@@ -1,5 +1,5 @@
 import path from 'node:path'
-import { jsShell } from './jsShell'
+import fsp from 'node:fs/promises'
 
 /**
  * 判断是否存在package.json
@@ -9,9 +9,10 @@ import { jsShell } from './jsShell'
  */
 export async function hasPkg(rootPath: string) {
   const url = path.resolve(rootPath, 'package.json')
-  const { result } = await jsShell(
-    `test -f "${url}" && echo "0"|| echo "1"`,
-    'pipe',
-  )
-  return result === '0'
+  try {
+    return (await fsp.stat(url)).isFile()
+  }
+  catch {
+    return false
+  }
 }

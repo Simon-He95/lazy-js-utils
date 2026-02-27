@@ -1,6 +1,6 @@
 import process from 'node:process'
 import path from 'node:path'
-import { jsShell } from './jsShell'
+import { hasPkg } from './hasPkg'
 
 /**
  * 判断路径下是否有package.jsons
@@ -8,13 +8,10 @@ import { jsShell } from './jsShell'
  * @description EN: Determine whether a package.json exists in the given path (defaults to process.cwd()).
  */
 export async function isPkg(rootPath: string = process.cwd()) {
-  const url = path.resolve(
-    rootPath.replace(/package.json$/, ''),
-    'package.json',
-  )
-  const { result } = await jsShell(
-    `test -f "${url}" && echo "0"|| echo "1"`,
-    'pipe',
-  )
-  return result === '0'
+  const resolvedRoot = path.resolve(rootPath)
+  const targetRoot
+    = path.basename(resolvedRoot).toLowerCase() === 'package.json'
+      ? path.dirname(resolvedRoot)
+      : resolvedRoot
+  return hasPkg(targetRoot)
 }
